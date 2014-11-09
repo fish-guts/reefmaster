@@ -51,7 +51,7 @@ void cs_acc(char *src, int ac, char **av) {
 	}
 	switch (level) {
 	case 13:
-		notice(cs_name, src, CS_RPL_ACC_IRCOP, u->nick, get_oline(cs_admin),
+		notice(cs_name, src, CS_RPL_ACC_IRCOP, u->nick, get_oline(u->oper),
 				c->name);
 		return;
 	case 12:

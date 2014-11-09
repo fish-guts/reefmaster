@@ -104,7 +104,7 @@ void ns_access_add(char *src, char *nick, char *mask) {
 					notice(ns_name, src, NS_ERR_ACC_MASKEXISTS, mask);
 				return;
 			}
-			struct accesslist *a = scalloc(sizeof(struct accesslist), 1);
+			accesslist *a = scalloc(sizeof(accesslist), 1);
 			a->next = n->al;
 			if (n->al)
 				n->al->prev = a;
@@ -127,7 +127,6 @@ void ns_access_add(char *src, char *nick, char *mask) {
 void ns_access_del(char *src, char *nick, char *mask) {
 	NickInfo *n;
 	user *u1;
-	char **access;
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
 		return;
@@ -204,11 +203,12 @@ void ns_access_list(char *src, char *nick) {
 		} else {
 			notice(ns_name, src, NS_RPL_ACC_LIST, nick);
 			int i = 1;
-			while (n) {
+			while (a) {
 				notice(ns_name, src, NS_RPL_ACC_LISTENTRIES, i,a->mask);
 				i++;
 				a = a->next;
 			}
+			notice(as_name,src,"post");
 			if (i == 2)
 				notice(ns_name, src, NS_RPL_ACC_LISTFOUND1, i - 1);
 			else

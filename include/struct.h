@@ -9,6 +9,7 @@
 #define DESCMAX 2048
 
 typedef struct _accesslist accesslist;
+typedef struct _auth auth;
 typedef struct _botinfo bot;
 typedef struct _as_cmd as_cmd;
 typedef struct _bs_cmd bs_cmd;
@@ -27,6 +28,18 @@ typedef struct _oper operline;
 typedef struct _nickinfo NickInfo;
 typedef struct _timeout_ timer;
 typedef struct _notify_text ntext;
+typedef struct _notify notify;
+typedef struct _targettype targettype;
+
+struct _auth
+{
+	auth *next, *prev;
+	int type;
+	char *target;
+	char *sender;
+	time_t date;
+	int status;
+};
 
 struct _botinfo {
 	bot *next,*prev;
@@ -158,29 +171,22 @@ struct _nickinfo {
     short mnotify;
     char nick[NICKMAX];
     int noop;
-    struct notifylist {
-    	struct notifylist *prev, *next;
-    	NickInfo *n;
-    } *notifylist;
+    notify *notifylist;
     int nomemo;
     char pass[PASSMAX];
     int protect;
     long reserved[4];
     time_t time_reg;
     char *url;
-    struct authlist
-    {
-    	struct authlist *next, *prev;
-    	int type;
-    	char *target;
-    	char *sender;
-    	time_t date;
-    	int status;
-    } authlist;
+    auth *authlist;
 };
 struct _accesslist {
 	accesslist *prev, *next;
 	char *mask;
+};
+struct _notify {
+	notify *prev, *next;
+	NickInfo *nick;
 };
 struct _timer {
     timer *next, *prev;
@@ -188,6 +194,11 @@ struct _timer {
     int repeat;	
     void (*code)(timer *);
     void *data;
+};
+struct _targettype {
+	targettype *prev,*next;
+	int id;
+	char *name;
 };
 struct _user 
 {

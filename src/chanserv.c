@@ -179,8 +179,8 @@ extern int cs_connect(int sock) {
  * determine, why a user has access to a registered channel
  */
 char *cs_get_why(user *u, ChanInfo *c) {
-	int lvl = 0;
-	int i = 0;
+	//int lvl = 0;
+	//int i = 0;
 	char *why = (char*) malloc(sizeof(char*) * NICKMAX);
 	return why;
 }
@@ -361,7 +361,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
  * write the nickname table to the database
  */
 void save_chanserv_db(void) {
-	db_save_chans(chans);
+	//db_save_chans(chans);
 }
 /********************************************************************/
 /**

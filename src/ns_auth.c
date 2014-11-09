@@ -47,6 +47,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 	if (ac < 3) {
 		notice(ns_name, src, NS_ERR_ATH_ACCEPTUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH ACCEPT");
+		notice(as_name,src,xop[4]);
 		return;
 	}
 	/* if the nickname is not registered, trigger an error */
@@ -80,7 +81,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 			i++;
 		}
 		if (a->type == AUTH_NOTIFY) {
-			NickInfo *n2 = findnick(a->sender);
+			/*NickInfo *n2 = findnick(a->sender);
 			n2->notifycount++;
 			n2->notifylist = srealloc(n2->notifylist,
 					sizeof(char *) * n2->notifycount);
@@ -90,7 +91,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 			if (u1) {
 				notice(ns_name, u1->nick, NS_RPL_ATH_HASACCEPTED_NFY, src);
 			}
-			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
+			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);*/
 			return;
 		} else if (a->type > AUTH_NOTIFY) {
 			ChanInfo *c = findchan(a->target);
@@ -99,7 +100,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 			} else if (a->type == AUTH_SUCC) {
 				strscpy(c->successor, src, NICKMAX);
 			} else {
-
+/*
 				op *o = scalloc(sizeof(op), 1);
 				o->addedby = sstrdup(a->sender);
 				o->addedbyacc = a->acctype;
@@ -116,7 +117,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 							xop[a->type], a->target);
 				}
 				notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
-			}
+			*/}
 		}
 		n->authcount--;
 		free(a->sender);

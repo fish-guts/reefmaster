@@ -143,21 +143,19 @@ int ifmatch_0(const char *pattern, const char *str) {
 	return ifmatch(pattern, str, 0);
 }
 int ismatch(user *u, char *mask) {
-	int i;
 	if (!isreg(u->nick))
 		return 0;
 	if (isidentified(u, u->nick)) {
 		return 2;
 	}
 	NickInfo *n = findnick(u->nick);
-	//TODO: refactor access
-	/*
-	for (i = 0; i < n->accesscount; i++) {
-		if (ifmatch(n->accesslist[i], mask, 0)) {
+	accesslist *a = n->al;
+	while (a) {
+		if (ifmatch(a->mask, mask, 0)) {
 			return 1;
 		}
+		n = n->next;
 	}
-	*/
 	return 0;
 }
 int isnum(char *value) {

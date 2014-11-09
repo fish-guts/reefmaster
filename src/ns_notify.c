@@ -73,13 +73,14 @@ void ns_notify_add(char *src,int ac,char **av) {
 			return;
 		}
 		/* the sending nick */
-		NickInfo *n1 = findnick(src);
+		//NickInfo *n1 = findnick(src);
 		/* the target nick */
 		NickInfo *n2 = findnick(nick);
 		/* if the target nick has AUTH for notify requests enabled, add a
 		 * respective entry to the auth list.
 		 */
 		if (n2->auth_notify == 1) {
+			/*
 			if (findauth_notify(src, nick)) {
 				notice(as_name, src, NS_RPL_ATH_ALREADYINLIST, nick);
 				return;
@@ -102,15 +103,16 @@ void ns_notify_add(char *src,int ac,char **av) {
 			if ((u1 = finduser(nick)) != NULL) {
 				notice(ns_name, nick, NS_RPL_ATH_TEXT1, src);
 			}
+			*/
 			return;
 		}
 		/* if no authorization is required, just process with adding the entry */
-		else {
+		else { /*
 			n1->notifycount++;
 			n1->notifylist = srealloc(n1->notifylist,
 					sizeof(char *) * n1->notifycount);
 			n1->notifylist[n1->notifycount - 1] = nick;
-			notice(ns_name, src, NS_RPL_NFY_NICKADDED, nick);
+			notice(ns_name, src, NS_RPL_NFY_NICKADDED, nick);*/
 		}
 	}
 }
@@ -134,7 +136,7 @@ void ns_notify_del(char *src,int ac, char **av) {
 			return;
 		}
 		char *nick = sstrdup(av[2]);
-		NickInfo *n = findnick(src);
+		//NickInfo *n = findnick(src);
 		if (!isreg(nick)) {
 			notice(ns_name, src, NS_ERR_NOTREG, nick);
 			notice(ns_name, src, NS_ERR_NFY_MUSTBEREG2);
@@ -145,6 +147,7 @@ void ns_notify_del(char *src,int ac, char **av) {
 			notice(ns_name, src, NS_ERR_NFY_NICKNOTFOUND, av[2]);
 			return;
 		}
+		/*
 		char **notify;
 		int i = 0;
 		for (notify = n->notifylist, i = 0; i < n->notifycount;
@@ -153,16 +156,18 @@ void ns_notify_del(char *src,int ac, char **av) {
 				break;
 		}
 		n->notifycount--;
-		if (i < n->notifycount) /* if it wasn't the last entry... */
+		if (i < n->notifycount) // if it wasn't the last entry...
 			memmove(notify, notify + 1,
 					(n->notifycount - i) * sizeof(char *));
-		if (n->notifycount) /* if there are any entries left... */
+		if (n->notifycount) // if there are any entries left...
 			n->notifylist = srealloc(n->notifylist,
 					n->notifycount * sizeof(char *));
+
 		else {
 			free(n->notifylist);
 			n->notifylist = NULL;
 		}
+		*/
 		notice(ns_name, src, NS_RPL_NFY_NICKDELETED, nick);
 		return;
 	}
@@ -179,14 +184,15 @@ void ns_notify_list(char *src,int ac,char **av) {
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY LIST");
 		return;
 	} else {
-		NickInfo *n;
-		n = findnick(src);
+		//NickInfo *n;
+		//n = findnick(src);
 		user *u1 = finduser(src);
 		if (isidentified(u1, src) < 0) {
 			notice(ns_name, src, NS_ERR_ACCESSDENIED, src);
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, src);
 			return;
 		}
+		/*
 		if (n->notifycount <= 0) {
 			if (ac > 2)
 				notice(ns_name, src, NS_RPL_NFY_NOENTRIES2, nick);
@@ -206,6 +212,7 @@ void ns_notify_list(char *src,int ac,char **av) {
 				notice(ns_name, src, NS_RPL_ACC_LISTFOUND2, i - 1);
 			return;
 		}
+		*/
 	}
 }
 void ns_notify_wipe(char *src,int ac,char **av) {
@@ -216,6 +223,7 @@ void ns_notify_wipe(char *src,int ac,char **av) {
  * look for an entry in the target's notify list
  */
 int ns_notifylist(char *src, char *dest) {
+	/*
 	NickInfo *n = findnick(src);
 	int i;
 	for (i = 0; i < n->notifycount; i++) {
@@ -223,5 +231,6 @@ int ns_notifylist(char *src, char *dest) {
 			return 1;
 		}
 	}
+	*/
 	return -1;
 }

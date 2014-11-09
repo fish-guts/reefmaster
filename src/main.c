@@ -73,6 +73,7 @@ void print_msg(char *msg, ...)
 }
 static void daemonize(void)
 {
+
 	mainsock = -1;
 	pid_t pid, sid;
 	if (getppid()==1)
@@ -86,7 +87,6 @@ static void daemonize(void)
     sid = setsid();
     if(sid<0)
         exit(EXIT_FAILURE);
-
 	int rc;
 	if((rc=load_app())!=0)
 	{
@@ -116,8 +116,9 @@ int load_app(void) {
 	int rc;
 	print_welcome_msg();
 	/* loads the configuration */
-	if((rc=config_load(CONFIG_FILE))==0)
+	if((rc=config_load(CONFIG_FILE))==0) {
 		start_app();
+	}
 	return rc;
 }
 

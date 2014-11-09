@@ -179,8 +179,6 @@ static ns_cmd *find_ns(const char *name) {
  * find a channel auth request in the nickname's auth list
  */
 int findauth_chan(char *src, char *nick, char *chan, int level) {
-	NickInfo *n2 = findnick(nick);
-
 	return 0;
 }
 /********************************************************************/
@@ -188,7 +186,6 @@ int findauth_chan(char *src, char *nick, char *chan, int level) {
  * find a notify auth request in the nickname's auth list
  */
 int findauth_notify(char *src, char *nick) {
-
 	return 0;
 }
 /********************************************************************/
@@ -226,7 +223,6 @@ void nickserv(char *src, char *av) {
 	char **uv = (char**) malloc(sizeof(char**) * 4096);
 	char *pch = strtok(av, " ");
 	ns_cmd *ns;
-	user *u = finduser(src);
 	while (pch != NULL) {
 		uv[i] = sstrdup(pch);
 		i++;
@@ -367,7 +363,7 @@ static void rem_ns_timeout(user *u, int type) {
  * write the nickname table to the database
  */
 void save_nickserv_db(void) {
-	db_save_nicks(nicklist);
+	//db_save_nicks(nicklist);
 }
 /********************************************************************/
 /**
