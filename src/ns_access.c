@@ -21,6 +21,8 @@
 
 #include "main.h"
 
+static accesslist *find_mask(NickInfo *n,char *mask);
+
 void ns_access(char *src, int ac, char **av) {
 	char *cmd = av[1];
 	char *msk = av[2];
@@ -102,10 +104,14 @@ void ns_access_add(char *src, char *nick, char *mask) {
 					notice(ns_name, src, NS_ERR_ACC_MASKEXISTS, mask);
 				return;
 			}
-			n->accesscount++;
-			n->accesslist = srealloc(n->accesslist,
-					sizeof(char *) * n->accesscount);
-			n->accesslist[n->accesscount - 1] = sstrdup(mask);
+			struct accesslist *a = scalloc(sizeof(struct accesslist), 1);
+			a->next = n->al;
+			if (n->al)
+				n->al->prev = a;
+			n->al = a;
+			a->mask = sstrdup(mask);
+
+
 			if (stricmp(src, nick) != 0)
 				notice(ns_name, src, NS_RPL_ACC_ADDSUCCESS2, mask, nick);
 			else
@@ -141,27 +147,30 @@ void ns_access_del(char *src, char *nick, char *mask) {
 			notice(ns_name, src, NS_ERR_ACC_MASKNOTFOUND, mask);
 		return;
 	} else {
-		int i = 0;
-		for (access = n->accesslist, i = 0; i < n->accesscount; access++, i++) {
-			if (stricmp(*access, mask) == 0)
-				break;
-		}
-		n->accesscount--;
-		if (i < n->accesscount) /* if it wasn't the last entry... */
-			memmove(access, access + 1, (n->accesscount - i) * sizeof(char *));
-		if (n->accesscount) /* if there are any entries left... */
-			n->accesslist = srealloc(n->accesslist,
-					n->accesscount * sizeof(char *));
-		else {
-			free(n->accesslist);
-			n->accesslist = NULL;
-		}
+		accesslist *a = find_mask(n,mask);
+	    free(a->mask);
+	    if(a->prev)
+			a->prev->next = a->next;
+	    else
+			n->al = a->next;
+		if (a->next)
+			a->next->prev = a->prev;
+		free(a);
 		if (stricmp(src, nick) != 0)
 			notice(ns_name, src, NS_RPL_ACC_DELSUCCESS2, mask, nick);
 		else
 			notice(ns_name, src, NS_RPL_ACC_DELSUCCESS, mask);
 		return;
 	}
+}
+static accesslist *find_mask(NickInfo *n,char *mask) {
+	accesslist *a;
+	for (a = n->al; a->mask-1; a++) {
+		if (stricmp(mask, a->mask) == 0) {
+			return a;
+		}
+	}
+	return NULL;
 }
 /********************************************************************/
 /**
@@ -185,7 +194,8 @@ void ns_access_list(char *src, char *nick) {
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 			return;
 		}
-		if (n->accesscount <= 0) {
+		accesslist *a = n->al;
+		if(!a) {
 			if (stricmp(src, nick) != 0)
 				notice(ns_name, src, NS_RPL_ACC_NOENTRIES2, nick);
 			else
@@ -193,10 +203,11 @@ void ns_access_list(char *src, char *nick) {
 			return;
 		} else {
 			notice(ns_name, src, NS_RPL_ACC_LIST, nick);
-			int i;
-			for (i = 1; i <= n->accesscount; i++) {
-				notice(ns_name, src, NS_RPL_ACC_LISTENTRIES, i,
-						n->accesslist[i - 1]);
+			int i = 1;
+			while (n) {
+				notice(ns_name, src, NS_RPL_ACC_LISTENTRIES, i,a->mask);
+				i++;
+				a = a->next;
 			}
 			if (i == 2)
 				notice(ns_name, src, NS_RPL_ACC_LISTFOUND1, i - 1);
@@ -223,9 +234,8 @@ void ns_access_wipe(char *src, char *nick) {
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 			return;
 		}
-		n->accesscount = 0;
-		free(n->accesslist);
-		n->accesslist = NULL;
+		free(n->al);
+		n->al = NULL;
 		if (stricmp(src, nick) != 0)
 			notice(ns_name, src, NS_RPL_ACC_WIPESUCCESS2, nick);
 		else

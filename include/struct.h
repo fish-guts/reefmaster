@@ -8,6 +8,7 @@
 #define PASSMAX 33
 #define DESCMAX 2048
 
+typedef struct _accesslist accesslist;
 typedef struct _botinfo bot;
 typedef struct _as_cmd as_cmd;
 typedef struct _bs_cmd bs_cmd;
@@ -142,10 +143,7 @@ struct _nickinfo {
     int auth_chan;
     int auth_notify;
     unsigned int authcount;
-    struct accesslist {
-    	struct accesslist *prev, *next;
-    	char *mask;
-    } *accesslist;
+    accesslist *al;
     unsigned short channelcount;
     char *email;
     int enforced;
@@ -179,6 +177,10 @@ struct _nickinfo {
     	time_t date;
     	int status;
     } authlist;
+};
+struct _accesslist {
+	accesslist *prev, *next;
+	char *mask;
 };
 struct _timer {
     timer *next, *prev;

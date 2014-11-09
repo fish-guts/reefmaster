@@ -468,7 +468,6 @@ static void load_access(void) {
 		while (sqlite3_step(res) == SQLITE_ROW) {
 			NickInfo *n = findnick(sqlite3_column_text(res, 0));
 			struct accesslist *a = scalloc(sizeof(struct accesslist), 1);
-			struct usernicks *un = scalloc(sizeof(struct usernicks), 1);
 			a->next = n->accesslist;
 			if (n->accesslist)
 				n->accesslist->prev = a;
