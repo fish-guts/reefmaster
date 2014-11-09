@@ -1,0 +1,168 @@
+	/* write some information in the chanserv db entry */
+		/* the main channel table */
+		/*ssprintf(vals,
+		"INSERT INTO 'chans' "
+			"values("
+			"'%s','%s','%s','%s','%s',' ',' ','%s',' ','%i','%i','%i','%i','%i','%i','%i');",
+			chan, 			// chan
+			pass,			// pass
+			desc,			// desc
+			cs_mlock,		// mlock
+			src,			// founder
+			c->topic,		// topic
+			cs_autovop,		// autovop
+			cs_topiclock,	// topiclock
+			cs_restricted,	// restricted
+			cs_opwatch,		// opwatch
+			cs_leaveops,	// leaveops
+			cs_keeptopic,	// keeptopic
+			cs_memolevel	// memolevel
+		);*/
+		
+		
+		
+		
+		
+		
+		
+					/*sprintf(acc,
+				"CREATE TABLE '%s_access'("
+				"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+				"accmask VARCHAR(64)"
+			");",chan);
+			sprintf(mask,"%s@%s",u->username,tmphost);
+			sprintf(accvals,"INSERT INTO '%s_access' (accmask) values('%s');",chan,mask);
+
+		sprintf(sop,
+			"CREATE TABLE '%s_sop'("
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"nick VARCHAR(33),"
+			"addacc VARCHAR(8),"
+			"addedby VARCHAR(33),"
+			"adddate VARCHAR(33)"
+		");",chan);
+		sprintf(aop,
+			"CREATE TABLE '%s_aop'("
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"nick VARCHAR(33),"
+			"addacc VARCHAR(8),"
+			"addedby VARCHAR(33),"
+			"adddate VARCHAR(33)"
+		");",chan);
+		sprintf(hop,
+			"CREATE TABLE '%s_hop'("
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"nick VARCHAR(33),"
+			"addacc VARCHAR(8),"
+			"addedby VARCHAR(33),"
+			"adddate VARCHAR(33)"
+		");",chan);
+		sprintf(vop,
+			"CREATE TABLE '%s_vop'("
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"nick VARCHAR(33),"
+			"addacc VARCHAR(8),"
+			"addedby VARCHAR(33),"
+			"adddate VARCHAR(33)"
+		");",chan);
+		sprintf(uop,
+			"CREATE TABLE '%s_uop'("
+			"id INTEGER PRIMARY KEY AUTOINCREMENT,"
+			"nick VARCHAR(33),"
+			"addacc VARCHAR(8),"
+			"addedby VARCHAR(33),"
+			"adddate VARCHAR(33)"
+		");",chan);*/
+		
+		
+		
+		
+		CREATE TABLE NICKS(
+	NICK_ID			INT AUTO_INCREMENT,
+	NICKNAME 		VARCHAR(33),
+	PASSWORD		VARCHAR(33),
+	MASK			VARCHAR(128),
+	REALNAME		VARCHAR(256),
+	LAST_SEEN		DATETIME,
+	REGISTERED		DATETIME,
+	HIDEMAIL		TINYINT,
+	MEMOMAX			INT,
+	URL				VARCHAR(128),
+	EMAIL			VARCHAR(65),
+	MFORWARD_TO		VARCHAR(33),
+	MFORWARD		INT,
+	NOOP			TINYINT,
+	NOMEMO			TINYINT,
+	AUTH_CHAN		TINYINT,
+	AUTH_NOTIFY		TINYINT,
+	PROTECT			INT,
+	MLOCK			VARCHAR(33),
+	MNOTIFY			TINYINT,
+	PRIMARY KEY (NICK_ID)
+);
+
+
+
+
+CREATE TABLE NS_ACCESS (
+	ACCESS_ID INT AUTO_INCREMENT,
+	NICK_ID INT,
+	MASK VARCHAR(256),
+	PRIMARY KEY (ACCESS_ID),
+	CONSTRAINT FK_NS_ACCESS_0 FOREIGN KEY (NICK_ID) REFERENCES NICKS(NICK_ID)
+);
+
+CREATE TABLE NS_NOTIFY (
+
+	NOTIFY_ID INT AUTO_INCREMENT,
+	NICK_ID INT,
+	NOTIFICATION_NICK_ID INT,
+	PRIMARY KEY (ACCESS_ID),
+	KEY `I_NS_NOTIFY_1` (NICK_ID),
+	KEY `I_NS_NOTIFY_2` (NOTIFICATION_NICK_ID),
+	CONSTRAINT FK_NS_NOTIFY_0 FOREIGN KEY (NICK_ID) REFERENCES NICKS(NICK_ID),
+	CONSTRAINT FK_NS_NOTIFY_1 FOREIGN KEY (NOTIFICATION_NICK_ID) REFERENCES NICKS(NICK_ID)
+);
+
+CREATE TABLE NS_AUTH (
+	AUTH_ID INT AUTO_INCREMENT,
+	TARGET_TYPE INT,
+	TARGET INT,
+	SENDER INT,
+	RECIPIENT INT,
+	TIME DATETIME,
+	STATUS INT,
+	PRIMARY KEY (AUTH_NOTIFY),
+	KEY `I_NS_AUTH_1` (TARGET),
+	KEY `I_NS_AUTH_2` (SENDER),
+	KEY `I_NS_AUTH_3` (RECIPIENT),
+	KEY `I_NS_AUTH_4` (STATUS),
+	CONSTRAINT FK_NS_AUTH_0 FOREIGN KEY (TARGET_TYPE) REFERENCES TARGET_TYPE(TARGET_TYPE_ID),
+	CONSTRAINT FK_NS_AUTH_1 FOREIGN KEY (SENDER) REFERENCES NICKSERV(NICK_ID),
+	CONSTRAINT FK_NS_AUTH_2 FOREIGN KEY (RECIPIENT) REFERENCES NICKSERV(NICK_ID)
+);
+	
+
+CREATE TABLE AUTH_STATUS (
+	STATUS_ID INT AUTO_INCREMENT,
+	NAME VARCHAR(32),
+	PRIMARY KEY (STATUS_ID)
+);
+
+CREATE TABLE TARGET_TYPE (
+	TARGET_TYPE_ID INT AUTO_INCREMENT,
+	NAME VARCHAR(32),
+	PRIMARY KEY(TARGET_TYPE_ID)
+);
+
+
+
+
+DROP TABLE AUTH_STATUS;
+DROP TABLE TARGET_TYPE;
+DROP TABLE NS_AUTH;
+DROP TABLE NICKS;
+DROP TABLE NS_ACCESS;
+DROP TABLE NS_NOTIFY;
+		
+		

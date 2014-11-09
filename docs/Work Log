@@ -1,0 +1,195 @@
+Reefmaster IRC Services
+=======================
+Version: 2.0.0
+==============
+
+===============
+
+TODO: refactor code so lists are always used as linked lists
+TODO: rethink code as a whole
+TODO: write own parser (resolve dependencies)
+
+
+Configuration
+============
+Create file						complete
+Create parser					In Progress		Some items still need to be validated
+
+Modules
+=======
+
+Name			Name (File)		Status
+======================================
+Nickserv 		nickserv.c		In Progress
+Chanserv		chanserv.c		In Progress
+Memoserv		memoserv.c		Open
+Operserv		operserv.c		Open
+Botserv			botserv.c		Open
+Adminserv		adminserv.c		Open
+Languages		languages.c		Open
+Logging			log.c			Open
+
+
+
+
+IRC Commands
+============
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
+KILL			s_kill			complete
+MODE			mode			complete
+NOTICE			notice			complete
+QUIT			quit			complete
+SVSMODE			svsmode			complete
+SVSMODE2		svsmode2		complete
+SVSNICK			svsnick			complete
+WALLOPS			wallops			complete
+LOCOPS			locops			open			Write Function
+KICK			kick			Complete
+
+
+
+Nickserv
+========
+
+Function Overview
+=================
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
+ACCESS 			ns_acc			Complete		
+ACC				ns_cacc			Complete
+AUTH			ns_auth			Complete
+DROP			ns_drop			Complete
+GETPASS			ns_getpass		Complete		
+GHOST			ns_ghost		Complete
+IDENTIFY		ns_identify		Complete
+INFO			ns_info			Complete
+LIST			ns_list			Complete
+LISTCHANS		ns_listchans	Complete
+NOTIFY			ns_notify		Complete
+REGISTER		ns_register		Complete
+RELEASE			ns_rel			Complete
+SET				ns_set			Complete
+set AUTHORIZE					Complete
+set EMAIL						Complete
+set FIELD						Open			Write Function - needs completion of adminserv
+set MNOTIFY						Complete
+set HIDEEMAIL					Complete
+set MFORWARD					Complete
+set MLOCK						Complete
+set NOMEMO						Complete
+set NOOP						Complete
+set PASSWORD					Complete
+set PROTECT						Complete
+set URL							Complete
+SETPASS			ns_setpass		Complete
+
+
+Chanserv
+========
+
+Function Overview
+=================
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
+
+ACC				cs_acc			Complete
+ADMIN			cs_cadmin		Complete
+ADMINOP			cs_adminop		Complete
+AKICK			cs_akick		Complete
+AOP				cs_aop			Complete
+DEADMINOP		cs_adminop		Complete
+DEHALFOP		cs_halfop		Complete
+DEOP			cs_deop			Complete
+DEOWN			cs_deown		Complete
+DEVOICE			cd_devoice		Complete
+DROP			cs_drop			Complete
+GETPASS			cs_getpass		Complete
+HALFOP			cs_halfop		Complete
+HOP				cs_hop			Complete
+IDENTIFY		cs_identify		Complete
+INFO			cs_info			Complete
+INVITE			cs_invite		Open
+LIST			cs_list			Complete
+MKICK			cs_mkick		Open		Write function
+OP				cs_op			Complete
+OWN				cs_own			Complete
+OWNER			cs_cowner		Complete
+REGISTER		cs_register		Complete
+SET				cs_set			in Progress		Write Block of Functions
+set BOT			cs_set_bot		In Progress	needs completion of Botserv
+set FOUNDER		cs_set_founder	Complete
+set OPWATCH		cs_set_opwatch	Complete
+set LEAVEOPS	cs_set_leaveops	Complete
+set KEEPTOPIC	cs_set_keeptopicComplete
+set MLOCK		cs_set_mlock	Complete
+set PASSWORD	cs_set_password	Complete
+set RESTRICED	cs_set_restricedComplete	
+set SUCCESSOR	cs_set_successorComplete
+set TOPICKLOCK	cs_set_topiclockComplete
+SETPASS			cs_setpass		Complete
+SOP				cs_sop			Complete
+VOICE			cs_voice		Complete
+VOP				cs_vop			Complete
+UNBAN			cs_unban		Open
+UOP				cs_uop			Complete
+
+Memoserv
+========
+
+Function Overview
+=================
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
+DEL				ms_del			Open			Write function
+EXPUNGE			ms_expunge		Open			Write function
+FOLDER			ms_folder		Open			Write function
+READ			ms_read			Open			Write function
+SEND			ms_send			Open			Write function
+UNDEL			ms_undel		Open			Write function
+
+
+
+Operserv
+========
+
+Function Overview
+=================
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
+
+Botserv
+=======
+
+
+
+Function Overview
+=================
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
+
+ADD				bs_add			open			Write function	
+DEL				bs_del			open			Write function
+SET USERNAME	bs_set_username	open			Write function
+SET PASSWORD	bs_set_password open			Write function
+SET REALNAME	bs_set_realname open			Write function
+CHAN ADD 		bs_chan_add		open			Write function //not needed in registered channels (use /cs set bot)
+CHAN DEL		bs_chan_del		open
+CHAN LIST		bs_chan_list
+RENAME			bs_rename		open			Write function
+
+
+Adminserv
+=========
+
+Function Overview
+=================
+
+Name (IRC)		Name (Code)		Status			Todo
+====================================================
