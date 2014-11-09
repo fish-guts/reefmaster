@@ -258,3 +258,113 @@
 [09/11/14 13:34:58] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access wipe
 [09/11/14 13:35:00] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
 [09/11/14 13:35:00] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[09/11/14 21:39:17] [DEBUG] SQL ERROR: 1
+[09/11/14 21:39:17] [DEBUG] SQL ERROR: 17
+[09/11/14 21:39:17] [DEBUG] SQL ERROR: 1
+[09/11/14 21:39:17] [DEBUG] Services successfully started
+[09/11/14 21:39:17] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[09/11/14 21:39:17] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[09/11/14 21:39:17] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+
+[09/11/14 21:39:17] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[09/11/14 21:39:17] [DEBUG] PASS :hoppus123
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[09/11/14 21:39:17] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[09/11/14 21:39:17] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[09/11/14 21:39:17] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45354] established
+[09/11/14 21:39:17] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45354] established
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  NETINFO 0 1415565558 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[09/11/14 21:39:17] [DEBUG] NETINFO 0 1415565558 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[09/11/14 21:39:17] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[09/11/14 21:39:17] [DEBUG] :irc.reefmaster.ch EOS
+[09/11/14 21:39:17] [DEBUG] SQL ERROR: 1
+[09/11/14 21:39:17] [DEBUG] SQL ERROR: 17
+[09/11/14 21:39:17] [DEBUG] SQL ERROR: 1
+[09/11/14 21:39:17] [DEBUG] Services successfully started
+[09/11/14 21:39:17] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[09/11/14 21:39:17] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[09/11/14 21:39:17] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[09/11/14 21:39:17] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[09/11/14 21:39:18] [DEBUG] [irc.reefmaster.ch]  ERROR :Server services.reefmaster.ch already exists from services.reefmaster.ch
+[09/11/14 21:39:18] [DEBUG] ERROR :Server services.reefmaster.ch already exists from services.reefmaster.ch
+[09/11/14 21:39:18] [DEBUG] [irc.reefmaster.ch]  ERROR :Closing Link: [127.0.0.1] (Server Exists)
+[09/11/14 21:39:18] [DEBUG] ERROR :Closing Link: [127.0.0.1] (Server Exists)
+[09/11/14 21:39:32] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415565571 fish-guts localhost irc.reefmaster.ch 0 +iwx * :Fish-Guts
+[09/11/14 21:39:32] [DEBUG] NICK fish-guts 1 1415565571 fish-guts localhost irc.reefmaster.ch 0 +iwx * :Fish-Guts
+[09/11/14 21:39:39] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:39:39] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:39:46] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify add FG
+[09/11/14 21:39:46] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify add FG
+[09/11/14 21:39:57] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:39:57] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:40:09] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[09/11/14 21:40:09] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[09/11/14 21:40:19] [ERROR] Unknown message from server: :irc.reefmaster.ch SWHOIS fish-guts :is the Server's main admin
+
+[09/11/14 21:40:19] [DEBUG] :irc.reefmaster.ch SWHOIS fish-guts :is the Server's main admin
+[09/11/14 21:40:19] [ERROR] Unknown message from server: :fish-guts SETIDENT admins
+
+[09/11/14 21:40:19] [DEBUG] :fish-guts SETIDENT admins
+[09/11/14 21:40:19] [ERROR] Unknown message from server: :fish-guts SETHOST reefmaster.ch
+
+[09/11/14 21:40:19] [DEBUG] :fish-guts SETHOST reefmaster.ch
+[09/11/14 21:40:19] [ERROR] Unknown message from server: :irc.reefmaster.ch SENDSNO o :fish-guts (admins@localhost) [fish-guts] is now a network administrator (N)
+
+[09/11/14 21:40:19] [DEBUG] :irc.reefmaster.ch SENDSNO o :fish-guts (admins@localhost) [fish-guts] is now a network administrator (N)
+[09/11/14 21:40:19] [DEBUG] [irc.reefmaster.ch]  :fish-guts MODE fish-guts :+oghaANWt
+[09/11/14 21:40:19] [DEBUG] :fish-guts MODE fish-guts :+oghaANWt
+[09/11/14 21:40:19] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[09/11/14 21:40:19] [DEBUG] :fish-guts JOIN #ircops
+[09/11/14 21:40:19] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +o fish-guts 1415565619
+[09/11/14 21:40:19] [DEBUG] :irc.reefmaster.ch MODE #ircops +o fish-guts 1415565619
+[09/11/14 21:40:24] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[09/11/14 21:40:24] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[09/11/14 21:40:26] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:40:26] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:41:05] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :auth list
+[09/11/14 21:41:05] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :auth list
+[09/11/14 21:41:14] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :listchans
+[09/11/14 21:41:14] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :listchans
+[09/11/14 21:42:00] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts_ 1 1415565720 fish-guts localhost irc.reefmaster.ch 0 +iwx * :Fish-Guts
+[09/11/14 21:42:00] [DEBUG] NICK fish-guts_ 1 1415565720 fish-guts localhost irc.reefmaster.ch 0 +iwx * :Fish-Guts
+[09/11/14 21:42:02] [DEBUG] [irc.reefmaster.ch]  :fish-guts_ NICK FG 1415565722
+[09/11/14 21:42:02] [DEBUG] :fish-guts_ NICK FG 1415565722
+[09/11/14 21:42:06] [DEBUG] [irc.reefmaster.ch]  :FG PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:42:06] [DEBUG] :FG PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[09/11/14 21:42:08] [DEBUG] [irc.reefmaster.ch]  :FG PRIVMSG nickserv@services.reefmaster.ch :auth list
+[09/11/14 21:42:08] [DEBUG] :FG PRIVMSG nickserv@services.reefmaster.ch :auth list
+[09/11/14 21:43:40] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:45:18] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:46:55] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:48:25] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:49:55] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:51:33] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:53:03] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:54:41] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:56:18] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:57:56] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 21:59:26] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:00:56] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:02:26] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:04:05] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:05:35] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:07:05] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:08:35] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:10:05] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:11:35] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:13:14] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:14:52] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:16:30] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:18:00] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:19:30] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:21:01] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:22:31] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:24:01] [DEBUG] PING :irc.reefmaster.ch
+[09/11/14 22:25:31] [DEBUG] PING :irc.reefmaster.ch

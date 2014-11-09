@@ -81,17 +81,20 @@ void ns_auth_accept(char *src, int ac, char **av) {
 			i++;
 		}
 		if (a->type == AUTH_NOTIFY) {
-			/*NickInfo *n2 = findnick(a->sender);
-			n2->notifycount++;
-			n2->notifylist = srealloc(n2->notifylist,
-					sizeof(char *) * n2->notifycount);
-			n2->notifylist[n2->notifycount - 1] = sstrdup(src);
+			NickInfo *n1 = findnick(src);
+			NickInfo *n2 = findnick(a->sender);
+			notify *no = scalloc(sizeof(notify), 1);
+			no->next = n1->notifylist;
+			if (n1->notifylist)
+				n1->notifylist->prev = no;
+			n1->notifylist = no;
+			no->nick = n2;
 			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
 			user *u1 = finduser(a->sender);
 			if (u1) {
 				notice(ns_name, u1->nick, NS_RPL_ATH_HASACCEPTED_NFY, src);
 			}
-			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);*/
+			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
 			return;
 		} else if (a->type > AUTH_NOTIFY) {
 			ChanInfo *c = findchan(a->target);

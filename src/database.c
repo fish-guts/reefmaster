@@ -32,6 +32,7 @@ static void install_cs(void);
 static void install_bs(void);
 static void install_table(const char *sql);
 static void load_botserv(void);
+static void load_chans(void);
 static void load_chanserv(void);
 static void load_main(void);
 static void load_nicks(void);
@@ -449,13 +450,9 @@ void load_database(void) {
 
 static void load_nickserv(void) {
 	load_nicks();
-	printf("muahahaha98\n");
 	load_access();
-	printf("muahahaha97\n");
 	load_auth();
-	printf("muahahaha96\n");
 	load_notify();
-	printf("muahahaha95\n");
 }
 void load_botserv(void) {
 
@@ -582,8 +579,12 @@ static void load_nicks(void) {
 	sqlite3_close(db);
 }
 
-void load_chanserv(void) {
+static void load_chans(void) {
 
+}
+
+void load_chanserv(void) {
+	load_chans();
 }
 
 /* EOF */
