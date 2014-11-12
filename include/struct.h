@@ -72,7 +72,6 @@ struct _op {
 	time_t addedon;
 	char *addedby;
 	int addedbyacc;
-	char *reason;
 };
 
 struct _chaninfo {
@@ -82,7 +81,6 @@ struct _chaninfo {
 	char pass[PASSMAX];
 	char description[DESCMAX];
 	time_t time_reg;
-	int akickcount;
 	int admin_enabled;
 	int owner_enabled;
 	int aop_enabled;
@@ -103,15 +101,17 @@ struct _chaninfo {
 	int opwatch;
 	char *url;
 	int vop_enabled;
+	akick *akicklist;
 };
 
 struct _akick {
 	akick *prev, *next;
+	int id;
 	char *mask;
 	char *reason;
-	char *addedby;
-	char *addedbyacc;
-	time_t addedon;
+	char *added_by;
+	int added_by_acc;
+	time_t added_on;
 };
 struct _bs_cmd
 {

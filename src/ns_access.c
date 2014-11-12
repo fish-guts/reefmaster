@@ -202,17 +202,16 @@ void ns_access_list(char *src, char *nick) {
 			return;
 		} else {
 			notice(ns_name, src, NS_RPL_ACC_LIST, nick);
-			int i = 1;
+			int i = 0;
 			while (a) {
-				notice(ns_name, src, NS_RPL_ACC_LISTENTRIES, i,a->mask);
 				i++;
+				notice(ns_name, src, NS_RPL_ACC_LISTENTRIES, i,a->mask);
 				a = a->next;
 			}
-			notice(as_name,src,"post");
 			if (i == 2)
-				notice(ns_name, src, NS_RPL_ACC_LISTFOUND1, i - 1);
+				notice(ns_name, src, NS_RPL_ACC_LISTFOUND1, i);
 			else
-				notice(ns_name, src, NS_RPL_ACC_LISTFOUND2, i - 1);
+				notice(ns_name, src, NS_RPL_ACC_LISTFOUND2, i);
 			return;
 		}
 	}

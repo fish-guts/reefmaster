@@ -184,35 +184,29 @@ void ns_notify_list(char *src,int ac,char **av) {
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY LIST");
 		return;
 	} else {
-		//NickInfo *n;
-		//n = findnick(src);
+		NickInfo *n;
+		n = findnick(src);
 		user *u1 = finduser(src);
 		if (isidentified(u1, src) < 0) {
 			notice(ns_name, src, NS_ERR_ACCESSDENIED, src);
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, src);
 			return;
 		}
-		/*
-		if (n->notifycount <= 0) {
-			if (ac > 2)
-				notice(ns_name, src, NS_RPL_NFY_NOENTRIES2, nick);
-			else
-				notice(ns_name, src, NS_RPL_NFY_NOENTRIES);
+		notice(ns_name,src,NS_RPL_NFY_LIST,nick);
+		notify *no = n->notifylist;
+		int i = 0;
+		while(no) {
+			i++;
+			notice(ns_name,src,NS_RPL_NFY_LISTENTRIES,i,no->nick->nick);
+			no = no->next;
+		}
+		if(i==1) {
+			notice(ns_name,src,NS_RPL_NFY_LIST_COMPLETE_1);
 			return;
 		} else {
-			notice(ns_name, src, NS_RPL_NFY_LIST, nick);
-			int i;
-			for (i = 1; i <= n->notifycount; i++) {
-				notice(ns_name, src, NS_RPL_NFY_LISTENTRIES, i,
-						n->notifylist[i - 1]);
-			}
-			if (i == 2)
-				notice(ns_name, src, NS_RPL_ACC_LISTFOUND1, i - 1);
-			else
-				notice(ns_name, src, NS_RPL_ACC_LISTFOUND2, i - 1);
+			notice(ns_name,src,NS_RPL_NFY_LIST_COMPLETE,i);
 			return;
 		}
-		*/
 	}
 }
 void ns_notify_wipe(char *src,int ac,char **av) {

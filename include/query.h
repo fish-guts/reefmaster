@@ -181,4 +181,7 @@ const char *load_cs_chans = "SELECT "
 		" INNER JOIN NICKS FOUNDER ON CHANS.FOUNDER = FOUNDER.NICK_ID"
 		" LEFT JOIN NICKS SUCCESSOR ON CHANS.SUCCESSOR = SUCCESSOR.NICK_ID;";
 
+const char *cs_load_akick = "SELECT * FROM CS_AKICK;";
+
+
 #endif /* QUERY_H_ */

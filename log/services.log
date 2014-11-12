@@ -333,3 +333,1227 @@
 [12/11/14 22:53:06] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
 [12/11/14 22:53:06] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.42231] established
 [12/11/14 22:53:06] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.42231] established
+[12/11/14 23:03:54] [DEBUG] Entering function load_database
+[12/11/14 23:03:54] [DEBUG] Entering function load_auth
+[12/11/14 23:03:54] [DEBUG] Exiting function load_database
+[12/11/14 23:03:54] [DEBUG] Services successfully started
+[12/11/14 23:03:54] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:03:54] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:03:54] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:03:54] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:03:54] [DEBUG] PASS :hoppus123
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:03:54] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:03:54] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:03:54] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44975] established
+[12/11/14 23:03:54] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44975] established
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 fish-guts localhost irc.reefmaster.ch 0 +iwx * :Fish-Guts
+[12/11/14 23:03:54] [DEBUG] NICK fish-guts 1 1415829816 fish-guts localhost irc.reefmaster.ch 0 +iwx * :Fish-Guts
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  NETINFO 1 1415829834 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:03:54] [DEBUG] NETINFO 1 1415829834 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:03:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:03:54] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:04:00] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[12/11/14 23:04:00] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[12/11/14 23:04:03] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[12/11/14 23:04:03] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[12/11/14 23:04:06] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[12/11/14 23:04:06] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[12/11/14 23:04:07] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[12/11/14 23:04:07] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[12/11/14 23:05:40] [DEBUG] PING :irc.reefmaster.ch
+[12/11/14 23:07:16] [DEBUG] PING :irc.reefmaster.ch
+[12/11/14 23:08:53] [DEBUG] PING :irc.reefmaster.ch
+[12/11/14 23:15:55] [DEBUG] Entering function load_database
+[12/11/14 23:15:55] [DEBUG] Entering function load_auth
+[12/11/14 23:15:55] [DEBUG] Exiting function load_database
+[12/11/14 23:15:55] [DEBUG] Services successfully started
+[12/11/14 23:15:55] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:15:55] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:15:55] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+
+[12/11/14 23:15:55] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:15:55] [DEBUG] PASS :hoppus123
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:15:55] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:15:55] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:15:55] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44979] established
+[12/11/14 23:15:55] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44979] established
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 fish-guts localhost irc.reefmaster.ch 0 +iwrx * :Fish-Guts
+[12/11/14 23:15:55] [DEBUG] NICK fish-guts 1 1415829816 fish-guts localhost irc.reefmaster.ch 0 +iwrx * :Fish-Guts
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415830555 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:15:55] [DEBUG] NETINFO 7 1415830555 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:15:55] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:15:55] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:16:02] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[12/11/14 23:16:02] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :identify hoppus123
+[12/11/14 23:23:10] [DEBUG] Entering function load_database
+[12/11/14 23:23:10] [DEBUG] Entering function load_auth
+[12/11/14 23:23:10] [DEBUG] Exiting function load_database
+[12/11/14 23:23:10] [DEBUG] Services successfully started
+[12/11/14 23:23:10] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:23:10] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:23:10] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:23:10] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:23:11] [DEBUG] PASS :hoppus123
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:23:11] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:23:11] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:23:11] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44980] established
+[12/11/14 23:23:11] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44980] established
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:23:11] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:23:11] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:23:11] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:23:11] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +o fish-guts 1415830861
+[12/11/14 23:23:11] [DEBUG] :irc.reefmaster.ch MODE #ircops +o fish-guts 1415830861
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:23:11] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415830990 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:23:11] [DEBUG] NETINFO 7 1415830990 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:23:11] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:23:11] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:23:58] [DEBUG] Entering function load_database
+[12/11/14 23:23:58] [DEBUG] Entering function load_auth
+[12/11/14 23:23:58] [DEBUG] Exiting function load_database
+[12/11/14 23:23:58] [DEBUG] Services successfully started
+[12/11/14 23:23:58] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:23:58] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:23:58] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:23:58] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:23:58] [DEBUG] PASS :hoppus123
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:23:58] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:23:58] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:23:58] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44981] established
+[12/11/14 23:23:58] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44981] established
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:23:58] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:23:58] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:23:58] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:23:58] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:23:58] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:23:58] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831038 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:23:58] [DEBUG] NETINFO 7 1415831038 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:23:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:23:58] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:25:33] [DEBUG] PING :irc.reefmaster.ch
+[12/11/14 23:26:19] [DEBUG] Entering function load_database
+[12/11/14 23:26:19] [DEBUG] Entering function load_auth
+[12/11/14 23:26:19] [DEBUG] Exiting function load_database
+[12/11/14 23:26:19] [DEBUG] Services successfully started
+[12/11/14 23:26:19] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:26:19] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:26:19] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+
+[12/11/14 23:26:19] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:26:19] [DEBUG] PASS :hoppus123
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:26:19] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:26:19] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:26:19] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44982] established
+[12/11/14 23:26:19] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44982] established
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:26:19] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:26:19] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:26:19] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:26:19] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:26:19] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:26:19] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831179 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:26:19] [DEBUG] NETINFO 7 1415831179 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:26:19] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:26:19] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:26:45] [DEBUG] Entering function load_database
+[12/11/14 23:26:45] [DEBUG] Entering function load_auth
+[12/11/14 23:26:45] [DEBUG] Exiting function load_database
+[12/11/14 23:26:45] [DEBUG] Services successfully started
+[12/11/14 23:26:45] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:26:45] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:26:45] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:26:45] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:26:46] [DEBUG] PASS :hoppus123
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:26:46] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:26:46] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:26:46] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44983] established
+[12/11/14 23:26:46] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44983] established
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:26:46] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:26:46] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:26:46] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:26:46] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:26:46] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:26:46] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831205 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:26:46] [DEBUG] NETINFO 7 1415831205 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:26:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:26:46] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:28:23] [DEBUG] PING :irc.reefmaster.ch
+[12/11/14 23:29:56] [DEBUG] Entering function load_database
+[12/11/14 23:29:56] [DEBUG] Entering function load_auth
+[12/11/14 23:29:56] [DEBUG] Exiting function load_database
+[12/11/14 23:29:56] [DEBUG] Services successfully started
+[12/11/14 23:29:56] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:29:56] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:29:56] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:29:56] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:29:56] [DEBUG] PASS :hoppus123
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:29:56] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:29:56] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:29:56] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44984] established
+[12/11/14 23:29:56] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44984] established
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:29:56] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:29:56] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:29:56] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:29:56] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:29:56] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:29:56] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831396 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:29:56] [DEBUG] NETINFO 7 1415831396 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:29:56] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:29:56] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:30:14] [DEBUG] Entering function load_database
+[12/11/14 23:30:14] [DEBUG] Entering function load_auth
+[12/11/14 23:30:14] [DEBUG] Exiting function load_database
+[12/11/14 23:30:14] [DEBUG] Services successfully started
+[12/11/14 23:30:14] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:30:14] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:30:14] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:30:14] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:30:14] [DEBUG] PASS :hoppus123
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:30:14] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:30:14] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:30:14] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44985] established
+[12/11/14 23:30:14] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44985] established
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:30:14] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:30:14] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:30:14] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:30:14] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:30:14] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:30:14] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831414 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:30:14] [DEBUG] NETINFO 7 1415831414 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:30:14] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:30:14] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:30:20] [DEBUG] Entering function load_database
+[12/11/14 23:30:20] [DEBUG] Entering function load_auth
+[12/11/14 23:30:20] [DEBUG] Exiting function load_database
+[12/11/14 23:30:20] [DEBUG] Services successfully started
+[12/11/14 23:30:20] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:30:20] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:30:20] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:30:20] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:30:21] [DEBUG] PASS :hoppus123
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:30:21] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:30:21] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:30:21] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44986] established
+[12/11/14 23:30:21] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44986] established
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:30:21] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:30:21] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:30:21] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:30:21] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:30:21] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:30:21] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831420 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:30:21] [DEBUG] NETINFO 7 1415831420 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:30:21] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:30:21] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:31:17] [DEBUG] Entering function load_database
+[12/11/14 23:31:17] [DEBUG] Entering function load_auth
+[12/11/14 23:31:17] [DEBUG] Exiting function load_database
+[12/11/14 23:31:17] [DEBUG] Services successfully started
+[12/11/14 23:31:17] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:31:17] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:31:17] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:31:17] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:31:17] [DEBUG] PASS :hoppus123
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:31:17] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:31:17] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:31:17] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44987] established
+[12/11/14 23:31:17] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44987] established
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:31:17] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:31:17] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:31:17] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:31:17] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:31:17] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:31:17] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831477 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:31:17] [DEBUG] NETINFO 7 1415831477 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:31:17] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:31:17] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:34:30] [DEBUG] Entering function load_database
+[12/11/14 23:34:30] [DEBUG] Entering function load_auth
+[12/11/14 23:34:30] [DEBUG] Exiting function load_database
+[12/11/14 23:34:30] [DEBUG] Services successfully started
+[12/11/14 23:34:30] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:34:30] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:34:30] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:34:30] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:34:31] [DEBUG] PASS :hoppus123
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:34:31] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:34:31] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:34:31] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44988] established
+[12/11/14 23:34:31] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44988] established
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:34:31] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:34:31] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:34:31] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:34:31] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:34:31] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:34:31] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831670 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:34:31] [DEBUG] NETINFO 7 1415831670 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:34:31] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:34:31] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:35:03] [DEBUG] Entering function load_database
+[12/11/14 23:35:03] [DEBUG] Entering function load_auth
+[12/11/14 23:35:03] [DEBUG] Exiting function load_database
+[12/11/14 23:35:03] [DEBUG] Services successfully started
+[12/11/14 23:35:03] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:35:03] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:35:03] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:35:03] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:35:04] [DEBUG] PASS :hoppus123
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:35:04] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:35:04] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:35:04] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44989] established
+[12/11/14 23:35:04] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44989] established
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:35:04] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:35:04] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:35:04] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:35:04] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:35:04] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:35:04] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831703 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:35:04] [DEBUG] NETINFO 7 1415831703 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:35:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:35:04] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:36:24] [DEBUG] Entering function load_database
+[12/11/14 23:36:24] [DEBUG] Entering function load_auth
+[12/11/14 23:36:24] [DEBUG] Exiting function load_database
+[12/11/14 23:36:24] [DEBUG] Services successfully started
+[12/11/14 23:36:24] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:36:24] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:36:24] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+
+[12/11/14 23:36:24] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:36:24] [DEBUG] PASS :hoppus123
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:36:24] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:36:24] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:36:24] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44990] established
+[12/11/14 23:36:24] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44990] established
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:36:24] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:36:24] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:36:24] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:36:24] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:36:24] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:36:24] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831784 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:36:24] [DEBUG] NETINFO 7 1415831784 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:36:24] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:36:24] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:36:45] [DEBUG] Entering function load_database
+[12/11/14 23:36:45] [DEBUG] Entering function load_auth
+[12/11/14 23:36:45] [DEBUG] Exiting function load_database
+[12/11/14 23:36:45] [DEBUG] Services successfully started
+[12/11/14 23:36:45] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:36:45] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:36:45] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:36:45] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:36:46] [DEBUG] PASS :hoppus123
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:36:46] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:36:46] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:36:46] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44991] established
+[12/11/14 23:36:46] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44991] established
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:36:46] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:36:46] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:36:46] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:36:46] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:36:46] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:36:46] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831805 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:36:46] [DEBUG] NETINFO 7 1415831805 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:36:46] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:36:46] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:39:24] [DEBUG] Entering function load_database
+[12/11/14 23:39:24] [DEBUG] Entering function load_auth
+[12/11/14 23:39:24] [DEBUG] Exiting function load_database
+[12/11/14 23:39:24] [DEBUG] Services successfully started
+[12/11/14 23:39:24] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:39:24] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:39:24] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:39:24] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:39:25] [DEBUG] PASS :hoppus123
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:39:25] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:39:25] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:39:25] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44992] established
+[12/11/14 23:39:25] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44992] established
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:39:25] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:39:25] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:39:25] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:39:25] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:39:25] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:39:25] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831964 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:39:25] [DEBUG] NETINFO 7 1415831964 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:39:25] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:39:25] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:39:57] [DEBUG] Entering function load_database
+[12/11/14 23:39:57] [DEBUG] Entering function load_auth
+[12/11/14 23:39:57] [DEBUG] Exiting function load_database
+[12/11/14 23:39:57] [DEBUG] Services successfully started
+[12/11/14 23:39:57] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:39:57] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:39:57] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:39:57] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:39:57] [DEBUG] PASS :hoppus123
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:39:57] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:39:57] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:39:57] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44993] established
+[12/11/14 23:39:57] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44993] established
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:39:57] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:39:57] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:39:57] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:39:57] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:39:57] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:39:57] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415831997 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:39:57] [DEBUG] NETINFO 7 1415831997 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:39:57] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:39:57] [DEBUG] :irc.reefmaster.ch EOS
+[12/11/14 23:40:23] [DEBUG] Entering function load_database
+[12/11/14 23:40:23] [DEBUG] Entering function load_auth
+[12/11/14 23:40:23] [DEBUG] Exiting function load_database
+[12/11/14 23:40:23] [DEBUG] Services successfully started
+[12/11/14 23:40:23] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[12/11/14 23:40:23] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[12/11/14 23:40:23] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[12/11/14 23:40:23] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[12/11/14 23:40:23] [DEBUG] PASS :hoppus123
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:40:23] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:40:23] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:40:23] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44994] established
+[12/11/14 23:40:23] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44994] established
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:40:23] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[12/11/14 23:40:23] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[12/11/14 23:40:23] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[12/11/14 23:40:23] [DEBUG] :fish-guts JOIN #ircops
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:40:23] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:40:23] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415832023 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:40:23] [DEBUG] NETINFO 7 1415832023 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[12/11/14 23:40:23] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[12/11/14 23:40:23] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:01:36] [DEBUG] Entering function load_database
+[13/11/14 00:01:36] [DEBUG] Entering function load_auth
+[13/11/14 00:01:36] [DEBUG] Exiting function load_database
+[13/11/14 00:01:36] [DEBUG] Services successfully started
+[13/11/14 00:01:36] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:01:36] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:01:36] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+
+[13/11/14 00:01:36] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:01:36] [DEBUG] PASS :hoppus123
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:01:36] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:01:36] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:01:36] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44995] established
+[13/11/14 00:01:36] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44995] established
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:01:36] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:01:36] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:01:36] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:01:36] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:01:36] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:01:36] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833296 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:01:36] [DEBUG] NETINFO 7 1415833296 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:01:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:01:36] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:01:57] [DEBUG] Entering function load_database
+[13/11/14 00:01:57] [DEBUG] Entering function load_auth
+[13/11/14 00:01:57] [DEBUG] Exiting function load_database
+[13/11/14 00:01:57] [DEBUG] Services successfully started
+[13/11/14 00:01:57] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:01:57] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:01:57] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:01:57] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:01:58] [DEBUG] PASS :hoppus123
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:01:58] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:01:58] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:01:58] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44996] established
+[13/11/14 00:01:58] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44996] established
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:01:58] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:01:58] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:01:58] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:01:58] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:01:58] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:01:58] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833317 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:01:58] [DEBUG] NETINFO 7 1415833317 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:01:58] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:01:58] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:02:34] [DEBUG] Entering function load_database
+[13/11/14 00:02:34] [DEBUG] Entering function load_auth
+[13/11/14 00:02:34] [DEBUG] Exiting function load_database
+[13/11/14 00:02:34] [DEBUG] Services successfully started
+[13/11/14 00:02:34] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:02:34] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:02:34] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:02:34] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:02:35] [DEBUG] PASS :hoppus123
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:02:35] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:02:35] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:02:35] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44997] established
+[13/11/14 00:02:35] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44997] established
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:02:35] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:02:35] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:02:35] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:02:35] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:02:35] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:02:35] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833354 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:02:35] [DEBUG] NETINFO 7 1415833354 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:02:35] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:02:35] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:03:03] [DEBUG] Entering function load_database
+[13/11/14 00:03:03] [DEBUG] Entering function load_auth
+[13/11/14 00:03:03] [DEBUG] Exiting function load_database
+[13/11/14 00:03:03] [DEBUG] Services successfully started
+[13/11/14 00:03:03] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:03:03] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:03:03] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:03:03] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:03:04] [DEBUG] PASS :hoppus123
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:03:04] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:03:04] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:03:04] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44998] established
+[13/11/14 00:03:04] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44998] established
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:03:04] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:03:04] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:03:04] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:03:04] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:03:04] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:03:04] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833383 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:03:04] [DEBUG] NETINFO 7 1415833383 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:03:04] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:03:04] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:03:06] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:03:06] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:03:11] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:03:11] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:03:29] [DEBUG] Entering function load_database
+[13/11/14 00:03:29] [DEBUG] Entering function load_auth
+[13/11/14 00:03:29] [DEBUG] Exiting function load_database
+[13/11/14 00:03:29] [DEBUG] Services successfully started
+[13/11/14 00:03:29] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:03:29] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:03:29] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:03:29] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:03:29] [DEBUG] PASS :hoppus123
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:03:29] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:03:29] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:03:29] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44999] established
+[13/11/14 00:03:29] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.44999] established
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:03:29] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:03:29] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:03:29] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:03:29] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:03:29] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:03:29] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833409 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:03:29] [DEBUG] NETINFO 7 1415833409 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:03:29] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:03:29] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:05:03] [DEBUG] Entering function load_database
+[13/11/14 00:05:03] [DEBUG] Entering function load_auth
+[13/11/14 00:05:03] [DEBUG] Exiting function load_database
+[13/11/14 00:05:03] [DEBUG] Services successfully started
+[13/11/14 00:05:03] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:05:03] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:05:03] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:05:03] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:05:03] [DEBUG] PASS :hoppus123
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:05:03] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:05:03] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:05:03] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45000] established
+[13/11/14 00:05:03] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45000] established
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:05:03] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:05:03] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:05:03] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:05:03] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:05:03] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:05:03] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833503 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:05:03] [DEBUG] NETINFO 7 1415833503 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:05:03] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:05:03] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:05:05] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:05:05] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:05:07] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:05:07] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :notify list
+[13/11/14 00:06:35] [DEBUG] Entering function load_database
+[13/11/14 00:06:35] [DEBUG] Entering function load_auth
+[13/11/14 00:06:35] [DEBUG] Exiting function load_database
+[13/11/14 00:06:35] [DEBUG] Services successfully started
+[13/11/14 00:06:35] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:06:35] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:06:35] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:06:35] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:06:36] [DEBUG] PASS :hoppus123
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:06:36] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:06:36] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:06:36] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45001] established
+[13/11/14 00:06:36] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45001] established
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:06:36] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:06:36] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:06:36] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:06:36] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:06:36] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:06:36] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833595 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:06:36] [DEBUG] NETINFO 7 1415833595 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:06:36] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:06:36] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:06:43] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:06:43] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:06:46] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:06:46] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:26] [DEBUG] Entering function load_database
+[13/11/14 00:07:26] [DEBUG] Entering function load_auth
+[13/11/14 00:07:26] [DEBUG] Exiting function load_database
+[13/11/14 00:07:26] [DEBUG] Services successfully started
+[13/11/14 00:07:26] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:07:26] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:07:26] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:07:26] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:07:26] [DEBUG] PASS :hoppus123
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:07:26] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:07:26] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:07:26] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45002] established
+[13/11/14 00:07:26] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45002] established
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:07:26] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:07:26] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:07:26] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:07:26] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:07:26] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:07:26] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833646 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:07:26] [DEBUG] NETINFO 7 1415833646 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:07:26] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:07:26] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:07:29] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:29] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:30] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:30] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:45] [DEBUG] Entering function load_database
+[13/11/14 00:07:45] [DEBUG] Entering function load_auth
+[13/11/14 00:07:45] [DEBUG] Exiting function load_database
+[13/11/14 00:07:45] [DEBUG] Services successfully started
+[13/11/14 00:07:45] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:07:45] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:07:45] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:07:45] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:07:45] [DEBUG] PASS :hoppus123
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:07:45] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:07:45] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:07:45] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45003] established
+[13/11/14 00:07:45] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45003] established
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:07:45] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:07:45] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:07:45] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:07:45] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:07:45] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:07:45] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833665 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:07:45] [DEBUG] NETINFO 7 1415833665 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:07:45] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:07:45] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:07:48] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:48] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:50] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:50] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:51] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:07:51] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:08:28] [DEBUG] Entering function load_database
+[13/11/14 00:08:28] [DEBUG] Entering function load_auth
+[13/11/14 00:08:28] [DEBUG] Exiting function load_database
+[13/11/14 00:08:28] [DEBUG] Services successfully started
+[13/11/14 00:08:28] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:08:28] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:08:28] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:08:28] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:08:28] [DEBUG] PASS :hoppus123
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:08:28] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:08:28] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:08:28] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45004] established
+[13/11/14 00:08:28] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45004] established
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:08:28] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:08:28] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:08:28] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:08:28] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:08:28] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:08:28] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833708 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:08:28] [DEBUG] NETINFO 7 1415833708 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:08:28] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:08:28] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:08:31] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:08:31] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:08:54] [DEBUG] Entering function load_database
+[13/11/14 00:08:54] [DEBUG] Entering function load_auth
+[13/11/14 00:08:54] [DEBUG] Exiting function load_database
+[13/11/14 00:08:54] [DEBUG] Services successfully started
+[13/11/14 00:08:54] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:08:54] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:08:54] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:08:54] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:08:54] [DEBUG] PASS :hoppus123
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:08:54] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:08:54] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:08:54] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45005] established
+[13/11/14 00:08:54] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45005] established
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:08:54] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:08:54] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:08:54] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:08:54] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:08:54] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:08:54] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833734 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:08:54] [DEBUG] NETINFO 7 1415833734 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:08:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:08:54] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:08:57] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:08:57] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :access list
+[13/11/14 00:09:14] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :auth list
+[13/11/14 00:09:14] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :auth list
+[13/11/14 00:09:21] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG nickserv@services.reefmaster.ch :listchans
+[13/11/14 00:09:21] [DEBUG] :fish-guts PRIVMSG nickserv@services.reefmaster.ch :listchans
+[13/11/14 00:09:26] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:26] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:28] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:28] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:32] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:32] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:33] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:33] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:39] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:39] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:40] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:40] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:40] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:40] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:40] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:40] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:41] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:41] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:41] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:09:41] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:10:14] [DEBUG] Entering function load_database
+[13/11/14 00:10:14] [DEBUG] Entering function load_auth
+[13/11/14 00:10:14] [DEBUG] Exiting function load_database
+[13/11/14 00:10:14] [DEBUG] Services successfully started
+[13/11/14 00:10:14] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:10:14] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:10:14] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:10:14] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:10:15] [DEBUG] PASS :hoppus123
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:10:15] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:10:15] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:10:15] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45006] established
+[13/11/14 00:10:15] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45006] established
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:10:15] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:10:15] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:10:15] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:10:15] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:10:15] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:10:15] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833814 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:10:15] [DEBUG] NETINFO 7 1415833814 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:10:15] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:10:15] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:10:17] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:10:17] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:10:18] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:10:18] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:10:40] [DEBUG] Entering function load_database
+[13/11/14 00:10:40] [DEBUG] Entering function load_auth
+[13/11/14 00:10:40] [DEBUG] Exiting function load_database
+[13/11/14 00:10:40] [DEBUG] Services successfully started
+[13/11/14 00:10:40] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:10:40] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:10:40] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:10:40] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:10:40] [DEBUG] PASS :hoppus123
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:10:40] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:10:40] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:10:40] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45007] established
+[13/11/14 00:10:40] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45007] established
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:10:40] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:10:40] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:10:40] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:10:40] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:10:40] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:10:40] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833840 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:10:40] [DEBUG] NETINFO 7 1415833840 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:10:40] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:10:40] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:11:50] [DEBUG] Entering function load_database
+[13/11/14 00:11:50] [DEBUG] Entering function load_auth
+[13/11/14 00:11:50] [DEBUG] Exiting function load_database
+[13/11/14 00:11:50] [DEBUG] Services successfully started
+[13/11/14 00:11:50] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:11:50] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:11:50] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+
+[13/11/14 00:11:50] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:11:50] [DEBUG] PASS :hoppus123
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:11:50] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:11:50] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:11:50] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45008] established
+[13/11/14 00:11:50] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45008] established
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:11:50] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:11:50] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:11:50] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:11:50] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:11:50] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:11:50] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833910 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:11:50] [DEBUG] NETINFO 7 1415833910 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:11:50] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:11:50] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:11:52] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:52] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:53] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:53] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:54] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:54] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:55] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:55] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:55] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:55] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:56] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:56] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:56] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:56] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:57] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:57] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:59] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:11:59] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:01] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:01] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:03] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:03] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:05] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:05] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:08] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:08] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:12] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:12] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:54] [DEBUG] Entering function load_database
+[13/11/14 00:12:54] [DEBUG] Entering function load_auth
+[13/11/14 00:12:54] [DEBUG] Exiting function load_database
+[13/11/14 00:12:54] [DEBUG] Services successfully started
+[13/11/14 00:12:54] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+
+[13/11/14 00:12:54] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Looking up your hostname...
+[13/11/14 00:12:54] [ERROR] Unknown message from server: :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+
+[13/11/14 00:12:54] [DEBUG] :irc.reefmaster.ch NOTICE AUTH :*** Found your hostname (cached)
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  PASS :hoppus123
+[13/11/14 00:12:54] [DEBUG] PASS :hoppus123
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:12:54] [DEBUG] PROTOCTL NOQUIT TOKEN NICKv2 SJOIN SJOIN2 UMODE2 VL SJ3 NS SJB64 TKLEXT NICKIP ESVID
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:12:54] [DEBUG] PROTOCTL CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NICKCHARS= MLOCK
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:12:54] [DEBUG] SERVER irc.reefmaster.ch 1 :U2311-FhinXOoE-1 Reefmaster IRC Server
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45009] established
+[13/11/14 00:12:54] [DEBUG] :irc.reefmaster.ch SMO o :(link) Link irc.reefmaster.ch -> services.reefmaster.ch[@127.0.0.1.45009] established
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:12:54] [DEBUG] NICK fish-guts 1 1415829816 admins localhost irc.reefmaster.ch 0 +iowghraAxNWt reefmaster.ch :Fish-Guts
+[13/11/14 00:12:54] [ERROR] Unknown message from server: SWHOIS fish-guts :is the Server's main admin
+
+[13/11/14 00:12:54] [DEBUG] SWHOIS fish-guts :is the Server's main admin
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  :fish-guts JOIN #ircops
+[13/11/14 00:12:54] [DEBUG] :fish-guts JOIN #ircops
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:12:54] [DEBUG] :irc.reefmaster.ch MODE #ircops +ntro fish-guts 1415830861
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:12:54] [DEBUG] :irc.reefmaster.ch MODE #ircops + 1415830861
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  NETINFO 7 1415833974 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:12:54] [DEBUG] NETINFO 7 1415833974 2311 MD5:58fbe771c94a7400a62807ea1f018213 0 0 0 :Reefmaster IRC Network
+[13/11/14 00:12:54] [DEBUG] [irc.reefmaster.ch]  :irc.reefmaster.ch EOS
+[13/11/14 00:12:54] [DEBUG] :irc.reefmaster.ch EOS
+[13/11/14 00:12:56] [DEBUG] [irc.reefmaster.ch]  :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:12:56] [DEBUG] :fish-guts PRIVMSG chanserv@services.reefmaster.ch :info #ircops 
+[13/11/14 00:14:31] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:16:09] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:17:46] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:19:23] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:20:59] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:22:35] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:24:13] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:25:50] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:27:26] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:29:03] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:30:38] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:32:15] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:33:52] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:35:28] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:37:04] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:38:40] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:40:17] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:41:54] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:43:30] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:45:06] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:46:42] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:48:19] [DEBUG] PING :irc.reefmaster.ch
+[13/11/14 00:49:56] [DEBUG] PING :irc.reefmaster.ch

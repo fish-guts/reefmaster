@@ -24,7 +24,7 @@
 void cs_info(char *src,int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
-	char options[2048];
+	char *options = (char*)malloc(sizeof(char*)*4096);
 	char *topiclock = (char*)malloc(sizeof(char*)*32);
 	time_t cur = time(NULL);
 	char str_now[256], str_reg[80];
@@ -71,9 +71,9 @@ void cs_info(char *src,int ac, char **av) {
 		strcat(options,topiclock);
 	}
 	notice(cs_name,src,CS_RPL_INF_ENTRY1,c->name,c->description);
-	notice(cs_name,src,CS_RPL_INF_ENTRY2,c->founder);
+	notice(cs_name,src,CS_RPL_INF_ENTRY2,c->founder->nick);
 	if((c->successor!=NULL) && (stricmp(c->successor,"(null)")!=0))
-		notice(cs_name,src,CS_RPL_INF_ENTRY3,c->successor);
+		notice(cs_name,src,CS_RPL_INF_ENTRY3,c->successor->nick);
 	if((c->topic!=NULL) && (stricmp(c->topic,"")!=0))
 		notice(cs_name,src,CS_RPL_INF_ENTRY4,c->topic);
 	notice(cs_name,src,CS_RPL_INF_ENTRY5,str_reg);
@@ -81,5 +81,7 @@ void cs_info(char *src,int ac, char **av) {
 	notice(cs_name,src,CS_RPL_INF_ENTRY7,c->mlock);
 	notice(cs_name,src,CS_RPL_INF_ENTRY8,options);
 	notice(cs_name,src,CS_RPL_INF_ENTRY9,get_opacc(c->memolevel));
+	free(options);
+	return;
 
 }

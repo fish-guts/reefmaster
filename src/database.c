@@ -31,6 +31,7 @@ static void install_ns(void);
 static void install_cs(void);
 static void install_bs(void);
 static void install_table(const char *sql);
+static void load_akick(void);
 static void load_botserv(void);
 static void load_chans(void);
 static void load_chanserv(void);
@@ -481,11 +482,10 @@ static void load_access(void) {
 			NickInfo *n = findnick((const char*)sqlite3_column_text(res, 0));
 			acc *a = scalloc(sizeof(acc), 1);
 			a->next = n->accesslist;
-			a->mask = "haha";
 			if (n->accesslist)
 				n->accesslist->prev = a;
 			n->accesslist = a;
-
+			a->mask = sstrdup((const char*)sqlite3_column_text(res, 1));
 
 		}
 	}
@@ -585,6 +585,8 @@ static void load_nicks(void) {
 			n->protect = sqlite3_column_int(res, 17);
 			n->mlock = (char*) sqlite3_column_text(res,18);
 			n->mnotify = sqlite3_column_int(res, 19);
+			n->notifylist = NULL;
+			n->accesslist = NULL;
 			n->next = nicklist;
 			if (nicklist)
 				nicklist->prev = n;
@@ -650,9 +652,39 @@ static void load_chans(void) {
 	sqlite3_close(db);
 
 }
+static void load_akick(void) {
+	sqlite3 *db;
+	sqlite3_stmt *res;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
+		error = sqlite3_prepare_v2(db,cs_load_akick, 1000, &res,&tail);
+		if (error != SQLITE_OK) {
+			addlog(2, LOG_ERR_SQLERROR, "in load_notify()");
+			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		}
+		while (sqlite3_step(res) == SQLITE_ROW) {
+			ChanInfo *c = findchan((const char*)sqlite3_column_text(res, 1));
+			akick *ak = scalloc(sizeof(akick), 1);
+			ak->next = c->akicklist;
+			if (c->akicklist)
+				c->akicklist->prev = ak;
+			c->akicklist = ak;
+			ak->id = sqlite3_column_int(res,0);
+			ak->mask = (const char*)sqlite3_column_text(res, 2);
+			ak->added_by = sstrdup((const char*)sqlite3_column_text(res, 3));
+			ak->added_by_acc = sqlite3_column_int(res,4);
+			ak->added_on = sqlite3_column_int(res,5);
+			ak->reason = sstrdup((const char*)sqlite3_column_text(res, 6));
+		}
+	}
+	sqlite3_close(db);
+}
 
 void load_chanserv(void) {
 	load_chans();
+	load_akick();
 }
 
 /* EOF */

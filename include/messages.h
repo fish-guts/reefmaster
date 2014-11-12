@@ -173,6 +173,8 @@
 #define NS_RPL_NFY_ISNOWONLINE		"\2%s\2 is now online!"
 #define NS_RPL_NFY_LIST				"Notify list of \2%s\2:"
 #define NS_RPL_NFY_LISTENTRIES		"\2%i\2 - \2%s\2"
+#define NS_RPL_NFY_LIST_COMPLETE_1	"Listing complete - \21\2 entry found"
+#define NS_RPL_NFY_LIST_COMPLETE	"Listing complete - \2%i\2 entries found"
 #define NS_ERR_NFY_MUSTBEREG		"You need to have a registered nickname to add someone to your notify list."
 #define NS_ERR_NFY_MUSTBEREG2		"You can only add registered nicknames to your notify list."
 #define NS_RPL_NFY_NENTRIESREMOVED	"%i entries removed."

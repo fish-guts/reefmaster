@@ -96,20 +96,16 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_ERR_AKICK_ALREADYONLIST, finalmask, chan);
 		return;
 	} else {
-		op *o = scalloc(sizeof(op), 1);
-		o->addedby = sstrdup(src);
-		o->addedbyacc = addacc;
-		o->level = AKICK_LIST;
-		o->addedon = time(NULL);
-		o->nick = sstrdup(finalmask);
-		o->chan = sstrdup(c->name);
-		if (ac > 4)
-			o->reason = sstrdup(reason);
-		o->next = global_op_list;
-		if (global_op_list)
-			global_op_list->prev = o;
-		global_op_list = o;
-		c->akickcount++;
+		akick *ak = scalloc(sizeof(akick), 1);
+		ak->next = c->akicklist;
+		if (c->akicklist)
+			c->akicklist->prev = ak;
+		c->akicklist = ak;
+		ak->mask = sstrdup(finalmask);
+		ak->added_by = sstrdup(u->nick);
+		ak->added_by_acc = u->oper;
+		ak->added_on = time(NULL);
+		ak->reason = sstrdup(reason);
 		notice(cs_name, src, CS_RPL_XOP_ADDED, finalmask, "Akick", c->name);
 		return;
 	}

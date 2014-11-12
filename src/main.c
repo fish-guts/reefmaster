@@ -75,6 +75,7 @@ static void daemonize(void)
 {
 
 	mainsock = -1;
+	/*
 	pid_t pid, sid;
 	if (getppid()==1)
     	return;
@@ -87,6 +88,7 @@ static void daemonize(void)
     sid = setsid();
     if(sid<0)
         exit(EXIT_FAILURE);
+        */
 	int rc;
 	if((rc=load_app())!=0)
 	{
