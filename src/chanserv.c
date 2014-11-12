@@ -140,25 +140,7 @@ int cs_check_opwatch(char *chan,user *u) {
 	return 1;
 }
 void cs_check_successor(char *nick) {
-	ChanInfo *c = chans;
-	char **av = (char**)malloc(sizeof(char**)*sizeof(chans));
-	int i = 0,j = 0;
-	while(c) {
-		if(stricmp(c->founder,nick)==0) {
-			if((c->successor) && (stricmp(c->successor,"")!=0)) {
-				strscpy(c->founder,c->successor,NICKMAX);
-				c->successor = NULL;
-			} else {
-				av[i] = sstrdup(c->name);
-				i++;
-			}
-		}
-		c = c->next;
-	}
-	for(j=0;j<i;j++) {
-		ChanInfo *cc = findchan(av[j]);
-		delete_chan(cc);
-	}
+
 }
 /********************************************************************/
 /**
@@ -295,23 +277,7 @@ ChanInfo *findchan(const char *chan) {
 	}
 	return c;
 }
-/********************************************************************/
-/**
- * once a nick has been granted access to a channel, add it to the
- * counter
- */
-void inc_list(ChanInfo *c, int list) {
-	if (list == 1)
-		c->uopcount++;
-	else if (list == 2)
-		c->vopcount++;
-	else if (list == 3)
-		c->hopcount++;
-	else if (list == 4)
-		c->aopcount++;
-	else if (list == 5)
-		c->sopcount++;
-}
+
 /********************************************************************/
 /**
  * checks whether a user has successfully identified with a registered channel

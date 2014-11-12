@@ -434,5 +434,7 @@
 #define LOG_DBG_SQLQRY				"[SQL QUERY] %s."
 #define LOG_ERR_USERNOTFOUND		"User %s not found."
 #define LOG_ERR_SQLERROR			"[SQL Error] %s."
+#define LOG_DBG_ENTRY				"Entering function %s"
+#define LOG_DBG_EXIT				"Exiting function %s"
 
 #endif /*MESSAGES_H_*/

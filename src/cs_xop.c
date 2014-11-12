@@ -191,16 +191,6 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 				if (o->next)
 					o->next->prev = o->prev;
 				free(o);
-				if (list == AOP_LIST)
-					c->aopcount--;
-				if (list == HOP_LIST)
-					c->hopcount--;
-				if (list == VOP_LIST)
-					c->vopcount--;
-				if (list == SOP_LIST)
-					c->sopcount--;
-				if (list == UOP_LIST)
-					c->uopcount--;
 				notice(cs_name, src, CS_RPL_XOP_DELETED, nick, get_opacc(list),
 						chan);
 				return;
@@ -295,16 +285,7 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		}
 		o = o->next;
 	}
-	if (list == AOP_LIST)
-		c->aopcount = 0;
-	if (list == HOP_LIST)
-		c->hopcount = 0;
-	if (list == VOP_LIST)
-		c->vopcount = 0;
-	if (list == SOP_LIST)
-		c->sopcount = 0;
-	if (list == UOP_LIST)
-		c->uopcount = 0;
+
 	if (i == 1)
 		notice(cs_name, src, CS_RPL_XOP_WIPED1, get_opacc(list), chan);
 	else

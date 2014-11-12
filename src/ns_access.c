@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-static accesslist *find_mask(NickInfo *n,char *mask);
+static acc *find_mask(NickInfo *n,char *mask);
 
 void ns_access(char *src, int ac, char **av) {
 	char *cmd = av[1];
@@ -104,11 +104,11 @@ void ns_access_add(char *src, char *nick, char *mask) {
 					notice(ns_name, src, NS_ERR_ACC_MASKEXISTS, mask);
 				return;
 			}
-			accesslist *a = scalloc(sizeof(accesslist), 1);
-			a->next = n->al;
-			if (n->al)
-				n->al->prev = a;
-			n->al = a;
+			acc *a = scalloc(sizeof(acc), 1);
+			a->next = n->accesslist;
+			if (n->accesslist)
+				n->accesslist->prev = a;
+			n->accesslist = a;
 			a->mask = sstrdup(mask);
 
 
@@ -146,12 +146,12 @@ void ns_access_del(char *src, char *nick, char *mask) {
 			notice(ns_name, src, NS_ERR_ACC_MASKNOTFOUND, mask);
 		return;
 	} else {
-		accesslist *a = find_mask(n,mask);
+		acc *a = find_mask(n,mask);
 	    free(a->mask);
 	    if(a->prev)
 			a->prev->next = a->next;
 	    else
-			n->al = a->next;
+			n->accesslist = a->next;
 		if (a->next)
 			a->next->prev = a->prev;
 		free(a);
@@ -162,9 +162,9 @@ void ns_access_del(char *src, char *nick, char *mask) {
 		return;
 	}
 }
-static accesslist *find_mask(NickInfo *n,char *mask) {
-	accesslist *a;
-	for (a = n->al; a->mask-1; a++) {
+static acc *find_mask(NickInfo *n,char *mask) {
+	acc *a;
+	for (a = n->accesslist; a->mask-1; a++) {
 		if (stricmp(mask, a->mask) == 0) {
 			return a;
 		}
@@ -193,7 +193,7 @@ void ns_access_list(char *src, char *nick) {
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 			return;
 		}
-		accesslist *a = n->al;
+		acc *a = n->accesslist;
 		if(!a) {
 			if (stricmp(src, nick) != 0)
 				notice(ns_name, src, NS_RPL_ACC_NOENTRIES2, nick);
@@ -234,8 +234,8 @@ void ns_access_wipe(char *src, char *nick) {
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 			return;
 		}
-		free(n->al);
-		n->al = NULL;
+		free(n->accesslist);
+		n->accesslist = NULL;
 		if (stricmp(src, nick) != 0)
 			notice(ns_name, src, NS_RPL_ACC_WIPESUCCESS2, nick);
 		else

@@ -84,6 +84,10 @@ void create_files(void);
 #define IDENTIFIED	0x0001
 #define HASACCESS	0x0002
 
+#define DEBUG 1
+#define ERROR 2
+#define WARN 3
+
 #define NICK_ACCESS 	1
 #define NICK_IDENTIFIED 2
 #define NICK_OPER		3

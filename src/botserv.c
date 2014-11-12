@@ -154,27 +154,10 @@ void connect_bot(char *botname) {
 }
 
 void bot_add_chan(bot *b,char *chan) {
-	b->chancount++;
-	b->chanlist = srealloc(b->chanlist,sizeof(char*)*b->chancount);
-	b->chanlist[b->chancount-1] = sstrdup(chan);
+
 }
 void bot_del_chan(bot *b,char *chan) {
-	int i = 0;
-	char **channels;
-	for (channels = b->chanlist, i = 0; i < b->chancount; channels++, i++) {
-		if (stricmp(*channels,chan) == 0)
-			break;
-	}
-	b->chancount--;
-	if (i < b->chancount) /* if it wasn't the last entry... */
-		memmove(channels,channels + 1, (b->chancount - i) * sizeof(char *));
-	if (b->chancount) /* if there are any entries left... */
-		b->chanlist = srealloc(b->chanlist,
-				b->chancount * sizeof(char *));
-	else {
-		free(b->chanlist);
-		b->chanlist = NULL;
-	}
+
 }
 /********************************************************************/
 /**
@@ -194,18 +177,5 @@ bot *findbot(const char *botname) {
 	return NULL;
 }
 bot *findbot_onchan(char *chan) {
-	bot *b = botlist;
-	int i;
-	if (botlist == NULL) {
-		return NULL;
-	}
-	while(b) {
-		for(i=0;i<b->chancount;i++) {
-			if(stricmp(b->chanlist[i],chan)==0) {
-				return b;
-			}
-		}
-		b = b->next;
-	}
-	return b;
+ return NULL;
 }

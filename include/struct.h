@@ -8,7 +8,7 @@
 #define PASSMAX 33
 #define DESCMAX 2048
 
-typedef struct _accesslist accesslist;
+typedef struct _access acc;
 typedef struct _auth auth;
 typedef struct _botinfo bot;
 typedef struct _as_cmd as_cmd;
@@ -43,12 +43,11 @@ struct _auth
 
 struct _botinfo {
 	bot *next,*prev;
+	int id;
 	char *name;
 	char *password;
 	char *username;
 	char *realname;
-	char **chanlist;
-	int chancount;
 };
 struct _channel
 {
@@ -78,27 +77,23 @@ struct _op {
 
 struct _chaninfo {
 	ChanInfo *prev, *next;
+	int id;
 	char name[CHANMAX];
 	char pass[PASSMAX];
 	char description[DESCMAX];
 	time_t time_reg;
 	int akickcount;
+	int admin_enabled;
+	int owner_enabled;
 	int aop_enabled;
-	int uopcount;
-	int vopcount;
-	int hopcount;
-	int aopcount;
-	int sopcount;
-	int admincount;
-	int ownercount;
 	char *bot;
-	char founder[NICKMAX];
+	NickInfo *founder;
 	int hop_enabled;
 	char *mlock;
 	int restricted;
 	int sop_enabled;
-	char *successor;
-	char topic[2048];
+	NickInfo *successor;
+	char *topic;
 	int topiclock;
 	int uop_enabled;
 	int keeptopic;
@@ -108,8 +103,6 @@ struct _chaninfo {
 	int opwatch;
 	char *url;
 	int vop_enabled;
-	char **accesslist;
-	char accesscount;
 };
 
 struct _akick {
@@ -156,7 +149,7 @@ struct _nickinfo {
     int auth_chan;
     int auth_notify;
     unsigned int authcount;
-    accesslist *al;
+    acc *accesslist;
     unsigned short channelcount;
     char *email;
     int enforced;
@@ -180,8 +173,8 @@ struct _nickinfo {
     char *url;
     auth *authlist;
 };
-struct _accesslist {
-	accesslist *prev, *next;
+struct _access {
+	acc *prev, *next;
 	char *mask;
 };
 struct _notify {
