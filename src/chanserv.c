@@ -296,7 +296,6 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	strscpy(c->pass, pass, PASSMAX);
 	strscpy(c->description, desc, DESCMAX);
 	strscpy(c->founder, src, NICKMAX);
-	c->akickcount = 0;
 	c->aop_enabled = 1;
 	c->uop_enabled = 1;
 	c->vop_enabled = 1;

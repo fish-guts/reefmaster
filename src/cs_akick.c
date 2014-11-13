@@ -141,25 +141,21 @@ void cs_akick_delmask(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_ERR_XOP_NOTONLIST, finalmask, "Akick", chan);
 		return;
 	}
-	op *o = global_op_list;
-	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
-			if ((stricmp(finalmask, o->nick) == 0)
-					&& (o->level == AKICK_LIST)) {
-				if (o->prev)
-					o->prev->next = o->next;
-				else
-					global_op_list = o->next;
-				if (o->next)
-					o->next->prev = o->prev;
-				free(o);
-				c->akickcount--;
-				notice(cs_name, src, CS_RPL_XOP_DELETED, finalmask, "Akick",
-						chan);
-				return;
-			}
+	akick *ak = c->akicklist;
+	while (ak) {
+		if (stricmp(finalmask,ak->mask) == 0) {
+			if (ak->prev)
+				ak->prev->next = ak->next;
+			else
+				c->akicklist = ak->next;
+			if (ak->next)
+				ak->next->prev = ak->prev;
+			free(ak);
+			notice(cs_name, src, CS_RPL_XOP_DELETED, finalmask, "Akick",
+					chan);
+			return;
 		}
-		o = o->next;
+		ak = ak->next;
 	}
 }
 /********************************************************************/
@@ -183,20 +179,18 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(cs_akick_list));
 		return;
 	}
-	op *o = global_op_list;
 	int i = 0;
 	char str[128];
+	akick *ak = c->akicklist;
 	notice(cs_name, src, CS_RPL_XOP_LIST_BEGIN, "Akick", chan);
-	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
-			if (o->level == AKICK_LIST) {
-				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
-				notice(cs_name, src, CS_RPL_XOP_LIST, i + 1, o->nick,
-						addedby_lvl[o->addedbyacc], o->addedby, str);
-				i++;
-			}
-			o = o->next;
-		}
+	while (ak) {
+		i++;
+		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&ak->added_on));
+		notice(cs_name, src, CS_RPL_XOP_LIST, i + 1,
+			ak->mask,
+			addedby_lvl[ak->added_by_acc],
+			ak->added_by, str);
+		ak = ak->next;
 	}
 	if ((i > 1) || (i == 0)) {
 		notice(cs_name, src, CS_RPL_XOP_LIST_COMPLETE1, i);
@@ -204,20 +198,17 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_RPL_XOP_LIST_COMPLETE2);
 	}
 }
-op *cs_akick_match(user *u,ChanInfo *c) {
-	op *o = global_op_list;
+akick *cs_akick_match(user *u,ChanInfo *c) {
+	akick *ak = c->akicklist;
 	char *mask = (char*)malloc(sizeof(char*)*1024);
 	sprintf(mask,"%s!%s@%s",u->nick,u->username,u->hostname);
-	while(o) {
-		if((stricmp(c->name,o->chan)==0) && (o->level==AKICK_LIST)) {
-			if(ifmatch_0(o->nick,mask)) {
-				return o;
-			}
+	while(ak) {
+		if(ifmatch_0(ak->mask,mask)) {
+			return ak;
 		}
-		o = o->next;
+		ak = ak->next;
 	}
 	return NULL;
-
 }
 /********************************************************************/
 /**
@@ -239,24 +230,18 @@ void cs_akick_wipeall(char *src, int ac, char **av) {
 	}
 	int i = 0;
 
-	op *o = global_op_list;
-	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
-			if (o->level == AKICK_LIST) {
-				i++;
-				if (o->prev)
-					o->prev->next = o->next;
-				else
-					global_op_list = o->next;
-				if (o->next)
-					o->next->prev = o->prev;
-				free(o);
-
-			}
-		}
-		o = o->next;
+	akick *ak = c->akicklist;
+	while (ak) {
+		i++;
+		if (ak->prev)
+			ak->prev->next = ak->next;
+		else
+			c->akicklist = ak->next;
+		if (ak->next)
+			ak->next->prev = ak->prev;
+		free(ak);
+		ak = ak->next;
 	}
-	c->akickcount = 0;
 	if (i == 1)
 		notice(cs_name, src, CS_RPL_XOP_WIPED1, "Akick", chan);
 	else

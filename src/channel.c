@@ -128,12 +128,12 @@ void check_status(channel *c, user *u) {
 				return;
 			}
 		}
-		op *o = cs_akick_match(u, cs);
-		if (o) {
+		akick *ak = cs_akick_match(u, cs);
+		if (ak) {
 			char *reason = (char*) malloc(sizeof(char*) * 256);
-			sprintf(reason, CS_RPL_AKICK_KICKREASON, o->reason);
+			sprintf(reason, CS_RPL_AKICK_KICKREASON, ak->reason);
 			kick(cs_name, u->nick, cs->name, reason);
-			ban(cs_name, o->nick, cs->name);
+			ban(cs_name, ak->mask, cs->name);
 		}
 	}
 }

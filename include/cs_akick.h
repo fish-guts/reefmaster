@@ -13,7 +13,7 @@ void cs_akick(char *src,int ac,char **av);
 void cs_akick_addmask(char *src, int ac,char **av);
 void cs_akick_delmask(char *src, int ac, char **av);
 void cs_akick_listentries(char *src, int ac,char **av);
-op *cs_akick_match(user *u,ChanInfo *c);
+akick *cs_akick_match(user *u,ChanInfo *c);
 void cs_akick_wipeall(char *src, int ac,char **av);
 
 
