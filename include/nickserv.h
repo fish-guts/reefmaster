@@ -47,6 +47,7 @@ void delete_nick(NickInfo *n);
 int findauth_chan(char *src, char *nick,char *chan,int level);
 int findauth_notify(char *src, char *nick);
 NickInfo *findnick(const char *nick);
+NickInfo *find_nick_by_id(int id);
 int isidentified(user *u,char *nick);
 void nickserv(char *src,char *av);
 int ns_checkmask(char *src,char *mask);

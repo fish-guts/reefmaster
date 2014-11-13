@@ -8,7 +8,7 @@
 #define PASSMAX 33
 #define DESCMAX 2048
 
-typedef struct _access acc;
+typedef struct _access myacc;
 typedef struct _auth auth;
 typedef struct _botinfo bot;
 typedef struct _as_cmd as_cmd;
@@ -66,8 +66,9 @@ struct _channel
 };
 struct _op {
 	op *prev,*next;
-	char *nick;
-	char *chan;
+	int id;
+	NickInfo *nick;
+	ChanInfo *chan;
 	int level;
 	time_t addedon;
 	char *addedby;
@@ -149,7 +150,7 @@ struct _nickinfo {
     int auth_chan;
     int auth_notify;
     unsigned int authcount;
-    acc *accesslist;
+    myacc *accesslist;
     unsigned short channelcount;
     char *email;
     int enforced;
@@ -174,7 +175,8 @@ struct _nickinfo {
     auth *authlist;
 };
 struct _access {
-	acc *prev, *next;
+	myacc *prev, *next;
+	int id;
 	char *mask;
 };
 struct _notify {

@@ -460,7 +460,7 @@ void load_database(void) {
 static void load_nickserv(void) {
 	load_nicks();
 	load_access();
-	load_auth();
+	//load_auth();
 	load_notify();
 }
 void load_botserv(void) {
@@ -479,14 +479,14 @@ static void load_access(void) {
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
 		while (sqlite3_step(res) == SQLITE_ROW) {
-			NickInfo *n = findnick((const char*)sqlite3_column_text(res, 0));
-			acc *a = scalloc(sizeof(acc), 1);
+			NickInfo *n = findnick((const char*)sqlite3_column_text(res, 1));
+			myacc *a = scalloc(sizeof(myacc), 1);
 			a->next = n->accesslist;
 			if (n->accesslist)
 				n->accesslist->prev = a;
+			a->id = sqlite3_column_int(res,0);
+			a->mask = sstrdup((const char*)sqlite3_column_text(res, 2));
 			n->accesslist = a;
-			a->mask = sstrdup((const char*)sqlite3_column_text(res, 1));
-
 		}
 	}
 	sqlite3_close(db);
@@ -643,6 +643,7 @@ static void load_chans(void) {
 			c->opwatch = c->owner_enabled = sqlite3_column_int(res, 21);
 			c->url = sstrdup((char*) sqlite3_column_text(res,22));
 			c->topiclock = c->owner_enabled = sqlite3_column_int(res, 21);
+			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)
 				chans->prev = c;
@@ -653,6 +654,7 @@ static void load_chans(void) {
 
 }
 static void load_akick(void) {
+	addlog(DEBUG,LOG_DBG_ENTRY,"load_akick");
 	sqlite3 *db;
 	sqlite3_stmt *res;
 	const char *tail;
@@ -661,18 +663,19 @@ static void load_akick(void) {
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
 		error = sqlite3_prepare_v2(db,cs_load_akick, 1000, &res,&tail);
 		if (error != SQLITE_OK) {
-			addlog(2, LOG_ERR_SQLERROR, "in load_notify()");
+			addlog(2, LOG_ERR_SQLERROR, "in load_akick()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
 		while (sqlite3_step(res) == SQLITE_ROW) {
-			ChanInfo *c = findchan((const char*)sqlite3_column_text(res, 1));
+			ChanInfo *c = find_chan_by_id(sqlite3_column_int(res, 1));
 			akick *ak = scalloc(sizeof(akick), 1);
 			ak->next = c->akicklist;
 			if (c->akicklist)
 				c->akicklist->prev = ak;
+
 			c->akicklist = ak;
 			ak->id = sqlite3_column_int(res,0);
-			ak->mask = (const char*)sqlite3_column_text(res, 2);
+			ak->mask = sstrdup((const char*)sqlite3_column_text(res, 2));
 			ak->added_by = sstrdup((const char*)sqlite3_column_text(res, 3));
 			ak->added_by_acc = sqlite3_column_int(res,4);
 			ak->added_on = sqlite3_column_int(res,5);
@@ -680,11 +683,46 @@ static void load_akick(void) {
 		}
 	}
 	sqlite3_close(db);
+	addlog(DEBUG,LOG_DBG_EXIT,"load_akick");
+}
+static void load_ops(void) {
+	sqlite3 *db;
+	sqlite3_stmt *res;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
+		error = sqlite3_prepare_v2(db,"select * from OP_LIST", 1000, &res,
+				&tail);
+		if (error != SQLITE_OK) {
+			addlog(2, LOG_ERR_SQLERROR, "in load_chans()");
+			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		}
+		while (sqlite3_step(res) == SQLITE_ROW) {
+			ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
+			op *o = scalloc(sizeof(op),1);
+
+			o->id = sqlite3_column_int(res,0);
+			o->level = sqlite3_column_int(res,1);
+			o->nick = find_nick_by_id(sqlite3_column_int(res,2));
+			o->chan = find_chan_by_id(sqlite3_column_int(res,3));
+			o->addedby = sstrdup((const char*)sqlite3_column_text(res,4));
+			o->addedbyacc = sqlite3_column_int(res,5);
+			o->addedon = sqlite3_column_int(res,6);
+			o->next = global_op_list;
+			if (global_op_list)
+				global_op_list->prev = o;
+			global_op_list = o;
+		}
+	}
+	sqlite3_close(db);
+
 }
 
 void load_chanserv(void) {
 	load_chans();
 	load_akick();
+	load_ops();
 }
 
 /* EOF */

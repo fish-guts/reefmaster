@@ -63,6 +63,7 @@ int cs_issuccessor(char *nick,char *chan);
 void cs_op(char *src, int ac, char **av);
 void delete_chan(ChanInfo *c);
 ChanInfo *findchan(const char *chan);
+ChanInfo *find_chan_by_id(unsigned int id);
 char *get_oline(int level);
 char *get_opacc(int level);
 void inc_list(ChanInfo *c,int list);

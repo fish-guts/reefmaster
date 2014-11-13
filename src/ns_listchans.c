@@ -21,8 +21,16 @@
 #include "main.h"
 
 void ns_listchans(char *src, int ac, char **av) {
-	static char *opacc[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop","Admin","Owner",
-			"Successor", "Founder" };
+	static char *opacc[] = {
+			NULL,
+			"Uop",
+			"Vop",
+			"Hop",
+			"Aop",
+			"Sop",
+			"Successor",
+			"Founder"
+	};
 	user *u = finduser(src);
 	char *nick = (char*) malloc(sizeof(char*) * 64);
 	if (ac == 2)
@@ -39,44 +47,31 @@ void ns_listchans(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 		return;
 	}
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8","9","10","11","12",
-			"\2ServiceRootAdmin\2" };
-	op *o = global_op_list;
+	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8","\2ServiceRootAdmin\2" };
+	NickInfo *n = findnick(nick);
 	int i = 0;
 	char str[128];
 	notice(ns_name, src, NS_RPL_LISTCHANS_BEGIN, nick);
-	ChanInfo *c = chans;
-	while(c) {
-		if(stricmp(c->founder,nick)==0) {
-			notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,i+1,"Founder",c->name);
-			i++;
-		}
-		else if(c->successor) {
-			if(stricmp(c->successor,nick)==0) {
-				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,"Successor",o->chan);
-				i++;
-			}
-		}
-		c = c->next;
-	}
+	op *o = global_op_list;
 	while (o) {
-		if (stricmp(nick, o->nick) == 0) {
-			if ((o->level > 8) && (o->level<AKICK_LIST)) {
-				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2, opacc[o->level],
-						o->chan);
+		if (n->id == o->nick->id) {
+			i++;
+			if (o->level > 5) {
+				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,i, opacc[o->level],o->chan->name);
 			} else {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
-				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY, i + 1,
-						opacc[o->level], o->chan, addedby_lvl[o->addedbyacc],
-						o->addedby, str);
+				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY, i,
+					opacc[o->level], o->chan->name, addedby_lvl[o->addedbyacc],
+					o->addedby, str);
+
+
 			}
-			i++;
 		}
 		o = o->next;
 	}
-	if ((i > 1) || (i == 0)) {
-		notice(ns_name, src, NS_RPL_LISTCHANS_END2, i);
-	} else {
+	if (i==1) {
 		notice(ns_name, src, NS_RPL_LISTCHANS_END1);
+	} else {
+		notice(ns_name, src, NS_RPL_LISTCHANS_END2, i);
 	}
 }

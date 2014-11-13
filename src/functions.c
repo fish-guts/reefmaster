@@ -149,12 +149,12 @@ int ismatch(user *u, char *mask) {
 		return 2;
 	}
 	NickInfo *n = findnick(u->nick);
-	acc *a = n->accesslist;
+	myacc *a = n->accesslist;
 	while (a) {
 		if (ifmatch(a->mask, mask, 0)) {
 			return 1;
 		}
-		n = n->next;
+		a = a->next;
 	}
 	return 0;
 }

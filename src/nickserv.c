@@ -199,6 +199,16 @@ NickInfo *findnick(const char *src) {
 	}
 	return n;
 }
+NickInfo *find_nick_by_id(int id) {
+	NickInfo *n = nicklist;
+	while(n) {
+		if(n->id == id) {
+			return n;
+		}
+		n = n->next;
+	}
+	return NULL;
+}
 /********************************************************************/
 /**
  * checks whether a user has successfully identified with a registered nickname

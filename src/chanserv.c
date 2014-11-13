@@ -31,13 +31,9 @@ op *global_op_list = NULL;
 
 static cs_cmd cs_cmds[] = {
 	{ "ACC", cs_acc },
-	{ "ADMIN", cs_admin },
-	{ "ADMINOP", cs_adminop },
 	{ "AKICK", cs_akick },
 	{ "AOP", cs_aop },
-	{ "DEADMINOP", cs_deadminop },
 	{ "DEHALFOP", cs_dehalfop },
-	{ "DEOWN", cs_deown },
 	{ "DEVOICE", cs_devoice },
 	{ "DEOP", cs_deop },
 	{ "DROP", cs_drop },
@@ -50,8 +46,6 @@ static cs_cmd cs_cmds[] = {
 	{ "INVITE", cs_invite },
 	{ "LIST", cs_list },
 	{ "OP", cs_op },
-	{ "OWN", cs_own },
-	{ "OWNER", cs_cowner },
 	{ "REGISTER", cs_register },
 	{ "SET", cs_set },
 	{ "SETPASS", cs_setpass },
@@ -276,6 +270,20 @@ ChanInfo *findchan(const char *chan) {
 		c = c->next;
 	}
 	return c;
+}
+
+ChanInfo *find_chan_by_id(unsigned int id) {
+	ChanInfo *c = chans;
+	if(!chans) {
+		return NULL;
+	}
+	while(c) {
+		if(c->id == id) {
+			return c;
+		}
+		c = c->next;
+	}
+	return NULL;
 }
 
 /********************************************************************/
