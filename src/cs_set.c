@@ -249,14 +249,6 @@ void cs_set_memolevel(char *src,int ac,char **av) {
 		c->memolevel = SOP_LIST;
 		notice(cs_name,src,CS_RPL_SET_MEMOLEVEL_SUCCESS,chan,av[3]);
 		return;
-	} else if(stricmp(av[3],"Admin")==0) {
-		c->memolevel = ADMIN_LIST;
-		notice(cs_name,src,CS_RPL_SET_MEMOLEVEL_SUCCESS,chan,av[3]);
-		return;
-	} else if(stricmp(av[3],"Owner")==0) {
-		c->memolevel = OWNER_LIST;
-		notice(cs_name,src,CS_RPL_SET_MEMOLEVEL_SUCCESS,chan,av[3]);
-		return;
 	} else if(stricmp(av[3],"Successor")==0) {
 		c->memolevel = SUCCESSOR_ACC;
 		notice(cs_name,src,CS_RPL_SET_MEMOLEVEL_SUCCESS,chan,av[3]);
@@ -484,14 +476,6 @@ void cs_set_topiclock(char *src,int ac,char **av) {
 		return;
 	} else if(stricmp(av[3],"Sop")==0) {
 		c->topiclock = SOP_LIST;
-		notice(cs_name,src,CS_RPL_SET_TOPICLOCK_SUCCESS,chan,av[3]);
-		return;
-	} else if(stricmp(av[3],"Admin")==0) {
-		c->topiclock = ADMIN_LIST;
-		notice(cs_name,src,CS_RPL_SET_TOPICLOCK_SUCCESS,chan,av[3]);
-		return;
-	} else if(stricmp(av[3],"Owner")==0) {
-		c->topiclock = OWNER_LIST;
 		notice(cs_name,src,CS_RPL_SET_TOPICLOCK_SUCCESS,chan,av[3]);
 		return;
 	} else if(stricmp(av[3],"Successor")==0) {

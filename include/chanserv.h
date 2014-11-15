@@ -26,13 +26,11 @@
 #define HOP_LIST 3
 #define AOP_LIST 4
 #define SOP_LIST 5
-#define ADMIN_LIST 6
-#define OWNER_LIST 7
-#define SUCCESSOR_ACC 8
-#define SUCCESSOR 9
-#define FOUNDER_ACC 10
-#define FOUNDER  11
-#define FULLFOUNDER  12
+#define SUCCESSOR_ACC 6
+#define SUCCESSOR 7
+#define FOUNDER_ACC 8
+#define FOUNDER  9
+#define FULLFOUNDER  10
 #define AKICK_LIST 999
 
 #define UOP_STR "Uop"

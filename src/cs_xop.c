@@ -21,6 +21,26 @@
 
 #include "main.h"
 
+static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop" };
+
+void add_to_list(char *nick, char *chan, int level, char *addnick, int addlevel) {
+	op *o = scalloc(sizeof(op),1);
+	o->id = 0;
+	o->level = level;
+	o->nick = findnick(nick);
+	o->chan = findchan(chan);
+	o->addedby = sstrdup(addnick);
+	o->addedbyacc = addlevel;
+	o->addedon = time(NULL);
+	o->next = global_op_list;
+	if (global_op_list)
+		global_op_list->prev = o;
+	global_op_list = o;
+}
+/********************************************************************/
+/**
+ * cs AOP - handle the chanserv AOP command
+ */
 void cs_aop(char *src, int ac, char **av) {
 	char *chan;
 	char *nick;
@@ -51,7 +71,6 @@ void cs_aop(char *src, int ac, char **av) {
 			return;
 		}
 		chan = av[1];
-		notice(as_name,src,"debug");
 		cs_xop_list(src, chan, AOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
@@ -71,40 +90,108 @@ void cs_aop(char *src, int ac, char **av) {
 	}
 	return;
 }
+/********************************************************************/
+/**
+ * cs HOP - handle the chanserv HOP command
+ */
 void cs_hop(char *src, int ac, char **av) {
-	char *chan = av[1];
+	char *chan;
+	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_add(src, chan, HOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_del(src, chan, HOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_list(src, chan, HOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_wipe(src, chan, HOP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_ERR_XOP_USAGE,"HOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP");
 		return;
 	}
 	return;
 }
+/********************************************************************/
+/**
+ * cs SOP - handle the chanserv SOP command
+ */
 void cs_sop(char *src, int ac, char **av) {
-	char *chan = av[1];
+	char *chan;
+	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_add(src, chan, SOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_del(src, chan, SOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_list(src, chan, SOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_wipe(src, chan, SOP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_ERR_XOP_USAGE,"SOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP");
 		return;
 	}
 	return;
@@ -114,20 +201,50 @@ void cs_sop(char *src, int ac, char **av) {
  * cs UOP - handle the chanserv UOP command
  */
 void cs_uop(char *src, int ac, char **av) {
-	char *chan = av[1];
+	char *chan;
+	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_add(src, chan, UOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_del(src, chan, UOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_list(src, chan, UOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_wipe(src, chan, UOP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_ERR_XOP_USAGE,"UOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP");
 		return;
 	}
 	return;
@@ -138,20 +255,50 @@ void cs_uop(char *src, int ac, char **av) {
  * cs VOP - handle the chanserv VOP command
  */
 void cs_vop(char *src, int ac, char **av) {
-	char *chan = av[1];
+	char *chan;
+	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_add(src, chan, VOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_del(src, chan, VOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_list(src, chan, VOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
-		cs_xop_wipe(src, chan, ADMIN_LIST);
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP LIST");
+			return;
+		}
+		chan = av[1];
+		cs_xop_wipe(src, chan, VOP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_ERR_XOP_USAGE,"VOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP");
 		return;
 	}
 	return;
@@ -163,6 +310,7 @@ void cs_vop(char *src, int ac, char **av) {
  * specified list of the specified channel
  */
 void cs_xop_add(char *src, char *chan, int list, char *nick) {
+	int alist[] = { 0, cs_uop_add, cs_vop_add, cs_hop_add, cs_aop_add, cs_sop_add };
 	if(!isregcs(chan)) {
 		notice(cs_name,src,CS_ERR_NOTREG,chan);
 		return;
@@ -171,8 +319,30 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		notice(cs_name,src,NS_ERR_NOTREG,nick);
 		return;
 	}
-	notice(as_name,src,"Level: %i",cs_xop_get_level(finduser(src),findchan(chan)));
-
+	int listacc = 0;
+	ChanInfo *c = findchan(chan);
+	if ((listacc = cs_xop_get_level(finduser(src),c)) < alist[list]) {
+		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(alist[list]));
+		return;
+	}
+	int existing_level = cs_isonlist(nick,chan,list);
+	if(existing_level==0) {
+		notice(cs_name,src,CS_ERR_XOP_ALREADYONLIST,nick,acclist[list],chan);
+		return;
+	} else if(cs_isfounder(nick,chan)) {
+		notice(cs_name,src,CS_ERR_XOP_FOUNDERCANNOTADD,nick,chan,acclist[list]);
+		return;
+	} else if(cs_issuccessor(nick,chan)) {
+		notice(cs_name,src,CS_ERR_XOP_FOUNDERCANNOTADD,nick,chan,acclist[list]);
+		return;
+	} else if(existing_level>0) {
+		move_in_list(nick,chan,list,existing_level,src,listacc);
+		notice(cs_name,src,CS_RPL_XOP_MOVED,nick,acclist[existing_level], acclist[list],chan);
+		return;
+	} else {
+		notice(cs_name,src,CS_RPL_XOP_ADDED,nick,acclist[list],chan);
+		add_to_list(nick,chan,list,src,listacc);
+	}
 }
 /********************************************************************/
 /**
@@ -240,16 +410,6 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
 	}
 	return level;
 }
-int get_access_for_nick(ChanInfo *c, NickInfo *n) {
-	op *o = global_op_list;
-	while(o) {
-		if(o->nick->id==n->id) {
-			return o->level;
-		}
-		o = o->next;
-	}
-	return 0;
-}
 /********************************************************************/
 /**
  * input of a chanserv SOP/AOP/UOP/HOP/VOP command - list all the nicks
@@ -258,7 +418,7 @@ int get_access_for_nick(ChanInfo *c, NickInfo *n) {
  */
 void cs_xop_list(char *src, char *chan, int list) {
 	int listacc;
-	*addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
+	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
 	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list, cs_sop_list };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
@@ -333,4 +493,32 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 	else
 		notice(cs_name, src, CS_RPL_XOP_WIPED2, get_opacc(list), chan, i);
 	return;
+}
+op *find_list_entry(char *nick,char *chan,int level) {
+	op *o = global_op_list;
+	while (o) {
+		if((stricmp(o->nick->nick, nick) ==0) && (stricmp(o->chan->name, chan) ==0) && (o->level == level)) {
+			return o;
+		}
+		o = o->next;
+	}
+	return NULL;
+}
+int get_access_for_nick(ChanInfo *c, NickInfo *n) {
+	op *o = global_op_list;
+	while(o) {
+		if(o->nick->id==n->id) {
+			return o->level;
+		}
+		o = o->next;
+	}
+	return 0;
+}
+void move_in_list(char *nick, char *chan, int level, int existing_level, char *addnick, int addlevel) {
+	op *o = find_list_entry(nick,chan,existing_level);
+	o->level = level;
+	o->addedby = sstrdup(addnick);
+	o->addedbyacc = addlevel;
+	o->addedon = time(NULL);
+
 }

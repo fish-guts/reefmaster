@@ -1383,14 +1383,12 @@ int config_load(const char *file)
 		/* section chanserv ***********************************************************************************************/
 		cfg_t *chanserv;
 		cfg_t *cs_general;
-		cfg_t *cs_access;
 		cfg_t *cs_ops;
 		cfg_t *cs_password;
 		cfg_t *cs_default;
 		cfg_t *cs_commands;
 		cfg_t *cs_misc;
 		cfg_t *cs_list;
-		cfg_t *cs_acc_akick;
 		chanserv = cfg_getsec(cfg,"chanserv");
 
 		/* section general */
@@ -1411,10 +1409,6 @@ int config_load(const char *file)
 		cs_list = cfg_getsec(chanserv,"list");
 		cs_maxlist = cfg_getint(cs_list,"maxlist");
 		cs_operonly = cfg_getint(cs_list,"operonly");
-		/* section access */
-		cs_access = cfg_getsec(chanserv,"access");
-		cs_acc_akick = cfg_getsec(cs_access,"akick");
-
 
 		/* section password */
 		cs_password = cfg_getsec(chanserv,"password");

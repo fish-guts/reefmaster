@@ -100,17 +100,7 @@ void check_status(channel *c, user *u) {
 		if (isreg(u->nick)) {
 			NickInfo *n = findnick(u->nick);
 			int level = cs_xop_get_level(u, cs);
-			if (level >= OWNER_LIST) {
-				if (n->noop)
-					return;
-				do_owner(cs_name, u->nick, c->name);
-				add_status(c, u, OWNER);
-			} else if (level >= ADMIN_LIST) {
-				if (n->noop)
-					return;
-				do_admin(cs_name, u->nick, c->name);
-				add_status(c, u, OWNER);
-			} else if (level >= AOP_LIST) {
+			if (level >= AOP_LIST) {
 				if (n->noop)
 					return;
 				do_op(cs_name, u->nick, c->name);

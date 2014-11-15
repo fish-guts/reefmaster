@@ -360,6 +360,8 @@
 #define CS_ERR_XOP_ALREADYONLIST	"\2%s\2 is already on the \2%s\2 list of \2%s\2"
 #define CS_ERR_XOP_ALREADYONHIGHER	"\2%s\2 already has a higher access to \2%s\2"
 #define CS_ERR_XOP_NICKISFOUNDER	"\2%s\2 is already the founder of the channel \2%s\2"
+#define CS_ERR_XOP_FOUNDERCANNOTADD "\2%s\2 is the founder of the channel \2%s\2 and cannot be added to its \2%s\2 list"
+#define CS_ERR_XOP_SUCCCANNOTADD 	"\2%s\2 is the successor of the channel \2%s\2 and cannot be added to its \2%s\2 list"
 #define CS_ERR_XOP_NICKISSUCCESSOR	"\2%s\2 is already the successor of the channel \2%s\2"
 #define CS_RPL_XOP_DISABLED			"The \2%s\2 list of \2%s\2 is currently disabled."
 #define CS_RPL_XOP_LIST_BEGIN		"This is the \2%s\2 list of \2%s\2"

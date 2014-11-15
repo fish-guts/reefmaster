@@ -183,12 +183,10 @@ int cs_isonlist(char *nick, char *chan, int list) {
 	while (o) {
 		if (stricmp(chan, o->chan->name) == 0) {
 			if (stricmp(nick, o->nick->nick) == 0) {
-				if (o->level < list)
+				if (o->level == list) {
 					return 0;
-				else if (o->level == list)
-					return 1;
-				else if (o->level > list) {
-					return 2;
+				} else {
+					return o->level;
 				}
 			}
 		}
