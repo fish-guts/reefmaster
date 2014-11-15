@@ -168,7 +168,7 @@ char *cs_get_why(user *u, ChanInfo *c) {
  */
 int cs_isfounder(char *nick, char *chan) {
 	ChanInfo *c = findchan(chan);
-	if (stricmp(nick, c->founder) == 0) {
+	if (stricmp(nick, c->founder->nick) == 0) {
 		return 1;
 	}
 	return 0;
@@ -183,8 +183,8 @@ int cs_isonlist(char *nick, char *chan, int list) {
 		return 0;
 	}
 	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
-			if (stricmp(nick, o->nick) == 0) {
+		if (stricmp(chan, o->chan->name) == 0) {
+			if (stricmp(nick, o->nick->nick) == 0) {
 				if (o->level < list)
 					return 0;
 				else if (o->level == list)
@@ -208,8 +208,8 @@ int cs_isonakicklist(char *mask, char *chan) {
 		return 0;
 	}
 	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
-			if ((stricmp(mask, o->nick) == 0) && (o->level == AKICK_LIST)) {
+		if (stricmp(chan, o->chan->name) == 0) {
+			if ((stricmp(mask, o->nick->nick) == 0) && (o->level == AKICK_LIST)) {
 				return 1;
 			}
 		}
@@ -223,8 +223,8 @@ int cs_isonakicklist(char *mask, char *chan) {
  */
 int cs_issuccessor(char *nick, char *chan) {
 	ChanInfo *c = findchan(chan);
-	if (c->successor) {
-		if (stricmp(nick, c->successor) == 0) {
+	if (c->successor->nick) {
+		if (stricmp(nick, c->successor->nick) == 0) {
 			return 1;
 		}
 	}
@@ -303,7 +303,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	strscpy(c->name, name, CHANMAX);
 	strscpy(c->pass, pass, PASSMAX);
 	strscpy(c->description, desc, DESCMAX);
-	strscpy(c->founder, src, NICKMAX);
+	c->founder = findnick(src);
 	c->aop_enabled = 1;
 	c->uop_enabled = 1;
 	c->vop_enabled = 1;

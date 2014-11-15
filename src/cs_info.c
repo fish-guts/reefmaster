@@ -72,7 +72,7 @@ void cs_info(char *src,int ac, char **av) {
 	}
 	notice(cs_name,src,CS_RPL_INF_ENTRY1,c->name,c->description);
 	notice(cs_name,src,CS_RPL_INF_ENTRY2,c->founder->nick);
-	if((c->successor!=NULL) && (stricmp(c->successor,"(null)")!=0))
+	if((c->successor!=NULL) && (stricmp(c->successor->nick,"(null)")!=0))
 		notice(cs_name,src,CS_RPL_INF_ENTRY3,c->successor->nick);
 	if((c->topic!=NULL) && (stricmp(c->topic,"")!=0))
 		notice(cs_name,src,CS_RPL_INF_ENTRY4,c->topic);

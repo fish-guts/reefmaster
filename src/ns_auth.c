@@ -99,9 +99,9 @@ void ns_auth_accept(char *src, int ac, char **av) {
 		} else if (a->type > AUTH_NOTIFY) {
 			ChanInfo *c = findchan(a->target);
 			if (a->type == AUTH_FOUND) {
-				strscpy(c->founder, src, NICKMAX);
+				c->founder = findnick(src);
 			} else if (a->type == AUTH_SUCC) {
-				strscpy(c->successor, src, NICKMAX);
+				c->successor = findnick(src);
 			} else {
 /*
 				op *o = scalloc(sizeof(op), 1);

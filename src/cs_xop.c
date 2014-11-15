@@ -22,24 +22,44 @@
 #include "main.h"
 
 void cs_aop(char *src, int ac, char **av) {
-	if(ac<4) {
-		notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> ADD <Nickname>");
-		notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP ADD");
-		return;
-	}
-	char *chan = av[1];
-	char *nick = av[3];
+	char *chan;
+	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_add(src, chan, AOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
-		char *nick = av[3];
+		if(ac<4) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
 		cs_xop_del(src, chan, AOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_list(src, chan, AOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP LIST");
+			return;
+		}
+		chan = av[1];
 		cs_xop_wipe(src, chan, AOP_LIST);
 		return;
 	}
@@ -177,8 +197,8 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 	}
 	op *o = global_op_list;
 	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
-			if (stricmp(nick, o->nick) == 0) {
+		if (stricmp(chan, o->chan->name) == 0) {
+			if (stricmp(nick, o->nick->nick) == 0) {
 				if (o->prev)
 					o->prev->next = o->next;
 				else
@@ -232,8 +252,7 @@ int get_access_for_nick(ChanInfo *c, NickInfo *n) {
  */
 void cs_xop_list(char *src, char *chan, int list) {
 	int listacc;
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8",
-			"9","10","11","12", "\2ServiceRootAdmin\2" };
+	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
 	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list,
 			cs_sop_list, cs_admin_list, cs_owner_list };
 	user *u = finduser(src);
@@ -251,7 +270,7 @@ void cs_xop_list(char *src, char *chan, int list) {
 	char str[128];
 	notice(cs_name, src, CS_RPL_XOP_LIST_BEGIN, get_opacc(list), chan);
 	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
+		if (stricmp(chan, o->chan->name) == 0) {
 			if (o->level == list) {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
 				notice(cs_name, src, CS_RPL_XOP_LIST, i + 1, o->nick,
@@ -288,7 +307,7 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 	int i = 0;
 	op *o = global_op_list;
 	while (o) {
-		if (stricmp(chan, o->chan) == 0) {
+		if (stricmp(chan, o->chan->name) == 0) {
 			if (o->level == list) {
 				i++;
 				if (o->prev)

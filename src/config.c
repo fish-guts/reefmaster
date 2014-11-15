@@ -148,50 +148,6 @@ int config_cs_akick_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *re
 	return 0;	
 }
 
-int config_cs_admin_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_admin_add = val;
-	return 0;
-}
-int config_cs_admin_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_admin_del = val;
-	return 0;
-}
-int config_cs_admin_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_admin_list = val;
-	return 0;
-}
-int config_cs_admin_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_admin_wipe = val;
-	return 0;
-}
 int config_cs_akick_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
@@ -212,94 +168,6 @@ int config_cs_akick_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void 
 		return -1;
 	}
 	cs_akick_disable = val;
-	return 0;
-}
-int config_cs_admin_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_admin_enable = val;
-	return 0;
-}
-int config_cs_admin_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_admin_disable = val;
-	return 0;
-}
-int config_cs_owner_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_owner_add = val;
-	return 0;
-}
-int config_cs_owner_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_owner_del = val;
-	return 0;
-}
-int config_cs_owner_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_owner_list = val;
-	return 0;
-}
-int config_cs_owner_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_owner_wipe = val;
-	return 0;
-}
-int config_cs_owner_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_owner_enable = val;
-	return 0;
-}
-int config_cs_owner_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>13))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
-		return -1;
-	}
-	cs_owner_disable = val;
 	return 0;
 }
 int config_cs_aop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
@@ -1014,24 +882,6 @@ int config_load(const char *file)
 
 		CFG_END(),
 	};
-	static cfg_opt_t cs_acc_admin_opts[] = {
-		CFG_INT_CB("add",9,CFGF_NONE,(void*)&config_cs_admin_add),
-		CFG_INT_CB("del",9,CFGF_NONE,(void*)&config_cs_admin_del),
-		CFG_INT_CB("list",1,CFGF_NONE,(void*)&config_cs_admin_list),
-		CFG_INT_CB("wipe",10,CFGF_NONE,(void*)&config_cs_admin_wipe),
-		CFG_INT_CB("enable",11,CFGF_NONE,(void*)&config_cs_admin_enable),
-		CFG_INT_CB("disable",11,CFGF_NONE,(void*)&config_cs_admin_disable),
-		CFG_END(),
-	};
-	static cfg_opt_t cs_acc_owner_opts[] = {
-		CFG_INT_CB("add",9,CFGF_NONE,(void*)&config_cs_owner_add),
-		CFG_INT_CB("del",9,CFGF_NONE,(void*)&config_cs_owner_del),
-		CFG_INT_CB("list",1,CFGF_NONE,(void*)&config_cs_owner_list),
-		CFG_INT_CB("wipe",10,CFGF_NONE,(void*)&config_cs_owner_wipe),
-		CFG_INT_CB("enable",11,CFGF_NONE,(void*)&config_cs_owner_enable),
-		CFG_INT_CB("disable",11,CFGF_NONE,(void*)&config_cs_owner_disable),
-		CFG_END(),
-	};
 	static cfg_opt_t cs_acc_sop_opts[] = {
 		CFG_INT_CB("add",7,CFGF_NONE,(void*)&config_cs_sop_add),
 		CFG_INT_CB("del",7,CFGF_NONE,(void*)&config_cs_sop_del),
@@ -1084,8 +934,6 @@ int config_load(const char *file)
 		CFG_SEC("hop",cs_acc_hop_opts,CFGF_NONE),
 		CFG_SEC("vop",cs_acc_vop_opts,CFGF_NONE),
 		CFG_SEC("uop",cs_acc_uop_opts,CFGF_NONE),
-		CFG_SEC("admin",cs_acc_admin_opts,CFGF_NONE),
-		CFG_SEC("owner",cs_acc_owner_opts,CFGF_NONE),
 		CFG_END()
 	};
 	static cfg_opt_t cs_list_opts[] = {
@@ -1342,8 +1190,6 @@ int config_load(const char *file)
 		cfg_t *cs_acc_hop;
 		cfg_t *cs_acc_vop;
 		cfg_t *cs_acc_uop;
-		cfg_t *cs_acc_admin;
-		cfg_t *cs_acc_owner;
 		chanserv = cfg_getsec(cfg,"chanserv");
 
 		/* section general */
@@ -1354,9 +1200,16 @@ int config_load(const char *file)
 
 		/* section operators */
 		cs_ops = cfg_getsec(chanserv,"operators");
+		cs_sops_max =  cfg_getint(cs_ops,"sop_max");
+		cs_aops_max =  cfg_getint(cs_ops,"aop_max");
+		cs_hops_max =  cfg_getint(cs_ops,"hop_max");
+		cs_vops_max =  cfg_getint(cs_ops,"vop_max");
+		cs_uops_max =  cfg_getint(cs_ops,"uop_max");
 
 		/* section list */
 		cs_list = cfg_getsec(chanserv,"list");
+		cs_maxlist = cfg_getint(cs_list,"maxlist");
+		cs_operonly = cfg_getint(cs_list,"operonly");
 		/* section access */
 		cs_access = cfg_getsec(chanserv,"access");
 		cs_acc_akick = cfg_getsec(cs_access,"akick");
@@ -1365,11 +1218,46 @@ int config_load(const char *file)
 		cs_acc_hop = cfg_getsec(cs_access,"hop");
 		cs_acc_vop = cfg_getsec(cs_access,"vop");
 		cs_acc_uop = cfg_getsec(cs_access,"uop");
-		cs_acc_owner = cfg_getsec(cs_access,"owner");
-		cs_acc_admin = cfg_getsec(cs_access,"admin");
-
+		cs_sop_add = cfg_getint(cs_acc_sop,"add");
+		cs_sop_del = cfg_getint(cs_acc_sop,"del");
+		cs_sop_list = cfg_getint(cs_acc_sop,"list");
+		cs_sop_wipe = cfg_getint(cs_acc_sop,"wipe");
+		cs_sop_enable = cfg_getint(cs_acc_sop,"enable");
+		cs_sop_disable = cfg_getint(cs_acc_sop,"disable");
+		cs_aop_add = cfg_getint(cs_acc_aop,"add");
+		cs_aop_del = cfg_getint(cs_acc_aop,"del");
+		cs_aop_list = cfg_getint(cs_acc_aop,"list");
+		cs_aop_wipe = cfg_getint(cs_acc_aop,"wipe");
+		cs_aop_enable = cfg_getint(cs_acc_aop,"enable");
+		cs_aop_disable = cfg_getint(cs_acc_aop,"disable");
+		cs_hop_add = cfg_getint(cs_acc_hop,"add");
+		cs_hop_del = cfg_getint(cs_acc_hop,"del");
+		cs_hop_list = cfg_getint(cs_acc_hop,"list");
+		cs_hop_wipe = cfg_getint(cs_acc_hop,"wipe");
+		cs_hop_enable = cfg_getint(cs_acc_hop,"enable");
+		cs_hop_disable = cfg_getint(cs_acc_hop,"disable");
+		cs_vop_add = cfg_getint(cs_acc_vop,"add");
+		cs_vop_del = cfg_getint(cs_acc_vop,"del");
+		cs_vop_list = cfg_getint(cs_acc_vop,"list");
+		cs_vop_wipe = cfg_getint(cs_acc_vop,"wipe");
+		cs_vop_enable = cfg_getint(cs_acc_vop,"enable");
+		cs_vop_disable = cfg_getint(cs_acc_vop,"disable");
+		cs_uop_add = cfg_getint(cs_acc_uop,"add");
+		cs_uop_del = cfg_getint(cs_acc_uop,"del");
+		cs_uop_list = cfg_getint(cs_acc_uop,"list");
+		cs_uop_wipe = cfg_getint(cs_acc_uop,"wipe");
+		cs_uop_enable = cfg_getint(cs_acc_uop,"enable");
+		cs_uop_disable = cfg_getint(cs_acc_uop,"disable");
+		cs_akick_add = cfg_getint(cs_acc_akick,"add");
+		cs_akick_del = cfg_getint(cs_acc_akick,"del");
+		cs_akick_list = cfg_getint(cs_acc_akick,"list");
+		cs_akick_wipe = cfg_getint(cs_acc_akick,"wipe");
+		cs_akick_enable = cfg_getint(cs_acc_akick,"enable");
+		cs_akick_disable = cfg_getint(cs_acc_akick,"disable");
 		/* section password */
 		cs_password = cfg_getsec(chanserv,"password");
+		cs_spass = cfg_getint(cs_password,"setpass");
+		cs_gpass = cfg_getint(cs_password,"getpass");
 		/* section default */
 		cs_default = cfg_getsec(chanserv,"default");
 		cs_mlock = cfg_getstr(cs_default,"mlock");

@@ -85,9 +85,10 @@ void c_kill(char *src, int ac, char **av)
 void c_mode(char *src, int ac, char **av)
 {
 	int x = 0;
-	int t,y,z;
-	user *u,*u1;
+	int t,y;
+	int z = 0;
 	channel *c;
+	user *u,*u1;
 	char *ptr;
 	if(stricmp(src,s_unreal)!=0) {
 		u = finduser(src);
@@ -232,6 +233,7 @@ void c_mode(char *src, int ac, char **av)
 	/* if it's a usermode */
 	else
 	{
+		u = finduser(src);
 		if(strchr(av[1],'+'))
 			x = 1;
 		else if(strchr(av[1],'-'))

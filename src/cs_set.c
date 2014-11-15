@@ -134,7 +134,8 @@ void cs_set_founder(char *src,int ac,char **av) {
 		notice(cs_name,src,CS_ERR_SET_FOUNDER_REG);
 		return;
 	}
-	strscpy(c->founder,nick,NICKMAX);
+	NickInfo *n = findnick(nick);
+	c->founder = n;
 	notice(cs_name,src,CS_RPL_SET_FOUNDER_SUCCESS,nick,chan);
 	return;
 }
@@ -440,7 +441,8 @@ void cs_set_successor(char *src,int ac,char **av) {
 		notice(cs_name,src,CS_ERR_SET_SUCC_REG);
 		return;
 	}
-	strscpy(c->successor,nick,NICKMAX);
+	NickInfo *n = findnick(nick);
+	c->successor = n;
 	notice(cs_name,src,CS_RPL_SET_SUCC_SUCCESS,nick,chan);
 	return;
 }

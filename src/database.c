@@ -460,7 +460,7 @@ void load_database(void) {
 static void load_nickserv(void) {
 	load_nicks();
 	load_access();
-	//load_auth();
+	load_auth();
 	load_notify();
 }
 void load_botserv(void) {
@@ -699,7 +699,6 @@ static void load_ops(void) {
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
 		while (sqlite3_step(res) == SQLITE_ROW) {
-			ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
 			op *o = scalloc(sizeof(op),1);
 
 			o->id = sqlite3_column_int(res,0);
