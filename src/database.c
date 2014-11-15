@@ -716,7 +716,6 @@ static void load_ops(void) {
 		}
 	}
 	sqlite3_close(db);
-
 }
 
 void load_chanserv(void) {

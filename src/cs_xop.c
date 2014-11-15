@@ -22,9 +22,14 @@
 #include "main.h"
 
 void cs_aop(char *src, int ac, char **av) {
+	if(ac<4) {
+		notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> ADD <Nickname>");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP ADD");
+		return;
+	}
 	char *chan = av[1];
+	char *nick = av[3];
 	if (stricmp(av[2], "ADD") == 0) {
-		char *nick = av[3];
 		cs_xop_add(src, chan, AOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
@@ -126,31 +131,21 @@ void cs_vop(char *src, int ac, char **av) {
 	return;
 }
 
-void cs_cowner(char *src, int ac, char **av) {
-	char *chan = av[1];
-	if (stricmp(av[2], "ADD") == 0) {
-		char *nick = av[3];
-		cs_xop_add(src, chan, OWNER_LIST, nick);
-		return;
-	} else if (stricmp(av[2], "DEL") == 0) {
-		char *nick = av[3];
-		cs_xop_del(src, chan, OWNER_LIST, nick);
-		return;
-	} else if (stricmp(av[2], "LIST") == 0) {
-		cs_xop_list(src, chan, OWNER_LIST);
-		return;
-	} else if (stricmp(av[2], "WIPE") == 0) {
-		cs_xop_wipe(src, chan, OWNER_LIST);
-		return;
-	}
-	return;
-}
 /********************************************************************/
 /**
  * input of a chanserv SOP/AOP/UOP/HOP/VOP command - add a nick to the
  * specified list of the specified channel
  */
 void cs_xop_add(char *src, char *chan, int list, char *nick) {
+	if(!isregcs(chan)) {
+		notice(cs_name,src,CS_ERR_NOTREG,chan);
+		return;
+	}
+	if(!isreg(nick)) {
+		notice(cs_name,src,NS_ERR_NOTREG,nick);
+		return;
+	}
+	notice(as_name,src,"Level: %i",cs_xop_get_level(finduser(src),findchan(chan)));
 
 }
 /********************************************************************/
@@ -204,7 +199,29 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
  * check the level a nick has to the specified channel
  */
 int cs_xop_get_level(user *u, ChanInfo *c) {
-
+	if(u->oper>cs_admin_access) {
+		return ACCESS_SRA;
+	}
+	struct usernicks *un = u->usernicks;
+	int level = 0;
+	while(un) {
+		NickInfo *n = findnick(un->nick);
+		if(un->level==1)
+			level = get_access_for_nick(c,n) -1;
+		else
+			level = get_access_for_nick(c,n);
+		un = un->next;
+	}
+	return level;
+}
+int get_access_for_nick(ChanInfo *c, NickInfo *n) {
+	op *o = global_op_list;
+	while(o) {
+		if(o->nick->id==n->id) {
+			return o->level;
+		}
+		o = o->next;
+	}
 	return 0;
 }
 /********************************************************************/

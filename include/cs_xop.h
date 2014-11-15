@@ -19,6 +19,7 @@ void cs_xop_del(char *src,char *chan,int list,char *nick);
 int cs_xop_get_level(user *u,ChanInfo *c);
 void cs_xop_list(char *src,char *chan,int list);
 void cs_xop_wipe(char *src,char *chan,int list);
+int get_access_for_nick(ChanInfo *c, NickInfo *n);
 
 
 #endif /* CS_XOP_H_ */

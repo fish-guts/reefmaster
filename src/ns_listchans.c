@@ -63,8 +63,6 @@ void ns_listchans(char *src, int ac, char **av) {
 				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY, i,
 					opacc[o->level], o->chan->name, addedby_lvl[o->addedbyacc],
 					o->addedby, str);
-
-
 			}
 		}
 		o = o->next;

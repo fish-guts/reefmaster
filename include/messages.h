@@ -381,6 +381,7 @@
 #define CS_RPL_REG_SUCCESS2			"The password is \2%s\2 - Remember it for further use."
 #define CS_RPL_REG_SUCCESS3			"The mask \2%s\2 was automatically added to the channel access list."
 #define CS_RPL_REG_USAGE			"Usage: \2REGISTER\2 <Password> <Channel Description>"
+#define CS_RPL_XOP_USAGE			"Usage: \2%s\2 %s"
 #define CS_ERR_XOP_HIGHERACCESS		"Permission denied. You need \2%s\2 Access or higher."
 #define CS_ERR_XOP_HIGHERACCESS2	"Sorry, \2%s\2 does not have the required privileges."
 #define CS_RPL_XOP_REQUESTSENT1		"The nickname \2%s\2 has authorization for channel lists enabled."
