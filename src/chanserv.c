@@ -76,8 +76,6 @@ char *get_opacc(int level) {
 		"Hop",
 		"Aop",
 		"Sop",
-		"Admin",
-		"Owner",
 		"Successor",
 		"Founder"
 	};

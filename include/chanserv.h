@@ -49,7 +49,6 @@ extern op *global_op_list;
 extern ChanInfo *chans;
 
 
-
 void add_identifiedcs(user *u, char *channel);
 void chanserv(char *src,char *av);
 void cs_check_successor(char *nick);

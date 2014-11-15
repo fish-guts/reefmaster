@@ -153,7 +153,7 @@ int config_cs_akick_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_akick_enable = val;
@@ -164,7 +164,7 @@ int config_cs_akick_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void 
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_akick_disable = val;
@@ -173,9 +173,13 @@ int config_cs_akick_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void 
 int config_cs_aop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_sop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_aop_add = val;
@@ -186,7 +190,11 @@ int config_cs_aop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_sop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_aop_del = val;
@@ -197,7 +205,11 @@ int config_cs_aop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_sop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_aop_list = val;
@@ -220,7 +232,11 @@ int config_cs_aop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_sop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_aop_wipe = val;
@@ -231,7 +247,11 @@ int config_cs_aop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *re
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_sop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_aop_enable = val;
@@ -242,7 +262,7 @@ int config_cs_aop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *r
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_aop_disable = val;
@@ -304,15 +324,31 @@ int config_cs_hop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
+	if(val > cs_aop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
+		return -1;
+	}
 	cs_hop_add = val;
 	return 0;	
 }
 int config_cs_hop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_aop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_hop_del = val;
@@ -321,9 +357,17 @@ int config_cs_hop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_hop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_aop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_hop_list = val;
@@ -344,9 +388,13 @@ int config_cs_hop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_hop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_aop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
 		return -1;
 	}
 	cs_hop_wipe = val;
@@ -360,6 +408,14 @@ int config_cs_hop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *re
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
+	if(val > cs_aop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
+		return -1;
+	}
 	cs_hop_enable = val;
 	return 0;	
 }
@@ -369,6 +425,14 @@ int config_cs_hop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *r
 	if((val<0) || (val>8))
 	{
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_aop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_hop_disable = val;
@@ -482,9 +546,9 @@ int config_cs_setpass(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result)
 int config_cs_sop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_sop_add = val;
@@ -493,9 +557,9 @@ int config_cs_sop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_sop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_sop_del = val;
@@ -504,9 +568,9 @@ int config_cs_sop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_sop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_sop_list = val;
@@ -527,9 +591,9 @@ int config_cs_sop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_sop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_sop_wipe = val;
@@ -549,9 +613,9 @@ int config_cs_sop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *re
 int config_cs_sop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
 	cs_sop_disable = val;
@@ -560,9 +624,21 @@ int config_cs_sop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *r
 int config_cs_vop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_hop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_vop_add = val;
@@ -571,9 +647,21 @@ int config_cs_vop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_vop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_hop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_vop_del = val;
@@ -582,9 +670,21 @@ int config_cs_vop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_vop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_hop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_vop_list = val;
@@ -605,9 +705,21 @@ int config_cs_vop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_vop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_hop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_vop_wipe = val;
@@ -616,9 +728,21 @@ int config_cs_vop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 int config_cs_vop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_hop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_vop_enable = val;
@@ -632,15 +756,43 @@ int config_cs_vop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *r
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
 		return -1;
 	}
+	if(val > cs_hop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
+		return -1;
+	}
 	cs_vop_disable = val;
 	return 0;	
 }
 int config_cs_uop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_vop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_VOP_SECTION);
+		return -1;
+	}
+	if(val > cs_hop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_add) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_uop_add = val;
@@ -654,15 +806,47 @@ int config_cs_uop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
 		return -1;
 	}
+	if(val > cs_vop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_VOP_SECTION);
+		return -1;
+	}
+	if(val > cs_hop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_del) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
+		return -1;
+	}
 	cs_uop_del = val;
 	return 0;	
 }
 int config_cs_uop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
-	if((val<0) || (val>13))
+	if((val<0) || (val>8))
 	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,8);
+		return -1;
+	}
+	if(val > cs_vop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_VOP_SECTION);
+		return -1;
+	}
+	if(val > cs_hop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_list) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_uop_list = val;
@@ -692,36 +876,28 @@ int config_cs_akick_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *res
 	cs_akicks_max = val;
 	return 0;
 }
-int config_cs_admin_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>1000))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,1000);
-		addlog(2,CONF_LOG_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,1000);
-		return -1;
-	}
-	cs_admins_max = val;
-	return 0;
-}
-int config_cs_owner_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
-{
-	int val = atoi(value);
-	if((val<0) || (val>1000))
-	{
-		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,1000);
-		addlog(2,CONF_LOG_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,1000);
-		return -1;
-	}
-	cs_owners_max = val;
-	return 0;
-}
 int config_cs_uop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
 	if((val<0) || (val>13))
 	{
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		return -1;
+	}
+	if(val > cs_vop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_VOP_SECTION);
+		return -1;
+	}
+	if(val > cs_hop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_wipe) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_uop_wipe = val;
@@ -735,6 +911,22 @@ int config_cs_uop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *re
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
 		return -1;
 	}
+	if(val > cs_vop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_VOP_SECTION);
+		return -1;
+	}
+	if(val > cs_hop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_enable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
+		return -1;
+	}
 	cs_uop_enable = val;
 	return 0;	
 }
@@ -744,6 +936,22 @@ int config_cs_uop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *r
 	if((val<0) || (val>13))
 	{
 		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,13);
+		return -1;
+	}
+	if(val > cs_vop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_VOP_SECTION);
+		return -1;
+	}
+	if(val > cs_hop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_HOP_SECTION);
+		return -1;
+	}
+	if(val > cs_aop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_AOP_SECTION);
+		return -1;
+	}
+	if(val > cs_sop_disable) {
+		cfg_error(cfg,CONF_ERR_XOP_TOO_HIGH,CONFIG_FILE,cfg->line,opt->name,CONG_MSG_SOP_SECTION);
 		return -1;
 	}
 	cs_uop_disable = val;
@@ -867,8 +1075,6 @@ int config_load(const char *file)
 		CFG_INT_CB("hop_max",1000,CFGF_NONE,(void*)&config_cs_hop_max),
 		CFG_INT_CB("vop_max",1000,CFGF_NONE,(void*)&config_cs_vop_max),
 		CFG_INT_CB("uop_max",1000,CFGF_NONE,(void*)&config_cs_uop_max),
-		CFG_INT_CB("admin_max",1000,CFGF_NONE,(void*)&config_cs_uop_max),
-		CFG_INT_CB("owner_max",1000,CFGF_NONE,(void*)&config_cs_owner_max),
 		CFG_INT_CB("akick_max",1000,CFGF_NONE,(void*)&config_cs_akick_max),
 		CFG_END()
 	};
@@ -1185,11 +1391,6 @@ int config_load(const char *file)
 		cfg_t *cs_misc;
 		cfg_t *cs_list;
 		cfg_t *cs_acc_akick;
-		cfg_t *cs_acc_sop;
-		cfg_t *cs_acc_aop;
-		cfg_t *cs_acc_hop;
-		cfg_t *cs_acc_vop;
-		cfg_t *cs_acc_uop;
 		chanserv = cfg_getsec(cfg,"chanserv");
 
 		/* section general */
@@ -1213,47 +1414,8 @@ int config_load(const char *file)
 		/* section access */
 		cs_access = cfg_getsec(chanserv,"access");
 		cs_acc_akick = cfg_getsec(cs_access,"akick");
-		cs_acc_sop = cfg_getsec(cs_access,"sop");
-		cs_acc_aop = cfg_getsec(cs_access,"aop");
-		cs_acc_hop = cfg_getsec(cs_access,"hop");
-		cs_acc_vop = cfg_getsec(cs_access,"vop");
-		cs_acc_uop = cfg_getsec(cs_access,"uop");
-		cs_sop_add = cfg_getint(cs_acc_sop,"add");
-		cs_sop_del = cfg_getint(cs_acc_sop,"del");
-		cs_sop_list = cfg_getint(cs_acc_sop,"list");
-		cs_sop_wipe = cfg_getint(cs_acc_sop,"wipe");
-		cs_sop_enable = cfg_getint(cs_acc_sop,"enable");
-		cs_sop_disable = cfg_getint(cs_acc_sop,"disable");
-		cs_aop_add = cfg_getint(cs_acc_aop,"add");
-		cs_aop_del = cfg_getint(cs_acc_aop,"del");
-		cs_aop_list = cfg_getint(cs_acc_aop,"list");
-		cs_aop_wipe = cfg_getint(cs_acc_aop,"wipe");
-		cs_aop_enable = cfg_getint(cs_acc_aop,"enable");
-		cs_aop_disable = cfg_getint(cs_acc_aop,"disable");
-		cs_hop_add = cfg_getint(cs_acc_hop,"add");
-		cs_hop_del = cfg_getint(cs_acc_hop,"del");
-		cs_hop_list = cfg_getint(cs_acc_hop,"list");
-		cs_hop_wipe = cfg_getint(cs_acc_hop,"wipe");
-		cs_hop_enable = cfg_getint(cs_acc_hop,"enable");
-		cs_hop_disable = cfg_getint(cs_acc_hop,"disable");
-		cs_vop_add = cfg_getint(cs_acc_vop,"add");
-		cs_vop_del = cfg_getint(cs_acc_vop,"del");
-		cs_vop_list = cfg_getint(cs_acc_vop,"list");
-		cs_vop_wipe = cfg_getint(cs_acc_vop,"wipe");
-		cs_vop_enable = cfg_getint(cs_acc_vop,"enable");
-		cs_vop_disable = cfg_getint(cs_acc_vop,"disable");
-		cs_uop_add = cfg_getint(cs_acc_uop,"add");
-		cs_uop_del = cfg_getint(cs_acc_uop,"del");
-		cs_uop_list = cfg_getint(cs_acc_uop,"list");
-		cs_uop_wipe = cfg_getint(cs_acc_uop,"wipe");
-		cs_uop_enable = cfg_getint(cs_acc_uop,"enable");
-		cs_uop_disable = cfg_getint(cs_acc_uop,"disable");
-		cs_akick_add = cfg_getint(cs_acc_akick,"add");
-		cs_akick_del = cfg_getint(cs_acc_akick,"del");
-		cs_akick_list = cfg_getint(cs_acc_akick,"list");
-		cs_akick_wipe = cfg_getint(cs_acc_akick,"wipe");
-		cs_akick_enable = cfg_getint(cs_acc_akick,"enable");
-		cs_akick_disable = cfg_getint(cs_acc_akick,"disable");
+
+
 		/* section password */
 		cs_password = cfg_getsec(chanserv,"password");
 		cs_spass = cfg_getint(cs_password,"setpass");

@@ -51,6 +51,7 @@ void cs_aop(char *src, int ac, char **av) {
 			return;
 		}
 		chan = av[1];
+		notice(as_name,src,"debug");
 		cs_xop_list(src, chan, AOP_LIST);
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
@@ -61,6 +62,11 @@ void cs_aop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		cs_xop_wipe(src, chan, AOP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_ERR_XOP_USAGE,"AOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP");
 		return;
 	}
 	return;
@@ -176,7 +182,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 void cs_xop_del(char *src, char *chan, int list, char *nick) {
 	int addacc;
 	int add[] =
-			{ 0, cs_uop_del, cs_vop_del, cs_hop_del, cs_aop_del, cs_sop_del, cs_admin_del, cs_owner_del };
+			{ 0, cs_uop_del, cs_vop_del, cs_hop_del, cs_aop_del, cs_sop_del };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
@@ -252,15 +258,15 @@ int get_access_for_nick(ChanInfo *c, NickInfo *n) {
  */
 void cs_xop_list(char *src, char *chan, int list) {
 	int listacc;
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
-	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list,
-			cs_sop_list, cs_admin_list, cs_owner_list };
+	*addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
+	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list, cs_sop_list };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
 		return;
 	}
 	ChanInfo *c = findchan(chan);
+
 	if ((listacc = cs_xop_get_level(u, c)) < alist[list]) {
 		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(alist[list]));
 		return;
@@ -273,7 +279,7 @@ void cs_xop_list(char *src, char *chan, int list) {
 		if (stricmp(chan, o->chan->name) == 0) {
 			if (o->level == list) {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
-				notice(cs_name, src, CS_RPL_XOP_LIST, i + 1, o->nick,
+				notice(cs_name, src, CS_RPL_XOP_LIST, i + 1, o->nick->nick,
 						addedby_lvl[o->addedbyacc], o->addedby, str);
 				i++;
 			}

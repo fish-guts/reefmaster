@@ -57,6 +57,11 @@
 #define CONF_LOG_ERR_TOOMANYCHARS	"[CONFIG] %s:%i: Option '%s' must not need exceed %i characters.\n"
 #define CONF_LOG_ERR_MUSTBEBOOL		"[CONFIG] %s:%i: Value in option '%s' must be 0 or 1.\n"
 #define CONF_LOG_ERR_INT			"[CONFIG] %s:%i: Value in option '%s' must be between %i and %i.\n"
+#define CONF_ERR_XOP_TOO_HIGH		"*** ERROR %s:%i: Value in option '%s' cannot be higher than the value of %s"
+#define CONG_MSG_SOP_SECTION		"the 'Sop' section\n\n"
+#define CONG_MSG_AOP_SECTION		"the 'Aop' section\n\n"
+#define CONG_MSG_HOP_SECTION		"the 'Hop' section\n\n"
+#define CONG_MSG_VOP_SECTION		"the 'Vop' section\n\n"
 
 /*
  * Nickserv messages
@@ -365,6 +370,7 @@
 #define CS_RPL_XOP_WIPED1			"The \2%s\2 list of \2%s\2 has been wiped - 1 entry removed."
 #define CS_RPL_XOP_WIPED2			"The \2%s\2 list of \2%s\2 has been wiped - %i entries removed."
 #define CS_ERR_XOP_NOTONLIST		"\2%s\2 is not on the \2%s\2 list of \2%s\2"
+#define CS_ERR_XOP_USAGE			"Usage: \2%s\2 <Channel> [ADD|DEL|LIST|WIPE|ENABLE|DISABLE]"
 #define CS_ERR_REG_DELAY			"Please wait another %i seconds before registering another channel."
 #define CS_ERR_AOP_GENERALERROR		"Sorry, a general error has occured. Please try again later."
 #define CS_ERR_NEEDREG				"You need a registered nickname to register a channel."
