@@ -463,13 +463,7 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		if (stricmp(chan, o->chan->name) == 0) {
 			if (o->level == list) {
 				i++;
-				if (o->prev)
-					o->prev->next = o->next;
-				else
-					global_op_list = o->next;
-				if (o->next)
-					o->next->prev = o->prev;
-				free(o);
+				remove_from_list(o);
 			}
 		}
 		o = o->next;
@@ -507,7 +501,6 @@ void move_in_list(char *nick, char *chan, int level, int existing_level, char *a
 	o->addedby = sstrdup(addnick);
 	o->addedbyacc = addlevel;
 	o->addedon = time(NULL);
-
 }
 
 void remove_from_list(op *o) {
