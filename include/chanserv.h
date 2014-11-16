@@ -55,7 +55,7 @@ extern int cs_connect(int sock);
 char *cs_get_why(user *u,ChanInfo *c);
 int cs_isfounder(char *nick,char *chan);
 int cs_isonakicklist(char *mask, char *chan);
-int cs_isonlist(char *nick,char *chan,int list);
+int cs_isonlist(char *nick,char *chan,int list, int move);
 int cs_issuccessor(char *nick,char *chan);
 void cs_op(char *src, int ac, char **av);
 void delete_chan(ChanInfo *c);

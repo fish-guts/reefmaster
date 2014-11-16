@@ -325,7 +325,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(alist[list]));
 		return;
 	}
-	int existing_level = cs_isonlist(nick,chan,list);
+	int existing_level = cs_isonlist(nick,chan,list,1);
 	if(existing_level==0) {
 		notice(cs_name,src,CS_ERR_XOP_ALREADYONLIST,nick,acclist[list],chan);
 		return;
@@ -367,28 +367,15 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(add[list]));
 		return;
 	}
-	if (cs_isonlist(nick, chan, list) < 0) {
+	int existing_level = cs_isonlist(nick, chan, list,0);
+	if (existing_level < 0) {
 		notice(cs_name, src, CS_ERR_XOP_NOTONLIST, nick, get_opacc(list), chan);
 		return;
 	}
-	op *o = global_op_list;
-	while (o) {
-		if (stricmp(chan, o->chan->name) == 0) {
-			if (stricmp(nick, o->nick->nick) == 0) {
-				if (o->prev)
-					o->prev->next = o->next;
-				else
-					global_op_list = o->next;
-				if (o->next)
-					o->next->prev = o->prev;
-				free(o);
-				notice(cs_name, src, CS_RPL_XOP_DELETED, nick, get_opacc(list),
-						chan);
-				return;
-			}
-		}
-		o = o->next;
-	}
+	op *o = find_list_entry(nick,chan,list);
+	remove_from_list(o);
+	notice(cs_name,src,CS_RPL_XOP_DELETED,nick,get_opacc(list),chan);
+	return;
 }
 /********************************************************************/
 /**
@@ -521,4 +508,14 @@ void move_in_list(char *nick, char *chan, int level, int existing_level, char *a
 	o->addedbyacc = addlevel;
 	o->addedon = time(NULL);
 
+}
+
+void remove_from_list(op *o) {
+	if (o->prev)
+		o->prev->next = o->next;
+	else
+		global_op_list = o->next;
+	if (o->next)
+		o->next->prev = o->prev;
+	free(o);
 }

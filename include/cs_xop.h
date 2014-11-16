@@ -22,5 +22,6 @@ void cs_xop_wipe(char *src,char *chan,int list);
 op *find_list_entry(char *nick,char *chan,int level);
 int get_access_for_nick(ChanInfo *c, NickInfo *n);
 void move_in_list(char *nick, char *chan, int level, int existing_level, char *addnick, int addlevel);
+void remove_from_list(op *o);
 
 #endif /* CS_XOP_H_ */

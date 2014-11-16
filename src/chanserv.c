@@ -175,7 +175,7 @@ int cs_isfounder(char *nick, char *chan) {
 /**
  * check wether the nick machtes an entry in the specified access list
  */
-int cs_isonlist(char *nick, char *chan, int list) {
+int cs_isonlist(char *nick, char *chan, int list, int move) {
 	op *o = global_op_list;
 	if (global_op_list == NULL) {
 		return 0;
@@ -186,7 +186,11 @@ int cs_isonlist(char *nick, char *chan, int list) {
 				if (o->level == list) {
 					return 0;
 				} else {
-					return o->level;
+					if(move==1) {
+						return o->level;
+					} else {
+						return -1;
+					}
 				}
 			}
 		}
