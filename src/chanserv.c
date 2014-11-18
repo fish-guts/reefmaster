@@ -223,9 +223,11 @@ int cs_isonakicklist(char *mask, char *chan) {
  */
 int cs_issuccessor(char *nick, char *chan) {
 	ChanInfo *c = findchan(chan);
-	if (c->successor->nick) {
-		if (stricmp(nick, c->successor->nick) == 0) {
-			return 1;
+	if(c->successor) {
+		if (c->successor->nick) {
+			if (stricmp(nick, c->successor->nick) == 0) {
+				return 1;
+			}
 		}
 	}
 	return 0;

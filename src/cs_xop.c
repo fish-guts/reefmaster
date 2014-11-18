@@ -326,6 +326,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		return;
 	}
 	int existing_level = cs_isonlist(nick,chan,list,1);
+	NickInfo *n = findnick(nick);
 	if(existing_level==0) {
 		notice(cs_name,src,CS_ERR_XOP_ALREADYONLIST,nick,acclist[list],chan);
 		return;
@@ -336,12 +337,60 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		notice(cs_name,src,CS_ERR_XOP_FOUNDERCANNOTADD,nick,chan,acclist[list]);
 		return;
 	} else if(existing_level>0) {
+		if((n->auth_chan) && (list>existing_level)) {
+			add_auth_entry(nick,chan,list,src,listacc);
+			return;
+		}
 		move_in_list(nick,chan,list,existing_level,src,listacc);
 		notice(cs_name,src,CS_RPL_XOP_MOVED,nick,acclist[existing_level], acclist[list],chan);
 		return;
 	} else {
+		if((n->auth_chan) && (list>existing_level)) {
+			add_auth_entry(nick,chan,list,src,listacc);
+			return;
+		}
 		notice(cs_name,src,CS_RPL_XOP_ADDED,nick,acclist[list],chan);
 		add_to_list(nick,chan,list,src,listacc);
+	}
+}
+auth *find_auth_entry(char *nick,char *chan) {
+	NickInfo *n = findnick(nick);
+	auth *a = n->authlist;
+	if (n->authlist == NULL) {
+		return NULL;
+	}
+	while (a) {
+		if(stricmp(a->target,chan)==0) {
+			return a;
+		}
+		a = a->next;
+	}
+	return NULL;
+}
+void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
+	NickInfo *n = findnick(nick);
+	if(find_auth_entry(nick,chan)) {
+		notice(cs_name,src,CS_RPL_ATH_ALREADYSENT,nick);
+		return;
+	} else {
+		auth*a = scalloc(sizeof(auth), 1);
+		a->next = n->authlist;
+		if (n->authlist)
+			n->authlist->prev = a;
+		n->authlist = a;
+		a->type = list;
+		a->target = sstrdup(chan);
+		a->sender = sstrdup(src);
+		a->date = time(NULL);
+		a->status = 0;
+		notice(cs_name,src,CS_RPL_XOP_AUTH_REQUIRED,nick);
+		if(list<AUTH_SUCC) {
+			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_XOP,nick,acclist[list],chan);
+		} else {
+			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_SF,nick,acclist[list],chan);
+		}
+		notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_END,nick);
+		return;
 	}
 }
 /********************************************************************/
