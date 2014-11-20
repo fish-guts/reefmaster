@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop" };
+static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop", "Successor", "Founder" };
 
 void add_to_list(char *nick, char *chan, int level, char *addnick, int addlevel) {
 	op *o = scalloc(sizeof(op),1);
@@ -383,6 +383,7 @@ void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
 		a->sender = sstrdup(src);
 		a->date = time(NULL);
 		a->status = 0;
+		a->acclevel = listacc;
 		notice(cs_name,src,CS_RPL_XOP_AUTH_REQUIRED,nick);
 		if(list<AUTH_SUCC) {
 			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_XOP,nick,acclist[list],chan);
@@ -390,6 +391,10 @@ void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
 			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_SF,nick,acclist[list],chan);
 		}
 		notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_END,nick);
+		user *u = finduser(nick);
+		if (u) {
+			notice(ns_name, nick, NS_RPL_ATH_TEXT_NOTIFY, src);
+		}
 		return;
 	}
 }
@@ -434,14 +439,13 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
 	if(u->oper>cs_admin_access) {
 		return ACCESS_SRA;
 	}
-	struct usernicks *un = u->usernicks;
+	usernick *un = u->usernicks;
 	int level = 0;
 	while(un) {
-		NickInfo *n = findnick(un->nick);
 		if(un->level==1)
-			level = get_access_for_nick(c,n) -1;
+			level = get_access_for_nick(c,un->n) -1;
 		else
-			level = get_access_for_nick(c,n);
+			level = get_access_for_nick(c,un->n);
 		un = un->next;
 	}
 	return level;
@@ -537,7 +541,8 @@ op *find_list_entry(char *nick,char *chan,int level) {
 int get_access_for_nick(ChanInfo *c, NickInfo *n) {
 	op *o = global_op_list;
 	while(o) {
-		if(o->nick->id==n->id) {
+		notice(cs_name,"FG","%s->%s: %i",o->chan->name,o->nick->nick,o->level);
+		if((o->nick->id==n->id) && (stricmp(c->name,o->chan->name)==0)) {
 			return o->level;
 		}
 		o = o->next;

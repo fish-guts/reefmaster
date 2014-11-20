@@ -21,6 +21,11 @@
 
 #include "main.h"
 
+
+/**
+ * ns_setpass Handle the Nickserv SETPASS command
+ * Sets a new password for the specified nick. Required special privileges set in the config
+ */
 void ns_setpass(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	/* check if the function is enabled */
@@ -33,7 +38,7 @@ void ns_setpass(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_ERR_NEEDMOREPRIVS);
 		return;
 	}
-	/* for the correct argument cound */
+	/* for the correct argument count */
 	if (ac <= 2) {
 		notice(ns_name, src, NS_ERR_SPASS_USAGE);
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"SETPASS");

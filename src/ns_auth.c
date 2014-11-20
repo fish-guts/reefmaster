@@ -20,6 +20,47 @@
  */
 #include "main.h"
 
+/**
+ * accept an auth request.param can never be null
+ */
+void accept_auth(char *src, auth *a,int i) {
+	if(a->type==AUTH_NOTIFY) {
+		accept_auth_notify(src,a);
+	} else {
+		accept_auth_chan(src,a);
+	}
+	remove_auth(src,a);
+	notice(ns_name,src,NS_RPL_ATH_ACCEPTED,i);
+}
+
+/**
+ * accept an add request for a channel access list. params can never be null
+ */
+void accept_auth_chan(char *src,auth *a) {
+	add_to_list(src,a->target, a->type, a->sender, a->acclevel);
+	return;
+}
+/**
+ * accept a notify list request. params can never be null
+ */
+void accept_auth_notify(char *src,auth *a) {
+	add_notify(a->sender,src);
+	return;
+}
+int has_open_auth(NickInfo *n) {
+	if(n->authlist)
+		return 1;
+	return 0;
+}
+
+/**
+ * ns_auth Handle the Nickserv NS AUTH command.
+ * Possible subcommands are:
+ * ACCEPT - Accept the specified pending auth request
+ * DECLINE - Reject the specified pending auth request.
+ * LIST - Lists all pending auth request
+ * READ - Read the specified pending auth request.
+ */
 void ns_auth(char *src, int ac, char **av) {
 	char *cmd = av[1];
 	if (ac < 2) {
@@ -41,6 +82,9 @@ void ns_auth(char *src, int ac, char **av) {
 		return;
 	}
 }
+/*
+ * Handles the NS AUTH ACCEPT command. Purpose is to accept a request that authorization is required for.
+ */
 void ns_auth_accept(char *src, int ac, char **av) {
 	static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
 	user *u = finduser(src);
@@ -56,161 +100,111 @@ void ns_auth_accept(char *src, int ac, char **av) {
 		return;
 	}
 	NickInfo *n = findnick(src);
-	/* if the user has not identified for then nickname, trigger an error */
+	/* if the user has not identified for then nickname */
 	if (!isidentified(u, src)) {
 		notice(ns_name, src, NS_ERR_ACCESSDENIED, src);
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY);
 		return;
 	}
-	/* if the supplied value is not a number, issue an error message */
+	/* if the supplied value is not a number */
 	if (!isnum(av[2])) {
 		notice(ns_name, src, NS_ERR_ATH_ISNONUM);
 		notice(ns_name, src, NS_ERR_ATH_ACCEPTUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name, "AUTH", "ACCEPT");
 		return;
 	}
-	/* if the value if greater than the number of actual requests, trigger an error */
-	if ((atoi(av[2]) > n->authcount) || (atoi(av[2]) == 0)) {
+	if (atoi(av[2]) == 0) {
 		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
 		return;
 	} else {
 		int i = 0;
 		auth *a = n->authlist;
-		while ((i + 1) < atoi(av[2])) {
-			a = a->next;
+		while(a) {
 			i++;
-		}
-		if (a->type == AUTH_NOTIFY) {
-			NickInfo *n1 = findnick(src);
-			NickInfo *n2 = findnick(a->sender);
-			notify *no = scalloc(sizeof(notify), 1);
-			no->next = n1->notifylist;
-			if (n1->notifylist)
-				n1->notifylist->prev = no;
-			n1->notifylist = no;
-			no->nick = n2;
-			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
-			user *u1 = finduser(a->sender);
-			if (u1) {
-				notice(ns_name, u1->nick, NS_RPL_ATH_HASACCEPTED_NFY, src);
+			if(atoi(av[2])==i) {
+				accept_auth(src,a,i);
+				return;
 			}
-			notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
-			return;
-		} else if (a->type > AUTH_NOTIFY) {
-			ChanInfo *c = findchan(a->target);
-			if (a->type == AUTH_FOUND) {
-				c->founder = findnick(src);
-			} else if (a->type == AUTH_SUCC) {
-				c->successor = findnick(src);
-			} else {
-/*
-				op *o = scalloc(sizeof(op), 1);
-				o->addedby = sstrdup(a->sender);
-				o->addedbyacc = a->acctype;
-				o->level = a->type;
-				o->addedon = a->date;
-				o->nick = sstrdup(src);
-				o->chan = sstrdup(c->name);
-				o->next = global_op_list;
-				update_xop_list(o);
-				inc_list(c, a->type);
-				user *u1 = finduser(a->sender);
-				if (u1) {
-					notice(ns_name, a->sender, NS_RPL_ATH_HASACCEPTED_CHN, src,
-							xop[a->type], a->target);
-				}
-				notice(ns_name, src, NS_RPL_ATH_ACCEPTED, a->sender);
-			*/}
+			a = a->next;
 		}
-		n->authcount--;
-		free(a->sender);
-		free(a->target);
-		if (a->prev)
-			a->prev->next = a->next;
-		else
-			n->authlist = a->next;
-		if (a->next)
-			a->next->prev = a->prev;
-		free(a);
+		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+		return;
 	}
 }
 void ns_auth_decline(char *src, int ac, char **av) {
-	int count = 0;
 	user *u = finduser(src);
 	if (ac < 3) {
 		notice(ns_name, src, NS_ERR_ATH_DECLINEUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH DECLINE");
 		return;
 	}
-	/* if the nickname is not registered, trigger an error */
+	/* if the nickname is not registered */
 	if (!isreg(src)) {
 		notice(ns_name, src, NS_ERR_NOTREG);
 		return;
 	}
 	NickInfo *n = findnick(src);
-	/* if the user has not identified for then nickname, trigger an error */
+	/* if the user has not identified for then nickname */
 	if (!isidentified(u, src)) {
 		notice(ns_name, src, NS_ERR_ACCESSDENIED, src);
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY);
 		return;
 	}
-	/* if the supplied value is not a number, trigger an error */
+	/* if the supplied value is not a number */
 	if (!isnum(av[2])) {
 		notice(ns_name, src, NS_ERR_ATH_ISNONUM);
 		notice(ns_name, src, NS_ERR_ATH_DECLINEUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name, "AUTH", "DECLINE");
 		return;
 	}
-	/* if the value if greater than the number of actual requests, trigger an error */
-	if (atoi(av[2]) > count) {
+	/* if 0 is passed */
+	if (atoi(av[2]) ==0) {
 		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
 		return;
-	} else {
-		int i = 0;
-		auth *a = n->authlist;
-		while ((i + 1) < atoi(av[2])) {
-			a = a->next;
-			i++;
+	}	int i = 0;
+	auth *a = n->authlist;
+	while(a) {
+		i++;
+		if (i == atoi(av[2])) {
+			notice(cs_name,src,NS_RPL_ATH_DECLINED,i);
+			remove_auth(src,a);
+			return;
 		}
-		notice(ns_name, src, NS_RPL_ATH_DECLINED, a->sender);
-		n->authcount--;
-		free(a->sender);
-		free(a->target);
-		if (a->prev)
-			a->prev->next = a->next;
-		else
-			n->authlist = a->next;
-		if (a->next)
-			a->next->prev = a->prev;
-		free(a);
+		a = a->next;
 	}
+	notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
 	return;
 }
+/**
+ * list all open auth requests.
+ */
 void ns_auth_list(char *src, int ac, char **av) {
 	user *u = finduser(src);
+	if (!isreg(src)) {
+		notice(ns_name, src, NS_ERR_NOTREG, src);
+		return;
+	}
 	if (isidentified(u, src) < 0) {
 		notice(ns_name, src, NS_ERR_ACCESSDENIED, src);
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY, src);
 		return;
 	}
 	NickInfo *n = findnick(src);
-	if (n->authcount <= 0) {
-		notice(ns_name, src, NS_RPL_ATH_NOENTRIES);
-		return;
+
+	int i = 0;
+	auth *a = n->authlist;
+	notice(ns_name, src, NS_RPL_ATH_PENDING);
+	while(a) {
+		i++;
+		notice(ns_name, src, NS_RPL_ATH_REQUESTLIST,i, a->sender);
+		a = a->next;
+	}
+	if (i == 0) {
+		notice(ns_name,src,NS_RPL_ATH_NOENTRIES);
+	} else if (i == 1) {
+		notice(ns_name, src, NS_ERR_ATH_LISTCOMPLETE1);
 	} else {
-		int i;
-		auth *a = n->authlist;
-		notice(ns_name, src, NS_RPL_ATH_PENDING);
-		for (i = 0; i < n->authcount; i++) {
-			notice(ns_name, src, NS_RPL_ATH_REQUESTLIST, (i + 1), a->sender);
-			a = a->next;
-		}
-		if (i == 0) {
-			notice(ns_name, src, NS_ERR_ATH_LISTCOMPLETE1);
-		} else {
-			notice(ns_name, src, NS_ERR_ATH_LISTCOMPLETE2, i);
-		}
-		return;
+		notice(ns_name, src, NS_ERR_ATH_LISTCOMPLETE2, i);
 	}
 	return;
 }
@@ -226,10 +220,6 @@ void ns_auth_read(char *src, int ac, char **av) {
 	 * 6 = successor for a channel
 	 * 7 = founder for a channel
 	 */
-	/* this is the pending text */
-	static char *text[] = { NS_RPL_ATH_TEXT1, NS_RPL_ATH_TEXT2,
-			NS_RPL_ATH_TEXT3, NS_RPL_ATH_TEXT4, NS_RPL_ATH_TEXT5,
-			NS_RPL_ATH_TEXT6, NS_RPL_ATH_TEXT7, NS_RPL_ATH_TEXT8 };
 	if (ac < 3) {
 		notice(ns_name, src, NS_ERR_ATH_READUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH READ");
@@ -256,27 +246,38 @@ void ns_auth_read(char *src, int ac, char **av) {
 		return;
 	}
 	/* if the value if greater than the number of actual requests, trigger an error */
-	if ((atoi(av[2]) > n->authcount) || (atoi(av[2]) == 0)) {
+	if (atoi(av[2]) == 0) {
 		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
 		return;
-	} else {
-		int u;
-		auth *a = n->authlist;
-		for (u = 1; u <= atoi(av[2]); u++) {
-			if (u == atoi(av[2])) {
-				if (a->type == AUTH_NOTIFY) {
-					notice(ns_name, src, NS_RPL_ATH_READNOTIFY, (atoi(av[2])),
-							a->sender, text[a->type]);
-					notice(ns_name, src, NS_RPL_ATH_TEXT1, a->sender);
-				} else {
-					notice(ns_name, src, NS_RPL_ATH_XOP_READ, av[2], a->sender,
-							xop[a->type], a->target);
-					return;
-				}
+	}
+	int i = 0;
+	auth *a = n->authlist;
+	while(a) {
+		++i;
+		if (i == atoi(av[2])) {
+			if (a->type == AUTH_NOTIFY) {
+				notice(ns_name, src, NS_RPL_ATH_READNOTIFY, (atoi(av[2])),
+						a->sender);
+				notice(ns_name, src, NS_RPL_ATH_TEXT_NOTIFY, a->sender);
 			} else {
-				a = a->next;
+				notice(ns_name, src, NS_RPL_ATH_XOP_READ, av[2], a->sender,
+						xop[a->type], a->target);
+				return;
 			}
 		}
+		a = a->next;
 	}
+	notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
 	return;
+}
+
+void remove_auth(char *src, auth *a) {
+	NickInfo *n = findnick(src);
+	if (a->prev)
+		a->prev->next = a->next;
+	else
+		n->authlist = a->next;
+	if (a->next)
+		a->next->prev = a->prev;
+	free(a);
 }

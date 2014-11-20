@@ -21,6 +21,11 @@
 
 #include "main.h"
 
+/**
+ * ns_identify Handle the Nickserv IDENTIFY command
+ * Identify for a registered nickname.
+ */
+
 void ns_identify(char *src, int ac, char **av) {
 	user *u;
 	int rc;
@@ -65,6 +70,8 @@ void ns_identify(char *src, int ac, char **av) {
 			n->last_usermask = sstrdup(msk);
 			remove_timeout(u, TO_COLLIDE);
 			remove_timeout(u, TO_COLLIDE_TL);
+			if(n->mlock)
+				mode(src,src,n->mlock,NULL);
 			struct userchans *uc = u->chans;
 			while(uc) {
 				channel *c = findchannel(uc->chan->name);

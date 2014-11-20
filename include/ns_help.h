@@ -10,5 +10,4 @@
 
 void ns_help(char *src, int ac, char **av);
 
-
 #endif /* NS_HELP_H_ */

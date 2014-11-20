@@ -30,6 +30,7 @@ typedef struct _timeout_ timer;
 typedef struct _notify_text ntext;
 typedef struct _notify notify;
 typedef struct _targettype targettype;
+typedef struct _usernick usernick;
 
 struct _auth
 {
@@ -37,6 +38,7 @@ struct _auth
 	int type;
 	char *target;
 	char *sender;
+	int acclevel;
 	time_t date;
 	int status;
 };
@@ -218,11 +220,7 @@ struct _user
     int flood_level2;
     int nick_count;
     int chan_count;
-    struct usernicks {
-    	struct usernicks *next, *prev;
-    	char *nick;
-    	int level;
-    } *usernicks;
+    usernick *usernicks;
     struct cschans {
     	struct cschans *next, *prev;
     	char *channel;
@@ -239,6 +237,11 @@ struct _user
     	char *nick;
     	int level;
     } *acc; 
+};
+struct _usernick {
+	usernick *next, *prev;
+	NickInfo *n;
+	int level;
 };
 struct _timeout_ {
     timer *next, *prev;

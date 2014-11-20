@@ -107,6 +107,7 @@ void cancel_user(user *u) {
  * starts a timer, giving the user 60 seconds to identify for the nickname. nick will changed if the user fails to do so
  */
 static void force_identify(user *u, int from_timeout) {
+	printf("we're here");
 	char newnick[NICKMAX];
 	long int buf = 0;
 	double x = RAND_MAX + 1.0;
@@ -185,8 +186,22 @@ int findauth_chan(char *src, char *nick, char *chan, int level) {
 /**
  * find a notify auth request in the nickname's auth list
  */
-int findauth_notify(char *src, char *nick) {
-	return 0;
+auth *findauth_notify(char *src, char *nick) {
+	NickInfo *n = findnick(nick);
+	if(!n) {
+		return NULL;
+	}
+	auth *a = n->authlist;
+	if (n->authlist == NULL) {
+		return NULL;
+	}
+	while (a) {
+		if((stricmp(src,nick)==0) && (a->type==AUTH_NOTIFY)) {
+			return a;
+		}
+		a = a->next;
+	}
+	return NULL;
 }
 /********************************************************************/
 /**
@@ -216,13 +231,16 @@ NickInfo *find_nick_by_id(int id) {
 int isidentified(user *u, char *nick) {
 	if(u->oper>=ns_admin)
 		return 1;
-	struct usernicks *un;
-	for (un = u->usernicks; un; un = un->next) {
-		if ((stricmp(un->nick,nick)==0) && (un->level==NICK_IDENTIFIED))
+	usernick *un;
+	un = u->usernicks;
+	while(un) {
+		if ((stricmp(un->n->nick,nick)==0) && (un->level==NICK_IDENTIFIED))
 			return 1;
+		un = un->next;
 	}
 	return 0;
 }
+
 
 /********************************************************************/
 /**
@@ -273,6 +291,13 @@ int ns_checkmask(char *src, char *mask) {
  */
 void ns_checknotify(user *u, int mode) {
 
+}
+void ns_check_auth(user *u) {
+	NickInfo *n = findnick(u->nick);
+	if(has_open_auth(n)) {
+		notice(ns_name,u->nick,NS_RPL_ATH_OPEN);
+	}
+	return;
 }
 /********************************************************************/
 /**
@@ -380,12 +405,9 @@ void save_nickserv_db(void) {
  * add a timer if a user occupies a registered nickname
  */
 static void timeout_collide(timer *t) {
-	NickInfo *n = t->data;
 	user *u = t->data;
 	rem_ns_timeout(u, TO_COLLIDE);
 	add_ns_timeout(u, TO_RELEASE, ns_release_time);
-	if (!(u = finduser(n->nick)))
-		return;
 	force_identify(u, 1);
 }
 /********************************************************************/
@@ -409,6 +431,18 @@ static void timeout_release(timer *t) {
 	rem_ns_timeout(u, TO_RELEASE);
 	release(u, 1);
 }
+
+
+
+void add_nick_with_access(user *u, NickInfo *n, int type) {
+	usernick *un = scalloc(sizeof(usernick), 1);
+	un->next = u->usernicks;
+	if (u->usernicks)
+		u->usernicks->prev = un;
+	u->usernicks = un;
+	un->n = n;
+	un->level = type;
+}
 /********************************************************************/
 /**
  * check whether the joining user uses a registered nickname, and
@@ -427,13 +461,7 @@ int validate_user(user *u) {
 		}
 		/* checks whether the usermask matches an entry in the nickname's access list*/
 		if (ismatch(u, mask)) {
-			struct usernicks *un = scalloc(sizeof(struct usernicks), 1);
-			un->next = u->usernicks;
-			if (u->usernicks)
-				u->usernicks->prev = un;
-			u->usernicks = un;
-			un->nick = u->nick;
-			un->level = NICK_ACCESS;
+			add_nick_with_access(u,findnick(u->nick),NICK_ACCESS);
 			return 0;
 		}
 		/* stop here, if the nick has the override flag (see config for more details) */
@@ -502,17 +530,16 @@ NickInfo *register_nick(const char *src, const char *password,
 	return n;
 }
 
-
 /**
  * add a nick the user's list of nick they identified for
  */
 void add_identified(user *u, char *nick) {
-	struct usernicks *un = scalloc(sizeof(struct usernicks), 1);
+	usernick *un = scalloc(sizeof(usernick), 1);
 	un->next = u->usernicks;
 	if (u->usernicks)
 		u->usernicks->prev = un;
 	u->usernicks = un;
-	un->nick = nick;
+	un->n = findnick(nick);
 	un->level = NICK_IDENTIFIED;
 }
 /* EOF */

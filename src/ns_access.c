@@ -23,6 +23,14 @@
 
 static myacc *find_mask(NickInfo *n,char *mask);
 
+/**
+ * ns_access Handle the Nickserv ACCESS Command
+ * Possible subcommands are:
+ * ADD - Add an entry to the access list of a nickname
+ * DEL - Remove an entry from the access list of a nickname
+ * LIST - List all access entries of a nickname
+ * WIPE - Delete all access entries of a nickname
+ */
 void ns_access(char *src, int ac, char **av) {
 	char *cmd = av[1];
 	char *msk = av[2];
@@ -66,7 +74,6 @@ void ns_access(char *src, int ac, char **av) {
 		return;
 	}
 }
-/********************************************************************/
 /**
  * add an entry to the nickname's access list
  */
@@ -120,7 +127,6 @@ void ns_access_add(char *src, char *nick, char *mask) {
 	}
 	return;
 }
-/********************************************************************/
 /**
  * remove an entry from the nickname's access list
  */
@@ -171,7 +177,6 @@ static myacc *find_mask(NickInfo *n,char *mask) {
 	}
 	return NULL;
 }
-/********************************************************************/
 /**
  * List all the nickname's access entries
  */
@@ -216,7 +221,7 @@ void ns_access_list(char *src, char *nick) {
 		}
 	}
 }
-/********************************************************************/
+
 /**
  * remove all entries from the nickname's access list.
  */

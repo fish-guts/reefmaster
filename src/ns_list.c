@@ -21,6 +21,12 @@
 
 #include "main.h"
 
+/**
+ * ns_list Handle the Nickserv LIST command
+ * List the registered nicknames using the specified search criteria. Requires special privileges
+ * configured in the config.
+ */
+
 void ns_list(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	NickInfo *n = nicklist;

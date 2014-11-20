@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/**
+ * ns_listchans Handle the Nickserv LISTCHANS command
+ * Lists all channel access entries the specified nickname has access to
+ */
 void ns_listchans(char *src, int ac, char **av) {
 	static char *opacc[] = {
 			NULL,

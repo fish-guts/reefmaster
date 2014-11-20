@@ -8,6 +8,9 @@
 #ifndef NS_NOTIFY_H_
 #define NS_NOTIFY_H_
 
+void add_notify(char *src,char *nick);
+void add_notify_auth_entry(char *src,char *nick);
+notify *find_notify(char *src, char *dest);
 void ns_notify(char *src,int ac,char **av);
 void ns_notify_add(char *src,int ac,char **av);
 void ns_notify_del(char *src,int ac,char **av);

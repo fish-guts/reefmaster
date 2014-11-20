@@ -449,11 +449,14 @@ void load_database(void) {
 	load_main();
 	if(bs_enabled)
 		load_botserv();
-	if (ns_enabled)
+	if (ns_enabled) {
 		load_nickserv();
-	if(cs_enabled)
-		load_chanserv();
+	}
 
+	if(cs_enabled) {
+
+		load_chanserv();
+	}
 	addlog(1, LOG_DBG_EXIT, "load_database");
 }
 
@@ -542,6 +545,7 @@ static void load_auth(void) {
 			a->sender = sstrdup((const char*)sqlite3_column_text(res, 2));
 			a->date = sqlite3_column_int(res,4);
 			a->status = sqlite3_column_int(res,5);
+			a->acclevel = sqlite3_column_int(res,6);
 		}
 	}
 	sqlite3_close(db);

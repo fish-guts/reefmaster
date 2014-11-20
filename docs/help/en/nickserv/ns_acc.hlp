@@ -1,0 +1,7 @@
+ACC displays information about the identification level of user
+Possible values are:
+0 - No Access (User has not identified and its usermask doesn't match any entries in the access list of the nickname")
+1 - Matches an entry in the access list (Usermask matches an entry in the access list)
+2 - Identified (User has identified for this nickname)
+/msg Nickserv \2ACC\2 foo
+

@@ -1,0 +1,6 @@
+ACCESS allows you to manage your nickname's access list. When a user's usermask matches an entry in the access list, they will not have to identify for this nickname in order to use it. With Operator privileges you can also invoke access commands for other nicks.
+Valid Commands are: 
+\2ADD\2 - Add an entry to your access list
+\2DEL\2 - Remove an entry from your access list
+\2LIST\2 - List all entries of your access list
+\2WIPE\2 - Remove all entries from your access list

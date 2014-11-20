@@ -45,7 +45,7 @@ void add_identified(user *u,char *nick);
 void cancel_user(user *u);
 void delete_nick(NickInfo *n);
 int findauth_chan(char *src, char *nick,char *chan,int level);
-int findauth_notify(char *src, char *nick);
+auth *findauth_notify(char *src, char *nick);
 NickInfo *findnick(const char *nick);
 NickInfo *find_nick_by_id(int id);
 int isidentified(user *u,char *nick);

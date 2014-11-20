@@ -30,17 +30,6 @@ static void daemonize(void);
 
 
 /**
- * create the database files. will only be called if the files don't exists
- */
-void create_files(void) {
-	FILE *db;
-	if((db = fopen(DB,"r"))) {
-		return;
-	} else {
-		load_database();
-	}
-}
-/**
  * the application's main method
  */
 int main(int argc,char **argv)
@@ -133,7 +122,6 @@ void start_app(void) {
 		return;
 	}
 	set_timer(2);
-	create_files();
 	load_database();
 	rc = sock_init();
 	if(rc<0)

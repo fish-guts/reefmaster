@@ -21,6 +21,12 @@
 
 #include "main.h"
 
+/**
+ * ns_info Handle the Nickserv INFO command
+ * Display information about a registered nickname.
+ * The exact host will be masked to users without IRC Operator privileges.
+ */
+
 void ns_info(char *src, int ac, char **av) {
 	char *nick = av[1];
 	user *usrc = finduser(src);

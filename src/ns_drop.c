@@ -22,9 +22,9 @@
 
 #include "main.h"
 
-/********************************************************************/
 /**
- *  ns DROP Handle the nickserv DROP command
+ *  ns DROP Handle the Nickserv DROP command
+ *  Deletes the specified Nickname
  */
 void ns_drop(char *src, int ac, char **av) {
 	user *u = finduser(src);

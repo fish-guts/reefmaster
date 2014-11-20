@@ -21,6 +21,13 @@
 
 #include "main.h"
 
+/**
+ * ns_help handle the Nickserv HELP commands
+ * Displays the usage of the specified Nickserv command
+ */
 void ns_help(char *src, int ac, char **av) {
-
+	if(ac<2) {
+		notice(ns_name,src,NS_ERR_HLP_USAGE,ns_name);
+		return;
+	}
 }

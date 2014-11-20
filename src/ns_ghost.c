@@ -22,6 +22,12 @@
 
 #include "main.h"
 
+/**
+ * ns_ghost Handle the Nicksevr GHOST command
+ * If the connection timed out but the nickname is still online, the ghost command can be used to kill
+ * the connection to the server.
+ */
+
 void ns_ghost(char *src, int ac, char **av) {
 	user *u, *u1;
 	time_t cur;
