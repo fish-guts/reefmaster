@@ -69,6 +69,20 @@ user *finduser(const char *src)
     }
     return u;
 }
+user *finduserbynick(char *src) {
+	user *u = userlist;
+	while(u) {
+		usernick *un = u->usernicks;
+		while(un) {
+			if(stricmp(un->n->nick,src)==0) {
+				return u;
+			}
+			un = un->next;
+		}
+		u = u->next;
+	}
+	return NULL;
+}
 /********************************************************************/
 /**
  * remove a user registration

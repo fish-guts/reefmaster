@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+#define NOTIFY_ONLINE 2
+#define NOTIFY_OFFLINE 4
+
+
 /* global vars */
 
 /* timeout list */
@@ -290,7 +294,26 @@ int ns_checkmask(char *src, char *mask) {
  * notify list and send a message if so.
  */
 void ns_checknotify(user *u, int mode) {
-
+	NickInfo *n = findnick(u->nick);
+	NickInfo *n2 = nicklist;
+	while(n2) {
+		notify *no = n2->notifylist;
+		while(no) {
+			if(stricmp(no->nick->nick,n->nick)==0) {
+				if(finduserbynick(n2->nick)) {
+					if(mode==NOTIFY_ONLINE) {
+						notice(ns_name,"\2%s\2 is now online!",u->nick);
+						return;
+					} else if (mode==NOTIFY_OFFLINE) {
+						notice(ns_name,"\2%s\2 is now online!",u->nick);
+						return;
+					}
+				}
+			}
+			no = no->next;
+		}
+		n = n->next;
+	}
 }
 void ns_check_auth(user *u) {
 	NickInfo *n = findnick(u->nick);
@@ -453,7 +476,7 @@ int validate_user(user *u) {
 	char *mask = (char*) malloc(sizeof(char*) * 128);
 	sprintf(mask, "%s@%s", u->username, u->hostname);
 	if (isreg(u->nick)) {
-		ns_checknotify(u, 2);
+		ns_checknotify(u,2);
 		/* sets mode +r if the user has already identified for this nick */
 		if (isidentified(u, u->nick)) {
 			svs2mode(s_name, u->nick, "+r 0", NULL);

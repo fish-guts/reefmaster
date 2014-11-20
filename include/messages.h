@@ -121,7 +121,7 @@
 #define NS_RPL_ACC_WIPESUCCESS2		"The access list of \2%s\2 has been wiped."
 #define NS_RPL_ACC_NENTRIESREMOVED	"%i entries removed."
 #define NS_RPL_ACC_NOENTRIES		"You don't have any access list entries."
-#define NS_RPL_ACC_NOENTRIES2		"The nickname \2%s\2 doesn't have any access list entries.
+#define NS_RPL_ACC_NOENTRIES2		"The nickname \2%s\2 doesn't have any access list entries."
 
 /* AUTH
  ******************************************************************************************************************************************
@@ -348,7 +348,8 @@
 #define CS_RPL_ACC_NOACC			"The user \2%s\2 has no access to channel \2%s\2"
 #define CS_RPL_ACC_IRCOP			"%s: This is an \2%s\2 and thus has full access to the channel \2%s\2"
 #define CS_RPL_ACC_XOP				"%s: has identified or matches an access entry for the nickname \2%s\2 who has \2%s\2 access to \2%s\2"
-#define CS_RPL_ACC_IDENTIFIED		"%s: has full founder access because they identified for the channel \2%s\2"#define CS_RPL_ACC_SUCCFND_ACC		"%s: has restricted founder access because they match an entry in the access list of \2%s\2 who is the \2%s\2 of \2%s\2"
+#define CS_RPL_ACC_IDENTIFIED		"%s: has full founder access because they identified for the channel \2%s\2"
+#define CS_RPL_ACC_SUCCFND_ACC		"%s: has restricted founder access because they match an entry in the access list of \2%s\2 who is the \2%s\2 of \2%s\2"
 #define CS_RPL_ACC_SUCCFND			"%s: has identified for the nickname \2%s\2 who is the \2%s\2 of \2%s\2"
 #define CS_RPL_ACC_NOACCESS			"\2%s\2 has no access to \2%s\2."
 #define CS_ERR_ACCCMD_USAGE			"Usage: \2%s\2 ACC [#channel] \2[nickname]\2"
