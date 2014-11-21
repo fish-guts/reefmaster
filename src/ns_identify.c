@@ -63,7 +63,6 @@ void ns_identify(char *src, int ac, char **av) {
 			sprintf(msk, "%s@%s", u->username, u->hostname);
 			if (strcmp(src, nick) == 0)
 				svs2mode(s_name, src, "+r 0", NULL);
-			ns_checknotify(u, 1);
 			sprintf(msk, "%s@%s", u->username, u->hostname);
 			n->last_realname = sstrdup(u->realname);
 			n->last_seen = cur;

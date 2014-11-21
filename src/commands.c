@@ -372,7 +372,7 @@ int tokenize(char *buf, char ***argv)
  	user *u = finduser(src);
  	if(u)
  	{
- 		ns_checknotify(u,4);
+ 		ns_checknotify(u,NOTIFY_OFFLINE);
  		cancel_user(u);
  	}
  }

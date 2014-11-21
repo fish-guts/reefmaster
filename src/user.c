@@ -159,6 +159,9 @@ void s_nick(const char *src, int ac, char **av)
 		if (!u)
 	    	return;
 	    //cancel_user(u);
+		ns_checknotify(u,NOTIFY_OFFLINE);
+		remove_timeout(u, TO_COLLIDE);
+		remove_timeout(u, TO_COLLIDE_TL);
 		change_user_nick(u,av[0]);
 		u->signon = atol(av[1]);
 	}

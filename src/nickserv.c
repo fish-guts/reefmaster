@@ -21,10 +21,6 @@
 
 #include "main.h"
 
-#define NOTIFY_ONLINE 2
-#define NOTIFY_OFFLINE 4
-
-
 /* global vars */
 
 /* timeout list */
@@ -294,6 +290,9 @@ int ns_checkmask(char *src, char *mask) {
  * notify list and send a message if so.
  */
 void ns_checknotify(user *u, int mode) {
+	if(!isreg(u->nick)) {
+		return;
+	}
 	NickInfo *n = findnick(u->nick);
 	NickInfo *n2 = nicklist;
 	while(n2) {
@@ -302,17 +301,17 @@ void ns_checknotify(user *u, int mode) {
 			if(stricmp(no->nick->nick,n->nick)==0) {
 				if(finduserbynick(n2->nick)) {
 					if(mode==NOTIFY_ONLINE) {
-						notice(ns_name,"\2%s\2 is now online!",u->nick);
+						notice(ns_name,n2->nick,"\2%s\2 is now online!",u->nick);
 						return;
 					} else if (mode==NOTIFY_OFFLINE) {
-						notice(ns_name,"\2%s\2 is now online!",u->nick);
+						notice(ns_name,n2->nick,"\2%s\2 is now offline!",u->nick);
 						return;
 					}
 				}
 			}
 			no = no->next;
 		}
-		n = n->next;
+		n2 = n2->next;
 	}
 }
 void ns_check_auth(user *u) {

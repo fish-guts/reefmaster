@@ -116,6 +116,8 @@ void create_files(void);
 #define ACCESS_FND	7
 #define ACCESS_SRA	9
 
+#define NOTIFY_ONLINE 2
+#define NOTIFY_OFFLINE 4
 
 
 /* database Files */
