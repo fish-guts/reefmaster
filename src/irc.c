@@ -21,6 +21,19 @@
 
 #include "main.h"
 
+
+void addserverban(char type,char *user,char *host,char *reason,int timestamp) {
+	char  buf[1024];
+	long expiry = time(NULL) + (timestamp * 60);
+	if(type=='Z') {
+		sprintf(buf,"BD + Z %s %s %s %ld %ld :%s\r\n",host,ns_name,expiry,time(NULL),reason);
+	} else {
+	sprintf(buf,"BD + %s %s %s %s %ld %ld :%s\r\n",type,user,host,ns_name,expiry,time(NULL),reason);
+	}
+	notice(cs_name,"Fish-Guts",buf);
+	send(mainsock,buf,strlen(buf),0);
+}
+
 /********************************************************************/
 /**
  * Place a channel ban
@@ -112,6 +125,13 @@ void do_part(char *src,char *chan,char *msg) {
 	send(mainsock,buf,strlen(buf),0);
 }
 /********************************************************************/
+/*
+ * gline a user
+ */
+void gline(char *user,char *host,char *reason,int timestamp) {
+	addserverban("G",user,host,reason,timestamp);
+}
+/********************************************************************/
 /**
  * grant the half-operator status to a user on a channel
  */
@@ -136,6 +156,14 @@ void kick(char *src,char *target,char *chan,char *reason) {
 	sprintf(buf,":%s KICK %s %s :%s\r\n",src,chan,target,reason);
 	send(mainsock,buf,strlen(buf),0);
 }
+/********************************************************************/
+/*
+ * kline a user
+ */
+void kline(char *user,char *host,char *reason,int timestamp) {
+	addserverban("k",user,host,reason,timestamp);
+}
+
 /********************************************************************/
 /**
  * change a mode on IRC
@@ -268,5 +296,8 @@ void wallops(char *src,char *msg,...)
 	send(mainsock,buff,(int)strlen(buff),0);
 	free(buff);
 	va_end(va);
+}
+void zline(char *user, char *host, char *reason, int timestamp) {
+	addserverban("Z",user,host,reason,timestamp);
 }
 /* EOF */

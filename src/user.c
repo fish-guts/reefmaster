@@ -74,6 +74,10 @@ user *finduserbynick(char *src) {
 	while(u) {
 		usernick *un = u->usernicks;
 		while(un) {
+			notice(os_name,"fish-guts","entry: %s->%s",u->nick,un->n->nick);
+			if(stricmp(un->n->nick,src)==0) {
+				notice(ns_name,"fish-guts","huhu");
+			}
 			if(stricmp(un->n->nick,src)==0) {
 				return u;
 			}
@@ -152,6 +156,7 @@ void s_nick(const char *src, int ac, char **av)
 		if(u->oper>0)
 			announce_oper(av[0],u->oper);
 		u->pw_cnt = 0;
+		ns_checknotify(u,NOTIFY_ONLINE);
 	}
     else
     {

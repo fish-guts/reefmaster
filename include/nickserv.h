@@ -62,6 +62,6 @@ int ns_notifylist(char *src,char *dest);
 void ns_passlimit(user *u);
 void remove_timeout(user *u, int type);
 void save_nickserv_db(void);
-int validate_user(user *u);
+void validate_user(user *u);
 NickInfo *register_nick(const char *src, const char *password,char *email);
 #endif /*NICKSERV_H_*/

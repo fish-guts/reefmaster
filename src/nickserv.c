@@ -293,12 +293,11 @@ void ns_checknotify(user *u, int mode) {
 	if(!isreg(u->nick)) {
 		return;
 	}
-	NickInfo *n = findnick(u->nick);
 	NickInfo *n2 = nicklist;
 	while(n2) {
 		notify *no = n2->notifylist;
 		while(no) {
-			if(stricmp(no->nick->nick,n->nick)==0) {
+			if(stricmp(no->nick->nick,u->nick)==0) {
 				if(finduserbynick(n2->nick)) {
 					if(mode==NOTIFY_ONLINE) {
 						notice(ns_name,n2->nick,"\2%s\2 is now online!",u->nick);
@@ -314,6 +313,10 @@ void ns_checknotify(user *u, int mode) {
 		n2 = n2->next;
 	}
 }
+/**
+ * ns_check_auth Check wether there are authorization requests pending for the specified nickname
+ *
+ */
 void ns_check_auth(user *u) {
 	NickInfo *n = findnick(u->nick);
 	if(has_open_auth(n)) {
@@ -363,17 +366,13 @@ void ns_passlimit(user *u) {
 			s_kill(ns_name, u->nick, NS_ERR_TOOMANYPASS);
 			rem_ns_timeout(u, TO_COLLIDE);
 			break;
-			/* gline the user */
+		/* kline the user */
 		case 2:
-			printf("Limit 2\n");
+			kline("*",u->hostname,"Too many wrong password attemps. Try again in 30 Minutes",30);
 			break;
-			/* kline the user */
+		/* gline the user */
 		case 3:
-			printf("Limit 3\n");
-			break;
-			/* zline the user ( a little extreme but some people want this :) ) */
-		case 4:
-			printf("Limit 4\n");
+			gline("*",u->hostname,"Too many wrong password attemps. Try again in 30 Minutes",30);
 			break;
 		default:
 			break;
@@ -471,24 +470,26 @@ void add_nick_with_access(user *u, NickInfo *n, int type) {
  * react accordingly.
  *
  */
-int validate_user(user *u) {
+void validate_user(user *u) {
 	char *mask = (char*) malloc(sizeof(char*) * 128);
 	sprintf(mask, "%s@%s", u->username, u->hostname);
 	if (isreg(u->nick)) {
-		ns_checknotify(u,2);
 		/* sets mode +r if the user has already identified for this nick */
 		if (isidentified(u, u->nick)) {
 			svs2mode(s_name, u->nick, "+r 0", NULL);
-			return 0;
+			return;
+		}
+		if (!isidentified(u, u->nick)) {
+			svs2mode(s_name, u->nick, "-r 0", NULL);
 		}
 		/* checks whether the usermask matches an entry in the nickname's access list*/
 		if (ismatch(u, mask)) {
 			add_nick_with_access(u,findnick(u->nick),NICK_ACCESS);
-			return 0;
+			return;
 		}
 		/* stop here, if the nick has the override flag (see config for more details) */
 		if (u->oper >= ns_admin) {
-			return 0;
+			return;
 		}
 		notice(ns_name, u->nick, NS_RPL_PLZ_IDENTIFY0);
 		/* issue a warning, that this nick is taken - nick will not be changed though (no protection) */
@@ -510,7 +511,7 @@ int validate_user(user *u) {
 		del_ns_timeout(u, TO_COLLIDE);
 		del_ns_timeout(u, TO_COLLIDE_TL);
 	}
-	return 0;
+	return;
 }
 void remove_timeout(user *u, int type) {
 	del_ns_timeout(u, type);
