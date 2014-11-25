@@ -291,7 +291,7 @@ static void c_nick(char *src,int ac,char **av)
 /**
  * 	handle the server's PRIVMSG message
  */
- void c_privmsg(char *src,int ac,char **av)
+void c_privmsg(char *src,int ac,char **av)
 {
 	char *pch,*dest;
 	/* strip the usermask (@host) if found */

@@ -1,8 +1,8 @@
 #ifndef IRC_H_
 #define IRC_H_
 
-void addserverban(char *type,char *user,char *host,char *reason,int timestamp);
-void ban(char *src,char *target,char *chan);
+void addserverban(char type,char *user,char *host,char *reason,int timestamp);
+void ban(char *src,const char *target,char *chan);
 void chatops(char *src,char *msg,...);
 void deadmin(char *src,char *target,char *chan);
 void dehop(char *src,char *target,char *chan);
@@ -17,9 +17,9 @@ void do_part(char *src,char *chan,char *msg);
 void gline(char *user,char *host,char *reason,int timestamp);
 void hop(char *src,char *target,char *chan);
 void invite(char *src,char *target,char *chan);
-void kick(char *src,char *target,char *chan,char *reason);
+void kick(char *src,const char *target,char *chan,char *reason);
 void kline(char *user,char *host,char *reason,int time);
-void mode(const char *src,char *target,char *modes,char *chan);
+void mode(const char *src,const char *target,char *modes,char *chan);
 void notice(const char *src,char *dest,char *msg, ...);
 void pong(void);
 void quit(char *nick);
@@ -30,6 +30,6 @@ void svsmode(const char *src,char *target,char *modes,char *chan);
 void svsnick(char *src,char *newnick,time_t t);
 void voice(char *src,char *target,char *chan);
 void wallops(char *src,char *msg,...);
-
+void zline(char *user, char *host, char *reason, int timestamp);
 
 #endif /*IRC_H_*/

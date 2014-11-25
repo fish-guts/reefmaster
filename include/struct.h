@@ -11,6 +11,7 @@
 typedef struct _access myacc;
 typedef struct _auth auth;
 typedef struct _botinfo bot;
+typedef struct _chanban chanban;
 typedef struct _as_cmd as_cmd;
 typedef struct _bs_cmd bs_cmd;
 typedef struct _op op;
@@ -51,6 +52,12 @@ struct _botinfo {
 	char *username;
 	char *realname;
 };
+struct _chanban {
+	chanban *prev, *next;
+	char *mask;
+	char *from;
+	time_t date;
+};
 struct _channel
 {
 	channel *next, *prev;
@@ -64,6 +71,7 @@ struct _channel
 		struct chanusers *next, *prev;
 		user *u;
     } *users;	
+    chanban *banlist;
 	
 };
 struct _op {
@@ -110,7 +118,7 @@ struct _chaninfo {
 struct _akick {
 	akick *prev, *next;
 	int id;
-	char *mask;
+	const char *mask;
 	char *reason;
 	char *added_by;
 	int added_by_acc;

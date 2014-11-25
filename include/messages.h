@@ -364,6 +364,8 @@
 #define CS_ERR_AKICK_ADD_NOSENSE	"The mask \2%s\2 doesn't make any sense."
 #define CS_ERR_AKICK_ADD_USAGE		"Usage: \2AKICK\2 [#channel] \2ADD [mask] [reason]\2"
 #define CS_ERR_AKICK_DEL_USAGE		"Usage: \2AKICK\2 [#channel] \2DEL [mask]\2"
+#define CS_RPL_AKICK_LIST			"\2%i\2 - \2%s\2 (Added by %s:%s on %s) (%s)"
+#define CS_RPL_AKICK_LIST2			"\2%i\2 - \2%s\2 (Added by %s:%s on %s)"
 
 /* DROP
  ******************************************************************************************************************************************

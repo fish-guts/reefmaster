@@ -82,6 +82,7 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_ERR_AKICK_ADD_NOSENSE, mask);
 		return;
 	} else {
+		notice(as_name,src,"we're here again");
 		if (match(mask,
 				"([A-Z0-9a-z\\.\\_\\*\\-]+)!([A-Z0-9a-z\\.\\_\\*\\-]+)@([A-Z0-9a-z\\.\\_\\*\\-]+)")
 				!= 1) {
@@ -103,9 +104,11 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 		c->akicklist = ak;
 		ak->mask = sstrdup(finalmask);
 		ak->added_by = sstrdup(u->nick);
-		ak->added_by_acc = u->oper;
+		ak->added_by_acc = addacc;
 		ak->added_on = time(NULL);
-		ak->reason = sstrdup(reason);
+		if(reason)
+			ak->reason = sstrdup(reason);
+		notice(as_name,src,"%s added by %s (%i) on %ld (%s)",ak->mask,ak->added_by,ak->added_by_acc,ak->added_on,ak->reason);
 		notice(cs_name, src, CS_RPL_XOP_ADDED, finalmask, "Akick", c->name);
 		return;
 	}
@@ -166,8 +169,7 @@ void cs_akick_delmask(char *src, int ac, char **av) {
  */
 void cs_akick_listentries(char *src, int ac, char **av) {
 	int listacc;
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8",
-			"9","10","11","12" "\2ServiceRootAdmin\2" };
+	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7","8","\2ServiceRootAdmin\2" };
 	user *u = finduser(src);
 	char *chan = sstrdup(av[1]);
 	if (!isregcs(chan)) {
@@ -181,15 +183,16 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 	}
 	int i = 0;
 	char str[128];
+	char reason[512];
 	akick *ak = c->akicklist;
 	notice(cs_name, src, CS_RPL_XOP_LIST_BEGIN, "Akick", chan);
 	while (ak) {
 		i++;
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&ak->added_on));
-		notice(cs_name, src, CS_RPL_XOP_LIST, i + 1,
-			ak->mask,
-			addedby_lvl[ak->added_by_acc],
-			ak->added_by, str);
+		if(ak->reason)
+			notice(cs_name, src, CS_RPL_AKICK_LIST,i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str,ak->reason);
+		else
+			notice(cs_name, src, CS_RPL_AKICK_LIST2, i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str);
 		ak = ak->next;
 	}
 	if ((i > 1) || (i == 0)) {
@@ -199,10 +202,12 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 	}
 }
 akick *cs_akick_match(user *u,ChanInfo *c) {
+	notice(as_name,u->nick,"checking for akick");
 	akick *ak = c->akicklist;
 	char *mask = (char*)malloc(sizeof(char*)*1024);
 	sprintf(mask,"%s!%s@%s",u->nick,u->username,u->hostname);
 	while(ak) {
+		notice(as_name,"V","%s -> %s",ak->mask,mask);
 		if(ifmatch_0(ak->mask,mask)) {
 			return ak;
 		}

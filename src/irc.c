@@ -26,9 +26,9 @@ void addserverban(char type,char *user,char *host,char *reason,int timestamp) {
 	char  buf[1024];
 	long expiry = time(NULL) + (timestamp * 60);
 	if(type=='Z') {
-		sprintf(buf,"BD + Z %s %s %s %ld %ld :%s\r\n",host,ns_name,expiry,time(NULL),reason);
+		sprintf(buf,"BD + Z %s %s %ld %ld :%s\r\n",host,ns_name,expiry,time(NULL),reason);
 	} else {
-	sprintf(buf,"BD + %s %s %s %s %ld %ld :%s\r\n",type,user,host,ns_name,expiry,time(NULL),reason);
+	sprintf(buf,"BD + %c %s %s %s %ld %ld :%s\r\n",type,user,host,ns_name,expiry,time(NULL),reason);
 	}
 	notice(cs_name,"Fish-Guts",buf);
 	send(mainsock,buf,strlen(buf),0);
@@ -38,7 +38,7 @@ void addserverban(char type,char *user,char *host,char *reason,int timestamp) {
 /**
  * Place a channel ban
  */
-void ban(char *src,char *target,char *chan) {
+void ban(char *src,const char *target,char *chan) {
 	mode(src,target,"+b",chan);
 }
 /********************************************************************/
@@ -129,7 +129,7 @@ void do_part(char *src,char *chan,char *msg) {
  * gline a user
  */
 void gline(char *user,char *host,char *reason,int timestamp) {
-	addserverban("G",user,host,reason,timestamp);
+	addserverban('G',user,host,reason,timestamp);
 }
 /********************************************************************/
 /**
@@ -151,7 +151,7 @@ void invite(char *src,char *target,char *chan) {
 /*
  * kick a user from a channel
  */
-void kick(char *src,char *target,char *chan,char *reason) {
+void kick(char *src,const char *target,char *chan,char *reason) {
 	char  buf[512];
 	sprintf(buf,":%s KICK %s %s :%s\r\n",src,chan,target,reason);
 	send(mainsock,buf,strlen(buf),0);
@@ -161,14 +161,14 @@ void kick(char *src,char *target,char *chan,char *reason) {
  * kline a user
  */
 void kline(char *user,char *host,char *reason,int timestamp) {
-	addserverban("k",user,host,reason,timestamp);
+	addserverban('k',user,host,reason,timestamp);
 }
 
 /********************************************************************/
 /**
  * change a mode on IRC
  */
-void mode(const char *src,char *target,char *modes,char *chan)
+void mode(const char *src,const char *target,char *modes,char *chan)
 {
 	char buf[512];
 	if(chan)
@@ -298,6 +298,6 @@ void wallops(char *src,char *msg,...)
 	va_end(va);
 }
 void zline(char *user, char *host, char *reason, int timestamp) {
-	addserverban("Z",user,host,reason,timestamp);
+	addserverban('Z',user,host,reason,timestamp);
 }
 /* EOF */

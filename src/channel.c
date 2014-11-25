@@ -101,14 +101,17 @@ void check_status(channel *c, user *u) {
 			NickInfo *n = findnick(u->nick);
 			int level = cs_xop_get_level(u, cs);
 			if (level >= AOP_LIST) {
-				if (n->noop)
+				if (n->noop)  {
 					return;
+				}
 				do_op(cs_name, u->nick, c->name);
 				add_status(c, u, OP);
 				return;
+
 			} else if (level >= HOP_LIST) {
-				if (n->noop)
+				if (n->noop) {
 					return;
+				}
 				hop(cs_name, u->nick, c->name);
 				return;
 			} else if (level >= VOP_LIST) {

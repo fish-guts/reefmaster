@@ -203,17 +203,16 @@ int cs_isonlist(char *nick, char *chan, int list, int move) {
  * check wether the nick machtes an entry in the specified access list
  */
 int cs_isonakicklist(char *mask, char *chan) {
-	op *o = global_op_list;
-	if (global_op_list == NULL) {
+	ChanInfo *c = findchan(chan);
+	akick *ak = c->akicklist;
+	if (!ak) {
 		return 0;
 	}
-	while (o) {
-		if (stricmp(chan, o->chan->name) == 0) {
-			if ((stricmp(mask, o->nick->nick) == 0) && (o->level == AKICK_LIST)) {
-				return 1;
-			}
+	while (ak) {
+		if (stricmp(mask, ak->mask) == 0) {
+			return 1;
 		}
-		o = o->next;
+		ak = ak->next;
 	}
 	return 0;
 }
