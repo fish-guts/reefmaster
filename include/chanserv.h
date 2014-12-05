@@ -19,6 +19,7 @@
 #include "cs_register.h"
 #include "cs_set.h"
 #include "cs_setpass.h"
+#include "cs_unban.h"
 #include "cs_voice.h"
 
 #define UOP_LIST 1

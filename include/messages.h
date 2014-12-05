@@ -472,6 +472,14 @@
 #define CS_RPL_SPASS_SUCCESS		"Success - The Password for the Channel \2%s\2 has been changed to \2%s\2."
 #define CS_ERR_SPASS_USAGE			"Usage: \2SETPASS\2 <Channel> <password>"
 
+
+/* UNBAN
+ ******************************************************************************************************************************************
+ */
+#define CS_RPL_UBN_LIFTED			"Success - \2%i\2 ban(s) for in the channel \2%s\2 were lifted."
+#define CS_RPL_UBN_NOT_FOUND		"No ban on \2%s\2 found that affects you"
+#define CS_RPL_UBN_USAGE			"Usage: \2UNBAN\2 [Channel]"
+
 /* XOP
  ******************************************************************************************************************************************
  */

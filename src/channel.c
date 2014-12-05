@@ -149,6 +149,31 @@ int isop(channel *c, user *u) {
 	}
 	return 0;
 }
+void channel_add_ban(char *src,channel *c, char *mask) {
+	chanban *b = scalloc(sizeof(chanban),1);
+	b->next = c->banlist;
+	if(c->banlist)
+		c->banlist->prev = b;
+	c->banlist = b;
+	b->mask = sstrdup(mask);
+	b->from = sstrdup(src);
+	return;
+}
+void channel_remove_ban(char *src,channel *c, char *mask) {
+	chanban *b = c->banlist;
+	while (b) {
+		if (stricmp(mask,b->mask) == 0) {
+			if (b->prev)
+				b->prev->next = b->next;
+			else
+				c->banlist = b->next;
+			if (b->next)
+				b->next->prev = b->prev;
+			free(b);
+		}
+		b = b->next;
+	}
+}
 void add_status(channel *c, user *u, int status) {
 	struct userchans *uc;
 	for (uc = u->chans; uc; uc = uc->next) {

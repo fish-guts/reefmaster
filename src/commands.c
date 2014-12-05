@@ -184,8 +184,16 @@ void c_mode(char *src, int ac, char **av)
 						del_status(c,u1,POP);
 					}	
 					t++;									
-					break;						
+					break;
+
+				case 'b':
+					if(z)
+						channel_add_ban(src,c,av[t]);
+					else
+						channel_remove_ban(src,c,av[t]);
+					break;
 				case 'q':
+
 					u1 = finduser(av[t]);
 					if(z)
 					{

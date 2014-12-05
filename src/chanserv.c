@@ -51,6 +51,7 @@ static cs_cmd cs_cmds[] = {
 	{ "SETPASS", cs_setpass },
 	{ "SOP", cs_sop },
 	{ "UOP", cs_uop },
+	{ "UNBAN", cs_unban },
 	{ "VOICE", cs_voice },
 	{ "VOP", cs_vop },
 };

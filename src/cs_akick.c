@@ -183,7 +183,6 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 	}
 	int i = 0;
 	char str[128];
-	char reason[512];
 	akick *ak = c->akicklist;
 	notice(cs_name, src, CS_RPL_XOP_LIST_BEGIN, "Akick", chan);
 	while (ak) {
@@ -202,12 +201,10 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 	}
 }
 akick *cs_akick_match(user *u,ChanInfo *c) {
-	notice(as_name,u->nick,"checking for akick");
 	akick *ak = c->akicklist;
 	char *mask = (char*)malloc(sizeof(char*)*1024);
 	sprintf(mask,"%s!%s@%s",u->nick,u->username,u->hostname);
 	while(ak) {
-		notice(as_name,"V","%s -> %s",ak->mask,mask);
 		if(ifmatch_0(ak->mask,mask)) {
 			return ak;
 		}

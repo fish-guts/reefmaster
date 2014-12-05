@@ -5,6 +5,8 @@
 
 void add_status(channel *c,user *u,int status);
 void chan_delete(channel *c);
+void channel_add_ban(char *src,channel *c, char *mask);
+void channel_remove_ban(char *src,channel *c, char *mask);
 void check_status(channel *c,user *u);
 void del_status(channel *c,user *u,int status);
 void del_user(user *u,channel *c);

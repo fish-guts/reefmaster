@@ -56,7 +56,6 @@ struct _chanban {
 	chanban *prev, *next;
 	char *mask;
 	char *from;
-	time_t date;
 };
 struct _channel
 {
