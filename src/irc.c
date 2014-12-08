@@ -58,6 +58,25 @@ void chatops(char *src,char *msg,...)
 	va_end(va);
 }
 
+int check_valid_nickname(char *nick) {
+	if((stricmp(nick,"NONE")==0)
+			|| (stricmp(nick,cs_name)==0)
+			|| (stricmp(nick,ns_name)==0)
+			|| (stricmp(nick,ms_name)==0)
+			|| (stricmp(nick,cs_name)==0)
+			|| (stricmp(nick,bs_name)==0)
+			|| (stricmp(nick,as_name)==0)
+			|| (stricmp(nick,os_name)==0)) {
+		return 0;
+	}
+	notice(as_name,"fish-guts","Pattern: %s",NICK_PATTERN);
+	if(!match(nick,NICK_PATTERN)) {
+		notice(as_name,"fish-guts","not ok umlaut");
+		return 0;
+	}
+	return 1;
+}
+
 /********************************************************************/
 /**
  * remove the admin status from a user on a channel

@@ -4,6 +4,7 @@
 void addserverban(char type,char *user,char *host,char *reason,int timestamp);
 void ban(char *src,const char *target,char *chan);
 void chatops(char *src,char *msg,...);
+int check_valid_nickname(char *nick);
 void deadmin(char *src,char *target,char *chan);
 void dehop(char *src,char *target,char *chan);
 void deop(char *src,char *target,char *chan);

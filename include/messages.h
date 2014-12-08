@@ -542,6 +542,8 @@
 #define BS_RPL_ADD_SUCCESS1			"The bot \2%s\2 has been added."
 #define BS_RPL_ADD_SUCCESS2			"The password is \2%s\2 - remember it for further use."
 #define BS_RPL_ADD_SUCCESS3			"To customize your bot, please use the command \2SET USERNAME\2 or \2SET REALNAME\2"
+#define BS_ERR_DEL_NOTFOUND			"The Bot \2%s\2 does not exist"
+#define BS_RPL_DEL_SUCCESS			"The Bot \2%s\2 has been deleted"
 #define BS_ERR_PASSTOOSHORT			"Please use at least 5 characters for your password"
 #define BS_ERR_PASSSAMEASNICK		"Your bot password must be the same as your bot name - Please use a more obscure password"
 #define BS_ERR_DEL_USAGE			"Usage: \2DEL\2 [Botname]"
@@ -580,6 +582,12 @@
 #define LOG_ERR_SQLERROR			"[SQL Error] %s."
 #define LOG_DBG_ENTRY				"Entering function %s"
 #define LOG_DBG_EXIT				"Exiting function %s"
+
+/* other stuff */
+
+/* invalid nicks and characters */
+
+#define NICK_PATTERN "^[]a-z0-9|{}^[]{4,36}$"
 
 
 #endif /*MESSAGES_H_*/

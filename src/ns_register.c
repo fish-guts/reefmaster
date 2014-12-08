@@ -39,7 +39,7 @@ static char *oline[] = {
 void ns_register(char *src, int ac, char **av) {
 	user *u;
 	u = finduser(src);
-	time_t del = NULL;
+	time_t del = 0;
 	char *dest = (char*) malloc(sizeof(char*) * NICKMAX);
 	time_t cur = time(NULL);
 	time_t now = time(NULL);

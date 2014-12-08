@@ -292,5 +292,4 @@ char *as_name;
 char *as_realname; 
 int   as_access_flag; 
 
-
 #endif /*MAIN_H_*/

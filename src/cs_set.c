@@ -83,7 +83,6 @@ void cs_set_bot(char *src,int ac,char **av) {
 			return;
 		} else {
 			do_part(b1->name,c->name,BS_RPL_PART_MSG);
-			bot_del_chan(b1,c->name);
 			notice(cs_name,src,CS_RPL_SET_BOT_BOTREMOVED,c->name);
 			return;
 		}
@@ -94,7 +93,6 @@ void cs_set_bot(char *src,int ac,char **av) {
 			return;
 		} else {
 			do_part(b1->name,c->name,BS_RPL_PART_MSG);
-			bot_del_chan(b1,c->name);
 		}
 	}
 	b = findbot(botname);
@@ -103,7 +101,6 @@ void cs_set_bot(char *src,int ac,char **av) {
 		return;
 	}
 	notice(cs_name,src,CS_RPL_SET_BOT_BOTADDED,botname,c->name);
-	bot_add_chan(b,c->name);
 	do_join(b->name,c->name);
 	do_owner(b->name,b->name,c->name);
 

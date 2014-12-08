@@ -373,15 +373,18 @@ void timer_event_handler(int sigid) {
 }
 
 int match(char *str, char *pattern) {
+	notice(as_name,"fish-guts","pattern: %s",pattern);
 	int    status;
-    regex_t    re;
-    if (regcomp(&re, pattern, REG_EXTENDED|REG_NOSUB) != 0) {
-        return(0);      /* Report error. */
+    regex_t re;
+    if (regcomp(&re, pattern, REG_ICASE | REG_EXTENDED | REG_NOSUB) != 0) {
+        /* Report error. */
+    	return(0);
     }
     status = regexec(&re, str, (size_t) 0, NULL, 0);
     regfree(&re);
     if (status != 0) {
-        return(0);      /* Report error. */
+        /* Report error. */
+    	return(0);
     }
-	    return(1);
+    return(1);
 }
