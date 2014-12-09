@@ -541,7 +541,6 @@ op *find_list_entry(char *nick,char *chan,int level) {
 int get_access_for_nick(ChanInfo *c, NickInfo *n) {
 	op *o = global_op_list;
 	while(o) {
-		notice(cs_name,"Fish-Guts","%s->%s: %i",o->chan->name,o->nick->nick,o->level);
 		if((o->nick->id==n->id) && (stricmp(c->name,o->chan->name)==0)) {
 			return o->level;
 		}

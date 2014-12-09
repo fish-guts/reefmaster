@@ -178,6 +178,13 @@ int isoper(user *u) {
 	else
 		return 0;
 }
+int isservice(char *src) {
+	user *u = finduser(src);
+	if((u) && (u->service)) {
+		return 1;
+	}
+	return 0;
+}
 char *strscpy(char *d, const char *s, size_t len) {
 	char *d_orig = d;
 	if (!len)

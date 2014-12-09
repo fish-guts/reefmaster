@@ -29,6 +29,7 @@ void s_send(char *cmd, ...);
 void svs2mode(const char *src,char *target,char *modes,char *chan);
 void svsmode(const char *src,char *target,char *modes,char *chan);
 void svsnick(char *src,char *newnick,time_t t);
+void topic(char *src, char *chan,char *nick,time_t timestamp,char *topic);
 void voice(char *src,char *target,char *chan);
 void wallops(char *src,char *msg,...);
 void zline(char *user, char *host, char *reason, int timestamp);

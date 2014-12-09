@@ -135,6 +135,25 @@ int cs_check_opwatch(char *chan,user *u) {
 void cs_check_successor(char *nick) {
 
 }
+void cs_check_topiclock(char *src,channel *cl,char *oldtopic) {
+	if(isservice(src)) {
+		return;
+	}
+	user *u = finduser(src);
+	if(!u)
+		return;
+	if(!isregcs(cl->name)) {
+		return;
+	}
+	ChanInfo *c = findchan(cl->name);
+	if(c->topiclock>0) {
+		if(cs_xop_get_level(u,c)<c->topiclock) {
+			cl->topic = sstrdup(oldtopic);
+			topic(cs_name,cl->name,cl->topic_user,cl->topic_time,oldtopic);
+			return;
+		}
+	}
+}
 /********************************************************************/
 /**
  * connect chanserv to the server

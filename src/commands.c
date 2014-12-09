@@ -248,6 +248,8 @@ void c_mode(char *src, int ac, char **av)
 			x = 0;
 		if(x)
 		{	
+			if(strchr(av[1],'S'))
+				u->service = 1;
 			if(strchr(av[1],'h'))
 				u->oper = 1;
 			if((strchr(av[1],'o')) || (strchr(av[1],'O')))
@@ -386,7 +388,17 @@ int tokenize(char *buf, char ***argv)
  }
 void c_topic(char *src, int ac, char **av)
 {
+	if(isservice(src))  {
+		return;
+	}
 	channel *c = findchannel(av[0]);
-	strcpy(c->topic,av[3]);
+	char *oldtopic = (char*)malloc(sizeof(char*)*1024);
+	if(c->topic) {
+		oldtopic = sstrdup(c->topic);
+	} else {
+		oldtopic = NULL;
+	}
+	c->topic = sstrdup(av[3]);
+	cs_check_topiclock(src,c,oldtopic);
 }
 /* EOF */

@@ -52,8 +52,17 @@ static channel *new_channel(const char *chan) {
 		chanlist->prev = c;
 	chanlist = c;
 	chan_count++;
-	if (isreg(chan) >= 0)
+	if (isreg(chan) >= 0) {
+		ChanInfo *c2 = findchan(chan);
 		mode(cs_name, c->name, "+rtn", NULL);
+		if(c2->topic) {
+			topic(cs_name,c->name,c2->topic_user,c2->topic_time,c2->topic);
+			c->topic = sstrdup(c2->topic);
+			c->topic_user = sstrdup(c2->topic_user);
+			c->topic_time = c2->topic_time;
+		}
+
+	}
 	return c;
 }
 

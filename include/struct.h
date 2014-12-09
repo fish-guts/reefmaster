@@ -64,6 +64,8 @@ struct _channel
 	char *modes;
 	char *name;
 	char *topic;
+	char *topic_user;
+	time_t topic_time;
 	char *key;
     struct chanusers 
     {
@@ -102,6 +104,8 @@ struct _chaninfo {
 	int sop_enabled;
 	NickInfo *successor;
 	char *topic;
+	char *topic_user;
+	time_t topic_time;
 	int topiclock;
 	int uop_enabled;
 	int keeptopic;
@@ -215,7 +219,8 @@ struct _user
 	char   *server;
 	char   *modes;
 	time_t  signon;
-	int     oper;
+	short     oper;
+	short   service;
 	char   *mode;
     short   pw_cnt;
     time_t  pw_time;

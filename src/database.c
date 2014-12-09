@@ -624,29 +624,35 @@ static void load_chans(void) {
 			c->sop_enabled = sqlite3_column_int(res, 6);
 			c->uop_enabled = sqlite3_column_int(res, 7);
 			c->vop_enabled = sqlite3_column_int(res, 8);
-			c->admin_enabled = sqlite3_column_int(res, 9);
-			c->owner_enabled = sqlite3_column_int(res, 10);
-			if(sqlite3_column_text(res,11)) {
-				c->bot = sstrdup((char*) sqlite3_column_text(res,11));
+			if(sqlite3_column_text(res,9)) {
+				c->bot = sstrdup((char*) sqlite3_column_text(res,9));
 			} else {
 				c->bot = NULL;
 			}
-			c->founder = findnick((char*) sqlite3_column_text(res,12));
-			if(sqlite3_column_text(res,13)) {
-				c->successor = findnick((char*) sqlite3_column_text(res,13));
+			c->founder = findnick((char*) sqlite3_column_text(res,10));
+			if(sqlite3_column_text(res,11)) {
+				c->successor = findnick((char*) sqlite3_column_text(res,11));
 			} else {
 				c->successor = NULL;
 			}
-			c->mlock = sstrdup((char*) sqlite3_column_text(res,14));
-			c->topic = sstrdup((char*) sqlite3_column_text(res,15));
-			c->restricted = c->owner_enabled = sqlite3_column_int(res, 16);
-			c->keeptopic = c->owner_enabled = sqlite3_column_int(res, 17);
-			c->autovop = c->owner_enabled = sqlite3_column_int(res, 18);
-			c->memolevel = c->owner_enabled = sqlite3_column_int(res, 19);
-			c->leaveops = c->owner_enabled = sqlite3_column_int(res, 20);
-			c->opwatch = c->owner_enabled = sqlite3_column_int(res, 21);
+			c->mlock = sstrdup((char*) sqlite3_column_text(res,12));
+			if(sqlite3_column_text(res,13)) {
+				c->topic = sstrdup((char*) sqlite3_column_text(res,13));
+			}
+			if(sqlite3_column_text(res,14)) {
+				c->topic_user = sstrdup((char*) sqlite3_column_text(res,14));
+			}
+			if(sqlite3_column_int(res, 15)) {
+				c->topic_time =  sqlite3_column_int(res, 15);
+			}
+			c->restricted = sqlite3_column_int(res, 16);
+			c->keeptopic = sqlite3_column_int(res, 17);
+			c->autovop = sqlite3_column_int(res, 18);
+			c->memolevel = sqlite3_column_int(res, 19);
+			c->leaveops = sqlite3_column_int(res, 20);
+			c->opwatch = sqlite3_column_int(res, 21);
 			c->url = sstrdup((char*) sqlite3_column_text(res,22));
-			c->topiclock = c->owner_enabled = sqlite3_column_int(res, 21);
+			c->topiclock = sqlite3_column_int(res, 23);
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)

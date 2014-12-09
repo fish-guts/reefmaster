@@ -293,6 +293,12 @@ void svsnick(char *src,char *newnick,time_t t)
 	sprintf(buf,"SVSNICK %s %s :%lu\r\n",src,newnick,t);
 	send(mainsock,buf,strlen(buf),0);
 }
+void topic(char *src, char *chan,char *nick,time_t timestamp,char *topic) {
+	char buf[2048];
+	sprintf(buf,":%s ) %s %s %ld :%s\r\n",src,chan,nick,timestamp,topic);
+	send(mainsock,buf,strlen(buf),0);
+}
+
 /********************************************************************/
 /**
  * grant the voice status to a user on a channel

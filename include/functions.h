@@ -18,6 +18,7 @@ int isoper(user *u);
 int isreg(const char *src);
 int isregbot(const char *src);
 int isregcs(const char *chan);
+int isservice(char *src);
 char *mask(char *src,char *host);
 int match(char *str, char *pattern);
 int remove_from_array(char **array, char *str);

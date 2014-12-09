@@ -60,15 +60,15 @@ void cs_unban(char *src, int ac, char **av) {
 	chanban *b = cl->banlist;
 	int i = 0;
 	while(b) {
+		i++;
 		if(ifmatch_0(b->mask,finalmask)) {
 			mode(cs_name,b->mask,"-b",c->name);
 			channel_remove_ban(cs_name,cl, b->mask);
 		}
 		b = b->next;
-		i++;
 	}
 	if(i) {
-		notice(cs_name,src,CS_RPL_UBN_LIFTED,i,c->name);
+		notice(cs_name,src,CS_RPL_UBN_LIFTED,i-1,c->name);
 		return;
 	} else {
 		notice(cs_name,src,CS_RPL_UBN_NOT_FOUND,c->name);
