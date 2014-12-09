@@ -133,7 +133,25 @@ int cs_check_opwatch(char *chan,user *u) {
 	return 1;
 }
 void cs_check_successor(char *nick) {
-
+	op *o = global_op_list;
+	while(o) {
+		ChanInfo *c = findchan(o->chan->name);
+		if(stricmp(o->nick->nick,nick)==0) {
+			if(o->level==ACCESS_FND) {
+				if(c->successor) {
+					c->founder = c->successor;
+					c->successor = NULL;
+				} else {
+					delete_chan(c);
+					mode(s_name, c->name, "-r", NULL);
+				}
+			} else if(o->level==ACCESS_SUC) {
+				c->successor = NULL;
+			}
+		}
+		remove_from_list(o);
+		o = o->next;
+	}
 }
 void cs_check_topiclock(char *src,channel *cl,char *oldtopic) {
 	if(isservice(src)) {
@@ -172,11 +190,22 @@ extern int cs_connect(int sock) {
 /**
  * determine, why a user has access to a registered channel
  */
+//TODO: implenment
 char *cs_get_why(user *u, ChanInfo *c) {
 	//int lvl = 0;
 	//int i = 0;
 	char *why = (char*) malloc(sizeof(char*) * NICKMAX);
 	return why;
+}
+
+void cs_drop_nick(char *nick) {
+	op *o = global_op_list;
+	while(o) {
+		if(stricmp(o->nick->nick,nick)==0) {
+			remove_from_list(o);
+		}
+		o = o->next;
+	}
 }
 
 

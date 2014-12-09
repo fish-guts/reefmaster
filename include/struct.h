@@ -10,6 +10,7 @@
 
 typedef struct _access myacc;
 typedef struct _auth auth;
+typedef struct _botchan botchan;
 typedef struct _botinfo bot;
 typedef struct _chanban chanban;
 typedef struct _as_cmd as_cmd;
@@ -44,6 +45,11 @@ struct _auth
 	int status;
 };
 
+struct _botchan {
+	botchan *prev,*next;
+	char *chan;
+};
+
 struct _botinfo {
 	bot *next,*prev;
 	int id;
@@ -51,6 +57,7 @@ struct _botinfo {
 	char *password;
 	char *username;
 	char *realname;
+	botchan *chanlist;
 };
 struct _chanban {
 	chanban *prev, *next;

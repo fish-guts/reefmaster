@@ -47,17 +47,6 @@ int _stricmp(const char *str1, const char *str2) {
 	}
 	return __res;
 }
-int remove_from_array(char **array, char *str) {
-	int i;
-	for (i = 0; i < sizeof(array); i++) {
-		if (stricmp(str, array[i]) == 0) {
-			free(array[i]);
-			return 0;
-		}
-	}
-	return -1;
-}
-
 char *mask(char *src, char *host) {
 	user *u1 = finduser(src);
 	if (isoper(u1))
@@ -310,6 +299,26 @@ int isregbot(const char *src) {
 		return 0;
 	}
 }
+void check_bots() {
+	bot *b = botlist;
+	while(b) {
+		botchan *bc = b->chanlist;
+		while(bc) {
+			if(!ison(findchannel(bc->chan),finduser(b->name))) {
+				do_join(b->name,bc->chan);
+			}
+			bc = bc->next;
+		}
+		b = b->next;
+	}
+}
+void check_services(void) {
+
+}
+void check_connections(void) {
+	check_services();
+	check_bots();
+}
 void check_timeouts(void) {
 	timer *t1, *t2;
 	time_t t = time(NULL);
@@ -375,8 +384,11 @@ void set_timer(time_t period_in_secs) {
 
 }
 void timer_event_handler(int sigid) {
-	if (sigid == SIGALRM)
+	if (sigid == SIGALRM) {
+		notice(as_name,"fish-guts","timer test");
 		check_timeouts();
+		check_connections();
+	}
 }
 
 int match(char *str, char *pattern) {

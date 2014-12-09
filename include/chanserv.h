@@ -54,6 +54,7 @@ void cs_check_successor(char *nick);
 int cs_check_opwatch(char *chan,user *u);
 void cs_check_topiclock(char *src,channel *cl,char *oldtopic);
 extern int cs_connect(int sock);
+void cs_drop_nick(char *nick);
 char *cs_get_why(user *u,ChanInfo *c);
 int cs_isfounder(char *nick,char *chan);
 int cs_isonakicklist(char *mask, char *chan);

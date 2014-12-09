@@ -452,9 +452,7 @@ void load_database(void) {
 	if (ns_enabled) {
 		load_nickserv();
 	}
-
 	if(cs_enabled) {
-
 		load_chanserv();
 	}
 	addlog(1, LOG_DBG_EXIT, "load_database");
@@ -467,7 +465,36 @@ static void load_nickserv(void) {
 	load_notify();
 }
 void load_botserv(void) {
-
+	sqlite3 *db;
+	sqlite3_stmt *res;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
+		error = sqlite3_prepare_v2(db,"SELECT * FROM BOTS", 1000, &res,&tail);
+		if (error != SQLITE_OK) {
+			addlog(2, LOG_ERR_SQLERROR, "in load_botserv()");
+			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		}
+		while (sqlite3_step(res) == SQLITE_ROW) {
+			bot *b = scalloc(sizeof(bot),1);
+			b->id = sqlite3_column_int(res,0);
+			b->name = sstrdup((const char*)sqlite3_column_text(res, 1));
+			b->password = sstrdup((const char*)sqlite3_column_text(res, 2));
+			if(sqlite3_column_text(res, 3)) {
+				b->username = sstrdup((const char*)sqlite3_column_text(res, 3));
+			}
+			if(sqlite3_column_text(res, 4)) {
+				b->realname = sstrdup((const char*)sqlite3_column_text(res, 4));
+			}
+			b->chanlist = NULL;
+			b->next = botlist;
+			if (botlist)
+				botlist->prev = b;
+			botlist = b;
+		}
+	}
+	sqlite3_close(db);
 }
 static void load_access(void) {
 	sqlite3 *db;
@@ -626,6 +653,7 @@ static void load_chans(void) {
 			c->vop_enabled = sqlite3_column_int(res, 8);
 			if(sqlite3_column_text(res,9)) {
 				c->bot = sstrdup((char*) sqlite3_column_text(res,9));
+				add_bot_to_chan(c->bot,c->name);
 			} else {
 				c->bot = NULL;
 			}
@@ -653,6 +681,7 @@ static void load_chans(void) {
 			c->opwatch = sqlite3_column_int(res, 21);
 			c->url = sstrdup((char*) sqlite3_column_text(res,22));
 			c->topiclock = sqlite3_column_int(res, 23);
+			strscpy(c->description, (char*) sqlite3_column_text(res, 24), DESCMAX);
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)

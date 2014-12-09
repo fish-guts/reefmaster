@@ -6,7 +6,10 @@
 
 timer *add_timeout(int delay, void (*code)(timer *), int repeat);
 int check_nick(user *u,char *pass);
+void check_bots(void);
+void check_services(void);
 void check_timeouts(void);
+
 void del_timeout(timer *t);
 int hasaccess(user *u,char *nick);
 int ifmatch_0(const char *pattern, const char *str);

@@ -76,7 +76,7 @@ void cs_set_bot(char *src,int ac,char **av) {
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
 	}
-	b1 = findbot_onchan(c->name);
+	b1 = findbot_onchan(c->bot,c->name);
 	if(stricmp(botname,"NONE")==0) {
 		if(!b1) {
 			notice(cs_name,src,CS_ERR_SET_BOT_NOBOT,c->name);
@@ -101,6 +101,7 @@ void cs_set_bot(char *src,int ac,char **av) {
 		return;
 	}
 	notice(cs_name,src,CS_RPL_SET_BOT_BOTADDED,botname,c->name);
+	add_bot_to_chan(b->name,c->name);
 	do_join(b->name,c->name);
 	do_owner(b->name,b->name,c->name);
 

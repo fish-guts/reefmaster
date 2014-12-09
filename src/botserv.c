@@ -40,6 +40,10 @@ static bs_cmd bs_cmds[] = {
 
 };
 
+bot *get_botlist(void) {
+	return botlist;
+}
+
 /********************************************************************/
 /**
  * the main botserv routine
@@ -109,7 +113,25 @@ void delete_bot(char *botname) {
 void disconnect_bot(char *botname) {
 	quit(botname);
 }
-
+void add_bot_to_chan(char *botname, char *chan) {
+	bot *b = findbot(botname);
+	botchan *bc = scalloc(sizeof(botchan),1);
+	bc->next = b->chanlist;
+	if(b->chanlist)
+		b->chanlist->prev = bc;
+	b->chanlist = bc;
+	bc->chan = sstrdup(chan);
+}
+void remove_bot_from_chan(char *botname, char *chan) {
+	bot *b = findbot(botname);
+	botchan *bc = b->chanlist;
+	if (bc->prev)
+		bc->prev->next = bc->next;
+	else
+		b->chanlist = bc->next;
+	if (bc->next)
+		bc->next->prev = bc->prev;
+}
 /********************************************************************/
 /**
  * find a registered channel in the chanserv table
@@ -127,6 +149,14 @@ bot *findbot(const char *botname) {
 	}
 	return NULL;
 }
-bot *findbot_onchan(char *chan) {
- return NULL;
+bot *findbot_onchan(char *botname,char *chan) {
+	bot *b = findbot(botname);
+	botchan *bc = b->chanlist;
+	while(bc) {
+		if(stricmp(bc->chan,chan)==0) {
+			return b;
+		}
+		bc = bc->next;
+	}
+	return NULL;
 }

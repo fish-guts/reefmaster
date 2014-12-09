@@ -46,6 +46,7 @@ void ns_drop(char *src, int ac, char **av) {
 	}
 	notice(ns_name, src, NS_RPL_DRP_SUCCESS, nick);
 	cs_check_successor(nick);
+	cs_drop_nick(nick);
 	delete_nick(n);
 	svs2mode(s_name, nick, "-rR 0", NULL);
 	return;
