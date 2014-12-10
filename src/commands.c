@@ -83,6 +83,16 @@ void c_kill(char *src, int ac, char **av)
 	if(isservice(av[0])) {
 		set_service_status(av[0],0);
 	}
+	if(findbot(av[0])) {
+		bot *b = findbot(av[0]);
+		botchan *bc = b->chanlist;
+		while(bc) {
+			del_bot(bc->chan);
+			bc = bc->next;
+		}
+		connect_bot(av[0]);
+
+	}
 	user *u = finduser(src);
 	cancel_user(u);
 	return;
