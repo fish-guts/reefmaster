@@ -88,27 +88,53 @@ int sock_connect(void) {
 void load_modules(int sock) {
 	if (ns_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, ns_name);
-		(ns_connect(sock) >= 0) ? printf(OK) : printf(FAIL);
+		if(ns_connect(sock) >= 0) {
+			printf(OK);
+			ns_status = 1;
+		} else {
+			printf(FAIL);
+			ns_status = 0;
+		}
 	}
 	if (cs_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, cs_name);
-		(cs_connect(sock) >= 0) ? printf(OK) : printf(FAIL);
-	}
-	if (ms_enabled) {
-		printf(APP_DBG_CONNECTINGCLIENT, ms_name);
-		(ms_connect(sock) >= 0) ? printf(OK) : printf(FAIL);
+		if(cs_connect(sock) >= 0) {
+			printf(OK);
+			cs_status = 1;
+		} else {
+			printf(FAIL);
+			cs_status = 0;
+		}
 	}
 	if (os_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, os_name);
-		(os_connect(sock) >= 0) ? printf(OK) : printf(FAIL);
+		if(os_connect(sock) >= 0) {
+			printf(OK);
+			os_status = 1;
+		} else {
+			printf(FAIL);
+			os_status = 0;
+		}
 	}
 	if (bs_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, bs_name);
-		(bs_connect(sock) >= 0) ? printf(OK) : printf(FAIL);
+		if(bs_connect(sock) >= 0) {
+			printf(OK);
+			bs_status = 1;
+		} else {
+			printf(FAIL);
+			bs_status = 0;
+		}
 	}
 	if (as_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, as_name);
-		(as_connect(sock) >= 0) ? printf(OK) : printf(FAIL);
+		if(as_connect(sock) >= 0) {
+			printf(OK);
+			as_status = 1;
+		} else {
+			printf(FAIL);
+			as_status = 0;
+		}
 	}
 }
 

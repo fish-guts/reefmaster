@@ -132,6 +132,8 @@ void start_app(void) {
 	addlog(1,"Services successfully started");
 	// start the socket
 	mainsock = sock_connect();
+	connect_bots();
+
 	/* this is the main loop */
 	while(!quitting)
 	{

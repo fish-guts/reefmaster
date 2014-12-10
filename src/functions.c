@@ -168,11 +168,27 @@ int isoper(user *u) {
 		return 0;
 }
 int isservice(char *src) {
-	user *u = finduser(src);
-	if((u) && (u->service)) {
+	if((stricmp(src,ns_name)==0) ||
+	   (stricmp(src,cs_name)==0) ||
+	   (stricmp(src,bs_name)==0) ||
+	   (stricmp(src,os_name)==0) ||
+	   (stricmp(src,as_name)==0)) {
 		return 1;
 	}
 	return 0;
+}
+void set_service_status(char *service,int status) {
+	if(stricmp(ns_name,service)==0) {
+		ns_status = status;
+	} else if(stricmp(cs_name,service)==0) {
+		cs_status = status;
+	} if(stricmp(os_name,service)==0) {
+		os_status = status;
+	} if(stricmp(bs_name,service)==0) {
+		bs_status = status;
+	} if(stricmp(as_name,service)==0) {
+		as_status = status;
+	}
 }
 char *strscpy(char *d, const char *s, size_t len) {
 	char *d_orig = d;
@@ -304,8 +320,10 @@ void check_bots() {
 	while(b) {
 		botchan *bc = b->chanlist;
 		while(bc) {
-			if(!ison(findchannel(bc->chan),finduser(b->name))) {
+			if(!is_bot_on_chan(b->name,bc->chan)) {
 				do_join(b->name,bc->chan);
+				do_owner(b->name,b->name,bc->chan);
+				add_bot(bc->chan,b->name);
 			}
 			bc = bc->next;
 		}
@@ -313,7 +331,22 @@ void check_bots() {
 	}
 }
 void check_services(void) {
-
+	if(!ns_status) {
+		ns_connect(mainsock);
+		ns_status = 1;
+	} else if(!cs_status) {
+		cs_connect(mainsock);
+		cs_status = 1;
+	} else if(!bs_status) {
+		bs_connect(mainsock);
+		bs_status = 1;
+	} else if(!os_status) {
+		os_connect(mainsock);
+		os_status = 1;
+	} else if(!as_status) {
+		as_connect(mainsock);
+		as_status = 1;
+	}
 }
 void check_connections(void) {
 	check_services();
@@ -385,14 +418,12 @@ void set_timer(time_t period_in_secs) {
 }
 void timer_event_handler(int sigid) {
 	if (sigid == SIGALRM) {
-		notice(as_name,"fish-guts","timer test");
 		check_timeouts();
 		check_connections();
 	}
 }
 
 int match(char *str, char *pattern) {
-	notice(as_name,"fish-guts","pattern: %s",pattern);
 	int    status;
     regex_t re;
     if (regcomp(&re, pattern, REG_ICASE | REG_EXTENDED | REG_NOSUB) != 0) {

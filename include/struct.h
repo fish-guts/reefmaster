@@ -80,6 +80,7 @@ struct _channel
 		user *u;
     } *users;	
     chanban *banlist;
+    char *bot;
 	
 };
 struct _op {

@@ -447,8 +447,9 @@ int db_save_nicks(NickInfo *n) {
 void load_database(void) {
 	addlog(1, LOG_DBG_ENTRY, "load_database");
 	load_main();
-	if(bs_enabled)
+	if(bs_enabled) {
 		load_botserv();
+	}
 	if (ns_enabled) {
 		load_nickserv();
 	}
@@ -477,21 +478,12 @@ void load_botserv(void) {
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
 		while (sqlite3_step(res) == SQLITE_ROW) {
-			bot *b = scalloc(sizeof(bot),1);
-			b->id = sqlite3_column_int(res,0);
-			b->name = sstrdup((const char*)sqlite3_column_text(res, 1));
-			b->password = sstrdup((const char*)sqlite3_column_text(res, 2));
-			if(sqlite3_column_text(res, 3)) {
-				b->username = sstrdup((const char*)sqlite3_column_text(res, 3));
-			}
-			if(sqlite3_column_text(res, 4)) {
-				b->realname = sstrdup((const char*)sqlite3_column_text(res, 4));
-			}
-			b->chanlist = NULL;
-			b->next = botlist;
-			if (botlist)
-				botlist->prev = b;
-			botlist = b;
+			int id = sqlite3_column_int(res,0);
+			char *name = sstrdup((const char*)sqlite3_column_text(res, 1));
+			char *password = sstrdup((const char*)sqlite3_column_text(res, 2));
+			char *username = sstrdup((const char*)sqlite3_column_text(res, 3));
+			char *realname = sstrdup((const char*)sqlite3_column_text(res, 4));
+			load_bot(id,name,password,username,realname);
 		}
 	}
 	sqlite3_close(db);

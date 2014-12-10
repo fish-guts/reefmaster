@@ -23,6 +23,7 @@
 
 bot *botlist = NULL;
 
+
 static bs_cmd *find_bs(const char *name);
 
 extern int bs_connect(int sock)
@@ -39,10 +40,6 @@ static bs_cmd bs_cmds[] = {
 	{ "LIST", NULL },
 
 };
-
-bot *get_botlist(void) {
-	return botlist;
-}
 
 /********************************************************************/
 /**
@@ -90,15 +87,32 @@ bot *register_bot(char *botname,char *password) {
 	if (botlist)
 		botlist->prev = b;
 	botlist = b;
-
-
 	return b;
+}
+void load_bot(int id,char *botname, char *password, char *username, char *realname) {
+		bot *b = scalloc(sizeof(bot),1);
+		b->id = id;
+		b->name = sstrdup(botname);
+		b->password = sstrdup(password);
+		b->realname = sstrdup(realname);
+		b->username = sstrdup(username);
+		b->next = botlist;
+		if (botlist)
+			botlist->prev = b;
+		botlist = b;
 }
 void connect_bot(char *botname) {
 	bot *b = findbot(botname);
-	char *nick = (char*)malloc(sizeof(char)*256);
+	char *nick = (char*)malloc(sizeof(char)*1024);
 	sprintf(nick,"& %s 1 0 %s %s %s 0 +qdB * :%s\r\n",b->name,b->username,s_name,s_name,b->realname);
 	send(mainsock,nick,(int)strlen(nick),0);
+}
+void connect_bots(void) {
+	bot *b = botlist;
+	while(b) {
+		connect_bot(b->name);
+		b = b->next;
+	}
 }
 void delete_bot(char *botname) {
 	bot *b = findbot(botname);
@@ -131,6 +145,7 @@ void remove_bot_from_chan(char *botname, char *chan) {
 		b->chanlist = bc->next;
 	if (bc->next)
 		bc->next->prev = bc->prev;
+	channel *c = findchannel(chan);
 }
 /********************************************************************/
 /**

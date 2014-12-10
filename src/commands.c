@@ -38,6 +38,7 @@ irc_cmd irc_cmds[] = {
 	{ "EOS",	  NULL	    },
 	{ "ERROR",	  NULL		},
 	{ "JOIN",     c_join 	},
+	{ "KICK",	  c_kick 	},
 	{ "KILL",	  c_kill 	},
 	{ "MODE",	  c_mode 	}, 
 	{ "NETINFO",  NULL 		},
@@ -72,8 +73,16 @@ void c_part(char *src, int ac, char **av)
 /**
  * 	handle the server's KILL command
  */
+void c_kick(char *src, int ac, char **av) {
+	if(findbot(av[1])) {
+		del_bot(av[0]);
+	}
+}
 void c_kill(char *src, int ac, char **av)
 {
+	if(isservice(av[0])) {
+		set_service_status(av[0],0);
+	}
 	user *u = finduser(src);
 	cancel_user(u);
 	return;

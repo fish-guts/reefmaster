@@ -52,16 +52,15 @@ static channel *new_channel(const char *chan) {
 		chanlist->prev = c;
 	chanlist = c;
 	chan_count++;
-	if (isreg(chan) >= 0) {
+	if (isregcs(chan)) {
 		ChanInfo *c2 = findchan(chan);
 		mode(cs_name, c->name, "+rtn", NULL);
 		if(c2->topic) {
-			topic(cs_name,c->name,c2->topic_user,c2->topic_time,c2->topic);
+			topic(cs_name,c2->name,c2->topic_user,c2->topic_time,c2->topic);
 			c->topic = sstrdup(c2->topic);
 			c->topic_user = sstrdup(c2->topic_user);
 			c->topic_time = c2->topic_time;
 		}
-
 	}
 	return c;
 }
@@ -82,6 +81,25 @@ void s_join(char *src, int ac, char **av) {
 		join_user_update(u, findchannel(s), s);
 		check_status(findchannel(s),u);
 	}
+}
+
+void add_bot(char *chan, char *bot) {
+	channel *c = findchannel(chan);
+	if(!c)
+		c = new_channel(chan);
+	c->bot = sstrdup(bot);
+}
+void del_bot(char *chan) {
+	channel *c = findchannel(chan);
+	c->bot = NULL;
+}
+
+int is_bot_on_chan(char *botname,char *chan) {
+	channel *c = findchannel(chan);
+	if((c) && (c->bot) && (stricmp(c->bot,botname)==0)) {
+		return 1;
+	}
+	return 0;
 }
 
 static void chan_adduser(user *u, channel *c) {
@@ -145,8 +163,8 @@ int ison(channel *c, user *u) {
 		if (uc->chan == c)
 			return 1;
 	return 0;
-
 }
+
 int isop(channel *c, user *u) {
 	struct userchans *uc;
 	for (uc = u->chans; uc; uc = uc->next) {

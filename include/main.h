@@ -125,6 +125,14 @@ void create_files(void);
 #define CONFIG_FILE 	"services.conf"
 #define DB				"db/services.db"
 
+/* service status flags */
+
+int ns_status;
+int cs_status;
+int bs_status;
+int os_status;
+int as_status;
+
 /* These are the variables set by the config file */
 
 /* Block "services" */

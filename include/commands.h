@@ -10,6 +10,7 @@ extern irc_cmd irc_cmds[];
 irc_cmd *find_cmd(const char *name);
 int tokenize(char *buf, char ***argv);
 void c_join(char *src, int ac, char **av);
+void c_kick(char *src, int ac, char **av);
 void c_kill(char *src, int ac, char **av);
 void c_mode(char *src, int ac, char **av);
 void c_part(char *src, int ac, char **av);
