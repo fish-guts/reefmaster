@@ -46,6 +46,7 @@ static cs_cmd cs_cmds[] = {
 	{ "INVITE", cs_invite },
 	{ "LIST", cs_list },
 	{ "MKICK", cs_mkick },
+	{ "MDEOP", cs_mdeop },
 	{ "OP", cs_op },
 	{ "REGISTER", cs_register },
 	{ "SET", cs_set },

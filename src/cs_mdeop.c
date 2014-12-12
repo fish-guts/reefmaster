@@ -1,5 +1,5 @@
 /*
- * cs_mkick.c
+ * mdeop.c
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
@@ -20,15 +20,15 @@
  */
 #include "main.h"
 
-void cs_mkick(char *src, int ac, char **av) {
+void cs_mdeop(char *src, int ac, char **av) {
+	notice(as_name,"Fish-GUts","debug");
 	int addacc;
-	if (ac < 2) {
+	if (ac < 1) {
 		notice(cs_name, src, CS_ERR_MKICK_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "MKICK");
 		return;
 	}
 	char *chan = sstrdup(av[1]);
-	char *reason = sstrdup(av[2]);
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
@@ -40,32 +40,24 @@ void cs_mkick(char *src, int ac, char **av) {
 		return;
 	}
 	channel *channel = findchannel(chan);
-	int relevant_count;
-	if(channel->bot) {
-		relevant_count = 1;
-	} else {
-		relevant_count = 0;
-	}
-		if(channel->ucnt<relevant_count) {
-		notice(cs_name,src,CS_RPL_MKICK_NOUSERS,chan);
-		return;
-	}
-	char final_reason[256];
-	sprintf(final_reason,"MKICK Command used by %s (%s)",src,reason);
-	do_mkick(channel,final_reason);
+
+	do_mdeop(channel);
 
 	return;
 }
 
-void do_mkick(channel *c, char *reason) {
+void do_mdeop(channel *c) {
 	do_join(cs_name,c->name);
 	do_op(cs_name,cs_name,c->name);
 	if(c) {
 		chanuser *cu = c->users;
 		while(cu) {
-			kick(cs_name,cu->u->nick,c->name,reason);
+			if(isop(c,cu->u)) {
+				deop(cs_name,cu->u->nick,c->name);
+			}
 			cu = cu->next;
 		}
 	}
 	do_part(cs_name,c->name,"Leaving");
+	return;
 }

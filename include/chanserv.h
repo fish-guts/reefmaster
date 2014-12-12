@@ -14,6 +14,7 @@
 #include "cs_info.h"
 #include "cs_invite.h"
 #include "cs_list.h"
+#include "cs_mdeop.h"
 #include "cs_mkick.h"
 #include "cs_op.h"
 #include "cs_own.h"

@@ -245,6 +245,7 @@ int   cs_operonly;
 int   cs_spass; 
 int   cs_gpass;
 int   cs_mkick_access;
+int   cs_mdeop_access;
 int   cs_memolevel;
 int   cs_autovop;
 char *cs_mlock;

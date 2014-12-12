@@ -34,6 +34,7 @@ typedef struct _notify_text ntext;
 typedef struct _notify notify;
 typedef struct _targettype targettype;
 typedef struct _usernick usernick;
+typedef struct _userchan userchan;
 
 struct _auth
 {
@@ -247,12 +248,7 @@ struct _user
     	char *channel;
     	int level;
     } *cschans;
-    struct userchans 
-    {
-		struct userchans *next, *prev;
-		channel *chan;
-		int status;
-    } *chans;
+   userchan *chans;
     struct u_acc 
     {
     	char *nick;
@@ -263,6 +259,11 @@ struct _usernick {
 	usernick *next, *prev;
 	NickInfo *n;
 	int level;
+};
+struct _userchan {
+		userchan *next, *prev;
+		channel *chan;
+		int status;
 };
 struct _timeout_ {
     timer *next, *prev;

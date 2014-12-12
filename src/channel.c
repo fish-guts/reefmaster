@@ -103,11 +103,8 @@ int is_bot_on_chan(char *botname,char *chan) {
 }
 
 static void chan_adduser(user *u, channel *c) {
-	struct userchans *uc;
-	uc = scalloc(sizeof(struct userchans), 1);
-
 	chanuser *cu = scalloc(sizeof(chanuser), 1);
-
+	userchan *uc = scalloc(sizeof(userchan), 1);
 
 	cu->next = c->users;
 	if (c->users)
@@ -160,7 +157,7 @@ void check_status(channel *c, user *u) {
 	}
 }
 int ison(channel *c, user *u) {
-	struct userchans *uc;
+	userchan *uc;
 	for (uc = u->chans; uc; uc = uc->next)
 		if (uc->chan == c)
 			return 1;
@@ -168,7 +165,7 @@ int ison(channel *c, user *u) {
 }
 
 int isop(channel *c, user *u) {
-	struct userchans *uc;
+	userchan *uc;
 	for (uc = u->chans; uc; uc = uc->next) {
 		if (uc->chan == c) {
 			if ((uc->status == OP) || (uc->status == OWNER)
@@ -204,7 +201,7 @@ void channel_remove_ban(char *src,channel *c, char *mask) {
 	}
 }
 void add_status(channel *c, user *u, int status) {
-	struct userchans *uc;
+	userchan *uc;
 	for (uc = u->chans; uc; uc = uc->next) {
 		if (uc->chan == c) {
 			uc->status |= status;
@@ -213,7 +210,7 @@ void add_status(channel *c, user *u, int status) {
 	}
 }
 void del_status(channel *c, user *u, int status) {
-	struct userchans *uc;
+	userchan *uc;
 	for (uc = u->chans; uc; uc = uc->next) {
 		if (uc->chan == c) {
 			uc->status &= ~status;
@@ -233,7 +230,7 @@ void s_part(char *src, int ac, char **av) {
 }
 void del_user(user *u, channel *c) {
 	chanuser *cu;
-	struct userchans *uc;
+	userchan *uc;
 	cu = c->users;
 	free(cu->u);
 	if (cu->prev)

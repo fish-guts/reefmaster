@@ -543,6 +543,17 @@ int config_cs_setpass(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result)
 	cs_spass = val;
 	return 0;
 }
+int config_cs_mdeop(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
+{
+	int val = atoi(value);
+	if((val<1) || (val>8))
+	{
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,1,8);
+		return -1;
+	}
+	cs_mdeop_access = val;
+	return 0;
+}
 int config_cs_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 {
 	int val = atoi(value);
@@ -1152,6 +1163,7 @@ int config_load(const char *file)
 		CFG_SEC("vop",cs_acc_vop_opts,CFGF_NONE),
 		CFG_SEC("uop",cs_acc_uop_opts,CFGF_NONE),
 		CFG_INT_CB("mkick",4,CFGF_NONE,(void*)&config_cs_mkick),
+		CFG_INT_CB("mdeop",4,CFGF_NONE,(void*)&config_cs_mdeop),
 		CFG_END()
 	};
 	static cfg_opt_t cs_list_opts[] = {
