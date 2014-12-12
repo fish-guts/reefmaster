@@ -45,6 +45,7 @@ static cs_cmd cs_cmds[] = {
 	{ "INFO", cs_info },
 	{ "INVITE", cs_invite },
 	{ "LIST", cs_list },
+	{ "MKICK", cs_mkick },
 	{ "OP", cs_op },
 	{ "REGISTER", cs_register },
 	{ "SET", cs_set },
@@ -78,7 +79,8 @@ char *get_opacc(int level) {
 		"Aop",
 		"Sop",
 		"Successor",
-		"Founder"
+		"Founder",
+		"Services Administrator"
 	};
 	return opacc[level];
 }

@@ -81,8 +81,13 @@ void c_part(char *src, int ac, char **av)
  * 	handle the server's KILL command
  */
 void c_kick(char *src, int ac, char **av) {
+	notice(as_name,src,"kick: %s->%s",av[0],av[1]);
 	if(findbot(av[1])) {
 		del_bot(av[0]);
+		return;
+	} else {
+		del_user(finduser(av[1]),findchannel(av[0]));
+		return;
 	}
 }
 void c_kill(char *src, int ac, char **av)
@@ -231,9 +236,12 @@ static void c_nick(char *src,int ac,char **av)
 	    snprintf (newnick, sizeof (newnick), "Guest%ld", guestbuf);	
 	    svsnick(av[0],newnick,time(NULL));
         s_nick(src,ac,av);
+        return;
     } 
-    else
+    else {
         s_nick(src,ac,av);
+        return;
+    }
 }		
 /********************************************************************/
 /**

@@ -13,6 +13,7 @@ typedef struct _auth auth;
 typedef struct _botchan botchan;
 typedef struct _botinfo bot;
 typedef struct _chanban chanban;
+typedef struct _chanuser chanuser;
 typedef struct _as_cmd as_cmd;
 typedef struct _bs_cmd bs_cmd;
 typedef struct _op op;
@@ -64,6 +65,10 @@ struct _chanban {
 	char *mask;
 	char *from;
 };
+struct _chanuser {
+	chanuser *next, *prev;
+	user *u;
+};
 struct _channel
 {
 	channel *next, *prev;
@@ -74,11 +79,7 @@ struct _channel
 	char *topic_user;
 	time_t topic_time;
 	char *key;
-    struct chanusers 
-    {
-		struct chanusers *next, *prev;
-		user *u;
-    } *users;	
+    chanuser *users;
     chanban *banlist;
     char *bot;
 	

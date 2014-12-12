@@ -44,6 +44,7 @@ int config_cs_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *res
 int config_cs_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_maxlist(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_operonly(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_regacc(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);

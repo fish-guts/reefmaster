@@ -420,6 +420,13 @@
 #define CS_RPL_LIST_END2			"Listing complete - 1 match found"
 #define CS_ERR_LIST_USAGE			"Usage: \2LIST\2 [Pattern]>."
 
+/* MKICK
+ *
+ */
+#define CS_ERR_MKICK_USAGE			"Usage: \2MKICK\2 [#channel] \2[reason]\2"
+#define CS_RPL_MKICK_NOUSERS		"There a no users on channel \2%s\2"
+#define CS_RPL_MKICK_USED_BY		"MKICK Command used by %s"
+
 /* OP
  ******************************************************************************************************************************************
  */

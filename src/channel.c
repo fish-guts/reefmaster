@@ -103,10 +103,12 @@ int is_bot_on_chan(char *botname,char *chan) {
 }
 
 static void chan_adduser(user *u, channel *c) {
-	struct chanusers *cu;
 	struct userchans *uc;
-	cu = scalloc(sizeof(struct chanusers), 1);
 	uc = scalloc(sizeof(struct userchans), 1);
+
+	chanuser *cu = scalloc(sizeof(chanuser), 1);
+
+
 	cu->next = c->users;
 	if (c->users)
 		c->users->prev = cu;
@@ -230,10 +232,10 @@ void s_part(char *src, int ac, char **av) {
 	del_user(finduser(src),findchannel(av[0]));
 }
 void del_user(user *u, channel *c) {
-	struct chanusers *cu;
+	chanuser *cu;
 	struct userchans *uc;
 	cu = c->users;
-	uc = u->chans;
+	free(cu->u);
 	if (cu->prev)
 		cu->prev->next = cu->next;
 	else
@@ -243,6 +245,7 @@ void del_user(user *u, channel *c) {
 	free(cu);
 	c->ucnt--;
 
+	uc = u->chans;
 	if (uc->prev)
 		uc->prev->next = uc->next;
 	else

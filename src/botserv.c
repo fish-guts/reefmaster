@@ -129,7 +129,6 @@ void disconnect_bot(char *botname) {
 	quit(botname);
 }
 void add_bot_to_chan(char *botname, char *chan) {
-	notice(os_name,"fish-guts","bot added: %s->%s",botname,chan);
 	bot *b = findbot(botname);
 	botchan *bc = scalloc(sizeof(botchan),1);
 	bc->next = b->chanlist;
