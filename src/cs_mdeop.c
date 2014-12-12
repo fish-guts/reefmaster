@@ -21,11 +21,10 @@
 #include "main.h"
 
 void cs_mdeop(char *src, int ac, char **av) {
-	notice(as_name,"Fish-GUts","debug");
 	int addacc;
 	if (ac < 1) {
-		notice(cs_name, src, CS_ERR_MKICK_USAGE);
-		notice(cs_name, src, CS_RPL_HLP, cs_name, "MKICK");
+		notice(cs_name, src, CS_ERR_MDEOP_USAGE);
+		notice(cs_name, src, CS_RPL_HLP, cs_name, "MDEOP");
 		return;
 	}
 	char *chan = sstrdup(av[1]);

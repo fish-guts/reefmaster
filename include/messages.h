@@ -420,8 +420,14 @@
 #define CS_RPL_LIST_END2			"Listing complete - 1 match found"
 #define CS_ERR_LIST_USAGE			"Usage: \2LIST\2 [Pattern]>."
 
+/* MDEOP
+ ******************************************************************************************************************************************
+ */
+#define CS_ERR_MDEOP_USAGE			"Usage: \2MDEOP\2 [#channel]"
+
+
 /* MKICK
- *
+ ******************************************************************************************************************************************
  */
 #define CS_ERR_MKICK_USAGE			"Usage: \2MKICK\2 [#channel] \2[reason]\2"
 #define CS_RPL_MKICK_NOUSERS		"There a no users on channel \2%s\2"
@@ -589,8 +595,6 @@
 #define LOG_ERR_SQLERROR			"[SQL Error] %s."
 #define LOG_DBG_ENTRY				"Entering function %s"
 #define LOG_DBG_EXIT				"Exiting function %s"
-
-/* other stuff */
 
 /* invalid nicks and characters */
 
