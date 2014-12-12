@@ -1,5 +1,5 @@
 /*
- * cs_akick.c
+ * cs_mkick.c
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
@@ -52,23 +52,20 @@ void cs_mkick(char *src, int ac, char **av) {
 		return;
 	}
 	char final_reason[256];
-	sprintf(reason,"MKICK Command used by %s (%s)",src,reason);
+	sprintf(final_reason,"MKICK Command used by %s (%s)",src,reason);
 	do_mkick(src,channel,final_reason);
 
 	return;
 }
 
 void do_mkick(char *src,channel *c, char *reason) {
-	//do_join(cs_name,c->name);
-	int i = 0;
+	do_join(cs_name,c->name);
 	if(c) {
 		chanuser *cu = c->users;
 		while(cu) {
-			i++;
-				//notice(cs_name,src,"nick: %s",cu->u->nick);
-				//kick(cs_name,cu->u->nick,c->name,reason);
-				cu = cu->next;
+			kick(cs_name,cu->u->nick,c->name,reason);
+			cu = cu->next;
 		}
 	}
-	//notice(as_name,src,"count: %i",i);
+	do_part(cs_name,c->name,"Leaving");
 }
