@@ -75,11 +75,15 @@ void create_files(void);
 #define STRMAX2 64
 #define STRMAX3 128
 
-#define OP			0x0001
-#define VOP			0x0002
-#define HOP			0x0004
-#define POP			0x0008
-#define OWNER		0x0016
+#define UOP			0x0001
+#define OP			0x0002
+#define VOP			0x0004
+#define HOP			0x0008
+#define AOP			0x0016
+#define ADMIN		0x0032
+#define OWNER		0x0064
+
+
 
 #define IDENTIFIED	0x0001
 #define HASACCESS	0x0002

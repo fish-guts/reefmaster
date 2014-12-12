@@ -22,6 +22,13 @@
 
 /* function prototypes */
 static void c_nick(char *src,int ac,char **av);
+static void handle_chan_mode(char *chan,char *arg,char *mode, int add);
+static void handle_chan_mode_a(char *chan, char *nick,int z);
+static void handle_chan_mode_h(char *chan, char *nick,int z);
+static void handle_chan_mode_o(char *chan, char *nick,int z);
+static void handle_chan_mode_q(char *chan, char *nick,int z);
+static void handle_chan_mode_v(char *chan, char *nick,int z);
+
 
 /* global vars */
 irc_cmd *find_cmd(const char *name)
@@ -105,10 +112,11 @@ void c_kill(char *src, int ac, char **av)
 void c_mode(char *src, int ac, char **av)
 {
 	int x = 0;
-	int t,y;
+	int t = 2;
+	int y = 2;
 	int z = 0;
 	channel *c;
-	user *u,*u1;
+	user *u;
 	char *ptr;
 	if(stricmp(src,s_unreal)!=0) {
 		u = finduser(src);
@@ -121,8 +129,6 @@ void c_mode(char *src, int ac, char **av)
 	if(strchr(av[0],'#'))
 	{
 		c = findchannel(av[0]);
-		y = 2;
-		t = 2;
 		for(ptr = av[1];*ptr;ptr++)
 		{
 			switch(*ptr)
@@ -133,116 +139,24 @@ void c_mode(char *src, int ac, char **av)
 				case '-':
 					z = 0;
 					break;
-				case 'o':
-					u1 = finduser(av[t]);
-					if(z)
-					{
-						if(cs_check_opwatch(c->name,u1)) {
-							deop(cs_name,u1->nick,c->name);
-							return;
-						}
-						c->ops++;
-						add_status(c,u1,OP);
-					}
-					else
-					{
-						if(c->ops>0)
-							c->ops--;
-						del_status(c,u1,OP);
-					}
-					t++;
-					break;
-				case 'v':
-					u1 = finduser(av[t]);
-					if(z)
-					{
-						c->vops++;
-						add_status(c,u1,VOP);
-					}
-					else
-					{
-						if(c->vops>0)
-							c->vops--;
-						del_status(c,u1,VOP);
-					}
-					t++;
-					break;
-				case 'h':
-					u1 = finduser(av[t]);
-					if(z)
-					{
-						if(cs_check_opwatch(c->name,u1)) {
-							dehop(cs_name,u1->nick,c->name);
-							return;
-						}
-						c->hops++;
-						add_status(c,u1,HOP);
-					}
-					else
-					{
-						if(c->hops>0)
-							c->hops--;
-						del_status(c,u1,HOP);
-					}	
-					t++;					
-					break;						
 				case 'a':
-					u1 = finduser(av[t]);
-					if(z)
-					{
-						if(cs_check_opwatch(c->name,u1)) {
-							deadmin(cs_name,u1->nick,c->name);
-							return;
-						}
-						c->pus++;
-						add_status(c,u1,POP);
-					}
-					else
-					{
-						if(c->pus>0)
-							c->pus--;
-						del_status(c,u1,POP);
-					}	
+				case 'o':
+				case 'h':
+				case 'q':
+				case 'v':
+					handle_chan_mode(c->name,av[t],ptr,z);
 					t++;									
 					break;
-
 				case 'b':
 					if(z)
 						channel_add_ban(src,c,av[t]);
 					else
 						channel_remove_ban(src,c,av[t]);
 					break;
-				case 'q':
-					if(isregbot(av[t])) {
-						if(!z)
-							do_owner(av[t],av[t],c->name);
-						return;
-					}
-					u1 = finduser(av[t]);
-					if(z)
-					{
-						if(cs_check_opwatch(c->name,u1)) {
-							deowner(cs_name,u1->nick,c->name);
-							return;
-						}
-						c->owners++;
-						add_status(c,u1,OWNER);
-					}
-					else
-					{
-						if(c->owners>0)
-							c->owners--;
-						del_status(c,u1,OWNER);
-					}
-					t++;
-					break;
 				case 'k':
-					if(z)
-					{
-						c->key = av[1];
-					}
-					else
-					{
+					if(z){
+						c->key = sstrdup(av[1]);
+					} else	{
 						c->key = NULL;
 					}
 					break;		
@@ -424,5 +338,119 @@ void c_topic(char *src, int ac, char **av)
 	}
 	c->topic = sstrdup(av[3]);
 	cs_check_topiclock(src,c,oldtopic);
+}
+static void handle_chan_mode(char *chan,char *arg,char *mode, int add) {
+	switch(*mode) {
+		case 'o':
+			handle_chan_mode_o(chan,arg,add);
+			break;
+		case 'v':
+			handle_chan_mode_v(chan,arg,add);
+			break;
+		case 'h':
+			handle_chan_mode_h(chan,arg,add);
+			break;
+		case 'a':
+			handle_chan_mode_a(chan,arg,add);
+			break;
+		case 'q':
+			handle_chan_mode_q(chan,arg,add);
+			break;
+		}
+}
+static void handle_chan_mode_o(char *chan,char *nick,int z)
+{
+	user *u = finduser(nick);
+	channel *c = findchannel(chan);
+	if(z) {
+		if(cs_check_opwatch(c->name,u)) {
+			deop(cs_name,u->nick,c->name);
+			return;
+		}
+		c->ops++;
+		add_status(c,u,OP);
+	} else {
+		if(c->ops>0)
+		c->ops--;
+		del_status(c,u,OP);
+	}
+}
+static void handle_chan_mode_v(char *chan, char *nick,int z) {
+	user *u = finduser(nick);
+	channel *c = findchannel(chan);
+	if(z)
+	{
+		c->vops++;
+		add_status(c,u,VOP);
+	}
+	else
+	{
+		if(c->vops>0)
+			c->vops--;
+		del_status(c,u,VOP);
+	}
+}
+
+static void handle_chan_mode_h(char *chan, char *nick, int z) {
+	user *u = finduser(nick);
+	channel *c = findchannel(chan);
+	if(z)
+	{
+		if(cs_check_opwatch(c->name,u)) {
+			dehop(cs_name,u->nick,c->name);
+			return;
+		}
+		c->hops++;
+		add_status(c,u,HOP);
+	}
+	else
+	{
+		if(c->hops>0)
+			c->hops--;
+		del_status(c,u,HOP);
+	}
+}
+static void handle_chan_mode_a(char *chan, char *nick, int z) {
+	user *u = finduser(nick);
+	channel *c = findchannel(chan);
+	if(z)
+	{
+		if(cs_check_opwatch(c->name,u)) {
+			deadmin(cs_name,u->nick,c->name);
+			return;
+		}
+		c->pus++;
+		add_status(c,u,ADMIN);
+	}
+	else
+	{
+		if(c->pus>0)
+			c->pus--;
+		del_status(c,u,ADMIN);
+	}
+}
+void handle_chan_mode_q(char *chan, char *nick, int z) {
+	channel *c = findchannel(chan);
+	if(isregbot(nick)) {
+		if(!z)
+			do_owner(nick,nick,c->name);
+		return;
+	}
+	user *u = finduser(nick);
+	if(z)
+	{
+		if(cs_check_opwatch(c->name,u)) {
+			deowner(cs_name,u->nick,c->name);
+			return;
+		}
+		c->owners++;
+		add_status(c,u,OWNER);
+	}
+	else
+	{
+		if(c->owners>0)
+			c->owners--;
+		del_status(c,u,OWNER);
+	}
 }
 /* EOF */

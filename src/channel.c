@@ -170,7 +170,7 @@ int isop(channel *c, user *u) {
 	for (uc = u->chans; uc; uc = uc->next) {
 		if (uc->chan == c) {
 			if ((uc->status == OP) || (uc->status == OWNER)
-					|| (uc->status == POP))
+					|| (uc->status == ADMIN))
 				return 1;
 		}
 	}
