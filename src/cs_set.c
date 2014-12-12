@@ -57,7 +57,6 @@ void cs_set_bot(char *src,int ac,char **av) {
 	ChanInfo *c;
 	char *chan;
 	char *botname;
-	bot *b,*b1;
 	user *u = finduser(src);
 	if (ac <= 3) {
 		notice(cs_name, src, CS_ERR_SET_BOT_USAGE);
@@ -71,40 +70,52 @@ void cs_set_bot(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<FOUNDER) {
+
+	if(cs_xop_get_level(u,c)<ACCESS_FND-1) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
 	}
-	b1 = findbot_onchan(c->bot,c->name);
 	if(stricmp(botname,"NONE")==0) {
-		if(!b1) {
+		if(c->bot) {
+			do_part(c->bot,c->name,BS_RPL_PART_MSG);
+			del_bot(c->name);
+			c->bot = NULL;
+			notice(cs_name,src,CS_RPL_SET_BOT_BOTREMOVED,chan);
+			return;
+
+		} else {
 			notice(cs_name,src,CS_ERR_SET_BOT_NOBOT,c->name);
 			return;
-		} else {
-			do_part(b1->name,c->name,BS_RPL_PART_MSG);
-			notice(cs_name,src,CS_RPL_SET_BOT_BOTREMOVED,c->name);
-			return;
 		}
 	}
-	if(b1) {
-		if(stricmp(b1->name,botname)==0) {
-			notice(cs_name,src,CS_RPL_SET_BOT_ALREADY,b1->name,chan);
-			return;
-		} else {
-			do_part(b1->name,c->name,BS_RPL_PART_MSG);
-		}
-	}
-	b = findbot(botname);
+	bot *b = findbot(botname);
 	if(!b) {
 		notice(cs_name,src,CS_ERR_SET_BOT_NOSUCHBOT,botname);
 		return;
 	}
-	notice(cs_name,src,CS_RPL_SET_BOT_BOTADDED,botname,c->name);
-	add_bot_to_chan(b->name,c->name);
-	do_join(b->name,c->name);
-	do_owner(b->name,b->name,c->name);
+	if((c->bot) && (stricmp(c->bot,botname)==0)) {
+		notice(cs_name,src,CS_RPL_SET_BOT_ALREADY,botname,chan);
+		return;
+	} else if((c->bot) && (stricmp(c->bot,botname)!=0)) {
 
+		remove_bot_from_chan(c->bot,c->name);
+		do_part(c->bot,c->name,BS_RPL_PART_MSG);
+		del_bot(c->name);
+
+		add_bot_to_chan(b->name,c->name);
+		c->bot = sstrdup(b->name);
+
+		notice(cs_name,src,CS_RPL_SET_BOT_BOTADDED,b->name,c->name);
+		return;
+	} else {
+
+		add_bot_to_chan(b->name,c->name);
+		c->bot = sstrdup(b->name);
+
+		notice(cs_name,src,CS_RPL_SET_BOT_BOTADDED,b->name,c->name);
+		return;
+	}
 }
 void cs_set_founder(char *src,int ac,char **av) {
 	ChanInfo *c;

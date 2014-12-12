@@ -231,7 +231,7 @@ INSERT INTO NICKS
 	VALUES("opso","hoppus123","opso@reefmaster.ch","Carol",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
 INSERT INTO NICKS 
 (NICKNAME,PASSWORD,MASK,REALNAME,LAST_SEEN,REGISTERED,HIDEMAIL,MEMOMAX,URL,EMAIL,MFORWARD_TO,MFORWARD,NOOP,NOMEMO,AUTH_CHAN,AUTH_NOTIFY,PROTECT,MLOCK,MNOTIFY)
-	VALUES("bucky","hoppus123","bucky@reefmaster.ch","Carol",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
+	VALUES("S","snox123","snox@reefmaster.ch","Carol",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
 INSERT INTO NICKS 
 (NICKNAME,PASSWORD,MASK,REALNAME,LAST_SEEN,REGISTERED,HIDEMAIL,MEMOMAX,URL,EMAIL,MFORWARD_TO,MFORWARD,NOOP,NOMEMO,AUTH_CHAN,AUTH_NOTIFY,PROTECT,MLOCK,MNOTIFY)
 	VALUES("Carol","hoppus123","bucky@reefmaster.ch","Carol",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);

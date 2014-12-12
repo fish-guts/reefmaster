@@ -114,7 +114,7 @@ void create_files(void);
 #define ACCESS_SOP	5
 #define ACCESS_SUC  6
 #define ACCESS_FND	7
-#define ACCESS_SRA	9
+#define ACCESS_SRA	8
 
 #define NOTIFY_ONLINE 2
 #define NOTIFY_OFFLINE 4

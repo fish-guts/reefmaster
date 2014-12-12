@@ -646,6 +646,7 @@ static void load_chans(void) {
 			if(sqlite3_column_text(res,9)) {
 				c->bot = sstrdup((char*) sqlite3_column_text(res,9));
 				add_bot_to_chan(c->bot,c->name);
+				add_bot(c->name,c->name);
 			} else {
 				c->bot = NULL;
 			}

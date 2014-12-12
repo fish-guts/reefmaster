@@ -101,6 +101,7 @@ void c_kill(char *src, int ac, char **av)
 /**
  * Handles a Server's MODE message
  */
+//TODO refactor code, this provokes eye cancer
 void c_mode(char *src, int ac, char **av)
 {
 	int x = 0;
@@ -212,7 +213,11 @@ void c_mode(char *src, int ac, char **av)
 						channel_remove_ban(src,c,av[t]);
 					break;
 				case 'q':
-
+					if(isregbot(av[t])) {
+						if(!z)
+							do_owner(av[t],av[t],c->name);
+						return;
+					}
 					u1 = finduser(av[t]);
 					if(z)
 					{

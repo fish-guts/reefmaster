@@ -103,5 +103,6 @@ void cs_register(char *src, int ac, char **av) {
 	notice(cs_name, src, CS_RPL_REG_SUCCESS1, chan);
 	notice(cs_name, src, CS_RPL_REG_SUCCESS2, pass);
 	register_chan(src, chan, pass, desc);
+	add_to_list(src, chan, ACCESS_FND, src, ACCESS_SRA);
 }
 

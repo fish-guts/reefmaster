@@ -25,6 +25,7 @@ bot *botlist = NULL;
 
 
 static bs_cmd *find_bs(const char *name);
+static void chan_del_bot(bot *b,botchan *bc);
 
 extern int bs_connect(int sock)
 {
@@ -128,6 +129,7 @@ void disconnect_bot(char *botname) {
 	quit(botname);
 }
 void add_bot_to_chan(char *botname, char *chan) {
+	notice(os_name,"fish-guts","bot added: %s->%s",botname,chan);
 	bot *b = findbot(botname);
 	botchan *bc = scalloc(sizeof(botchan),1);
 	bc->next = b->chanlist;
@@ -139,13 +141,22 @@ void add_bot_to_chan(char *botname, char *chan) {
 void remove_bot_from_chan(char *botname, char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = b->chanlist;
-	if (bc->prev)
+	while(bc) {
+		if(stricmp(bc->chan,chan)==0) {
+			chan_del_bot(b,bc);
+		}
+		bc = bc->next;
+	}
+}
+static void chan_del_bot(bot *b,botchan *bc) {
+    free(bc->chan);
+    if(bc->prev)
 		bc->prev->next = bc->next;
-	else
+    else
 		b->chanlist = bc->next;
 	if (bc->next)
 		bc->next->prev = bc->prev;
-	channel *c = findchannel(chan);
+	free(bc);
 }
 /********************************************************************/
 /**

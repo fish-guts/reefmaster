@@ -461,7 +461,7 @@
 #define CS_ERR_SET_BOT_NOSUCHBOT	"The bot \2%s\2 was not found"
 #define CS_RPL_SET_BOT_BOTADDED		"The bot \2%s\2 will now join channel \2%s\2"
 #define CS_ERR_SET_BOT_NOBOT		"There is no bot on channel \2%s\2"
-#define CS_RPL_SET_BOT_BOTREMOVED	"Success - Channel \2%s\2 has no more bots."
+#define CS_RPL_SET_BOT_BOTREMOVED	"Success - Bot removed from Channel \2%s\2"
 #define CS_RPL_SET_BOT_ALREADY		"Bot \2%s\2 already is on channel \2%s\2"
 
 /* SETPASS

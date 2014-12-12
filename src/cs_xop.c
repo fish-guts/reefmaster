@@ -442,10 +442,12 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
 	usernick *un = u->usernicks;
 	int level = 0;
 	while(un) {
-		if(un->level==1)
-			level = get_access_for_nick(c,un->n) -1;
-		else
-			level = get_access_for_nick(c,un->n);
+		if(un->level==1) {
+			int i = get_access_for_nick(c,un->n) -1;
+			return i;
+		} else {
+			int j = get_access_for_nick(c,un->n);
+		}
 		un = un->next;
 	}
 	return level;
@@ -541,7 +543,7 @@ op *find_list_entry(char *nick,char *chan,int level) {
 int get_access_for_nick(ChanInfo *c, NickInfo *n) {
 	op *o = global_op_list;
 	while(o) {
-		if((o->nick->id==n->id) && (stricmp(c->name,o->chan->name)==0)) {
+		if((stricmp(o->nick->nick,n->nick)==0) && (stricmp(c->name,o->chan->name)==0)) {
 			return o->level;
 		}
 		o = o->next;
