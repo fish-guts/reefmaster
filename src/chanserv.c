@@ -29,7 +29,7 @@ ChanInfo *chans = NULL;
 op *global_op_list = NULL;
 
 
-static cs_cmd cs_cmds[] = {
+cs_cmd cs_cmds[] = {
 	{ "ACC", cs_acc },
 	{ "AKICK", cs_akick },
 	{ "AOP", cs_aop },
@@ -39,7 +39,6 @@ static cs_cmd cs_cmds[] = {
 	{ "DROP", cs_drop },
 	{ "GETPASS", cs_getpass },
 	{ "HALFOP", cs_halfop },
-	{ "HELP", NULL },
 	{ "HOP", cs_hop },
 	{ "IDENTIFY", cs_identify },
 	{ "INFO", cs_info },
@@ -105,18 +104,19 @@ void chanserv(char *src, char *av) {
 	char **uv = (char**) malloc(sizeof(char**) * 4096);
 	char *pch = strtok(av, " ");
 	cs_cmd *cs;
-	user *u = finduser(src);
 	while (pch != NULL) {
 		uv[i] = sstrdup(pch);
 		i++;
 		pch = strtok(NULL, " ");
 	}
 	if ((cs = find_cs(uv[0]))) {
-		if (cs->func)
+		if (cs->func) {
 			cs->func(src, i, uv);
+		}
 	} else {
-		notice(cs_name,src,CS_ERR_NOSUCHCMD,av);
-		addlog(2, LOG_DBG_NS_UNKNOWN, ns_name, src, u->username, u->hostname,av);
+		notice(cs_name,src,CS_ERR_NOSUCHCMD, uv[0]);
+		notice(cs_name,src,NS_RPL_HLP_MAIN,cs_name);
+		return;
 	}
 }
 
@@ -303,7 +303,7 @@ void delete_chan(ChanInfo *c) {
  */
 static cs_cmd *find_cs(const char *name) {
 	cs_cmd *cmd;
-	for (cmd = cs_cmds; cmd->name-1; cmd++) {
+	for (cmd = cs_cmds; cmd->name; cmd++) {
 		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
 		}
