@@ -78,6 +78,7 @@ void cs_set_bot(char *src,int ac,char **av) {
 	}
 	if(stricmp(botname,"NONE")==0) {
 		if(c->bot) {
+			remove_bot_from_chan(c->bot,c->name);
 			do_part(c->bot,c->name,BS_RPL_PART_MSG);
 			del_bot(c->name);
 			c->bot = NULL;

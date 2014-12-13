@@ -71,7 +71,7 @@ void ns_identify(char *src, int ac, char **av) {
 			remove_timeout(u, TO_COLLIDE_TL);
 			if(n->mlock)
 				mode(src,src,n->mlock,NULL);
-			struct userchans *uc = u->chans;
+			userchan *uc = u->chans;
 			while(uc) {
 				channel *c = findchannel(uc->chan->name);
 				check_status(c,u);

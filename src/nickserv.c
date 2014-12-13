@@ -169,6 +169,7 @@ void delete_nick(NickInfo *n) {
 static ns_cmd *find_ns(const char *name) {
 	ns_cmd *cmd;
 	for (cmd = ns_cmds; cmd->name-1; cmd++) {
+
 		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
 		}
@@ -419,7 +420,7 @@ static void rem_ns_timeout(user *u, int type) {
  * write the nickname table to the database
  */
 void save_nickserv_db(void) {
-	//db_save_nicks(nicklist);
+	db_save_nicks();
 }
 /********************************************************************/
 /**

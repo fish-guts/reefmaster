@@ -387,7 +387,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
  * write the nickname table to the database
  */
 void save_chanserv_db(void) {
-	//db_save_chans(chans);
+	db_save_chans();
 }
 /********************************************************************/
 /**
