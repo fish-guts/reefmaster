@@ -607,10 +607,9 @@ static void load_chans(void) {
 			} else {
 				c->bot = NULL;
 			}
-			int founder = sqlite3_column_int(stmt,10);
 			c->founder = findnick((char*)sqlite3_column_text(stmt,10));
 			if(sqlite3_column_int(stmt,11)) {
-				c->successor = findnick((char*)sqlite3_column_int(stmt,11));
+				c->successor = findnick((char*)sqlite3_column_text(stmt,11));
 			} else {
 				c->successor = NULL;
 			}
