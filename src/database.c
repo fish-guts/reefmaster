@@ -578,59 +578,61 @@ static void load_nicks(void) {
 static void load_chans(void) {
 	addlog(DEBUG,LOG_DBG_ENTRY,"load_chans");
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db, load_cs_chans, 1000, &res,
+		error = sqlite3_prepare_v2(db, load_cs_chans, 1000, &stmt,
 				&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_chans()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
-			c->id = sqlite3_column_int(res,0);
-			strscpy(c->name, (char*) sqlite3_column_text(res, 1), NICKMAX);
-			strscpy(c->pass, (char*) sqlite3_column_text(res, 2), PASSMAX);
-			c->time_reg = sqlite3_column_int(res, 3);
-			c->aop_enabled = sqlite3_column_int(res, 4);
-			c->hop_enabled = sqlite3_column_int(res, 5);
-			c->sop_enabled = sqlite3_column_int(res, 6);
-			c->uop_enabled = sqlite3_column_int(res, 7);
-			c->vop_enabled = sqlite3_column_int(res, 8);
-			if(sqlite3_column_text(res,9)) {
-				c->bot = sstrdup((char*) sqlite3_column_text(res,9));
+			c->id = sqlite3_column_int(stmt,0);
+			strscpy(c->name, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
+			strscpy(c->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
+			c->time_reg = sqlite3_column_int(stmt, 3);
+			c->aop_enabled = sqlite3_column_int(stmt, 4);
+			c->hop_enabled = sqlite3_column_int(stmt, 5);
+			c->sop_enabled = sqlite3_column_int(stmt, 6);
+			c->uop_enabled = sqlite3_column_int(stmt, 7);
+			c->vop_enabled = sqlite3_column_int(stmt, 8);
+			if(sqlite3_column_text(stmt,9)) {
+				c->bot = sstrdup((char*) sqlite3_column_text(stmt,9));
 				add_bot_to_chan(c->bot,c->name);
 				add_bot(c->name,c->name);
 			} else {
 				c->bot = NULL;
 			}
-			c->founder = find_nick_by_id(sqlite3_column_int(res,10));
-			if(sqlite3_column_int(res,11)) {
-				c->successor = find_nick_by_id(sqlite3_column_int(res,11));
+			int founder = sqlite3_column_int(stmt,10);
+			c->founder = findnick((char*)sqlite3_column_text(stmt,10));
+			if(sqlite3_column_int(stmt,11)) {
+				c->successor = findnick((char*)sqlite3_column_int(stmt,11));
 			} else {
+				c->successor = NULL;
 			}
-			c->mlock = sstrdup((char*) sqlite3_column_text(res,12));
-			if(sqlite3_column_text(res,13)) {
-				c->topic = sstrdup((char*) sqlite3_column_text(res,13));
+			c->mlock = sstrdup((char*) sqlite3_column_text(stmt,12));
+			if(sqlite3_column_text(stmt,13)) {
+				c->topic = sstrdup((char*) sqlite3_column_text(stmt,13));
 			}
-			if(sqlite3_column_text(res,14)) {
-				c->topic_user = sstrdup((char*) sqlite3_column_text(res,14));
+			if(sqlite3_column_text(stmt,14)) {
+				c->topic_user = sstrdup((char*) sqlite3_column_text(stmt,14));
 			}
-			if(sqlite3_column_int(res, 15)) {
-				c->topic_time =  sqlite3_column_int(res, 15);
+			if(sqlite3_column_int(stmt, 15)) {
+				c->topic_time =  sqlite3_column_int(stmt, 15);
 			}
-			c->restricted = sqlite3_column_int(res, 16);
-			c->keeptopic = sqlite3_column_int(res, 17);
-			c->autovop = sqlite3_column_int(res, 18);
-			c->memolevel = sqlite3_column_int(res, 19);
-			c->leaveops = sqlite3_column_int(res, 20);
-			c->opwatch = sqlite3_column_int(res, 21);
-			c->url = sstrdup((char*) sqlite3_column_text(res,22));
-			c->topiclock = sqlite3_column_int(res, 23);
-			strscpy(c->description, (char*) sqlite3_column_text(res, 24), DESCMAX);
+			c->restricted = sqlite3_column_int(stmt, 16);
+			c->keeptopic = sqlite3_column_int(stmt, 17);
+			c->autovop = sqlite3_column_int(stmt, 18);
+			c->memolevel = sqlite3_column_int(stmt, 19);
+			c->leaveops = sqlite3_column_int(stmt, 20);
+			c->opwatch = sqlite3_column_int(stmt, 21);
+			c->url = sstrdup((char*) sqlite3_column_text(stmt,22));
+			c->topiclock = sqlite3_column_int(stmt, 23);
+			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24), DESCMAX);
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)
