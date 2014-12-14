@@ -216,6 +216,7 @@ NickInfo *findnick(const char *src) {
 	return n;
 }
 NickInfo *find_nick_by_id(int id) {
+	notice(as_name,"fish-guts","nick by id: %i",id);
 	NickInfo *n = nicklist;
 	while(n) {
 		if(n->id == id) {

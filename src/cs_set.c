@@ -446,6 +446,7 @@ void cs_set_successor(char *src,int ac,char **av) {
 	NickInfo *n = findnick(nick);
 	c->successor = n;
 	notice(cs_name,src,CS_RPL_SET_SUCC_SUCCESS,c->name,c->successor->nick);
+	add_to_list(n->nick, c->name, ACCESS_SUC, src, cs_xop_get_level(u,c));
 	return;
 }
 void cs_set_topiclock(char *src,int ac,char **av) {

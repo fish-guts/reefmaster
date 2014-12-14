@@ -63,6 +63,7 @@ void adminserv(char *src, char *av) {
 }
 
 void as_savedata(char *src,int ac,char **av) {
+	empty_tables();
 	save_botserv_db();
 	save_nickserv_db();
 	save_chanserv_db();

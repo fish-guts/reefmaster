@@ -7,6 +7,8 @@ int ns_reset(void);
 void db_save_nicks(void);
 void db_save_chans(void);
 void db_save_ops(void);
+void db_save_bots(void);
+void empty_tables(void);
 void load_database(void);
 void install_db(void);
 

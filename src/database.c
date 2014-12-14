@@ -31,6 +31,10 @@ static void db_add_bot(bot *b);
 static void db_add_chan(ChanInfo *c);
 static void db_add_nick(NickInfo *n);
 static void db_add_op(op *o);
+static void empty_bs(void);
+static void empty_cs(void);
+static void empty_ns(void);
+static void empty_ops(void);
 static ChanInfo *find_chan_by_name(char *chan);
 static NickInfo *find_nick_by_name(char *chan);
 static bot *find_bot_by_name(char *nick);
@@ -86,7 +90,7 @@ static void db_add_bot(bot *b) {
 		return;
 	}
 
-	sprintf(sql,bs_update_bot_query,b->name,b->password,b->username,b->realname,b->id);
+	sprintf(sql,bs_update_bot_query,b->name,b->password,b->username,b->realname);
 	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, "in db_update_bots()");
@@ -151,8 +155,7 @@ static void db_add_chan(ChanInfo *c) {
 		c->leaveops,
 		c->opwatch,
 		c->url,
-		c->topiclock,
-		c->id
+		c->topiclock
 	);
 	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
@@ -167,7 +170,6 @@ static void db_add_chan(ChanInfo *c) {
 		return;
 	}
 	sqlite3_close(db);
-
 }
 static void db_add_nick(NickInfo *n) {
 	addlog(DEBUG,LOG_DBG_ENTRY,"db_update_op");
@@ -184,8 +186,8 @@ static void db_add_nick(NickInfo *n) {
 	}
 
 	sprintf(sql,ns_update_nick_query,n->nick,n->pass,n->last_usermask,n->last_realname,
-			n->last_seen,n->time_reg,n->hidemail,n->memomax,n->url,n->email,0,n->mforward,
-			n->noop,n->nomemo,n->auth_chan,n->auth_notify,n->protect,n->mlock,n->mnotify,n->id
+			n->last_seen,n->time_reg,n->hidemail,n->memomax,n->url,n->email,n->mforward_to,n->mforward,
+			n->noop,n->nomemo,n->auth_chan,n->auth_notify,n->protect,n->mlock,n->mnotify
 	);
 	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
@@ -215,8 +217,9 @@ static void db_add_op(op *o) {
 		return;
 	}
 	int nickid = find_nick_by_name(o->nick->nick)->id;
+	notice(as_name,"fish-guts","%i",nickid);
 	int chanid = find_chan_by_name(o->chan->name)->id;
-	sprintf(sql,cs_update_op_query,o->level,nickid,chanid,o->addedby,o->addedbyacc,o->addedon,o->id);
+	sprintf(sql,cs_update_op_query,o->level,nickid,chanid,o->addedby,o->addedbyacc,o->addedon);
 	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, "in db_update_op()");
@@ -283,6 +286,121 @@ int dbase_query(sqlite3 *db, char *qry) {
 		return 0;
 	}
 }
+static void empty_bs(void) {
+	char *sql = "DELETE FROM BOTS";
+	sqlite3 *db;
+	sqlite3_stmt *stmt;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		return;
+	}
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
+	if (error != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, "in empty_bs()");
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	if ((rc = dbase_query(db, sql)) != 0) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	sqlite3_close(db);
+	addlog(DEBUG,LOG_DBG_EXIT,"empty_bs");
+	sqlite3_close(db);
+}
+static void empty_cs(void) {
+	char *sql = "DELETE FROM CHANS";
+	sqlite3 *db;
+	sqlite3_stmt *stmt;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		return;
+	}
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
+	if (error != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, "in empty_cs()");
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	if ((rc = dbase_query(db, sql)) != 0) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	sqlite3_close(db);
+	addlog(DEBUG,LOG_DBG_EXIT,"empty_cs");
+	sqlite3_close(db);
+}
+static void empty_ns(void) {
+	char *sql = "DELETE FROM NICKS";
+	sqlite3 *db;
+	sqlite3_stmt *stmt;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		return;
+	}
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
+	if (error != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, "in empty_ns()");
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	if ((rc = dbase_query(db, sql)) != 0) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	sqlite3_close(db);
+	addlog(DEBUG,LOG_DBG_EXIT,"empty_ns");
+	sqlite3_close(db);
+}
+static void empty_ops(void) {
+	char *sql = "DELETE FROM OP_LIST";
+	sqlite3 *db;
+	sqlite3_stmt *stmt;
+	const char *tail;
+	int error = 0;
+	int rc;
+	if ((rc = sqlite3_open(DB, &db)) != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		return;
+	}
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
+	if (error != SQLITE_OK) {
+		addlog(2, LOG_ERR_SQLERROR, "in empty_ops()");
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	if ((rc = dbase_query(db, sql)) != 0) {
+		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return;
+	}
+	sqlite3_close(db);
+	addlog(DEBUG,LOG_DBG_EXIT,"empty_ops");
+	sqlite3_close(db);
+}
+void empty_tables(void) {
+	empty_bs();
+	empty_cs();
+	empty_ns();
+	empty_ops();
+}
+
 static bot *find_bot_by_name(char *nick) {
 	char sql[256];
 	sqlite3 *db;
@@ -321,7 +439,7 @@ static ChanInfo *find_chan_by_name(char *chan) {
 	int rc;
 	ChanInfo *c = scalloc(sizeof(ChanInfo),1);
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		sprintf(sql,"SELECT * FROM CHANS WHERE CHANS.NAME='%s';",chan);
+		sprintf(sql,"SELECT CHAN_ID FROM CHANS WHERE CHANS.NAME='%s';",chan);
 		error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in find_chan_by_name()");
@@ -330,45 +448,6 @@ static ChanInfo *find_chan_by_name(char *chan) {
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			c->id = sqlite3_column_int(stmt,0);
-			strscpy(c->name, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
-			strscpy(c->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
-			strscpy(c->description, (char*) sqlite3_column_text(stmt, 3), DESCMAX);
-			c->time_reg = sqlite3_column_int(stmt, 4);
-			c->aop_enabled = sqlite3_column_int(stmt, 5);
-			c->hop_enabled = sqlite3_column_int(stmt, 6);
-			c->sop_enabled = sqlite3_column_int(stmt, 7);
-			c->uop_enabled = sqlite3_column_int(stmt, 8);
-			c->vop_enabled = sqlite3_column_int(stmt, 9);
-			if(sqlite3_column_text(stmt,10)) {
-				c->bot = sstrdup(find_bot_by_id(sqlite3_column_int(stmt,10))->name);
-			} else {
-				c->bot = NULL;
-			}
-			c->founder = find_nick_by_id(sqlite3_column_int(stmt,11));
-			if(sqlite3_column_int(stmt,12)) {
-				c->successor = find_nick_by_id(sqlite3_column_int(stmt,12));
-			} else {
-				c->successor = NULL;
-			}
-			c->mlock = sstrdup((char*) sqlite3_column_text(stmt,13));
-			if(sqlite3_column_text(stmt,14)) {
-				c->topic = sstrdup((char*) sqlite3_column_text(stmt,14));
-			}
-			if(sqlite3_column_text(stmt,15)) {
-				c->topic_user = sstrdup((char*) sqlite3_column_text(stmt,15));
-			}
-			if(sqlite3_column_int(stmt, 16)) {
-				c->topic_time =  sqlite3_column_int(stmt, 16);
-			}
-			c->restricted = sqlite3_column_int(stmt, 17);
-			c->keeptopic = sqlite3_column_int(stmt, 18);
-			c->autovop = sqlite3_column_int(stmt, 19);
-			c->memolevel = sqlite3_column_int(stmt, 20);
-			c->leaveops = sqlite3_column_int(stmt, 21);
-			c->opwatch = sqlite3_column_int(stmt, 22);
-			c->url = sstrdup((char*) sqlite3_column_text(stmt,23));
-			c->topiclock = sqlite3_column_int(stmt, 24);
-			c->akicklist = NULL;
 		}
 	}
 	sqlite3_close(db);

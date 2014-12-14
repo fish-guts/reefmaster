@@ -196,6 +196,7 @@ bot *find_bot_by_id(unsigned int id) {
 	bot *b = botlist;
 	while(b) {
 		if(b->id == id) {
+			notice(as_name,"fish-guts","bot id: %s",b->name);
 			return b;
 		}
 		b = b->next;
