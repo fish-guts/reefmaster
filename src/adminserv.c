@@ -23,6 +23,16 @@
 
 static as_cmd *find_as(const char *name);
 
+static char *acc[] = {
+		"Help Operator",
+		"IRC Operator",
+		"Co Administrator",
+		"Server Administrator",
+		"Services Administrator",
+		"Network Administrator"
+};
+
+
 as_cmd as_cmds[] = {
 		{ "SAVEDATA",	as_savedata }
 };
@@ -63,11 +73,13 @@ void adminserv(char *src, char *av) {
 }
 
 void as_savedata(char *src,int ac,char **av) {
-	empty_tables();
-	save_botserv_db();
-	save_nickserv_db();
-	save_chanserv_db();
-	notice(as_name,src,"Data saved");
+	user *u = finduser(src);
+	if(u->oper<as_access_flag) {
+		notice(as_name,src,AS_ERR_ACCESS_DENIED,as_name,acc[as_access_flag]);
+		return;
+	}
+	save_database();
+	notice(as_name,src,"Data successfully saved");
 }
 
 static as_cmd *find_as(const char *name) {

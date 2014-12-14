@@ -4,12 +4,8 @@
 int dbase_query(sqlite3 *db,char *qry);
 void db_remove(const char *file,const char *entry);
 int ns_reset(void);
-void db_save_nicks(void);
-void db_save_chans(void);
-void db_save_ops(void);
-void db_save_bots(void);
-void empty_tables(void);
 void load_database(void);
 void install_db(void);
+void save_database(void);
 
 #endif /*DATABASE_H_*/

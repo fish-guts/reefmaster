@@ -72,7 +72,6 @@ void inc_list(ChanInfo *c,int list);
 int isidentifiedcs(user *u, ChanInfo *c);
 ChanInfo *register_chan(const char *src,char *name,char *pass,char *desc);
 void remove_from_chan_list(char *nick,ChanInfo *c,op *o);
-void save_chanserv_db(void);
 void update_xop_list(op *o);
 
 

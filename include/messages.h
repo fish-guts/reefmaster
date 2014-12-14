@@ -64,6 +64,12 @@
 #define CONG_MSG_VOP_SECTION		"the 'Vop' section\n\n"
 
 /*
+ * Adminserv messages
+ ******************************************************************************************************************************************
+ */
+
+#define AS_ERR_ACCESS_DENIED		"Access denied to that function of \2%s\2. You need \2%s\2 or higher access"
+/*
  * Nickserv messages
  ******************************************************************************************************************************************
  */

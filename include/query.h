@@ -270,6 +270,48 @@ const char *bs_update_bot_query = "INSERT INTO 'BOTS' ("
 		"'%s',"
 		"'%s');";
 
+const char *cs_update_akick_query = "INSERT INTO 'CS_AKICK' ("
+		"CHAN,"
+		"MASK,"
+		"ADDED_BY,"
+		"ADDED_BY_ACC,"
+		"ADDED_ON,"
+		"REASON) VALUES("
+		"%i,"
+		"'%s',"
+		"'%s',"
+		"'%i',"
+		"'%ld',"
+		"'%s');";
+
+const char *ns_update_auth_query = "INSERT INTO 'NS_AUTH' ("
+		"TARGET_TYPE,"
+		"TARGET,"
+		"SENDER,"
+		"RECIPIENT,"
+		"TIME,"
+		"STATUS,"
+		"ACCESS) VALUES("
+		"%i,"
+		"%i,"
+		"%i,"
+		"%i,"
+		"'%ld',"
+		"%i,"
+		"%i);";
+
+const char *ns_update_access_query = "INSERT INTO 'NS_ACCESS' ("
+		"NICK_ID,"
+		"MASK) VALUES("
+		"%i,"
+		"'%s');";
+
+const char *ns_update_notify_query = "INSERT INTO 'NS_NOTIFY' ("
+		"NICK_ID,"
+		"NOTIFICATION_NICK_ID) VALUES("
+		"%i,"
+		"%i);";
+
 const char *cs_update_op_query = "INSERT INTO 'OP_LIST' ( "
 		"TYPE,"
 		"NICK,"

@@ -418,13 +418,6 @@ static void rem_ns_timeout(user *u, int type) {
 }
 /********************************************************************/
 /**
- * write the nickname table to the database
- */
-void save_nickserv_db(void) {
-	db_save_nicks();
-}
-/********************************************************************/
-/**
  * add a timer if a user occupies a registered nickname
  */
 static void timeout_collide(timer *t) {

@@ -123,6 +123,7 @@ void start_app(void) {
 	}
 	set_timer(2);
 	load_database();
+	next_save = time(NULL) + 20;
 	rc = sock_init();
 	if(rc<0)
 	{

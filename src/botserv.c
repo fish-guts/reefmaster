@@ -189,9 +189,6 @@ bot *findbot_onchan(char *botname,char *chan) {
 /**
  * write the chan table to the database
  */
-void save_botserv_db(void) {
-	db_save_bots();
-}
 bot *find_bot_by_id(unsigned int id) {
 	bot *b = botlist;
 	while(b) {

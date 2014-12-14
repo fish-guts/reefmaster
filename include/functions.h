@@ -9,6 +9,7 @@ int check_nick(user *u,char *pass);
 void check_bots(void);
 void check_services(void);
 void check_timeouts(void);
+void check_save(void);
 
 void del_timeout(timer *t);
 int hasaccess(user *u,char *nick);

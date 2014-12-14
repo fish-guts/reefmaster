@@ -137,6 +137,11 @@ int bs_status;
 int os_status;
 int as_status;
 
+/* other things */
+
+time_t next_save;
+int save_interval = 20;
+
 /* These are the variables set by the config file */
 
 /* Block "services" */

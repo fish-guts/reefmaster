@@ -152,6 +152,22 @@ void gline(char *user,char *host,char *reason,int timestamp) {
 }
 /********************************************************************/
 /**
+ * send a GLOBOPS command to the server
+ */
+void globops(char *src,char *msg,...)
+{
+	char buf[512];
+	char *buff = (char*)malloc(sizeof(char)*512);
+	va_list va;
+	va_start(va,msg);
+	vsprintf(buf,msg,va);
+	sprintf(buff,":%s GLOBOPS :%s\r\n",src,buf);
+	send(mainsock,buff,(int)strlen(buff),0);
+	free(buff);
+	va_end(va);
+}
+/********************************************************************/
+/**
  * grant the half-operator status to a user on a channel
  */
 void hop(char *src,char *target,char *chan) {

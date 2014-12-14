@@ -1293,7 +1293,7 @@ int config_load(const char *file)
 		CFG_END()
 	};
 	static cfg_opt_t as_misc_opts[] = {
-		CFG_INT_CB("access_flag",4,CFGF_NONE,(void*)&config_oper),
+		CFG_INT_CB("access_flag",4,CFGF_NONE,(void*)&config_as_access_flag),
 		CFG_END()
 	};
 	static cfg_opt_t adminserv_opts[] = {
@@ -1545,7 +1545,6 @@ int config_load(const char *file)
 
 		/* section misc */
 		as_misc = cfg_getsec(adminserv,"misc");
-		as_access_flag = cfg_getint(as_misc,"access_flag");	
 	}
 	return 0;
 }
@@ -1763,6 +1762,18 @@ int config_oper(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result)
 		return -1;
 	}
 	*(const char **)result = (const char *)value;
+	return 0;
+}
+int config_as_access_flag(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result)
+{
+	int val = atoi(value);
+	if((val<0) || (val>6))
+	{
+		cfg_error(cfg,CONF_ERR_INT,CONFIG_FILE,cfg->line,opt->name,0,6);
+		return -1;
+	}
+	*(const char **)result = (const char *)value;
+	as_access_flag = val;
 	return 0;
 }
 int config_passAction(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result)

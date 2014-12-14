@@ -16,6 +16,7 @@ void do_op(char *src,char *target,char *chan);
 void do_owner(char *src,char *target,char *chan);
 void do_part(char *src,char *chan,char *msg);
 void gline(char *user,char *host,char *reason,int timestamp);
+void globops(char *src,char *msg,...);
 void hop(char *src,char *target,char *chan);
 void invite(char *src,char *target,char *chan);
 void kick(char *src,const char *target,char *chan,char *reason);

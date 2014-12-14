@@ -381,14 +381,6 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 }
 /********************************************************************/
 /**
- * write the chan table to the database
- */
-void save_chanserv_db(void) {
-	db_save_chans();
-	db_save_ops();
-}
-/********************************************************************/
-/**
  * update the access table of the channels
  */
 void update_xop_list(op *o) {

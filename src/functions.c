@@ -352,6 +352,13 @@ void check_connections(void) {
 	check_services();
 	check_bots();
 }
+void check_save(void) {
+	time_t now = time(NULL);
+	if(now >= next_save) {
+		save_database();
+		next_save = now + (save_interval * 60);
+	}
+}
 void check_timeouts(void) {
 	timer *t1, *t2;
 	time_t t = time(NULL);
@@ -420,6 +427,7 @@ void timer_event_handler(int sigid) {
 	if (sigid == SIGALRM) {
 		check_timeouts();
 		check_connections();
+		check_save();
 	}
 }
 
