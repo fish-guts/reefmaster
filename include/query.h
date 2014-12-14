@@ -287,6 +287,14 @@ const char *bs_update_bot_query = "UPDATE 'BOTS' SET "
 		"USERNAME = '%s',"
 		"REALNAME = '%s' WHERE BOTS.BOT_ID=%i";
 
+const char *cs_update_op_query = "UPDATE 'OP_LIST' SET "
+		"TYPE = %i,"
+		"NICK = %i,"
+		"CHAN = %i,"
+		"ADDED_BY = '%s',"
+		"ADDED_BY_ACC = %i,"
+		"ADDED_ON = '%ld' WHERE OP_LIST.OP_LIST_ID=%i";
+
 
 
 #endif /* QUERY_H_ */

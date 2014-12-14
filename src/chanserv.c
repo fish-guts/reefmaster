@@ -385,6 +385,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
  */
 void save_chanserv_db(void) {
 	db_save_chans();
+	db_save_ops();
 }
 /********************************************************************/
 /**
