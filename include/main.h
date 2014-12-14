@@ -41,8 +41,8 @@
 #include "operserv.h"
 #include "sock.h"
 #include "user.h"
-#include "adminserv.h"
 #include "botserv.h"
+#include "adminserv.h"
 
 /* global vars */ 
 int mainsock;
@@ -140,7 +140,7 @@ int as_status;
 /* other things */
 
 time_t next_save;
-int save_interval = 20;
+int save_interval;
 
 /* These are the variables set by the config file */
 

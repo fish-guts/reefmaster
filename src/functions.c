@@ -23,7 +23,7 @@
 
 volatile int sig_flag = 0;
 static timer *timeouts = NULL;
-
+int save_interval = 20;
 static int ifmatch(const char *pattern, const char *str, int mode);
 
 int hasaccess(user *u, char *nick) {
@@ -356,7 +356,7 @@ void check_save(void) {
 	time_t now = time(NULL);
 	if(now >= next_save) {
 		save_database();
-		next_save = now + (save_interval * 60);
+		next_save = now + (save_interval);
 	}
 }
 void check_timeouts(void) {
