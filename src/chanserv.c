@@ -327,9 +327,6 @@ ChanInfo *findchan(const char *chan) {
 
 ChanInfo *find_chan_by_id(unsigned int id) {
 	ChanInfo *c = chans;
-	if(!chans) {
-		return NULL;
-	}
 	while(c) {
 		if(c->id == id) {
 			return c;
@@ -384,7 +381,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 }
 /********************************************************************/
 /**
- * write the nickname table to the database
+ * write the chan table to the database
  */
 void save_chanserv_db(void) {
 	db_save_chans();

@@ -20,6 +20,8 @@ bot *findbot_onchan(char *botname,char *chan);
 void load_bot(int id,char *botname, char *password, char *username, char *realname);
 bot *register_bot(char *botname,char *password);
 void remove_bot_from_chan(char *botname, char *chan);
+void save_botserv_db(void);
+bot *find_bot_by_id(unsigned int id);
 
 
 #endif /*BOTSERV_H_*/

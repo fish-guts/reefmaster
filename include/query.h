@@ -221,7 +221,7 @@ const char *cs_update_chan_query = "UPDATE 'CHANS' SET "
 	   "SOP_ENABLED=%i,"
 	   "UOP_ENABLED=%i,"
 	   "VOP_ENABLED=%i,"
-	   "BOT='%s',"
+	   "BOT=%i,"
 	   "FOUNDER=%i,"
 	   "SUCCESSOR=%i,"
 	   "MLOCK='%s',"
@@ -259,7 +259,7 @@ const char *cs_add_nick_query = "INSERT INTO 'NICKS' "
 		"MNOTIFY) "
 		"VALUES('%s','%s','%s','%s','%ld','%ld','%i','%i','%i','%s','%i','%i','%i','%i','%i','%i','%i','%s','%i');";
 
-const char *cs_update_nick_query = "UPDATE 'NICKS' SET"
+const char *ns_update_nick_query = "UPDATE 'NICKS' SET"
 		" NICKNAME='%s',"
 		"PASSWORD='%s',"
 		"MASK='%s',"
@@ -279,6 +279,14 @@ const char *cs_update_nick_query = "UPDATE 'NICKS' SET"
 		"PROTECT=%i,"
 		"MLOCK='%s',"
 		"MNOTIFY=%i WHERE NICKS.NICK_ID=%i;";
+
+
+const char *bs_update_bot_query = "UPDATE 'BOTS' SET "
+		"NICKNAME = '%s',"
+		"PASSWORD = '%s',"
+		"USERNAME = '%s',"
+		"REALNAME = '%s' WHERE BOTS.BOT_ID=%i";
+
 
 
 #endif /* QUERY_H_ */
