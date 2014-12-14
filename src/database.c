@@ -181,7 +181,7 @@ void db_save_bots(void) {
 	while(b) {
 		bot *b1 = find_bot_by_name(b->name);
 		if(b1) {
-			db_update_bot(b1);
+			db_update_bot(b);
 		} else {
 			db_add_bot(b1);
 		}
@@ -195,7 +195,7 @@ static void db_update_bot(bot *b) {
 	addlog(DEBUG,LOG_DBG_ENTRY,"db_update_bot");
 	char sql[2048];
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
@@ -205,7 +205,7 @@ static void db_update_bot(bot *b) {
 	}
 
 	sprintf(sql,bs_update_bot_query,b->name,b->password,b->username,b->realname,b->id);
-	error = sqlite3_prepare_v2(db,sql, 1000, &res,&tail);
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, "in db_update_bots()");
 		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
@@ -223,7 +223,7 @@ static void db_update_bot(bot *b) {
 }
 
 void db_add_nick(NickInfo *n) {
-	char *sql = (char*) malloc(sizeof(char) * 65565);
+	//char *sql = (char*) malloc(sizeof(char) * 65565);
 	sqlite3 *db;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) != SQLITE_OK) {
@@ -234,7 +234,7 @@ void db_add_nick(NickInfo *n) {
 static void db_update_nick(NickInfo *n) {
 	char sql[2048];
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
@@ -247,7 +247,7 @@ static void db_update_nick(NickInfo *n) {
 			n->last_seen,n->time_reg,n->hidemail,n->memomax,n->url,n->email,0,n->mforward,
 			n->noop,n->nomemo,n->auth_chan,n->auth_notify,n->protect,n->mlock,n->mnotify,n->id
 	);
-	error = sqlite3_prepare_v2(db,sql, 1000, &res,&tail);
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, "in db_update_nick()");
 		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
@@ -263,9 +263,9 @@ static void db_update_nick(NickInfo *n) {
 
 }
 static void db_update_chan(ChanInfo *c) {
-	char sql[8196];
+	char sql[4096];
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
@@ -276,7 +276,6 @@ static void db_update_chan(ChanInfo *c) {
 	NickInfo *founder = find_nick_by_name(c->founder->nick);
 	int successor;
 	if(c->successor) {
-		notice(as_name,"fish-guts", "successor: %s", c->successor->nick);
 		successor = find_nick_by_name(c->successor->nick)->id;
 	} else {
 		successor = -1;
@@ -314,7 +313,7 @@ static void db_update_chan(ChanInfo *c) {
 		c->topiclock,
 		c->id
 	);
-	error = sqlite3_prepare_v2(db,sql, 1000, &res,&tail);
+	error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 	if (error != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, "in db_update_chan()");
 		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
@@ -332,44 +331,44 @@ static void db_update_chan(ChanInfo *c) {
 static NickInfo *find_nick_by_name(char *nick) {
 	char sql[256];
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	NickInfo *n = scalloc(sizeof(NickInfo),1);
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
 		sprintf(sql,"SELECT * FROM NICKS WHERE NICKS.NICKNAME='%s';",nick);
-		error = sqlite3_prepare_v2(db,sql, 1000, &res,&tail);
+		error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in find_nick_by_name()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 			return NULL;
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			n->id = sqlite3_column_int(res,0);
-			strscpy(n->nick, (char*) sqlite3_column_text(res, 1), NICKMAX);
-			strscpy(n->pass, (char*) sqlite3_column_text(res, 2), PASSMAX);
-			n->last_usermask = sstrdup((char*) sqlite3_column_text(res, 3));
-			n->last_realname = sstrdup((char*) sqlite3_column_text(res, 4));
-			n->last_seen = sqlite3_column_int(res, 5);
-			n->time_reg = sqlite3_column_int(res, 6);
-			n->hidemail = sqlite3_column_int(res, 7);
-			n->memomax = sqlite3_column_int(res, 8);
-			n->url = sstrdup((char*) sqlite3_column_text(res, 9));
-			n->email = sstrdup((char*) sqlite3_column_text(res, 10));
-			if((char*) sqlite3_column_text(res, 11)) {
-				n->mforward_to = sstrdup((char*) sqlite3_column_text(res, 11));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			n->id = sqlite3_column_int(stmt,0);
+			strscpy(n->nick, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
+			strscpy(n->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
+			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, 3));
+			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, 4));
+			n->last_seen = sqlite3_column_int(stmt, 5);
+			n->time_reg = sqlite3_column_int(stmt, 6);
+			n->hidemail = sqlite3_column_int(stmt, 7);
+			n->memomax = sqlite3_column_int(stmt, 8);
+			n->url = sstrdup((char*) sqlite3_column_text(stmt, 9));
+			n->email = sstrdup((char*) sqlite3_column_text(stmt, 10));
+			if((char*) sqlite3_column_text(stmt, 11)) {
+				n->mforward_to = sstrdup((char*) sqlite3_column_text(stmt, 11));
 			} else {
 				n->mforward_to = NULL;
 			}
-			n->mforward = sqlite3_column_int(res, 12);
-			n->noop = sqlite3_column_int(res, 13);
-			n->nomemo = sqlite3_column_int(res, 14);
-			n->auth_chan = sqlite3_column_int(res, 15);
-			n->auth_notify = sqlite3_column_int(res, 16);
-			n->protect = sqlite3_column_int(res, 17);
-			n->mlock = (char*) sqlite3_column_text(res,18);
-			n->mnotify = sqlite3_column_int(res, 19);
+			n->mforward = sqlite3_column_int(stmt, 12);
+			n->noop = sqlite3_column_int(stmt, 13);
+			n->nomemo = sqlite3_column_int(stmt, 14);
+			n->auth_chan = sqlite3_column_int(stmt, 15);
+			n->auth_notify = sqlite3_column_int(stmt, 16);
+			n->protect = sqlite3_column_int(stmt, 17);
+			n->mlock = (char*) sqlite3_column_text(stmt,18);
+			n->mnotify = sqlite3_column_int(stmt, 19);
 			n->notifylist = NULL;
 			n->accesslist = NULL;
 		}
@@ -380,25 +379,25 @@ static NickInfo *find_nick_by_name(char *nick) {
 static bot *find_bot_by_name(char *nick) {
 	char sql[256];
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	bot *b = scalloc(sizeof(bot),1);
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
 		sprintf(sql,"SELECT * FROM BOTS WHERE BOTS.NICKNAME='%s';",nick);
-		error = sqlite3_prepare_v2(db,sql, 1000, &res,&tail);
+		error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in find_nick_by_name()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 			return NULL;
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			b->id = sqlite3_column_int(res,0);
-			b->name = sstrdup((char*) sqlite3_column_text(res, 1));
-			b->password = sstrdup((char*) sqlite3_column_text(res, 2));
-			b->realname = sstrdup((char*) sqlite3_column_text(res, 3));
-			b->username = sstrdup((char*) sqlite3_column_text(res, 4));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			b->id = sqlite3_column_int(stmt,0);
+			b->name = sstrdup((char*) sqlite3_column_text(stmt, 1));
+			b->password = sstrdup((char*) sqlite3_column_text(stmt, 2));
+			b->realname = sstrdup((char*) sqlite3_column_text(stmt, 3));
+			b->username = sstrdup((char*) sqlite3_column_text(stmt, 4));
 			b->chanlist = NULL;
 		}
 	}
@@ -507,22 +506,22 @@ static void load_nickserv(void) {
 }
 void load_botserv(void) {
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db,"SELECT * FROM BOTS", 1000, &res,&tail);
+		error = sqlite3_prepare_v2(db,"SELECT * FROM BOTS", 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_botserv()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			int id = sqlite3_column_int(res,0);
-			char *name = sstrdup((const char*)sqlite3_column_text(res, 1));
-			char *password = sstrdup((const char*)sqlite3_column_text(res, 2));
-			char *username = sstrdup((const char*)sqlite3_column_text(res, 3));
-			char *realname = sstrdup((const char*)sqlite3_column_text(res, 4));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			int id = sqlite3_column_int(stmt,0);
+			char *name = sstrdup((const char*)sqlite3_column_text(stmt, 1));
+			char *password = sstrdup((const char*)sqlite3_column_text(stmt, 2));
+			char *username = sstrdup((const char*)sqlite3_column_text(stmt, 3));
+			char *realname = sstrdup((const char*)sqlite3_column_text(stmt, 4));
 			load_bot(id,name,password,username,realname);
 		}
 	}
@@ -530,24 +529,24 @@ void load_botserv(void) {
 }
 static void load_access(void) {
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db,load_ns_access, 1000, &res,&tail);
+		error = sqlite3_prepare_v2(db,load_ns_access, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_access()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			NickInfo *n = findnick((const char*)sqlite3_column_text(res, 1));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			NickInfo *n = findnick((const char*)sqlite3_column_text(stmt, 1));
 			myacc *a = scalloc(sizeof(myacc), 1);
 			a->next = n->accesslist;
 			if (n->accesslist)
 				n->accesslist->prev = a;
-			a->id = sqlite3_column_int(res,0);
-			a->mask = sstrdup((const char*)sqlite3_column_text(res, 2));
+			a->id = sqlite3_column_int(stmt,0);
+			a->mask = sstrdup((const char*)sqlite3_column_text(stmt, 2));
 			n->accesslist = a;
 		}
 	}
@@ -556,24 +555,24 @@ static void load_access(void) {
 
 static void load_notify(void) {
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db,load_ns_notify, 1000, &res,&tail);
+		error = sqlite3_prepare_v2(db,load_ns_notify, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_notify()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			NickInfo *n = findnick((const char*)sqlite3_column_text(res, 0));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			NickInfo *n = findnick((const char*)sqlite3_column_text(stmt, 0));
 			notify *no = scalloc(sizeof(notify), 1);
 			no->next = n->notifylist;
 			if (n->notifylist)
 				n->notifylist->prev = no;
 			n->notifylist = no;
-			no->nick = findnick((const char*)sqlite3_column_text(res, 1));
+			no->nick = findnick((const char*)sqlite3_column_text(stmt, 1));
 		}
 	}
 	sqlite3_close(db);
@@ -581,72 +580,72 @@ static void load_notify(void) {
 static void load_auth(void) {
 	addlog(1, LOG_DBG_ENTRY, "load_auth");
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc = 0;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db,load_ns_auth, 1000, &res,	&tail);
+		error = sqlite3_prepare_v2(db,load_ns_auth, 1000, &stmt,	&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_auth()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			NickInfo *n = findnick((const char*)sqlite3_column_text(res, 3));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			NickInfo *n = findnick((const char*)sqlite3_column_text(stmt, 3));
 			auth *a = scalloc(sizeof(auth), 1);
 			a->next = n->authlist;
 			if (n->authlist)
 				n->authlist->prev = a;
 			n->authlist = a;
-			a->type = sqlite3_column_int(res,0);
-			a->target = sstrdup((const char*)sqlite3_column_text(res,1));
-			a->sender = sstrdup((const char*)sqlite3_column_text(res, 2));
-			a->date = sqlite3_column_int(res,4);
-			a->status = sqlite3_column_int(res,5);
-			a->acclevel = sqlite3_column_int(res,6);
+			a->type = sqlite3_column_int(stmt,0);
+			a->target = sstrdup((const char*)sqlite3_column_text(stmt,1));
+			a->sender = sstrdup((const char*)sqlite3_column_text(stmt, 2));
+			a->date = sqlite3_column_int(stmt,4);
+			a->status = sqlite3_column_int(stmt,5);
+			a->acclevel = sqlite3_column_int(stmt,6);
 		}
 	}
 	sqlite3_close(db);
 }
 static void load_nicks(void) {
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db, "select * from nicks", 1000, &res,
+		error = sqlite3_prepare_v2(db, "select * from nicks", 1000, &stmt,
 				&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_nicks()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			NickInfo *n = scalloc(sizeof(NickInfo), 1);
-			n->id = sqlite3_column_int(res,0);
-			strscpy(n->nick, (char*) sqlite3_column_text(res, 1), NICKMAX);
-			strscpy(n->pass, (char*) sqlite3_column_text(res, 2), PASSMAX);
-			n->last_usermask = sstrdup((char*) sqlite3_column_text(res, 3));
-			n->last_realname = sstrdup((char*) sqlite3_column_text(res, 4));
-			n->last_seen = sqlite3_column_int(res, 5);
-			n->time_reg = sqlite3_column_int(res, 6);
-			n->hidemail = sqlite3_column_int(res, 7);
-			n->memomax = sqlite3_column_int(res, 8);
-			n->url = sstrdup((char*) sqlite3_column_text(res, 9));
-			n->email = sstrdup((char*) sqlite3_column_text(res, 10));
-			if((char*) sqlite3_column_text(res, 11)) {
-				n->mforward_to = sstrdup((char*) sqlite3_column_text(res, 11));
+			n->id = sqlite3_column_int(stmt,0);
+			strscpy(n->nick, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
+			strscpy(n->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
+			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, 3));
+			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, 4));
+			n->last_seen = sqlite3_column_int(stmt, 5);
+			n->time_reg = sqlite3_column_int(stmt, 6);
+			n->hidemail = sqlite3_column_int(stmt, 7);
+			n->memomax = sqlite3_column_int(stmt, 8);
+			n->url = sstrdup((char*) sqlite3_column_text(stmt, 9));
+			n->email = sstrdup((char*) sqlite3_column_text(stmt, 10));
+			if((char*) sqlite3_column_text(stmt, 11)) {
+				n->mforward_to = sstrdup((char*) sqlite3_column_text(stmt, 11));
 			} else {
 				n->mforward_to = NULL;
 			}
-			n->mforward = sqlite3_column_int(res, 12);
-			n->noop = sqlite3_column_int(res, 13);
-			n->nomemo = sqlite3_column_int(res, 14);
-			n->auth_chan = sqlite3_column_int(res, 15);
-			n->auth_notify = sqlite3_column_int(res, 16);
-			n->protect = sqlite3_column_int(res, 17);
-			n->mlock = (char*) sqlite3_column_text(res,18);
-			n->mnotify = sqlite3_column_int(res, 19);
+			n->mforward = sqlite3_column_int(stmt, 12);
+			n->noop = sqlite3_column_int(stmt, 13);
+			n->nomemo = sqlite3_column_int(stmt, 14);
+			n->auth_chan = sqlite3_column_int(stmt, 15);
+			n->auth_notify = sqlite3_column_int(stmt, 16);
+			n->protect = sqlite3_column_int(stmt, 17);
+			n->mlock = (char*) sqlite3_column_text(stmt,18);
+			n->mnotify = sqlite3_column_int(stmt, 19);
 			n->notifylist = NULL;
 			n->accesslist = NULL;
 			n->next = nicklist;
@@ -715,7 +714,6 @@ void load_chans(void) {
 			c->url = sstrdup((char*) sqlite3_column_text(stmt,22));
 			c->topiclock = sqlite3_column_int(stmt, 23);
 			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24), DESCMAX);
-			printf("Chan found: %s\n",c->name);
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)
@@ -725,40 +723,34 @@ void load_chans(void) {
 	}
 	sqlite3_close(db);
 	addlog(DEBUG,LOG_DBG_EXIT,"load_chans");
-	if(chans) {
-		printf("chans loaded\n");
-	} else {
-		printf("no chans\n");
-	}
-
 }
 static void load_akick(void) {
 	addlog(DEBUG,LOG_DBG_ENTRY,"load_akick");
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db,cs_load_akick, 1000, &res,&tail);
+		error = sqlite3_prepare_v2(db,cs_load_akick, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_akick()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
-			ChanInfo *c = find_chan_by_id(sqlite3_column_int(res, 1));
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			ChanInfo *c = find_chan_by_id(sqlite3_column_int(stmt, 1));
 			akick *ak = scalloc(sizeof(akick), 1);
 			ak->next = c->akicklist;
 			if (c->akicklist)
 				c->akicklist->prev = ak;
 
 			c->akicklist = ak;
-			ak->id = sqlite3_column_int(res,0);
-			ak->mask = sstrdup((const char*)sqlite3_column_text(res, 2));
-			ak->added_by = sstrdup((const char*)sqlite3_column_text(res, 3));
-			ak->added_by_acc = sqlite3_column_int(res,4);
-			ak->added_on = sqlite3_column_int(res,5);
-			ak->reason = sstrdup((const char*)sqlite3_column_text(res, 6));
+			ak->id = sqlite3_column_int(stmt,0);
+			ak->mask = sstrdup((const char*)sqlite3_column_text(stmt, 2));
+			ak->added_by = sstrdup((const char*)sqlite3_column_text(stmt, 3));
+			ak->added_by_acc = sqlite3_column_int(stmt,4);
+			ak->added_on = sqlite3_column_int(stmt,5);
+			ak->reason = sstrdup((const char*)sqlite3_column_text(stmt, 6));
 		}
 	}
 	addlog(DEBUG,LOG_DBG_EXIT,"load_akick");
@@ -766,27 +758,26 @@ static void load_akick(void) {
 }
 static void load_ops(void) {
 	sqlite3 *db;
-	sqlite3_stmt *res;
+	sqlite3_stmt *stmt;
 	const char *tail;
 	int error = 0;
 	int rc;
 	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-		error = sqlite3_prepare_v2(db,"select * from OP_LIST", 1000, &res,
+		error = sqlite3_prepare_v2(db,"select * from OP_LIST", 1000, &stmt,
 				&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_ops()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		while (sqlite3_step(res) == SQLITE_ROW) {
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			op *o = scalloc(sizeof(op),1);
-
-			o->id = sqlite3_column_int(res,0);
-			o->level = sqlite3_column_int(res,1);
-			o->nick = find_nick_by_id(sqlite3_column_int(res,2));
-			o->chan = find_chan_by_id(sqlite3_column_int(res,3));
-			o->addedby = sstrdup((const char*)sqlite3_column_text(res,4));
-			o->addedbyacc = sqlite3_column_int(res,5);
-			o->addedon = sqlite3_column_int(res,6);
+			o->id = sqlite3_column_int(stmt,0);
+			o->level = sqlite3_column_int(stmt,1);
+			o->nick = find_nick_by_id(sqlite3_column_int(stmt,2));
+			o->chan = find_chan_by_id(sqlite3_column_int(stmt,3));
+			o->addedby = sstrdup((const char*)sqlite3_column_text(stmt,4));
+			o->addedbyacc = sqlite3_column_int(stmt,5);
+			o->addedon = sqlite3_column_int(stmt,6);
 			o->next = global_op_list;
 			if (global_op_list)
 				global_op_list->prev = o;
