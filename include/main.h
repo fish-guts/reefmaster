@@ -26,7 +26,7 @@
 
 
 
-
+#include "serverprotocol.h"
 #include "channel.h"
 #include "chanserv.h"
 #include "commands.h"

@@ -33,7 +33,7 @@ static char *aoper[] = {
 extern int os_connect(int sock)
 {
 	char *nick = (char*) malloc(sizeof(char)*256);
-	sprintf(nick,"& %s 1 0 %s %s %s 0 +qdS * :%s\r\n",os_name,s_user,s__host,s_name,os_realname);
+	sprintf(nick,SNICK,os_name,s_user,s__host,s_name,os_realname);
 	send(sock,nick,(int)strlen(nick),0);
 	return 0;
 }

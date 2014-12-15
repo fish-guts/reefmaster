@@ -30,7 +30,7 @@ extern int ms_connect(int sock)
 	char *user = s_user;			 		// user of services server
 	char *host = s__host;			 		// host of services server
 	char *realname = ms_realname;			 // realname of Nickserv
-	sprintf(NICK,"& %s 1 0 %s %s %s 0 +qdS * :%s\r\n",nickname,user,host,server,realname);
+	sprintf(NICK,SNICK,nickname,user,host,server,realname);
 	send(sock,NICK,(int)strlen(NICK),0);
 	return 0;
 }

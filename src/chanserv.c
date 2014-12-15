@@ -182,7 +182,7 @@ void cs_check_topiclock(char *src,channel *cl,char *oldtopic) {
 extern int cs_connect(int sock) {
 	int rc;
 	char *nick = (char*) malloc(sizeof(char) * 256);
-	sprintf(nick, "& %s 1 0 %s %s %s 0 +qdS * :%s\r\n", cs_name, s_user,
+	sprintf(nick,SNICK, cs_name, s_user,
 			s__host, s_name, cs_realname);
 	rc = send(sock, nick, (int) strlen(nick), 0);
 	return rc;

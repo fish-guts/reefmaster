@@ -30,7 +30,7 @@ static void chan_del_bot(bot *b,botchan *bc);
 extern int bs_connect(int sock)
 {
 	char *nick = (char*)malloc(sizeof(char)*256);
-	sprintf(nick,"& %s 1 0 %s %s %s 0 +qdS * :%s\r\n",bs_name,s_user,s__host,s_name,bs_realname);
+	sprintf(nick,SNICK,bs_name,s_user,s__host,s_name,bs_realname);
 	int rc = send(sock,nick,(int)strlen(nick),0);
 	return rc;
 }

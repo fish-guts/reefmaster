@@ -270,7 +270,7 @@ void nickserv(char *src, char *av) {
 }
 extern int ns_connect(int sock) {
 	char *nick = (char*) malloc(sizeof(char) * 1024);
-	sprintf(nick, "& %s 1 0 %s %s %s 0 +qdS * :%s\r\n", ns_name, s_user,
+	sprintf(nick, SNICK, ns_name, s_user,
 			s__host, s_name, ns_realname);
 	int rc = send(sock, nick, (int) strlen(nick), 0);
 	free(nick);

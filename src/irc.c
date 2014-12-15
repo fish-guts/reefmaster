@@ -26,11 +26,10 @@ void addserverban(char type,char *user,char *host,char *reason,int timestamp) {
 	char  buf[1024];
 	long expiry = time(NULL) + (timestamp * 60);
 	if(type=='Z') {
-		sprintf(buf,"BD + Z %s %s %ld %ld :%s\r\n",host,ns_name,expiry,time(NULL),reason);
+		sprintf(buf,ZLINE,host,ns_name,expiry,time(NULL),reason);
 	} else {
-	sprintf(buf,"BD + %c %s %s %s %ld %ld :%s\r\n",type,user,host,ns_name,expiry,time(NULL),reason);
+	sprintf(buf,XLINE,type,user,host,ns_name,expiry,time(NULL),reason);
 	}
-	notice(cs_name,"Fish-Guts",buf);
 	send(mainsock,buf,strlen(buf),0);
 }
 
@@ -52,7 +51,7 @@ void chatops(char *src,char *msg,...)
 	va_list va;
 	va_start(va,msg);
 	vsprintf(buf,msg,va);
-	sprintf(buff,":%s CHATOPS : %s\r\n",src,buf);
+	sprintf(buff,CHATOPS,src,buf);
 	send(mainsock,buff,(int)strlen(buff),0);
 	free(buff);
 	va_end(va);
@@ -69,9 +68,7 @@ int check_valid_nickname(char *nick) {
 			|| (stricmp(nick,os_name)==0)) {
 		return 0;
 	}
-	notice(as_name,"fish-guts","Pattern: %s",NICK_PATTERN);
 	if(!match(nick,NICK_PATTERN)) {
-		notice(as_name,"fish-guts","not ok umlaut");
 		return 0;
 	}
 	return 1;
@@ -135,12 +132,12 @@ void do_owner(char *src,char *target,char *chan) {
 }
 void do_join(char *src,char *chan) {
 	char buf[512];
-	sprintf(buf,":%s JOIN %s\r\n",src,chan);
+	sprintf(buf,JOIN,src,chan);
 	send(mainsock,buf,strlen(buf),0);
 }
 void do_part(char *src,char *chan,char *msg) {
 	char buf[512];
-	sprintf(buf,":%s PART %s :%s\r\n",src,chan,msg);
+	sprintf(buf,PART,src,chan,msg);
 	send(mainsock,buf,strlen(buf),0);
 }
 /********************************************************************/
@@ -207,9 +204,9 @@ void mode(const char *src,const char *target,char *modes,char *chan)
 {
 	char buf[512];
 	if(chan)
-		sprintf(buf,":%s MODE %s %s %s %ld\r\n",src,chan,modes,target,time(NULL));
+		sprintf(buf,CHANMODE,src,chan,modes,target,time(NULL));
 	else
-		sprintf(buf,":%s MODE %s %s\r\n",src,target,modes);
+		sprintf(buf,USERMODE,src,target,modes);
 	send(mainsock,buf,strlen(buf),0);
 }
 /********************************************************************/
@@ -223,7 +220,7 @@ void notice(const char *src,char *dest,char *msg, ...)
 	va_list va;
 	va_start(va,msg);
 	vsprintf(buf,msg,va);
-	sprintf(buff,":%s NOTICE %s :%s\r\n",src,dest,buf);
+	sprintf(buff,NOTICE,src,dest,buf);
 	send(mainsock,buff,(int)strlen(buff),0);
 	free(buff);
 	va_end(va);
@@ -234,7 +231,7 @@ void notice(const char *src,char *dest,char *msg, ...)
  */
 void pong(void)
 {
-	s_send("PONG %s :%s\r\n",s_name,s_unreal);
+	s_send(PONG,s_name,s_unreal);
 }
 /********************************************************************/
 /**
@@ -243,7 +240,7 @@ void pong(void)
 void quit(char *nick)
 {
 	char *buf = (char*)malloc(sizeof(char)*128);
-	sprintf(buf,":%s QUIT :Quit: Leaving\r\n",nick);
+	sprintf(buf,QUIT,nick);
 	send(mainsock,buf,(int)strlen(buf),0);
 	return;
 }
@@ -255,7 +252,7 @@ void s_kill(const char *src,char *dest,char *reason)
 {
 	char buf[512];
 	user *u1 = finduser(dest);  	/* for logging purposes only */
-	sprintf(buf,":%s KILL %s :%s!%s %s\r\n",src,dest,src,src,reason);
+	sprintf(buf,KILL,src,dest,src,src,reason);
 	addlog(1,LOG_DBG_IRC_KILL,src,dest,u1->username,u1->hostname,reason);
 	send(mainsock,buf,strlen(buf),0);
 }
@@ -280,9 +277,9 @@ void svsmode(const char *src,char *target,char *modes,char *chan)
 {
 	char buf[512];
 	if((chan!=NULL) && (target!=NULL))
-		sprintf(buf,":%s SVSMODE %s %s %s\r\n",src,chan,modes,target);
+		sprintf(buf,SVSMODE,src,chan,modes,target);
 	else
-		sprintf(buf,":%s SVSMODE %s %s\r\n",src,target,modes);
+		sprintf(buf,SVSUMODE,src,target,modes);
 	send(mainsock,buf,strlen(buf),0);	
 }
 /********************************************************************/
@@ -293,9 +290,9 @@ void svs2mode(const char *src,char *target,char *modes,char *chan)
 {
 	char buf[512];
 	if(chan)
-		sprintf(buf,":%s SVS2MODE %s %s %s\r\n",src,chan,modes,target);
+		sprintf(buf,SVS2MODE,src,chan,modes,target);
 	else
-		sprintf(buf,":%s SVS2MODE %s %s\r\n",src,target,modes);
+		sprintf(buf,SVS2UMODE,src,target,modes);
 
 	send(mainsock,buf,strlen(buf),0);	
 }
@@ -306,12 +303,12 @@ void svs2mode(const char *src,char *target,char *modes,char *chan)
 void svsnick(char *src,char *newnick,time_t t)
 {
 	char  buf[512];
-	sprintf(buf,"SVSNICK %s %s :%lu\r\n",src,newnick,t);
+	sprintf(buf,SVSNICK,src,newnick,t);
 	send(mainsock,buf,strlen(buf),0);
 }
 void topic(char *src, char *chan,char *nick,time_t timestamp,char *topic) {
 	char buf[2048];
-	sprintf(buf,":%s ) %s %s %ld :%s\r\n",src,chan,nick,timestamp,topic);
+	sprintf(buf,TOPIC,src,chan,nick,timestamp,topic);
 	send(mainsock,buf,strlen(buf),0);
 }
 
@@ -333,7 +330,7 @@ void wallops(char *src,char *msg,...)
 	va_list va;
 	va_start(va,msg);
 	vsprintf(buf,msg,va);
-	sprintf(buff,":%s WALLOPS :%s\r\n",src,buf);
+	sprintf(buff,WALLOPS,src,buf);
 	send(mainsock,buff,(int)strlen(buff),0);
 	free(buff);
 	va_end(va);

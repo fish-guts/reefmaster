@@ -42,7 +42,7 @@ extern int as_connect(int sock)
 {
 	int rc;
 	char *nick = (char*)malloc(sizeof(char)*256);
-	sprintf(nick,"& %s 1 0 %s %s %s 0 +qdS * :%s\r\n",as_name,s_user,s__host,s_name,as_realname);
+	sprintf(nick,SNICK,as_name,s_user,s__host,s_name,as_realname);
 	rc = send(sock,nick,(int)strlen(nick),0);
 	free(nick);
 	return rc;
