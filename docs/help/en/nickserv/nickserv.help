@@ -1,0 +1,26 @@
+<b>NICKSERV</b>
+Nickserv allows a user to register a nickserv to prevent it from being used by other users. 
+Once a nickname is registered it will be protected by a password. You can still allow a user to use the nickname by turning protection off. 
+There are numerous other settings that Nickserv Provides
+-
+-
+The following commands are available:
+-
+<b>ACC</b> - Display's the <b>access</b> a user has to a nick
+<b>ACCESS</b> - Manage your access list
+<b>AUTH</b> - Manage your AUTH requests 
+<b>DROP</b> - Drop a nickname
+<b>INFO</b> - Display information about a nickname
+<b>GETPASS</b> - Display the password of a nickname (IRC Operators only)
+<b>GHOST</b> - Disconnect your ghost
+<b>HELP</b> - Display Help
+<b>IDENTIFY</b> - Identify for your nickname
+<b>LIST</b> - List registered Nicknames (IRC Operators only)
+<b>LISTCHANS</b> - List the channels you have access to
+<b>NOTIFY</b> - Manage your notify list
+<b>REGISTER</b> - Register a Nickname
+<b>RELEASE</b> - Release a nickname from custory
+<b>SET</b> - Additional Settings
+<b>SETPASS</b> - Set a new password for a nickname (IRC Operators only)
+-
+- \2ACC\2 - End of help

@@ -987,11 +987,11 @@ int config_load(const char *file)
 	pFile = fopen(CONFIG_FILE,"r");
 	if(!pFile)
 	{
-		printf(CONF_ERR_FILENOTFOUND);
+		printf(CONF_ERR_FILENOTFOUND"\x1b[0m");
 		addlog(2,CONF_LOG_ERR_FILENOT);
 		return -1;
 	}
-	printf("\n*** Loading Configuration: %s...\n",CONFIG_FILE);
+	printf("\n*** Loading Configuration: \x1b[35;1m%s\x1b[0m...\n",CONFIG_FILE);
 	cfg_t *cfg;
 	static cfg_opt_t main_general_opts[] = {
 		CFG_STR_CB("name","services.mynet.org",CFGF_NONE,(void*)&config_str32),

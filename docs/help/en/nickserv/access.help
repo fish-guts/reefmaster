@@ -1,0 +1,20 @@
+NS <b>ACCESS</b>
+-
+Usage: /msg Nickserv <b>ACCESS</b> [ADD|DEL|LIST|WIPE] <Mask> [Nickname]
+Usage: /ns <b>ACCESS</b> [ADD|DEL|LIST|WIPE] <Mask> [Nickname]
+-
+-
+With <b>ACCESS</b>, you can manage your access list. 
+If you added a user@host mask to your access list, users matching this mask will not have to identify for this nickname using a password.
+If you have Administrator access you can modify someone else's access list by adding the parameter [Nickname] at the end of each command.     
+-
+The following commands are available
+-
+- ACCESS <b>ADD</b> <mask>  [Nickname] - Add an entry to your access list. 
+- ACCESS <b>DEL</b> <mask>  [Nickname] - Remove an entry from your access list.
+- ACCESS <b>LIST</b>  [Nickname] - List all entries of your access list. 
+- ACCESS <b>WIPE</b> <mask>  [Nickname] - Remove all entries of your access list. 
+-
+- For more help on the command, please type /msg Nickserv HELP ACCESS <Command>
+- 
+- <b>ACCESS</b> - End of help

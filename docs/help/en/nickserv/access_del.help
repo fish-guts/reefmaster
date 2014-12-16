@@ -1,0 +1,16 @@
+NS ACCESS <b>DEL</b>
+-
+Usage: /msg Nickserv ACCESS <b>DEL</b> <Mask> [Nickname]
+Usage: /ns ACCESS <b>ADD</>b <Mask> [Nickname]
+-
+-
+With <b>DEL</b>, you can remove an entry from your access list.  
+With Administrator privileges you can remove a mask from someone's else access list.       
+-
+- Example
+-
+- ACCESS <b>DEL</b> foo@bar.com 
+- ACCESS <b>DEL</b> *@bar.com
+- ACCESS <b>DEL</b> foo@foobar.com
+- 
+- ACCESS <b>DEL</b> - End of help

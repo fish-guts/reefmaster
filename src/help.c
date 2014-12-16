@@ -1,6 +1,6 @@
 /*
  * ns_help.c
-*
+ *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
  *      This program is free software; you can redistribute it and/or modify
@@ -25,21 +25,32 @@
  * ns_help handle the Nickserv HELP commands
  * Displays the usage of the specified Nickserv command
  */
-void ns_help(char *src, int ac, char **av) {
-	char help[64];
-	if(ac<2) {
-		sprintf(help,"%s/%s.help",NS_HELP_PATH,"nickserv");
-		help_message(ns_name,src,help);
-		return;
-	} else if(ac==2) {
-		sprintf(help,"%s/%s.help",NS_HELP_PATH,strlower(av[1]));
-	}  else if(ac==3) {
-		sprintf(help,"%s/%s_%s.help",NS_HELP_PATH,strlower(av[1]),strlower(av[2]));
+
+void help_message(const char *service,char *src, const char *helpfile) {
+	FILE *fp;
+	char *line = NULL;
+	size_t len = 0;
+	ssize_t read;
+	fp = fopen(helpfile, "r");
+	notice(as_name,src,"Help :%s",helpfile);
+	if (fp == NULL)
+		notice(service,src,"Error getting help");
+
+	while ((read = getline(&line, &len, fp)) != -1) {
+		char *fline = str_replace(line,"<b>","\2");
+		char *gline = str_replace(fline,"</b>","\2");
+		notice(service,src,"%s",gline);
 	}
-	notice(ns_name,src,"File: %s",help);
-	if(file_exists(help)) {
-		help_message(ns_name,src,help);
-	} else {
-		notice(ns_name,src,"No Help on that Subject is available");
-	}
+	fclose(fp);
+	if (line)
+		free(line);
+}
+
+int file_exists(const char *file) {
+	FILE *fp;
+	fp = fopen(file, "r");
+		if (fp == NULL)
+			return 0;
+	fclose(fp);
+	return 1;
 }

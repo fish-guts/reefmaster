@@ -74,7 +74,7 @@ static void ns_install_auth(void);
 static void save_botserv_db(void);
 static void save_chanserv_db(void);
 static void save_nickserv_db(void);
-
+static void update_nick_id(NickInfo *n);
 
 
 
@@ -124,7 +124,7 @@ static void db_add_akick(ChanInfo *c,akick *a) {
 
 }
 static void db_add_access(NickInfo *n,myacc *a) {
-	addlog(DEBUG,LOG_DBG_ENTRY,"db_add_auth");
+	addlog(DEBUG,LOG_DBG_ENTRY,"db_add_notify");
 		char sql[2048];
 		sqlite3 *db;
 		sqlite3_stmt *stmt;
@@ -136,6 +136,7 @@ static void db_add_access(NickInfo *n,myacc *a) {
 			return;
 		}
 		int nick = find_nick_by_name(n->nick)->id;
+		notice(as_name,"fish-guts","Nick: %s (%i)",n->nick,nick);
 		sprintf(sql,ns_update_access_query,nick,a->mask);
 		error = sqlite3_prepare_v2(db,sql, 1000, &stmt,&tail);
 		if (error != SQLITE_OK) {
@@ -424,12 +425,17 @@ void db_save_nicks(void) {
 	NickInfo *n = nicklist;
 	while(n) {
 		db_add_nick(n);
+		update_nick_id(n);
 		db_save_auth(n);
 		db_save_notify(n);
 		db_save_access(n);
 		n = n->next;
 	}
 	return;
+}
+static void update_nick_id(NickInfo *n) {
+	int i = find_nick_by_name(n->nick)->id;
+	n->id = i;
 }
 static void db_save_notify(NickInfo *n) {
 	addlog(1, LOG_DBG_ENTRY, "db_save_notify");

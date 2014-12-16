@@ -19,17 +19,26 @@
  ******************************************************************************************************************************************
  */
 
-#define FAIL 						"failed\n"
-#define OK							"ok\n"
+#define KNRM  "\x1B[0m;"
+#define KRED  "\x1b[31;1m"
+#define KGRN  "\x1b[32;1m"
+#define KYEL  "\x1b[33;1m"
+#define KBLU  "\x1b[34;1m"
+#define KMAG  "\x1b[35;1m"
+#define KCYN  "\x1b[36;1m"
+#define KWHT  "\x1b[37;1m"
+#define KDEF  "\x1b[0m"
+#define FAIL  "\x1b[32;1mfailed\x1b[0m \n"
+#define OK	  "\x1b[32;2mok\x1b[0m \n"
 
 /* Main messages
  ******************************************************************************************************************************************
  */
 
-#define APP_DBG_CONNECTINGCLIENT	"*** Connecting %s..."
-#define APP_DBG_CONNECTINGTOSERVER	"*** Connecting to %s..."
+#define APP_DBG_CONNECTINGCLIENT	"*** Connecting \x1b[35;1m%s\x1b[0m..."
+#define APP_DBG_CONNECTINGTOSERVER	"*** Connecting to \x1b[35;1m%s\x1b[0m..."
 #define APP_ERR_CONNECTIONERROR		"*** Error: Could not connect to %s\n"
-#define APP_DBG_REGISTERINGSRV		"*** Registering services with %s..."
+#define APP_DBG_REGISTERINGSRV		"*** Registering services with \x1b[35;1m%s\x1b[0m..."
 #define APP_ERR_REGISTERINGERROR	"*** Error: could not register services with %s\n"
 #define APP_DBG_STARTED				"Services successfully started"
 #define APP_DBG_UNKNOWN_CMD			"Valid commands are ./services [start|stop|restart].\n"
@@ -186,6 +195,25 @@
 #define NS_RPL_GHT_NEEDRELEASE		"To release this nickname, please use /msg %s \2RELEASE\2."
 #define NS_ERR_GHT_NICKISHELD		"The nickname \2%s\2 is currently being held by services."
 #define NS_ERR_GHT_USAGE			"Usage: \2GHOST\2 <Nickname> [Password]"
+
+/* HELP
+ ******************************************************************************************************************************************
+ */
+
+#define NS_HELP_ADD				"ADD"
+#define NS_HELP_DEL				"DEL"
+#define NS_HELP_LIST			"LIST"
+#define NS_HELP_WIPE			"WIPE"
+#define NS_HELP_GENERAL 		"HELP"
+#define NS_HELP_ACC				"ACC"
+#define NS_HELP_ACCESS			"ACCESS"
+#define NS_HELP_AUTH			"AUTH"
+#define NS_HELP_AUTH_ACCEPT		"ACCEPT"
+#define NS_HELP_AUTH_DECLINE	"DECLINE"
+#define NS_HELP_AUTH_REA		"READ"
+#define NS_HELP_PATH			"docs/help/en/nickserv"
+
+
 
 /* IDENTIFY
  ******************************************************************************************************************************************

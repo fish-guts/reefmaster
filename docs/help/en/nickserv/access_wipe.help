@@ -1,0 +1,15 @@
+NS ACCESS <b>WIPE</b>
+-
+Usage: /msg Nickserv ACCESS <b>WIPE</b> [Nickname]
+Usage: /ns ACCESS <b>WIPE</>b [Nickname]
+-
+-
+With <b>WIPE</b>, you can remove all entries from your access list.   
+With Administrator privileges you can remove all entries in someone's else access list.
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- ACCESS <b>WIPE</b>
+-
+- ACCESS <b>WIPE</b> - End of help

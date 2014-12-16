@@ -81,7 +81,6 @@ int sock_connect(void) {
 	send(sock, PASS, (int) strlen(PASS), 0);
 	send(sock, SRV, (int) strlen(SRV), 0);
 	printf(OK);
-	load_modules(sock);
 	return sock;
 }
 
@@ -93,46 +92,51 @@ void load_modules(int sock) {
 			ns_status = 1;
 		} else {
 			printf(FAIL);
+			printf("\x1b[35;1mError message: %s\n", strerror(errno));
 			ns_status = 0;
 		}
 	}
 	if (cs_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, cs_name);
 		if(cs_connect(sock) >= 0) {
-			printf(OK);
+			printf(KGRN OK KDEF);
 			cs_status = 1;
 		} else {
-			printf(FAIL);
+			printf(KRED FAIL KDEF);
+			printf("Error message: %s\n", strerror(errno));
 			cs_status = 0;
 		}
 	}
 	if (os_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, os_name);
 		if(os_connect(sock) >= 0) {
-			printf(OK);
+			printf(KGRN OK KDEF);
 			os_status = 1;
 		} else {
-			printf(FAIL);
+			printf(KRED FAIL KDEF);
+			printf("Error message: %s\n", strerror(errno));
 			os_status = 0;
 		}
 	}
 	if (bs_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, bs_name);
 		if(bs_connect(sock) >= 0) {
-			printf(OK);
+			printf(KGRN OK KDEF);
 			bs_status = 1;
 		} else {
-			printf(FAIL);
+			printf(KRED FAIL KDEF);
+			printf("Error message: %s\n", strerror(errno));
 			bs_status = 0;
 		}
 	}
 	if (as_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, as_name);
 		if(as_connect(sock) >= 0) {
-			printf(OK);
+			printf(KGRN OK KDEF);
 			as_status = 1;
 		} else {
-			printf(FAIL);
+			printf(KRED FAIL KDEF);
+			printf("Error message: %s\n", strerror(errno));
 			as_status = 0;
 		}
 	}

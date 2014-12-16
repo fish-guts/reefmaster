@@ -34,8 +34,10 @@ void *srealloc(void *oldptr, long newsize);
 char *sstrdup(const char *s);
 int _stricmp(const char *str1,const char *str2);
 char *strrep(const char* str,const char *find, const char *x);
+char *str_replace (const char *string, const char *substr, const char *replacement);
 char *internal_strrep(const char *str, const char *find, const char *rep, size_t newsize, size_t index);
 void set_service_status(char *service,int status);
 void timer_event_handler(int sigid);
+char *strlower(char *str);
 
 #endif /*FUNCTIONS_H_*/

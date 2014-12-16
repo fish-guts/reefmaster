@@ -114,27 +114,25 @@ int load_app(void) {
 }
 
 void start_app(void) {
-	int rc,s;
+	int s;
 	char buf[100000];
 	if(signal(SIGALRM, timer_event_handler)==SIG_ERR)
 	{
+		printf("Error message: %s\n", strerror(errno));
 		addlog(2,"Error in signal()\n");
 		return;
 	}
 	set_timer(2);
 	load_database();
 	next_save = time(NULL) + 20;
-	rc = sock_init();
-	if(rc<0)
-	{
-		print_msg("Error initializing socket. Please restart services\n");
-		exit(EXIT_FAILURE);
-	}
 	addlog(1,"Services successfully started");
 	// start the socket
 	mainsock = sock_connect();
+	if(mainsock<0) {
+		printf("Error message: %s\n", strerror(errno));
+	}
+	load_modules(mainsock);
 	connect_bots();
-
 	/* this is the main loop */
 	while(!quitting)
 	{

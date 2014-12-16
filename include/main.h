@@ -33,6 +33,7 @@
 #include "config.h"
 #include "database.h"
 #include "functions.h"
+#include "help.h"
 #include "irc.h"
 #include "log.h"
 #include "memoserv.h"

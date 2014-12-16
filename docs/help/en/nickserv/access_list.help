@@ -1,0 +1,14 @@
+NS ACCESS <b>LIST</b>
+-
+Usage: /msg Nickserv ACCESS <b>LIST</b> [Nickname]
+Usage: /ns ACCESS <b>LIST</>b [Nickname]
+-
+-
+With <b>LIST</b>, you can view all entries in your access list.   
+With Administrator privileges you can view all entries in someone's else access list.       
+-
+- Example
+-
+- ACCESS <b>LIST</b>
+-
+- ACCESS <b>LIST</b> - End of help

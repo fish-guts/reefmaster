@@ -1,0 +1,16 @@
+NS ACCESS <b>ADD</b>
+Usage: /msg Nickserv ACCESS <b>ADD</b> <Mask> [Nickname]
+Usage: /ns ACCESS <b>ADD</>b <Mask> [Nickname]
+-
+-
+With <b>ADD</b>, you can add an entry to your access list.  
+User's whose user@host mask match an entry in your access list won't have to identify for your nickname using the password.
+With Administrator privileges you can add a mask to someone's else access list.       
+-
+- Example
+-
+- ACCESS <b>ADD</b> foo@bar.com 
+- ACCESS <b>ADD</b> *@bar.com
+- ACCESS <b>ADD</b> foo@foobar.com
+- 
+- ACCESS <b>ADD</b> - End of help
