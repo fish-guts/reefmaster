@@ -13,7 +13,7 @@ The following commands are available
 - ACCESS <b>ADD</b> <mask>  [Nickname] - Add an entry to your access list. 
 - ACCESS <b>DEL</b> <mask>  [Nickname] - Remove an entry from your access list.
 - ACCESS <b>LIST</b>  [Nickname] - List all entries of your access list. 
-- ACCESS <b>WIPE</b> <mask>  [Nickname] - Remove all entries of your access list. 
+- ACCESS <b>WIPE</b> <mask>  [Nickname] - Remove all entries from your access list. 
 -
 - For more help on the command, please type /msg Nickserv HELP ACCESS <Command>
 - 

@@ -1,6 +1,6 @@
 NS ACCESS <b>ADD</b>
 Usage: /msg Nickserv ACCESS <b>ADD</b> <Mask> [Nickname]
-Usage: /ns ACCESS <b>ADD</>b <Mask> [Nickname]
+Usage: /ns ACCESS <b>ADD</b> <Mask> [Nickname]
 -
 -
 With <b>ADD</b>, you can add an entry to your access list.  

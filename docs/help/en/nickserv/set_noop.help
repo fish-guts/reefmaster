@@ -1,0 +1,18 @@
+NS SET <b>NOOP</b>
+Usage: /msg Nickserv SET <b>NOOP</b> [ON|OFF]
+Usage: /ns SET <b>NOOP</b> [ON|OFF]
+-
+-
+With <b>NOOP</b>, you can set whether or not you want to automatically be opped in channels you have <b>AOP</b> or higher access.
+Once enabled, <b>Chanserv</b> will not automatically op you in such channels.  
+-      
+-
+- Example
+-
+- SET <b>NOOP ON</b> 
+- SET <b>NOOP OFF</b>
+- 
+- See also: /msg Chanserv <b>HELP</b>
+-
+-
+- SET <b>NOOP</b> - End of help

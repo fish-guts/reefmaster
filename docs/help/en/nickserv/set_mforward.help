@@ -1,0 +1,19 @@
+NS SET <b>MFORWARD</b>
+Usage: /msg Nickserv SET <b>MFORWARD</b> <Nickname | OFF>
+Usage: /ns SET SET <b>MFORWARD</b> <Nickname | OFF>
+-
+-
+With <b>MFORWARD</b>, you can set whether or you want to automatically forward memot sent to you to another registered nickname.    
+You can disabled this forward by using the option off. 
+This setting has only any effect if Memoserv is enabled. This feature will become available in future release of Reefmaster IRC Services.    
+-      
+-
+- Example
+-
+- SET <b>MFORWARD</b> foo 
+- SET <b>MFORWARD</b> OFF
+- 
+- See also: /msg Memoserv <b>HELP</b>
+-
+-
+- SET <b>MFORWARD</b> - End of help

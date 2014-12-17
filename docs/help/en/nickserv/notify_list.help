@@ -1,0 +1,13 @@
+NS NOTIFY <b>LIST</b>
+-
+Usage: /msg Nickserv NOTIFY <b>LIST</b>
+Usage: /ns NOTIFY <b>LIST</b>
+-
+-
+With <b>LIST</b>, you can view all nickname in your notify list.   
+-
+- Example
+-
+- NOTIFY <b>LIST</b>
+-
+- NOTIFY <b>LIST</b> - End of help

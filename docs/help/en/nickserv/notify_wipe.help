@@ -1,0 +1,14 @@
+NS NOTIFY <b>WIPE</b>
+-
+Usage: /msg Nickserv NOTIFY <b>WIPE</b>
+Usage: /ns NOTIFY <b>NOTIFY</b>
+-
+-
+With <b>WIPE</b>, you can remove all nicknames from your notify list.   
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- NOTIFY <b>WIPE</b>
+-
+- NOTIFY <b>WIPE</b> - End of help

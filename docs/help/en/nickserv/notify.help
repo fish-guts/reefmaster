@@ -1,0 +1,18 @@
+NS <b>NOTIFY</b>
+-
+Usage: /msg Nickserv <b>NOTIFY</b> [ADD|DEL|LIST|WIPE] <Nickname>
+Usage: /ns <b>NOTIFY</b> [ADD|DEL|LIST|WIPE] <Nickname>
+-
+-
+With <b>NOTIFY</b>, you can manage your notify list. Whenever a registered nick is in your list, you will be notified if they connect or disconnect from the chat.  
+-
+The following commands are available
+-
+- NOTIFY <b>ADD</b> <Nickname> - Add an nickname to your notify list. 
+- NOTIFY <b>DEL</b> <Nickname> - Remove a nickname from your notify list.
+- NOTIFY <b>LIST</b> - List all nicknames in your notify list. 
+- NOTIFY <b>WIPE</b> <Nickname> - Remove all nickname from your access list. 
+-
+- For more help on the command, please type /msg Nickserv HELP NOTIFY <Command>
+- 
+- <b>NOTIFY</b> - End of help

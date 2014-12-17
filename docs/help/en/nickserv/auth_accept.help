@@ -1,0 +1,14 @@
+NS AUTH <b>ACCEPT</b>
+Usage: /msg Nickserv AUTH <b>ACCEPT</b> <#>
+Usage: /ns AUTH <b>ACCEPT</b> <#>
+-
+-
+With <b>ACCEPT</b>, you can accept the auth request with the number #.   
+Once you have accepted a request to be added to a list, you will be added automatically.       
+-
+- Example
+-
+- AUTH <b>ACCEPT</b> 1 
+- AUTH <b>ACCEPT</b> 7
+- 
+- AUTH <b>ACCEPT</b> - End of help

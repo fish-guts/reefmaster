@@ -1,0 +1,16 @@
+NS SET <b>URL</b>
+Usage: /msg Nickserv SET <b>URL</b> <URL | OFF>
+Usage: /ns SET <b>URL</b> <URL>
+-
+-
+With <b>URL</b>, you can set a personal URL for your nickname that will appear in your info.  
+You can remove the URL by using the option <b>OFF</b>       
+-
+-
+- Example
+-
+- SET <b>URL</b> www.foo.bar 
+- SET <b>PROTECT</b> OFF
+- 
+-
+- SET <b>URL</b> - End of help

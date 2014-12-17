@@ -1,0 +1,23 @@
+NS SET <b>PROTECT</b>
+Usage: /msg Nickserv SET <b>PROTECT</b> [OFF|NORMAL|HIGH]
+Usage: /ns SET <b>PROTECT</b> [OFF|NORMAL|HIGH]
+-
+-
+With <b>PROTECT</b>, you can set the protection level for your nickname. 
+The following levels are available:
+- 
+- SET PROTECT <b>OFF</b> - This will disable protection for your nickname. Any user can user your nickname but setting cannot be changed unless you identify for this nickname using your password.   
+- SET PROTECT <b>NORMAL</b> - This will protect your nickname in the normal fashion. A user taking this nick will have 60 seconds time to identify for this nickname. If they fail to do so, services will change their nick automatically and hold the nickname in custody for 60 seconds. 
+- SET PROTECT <b>HIGH</b> - This will protect your nickname in the aggressive fashion. A user will have to identify for this nickname before using it or service will change their nick automatically and hold the nickname in custody for 60 seconds.
+-       
+-
+- Example
+-
+- SET <b>PROTECT HIGH</b> 
+- SET <b>PROTECT NORMAL</b>
+- SET <b>PROTECT OFF</b>
+- 
+- See also: /msg Nickserv HELP <b>RELEASE</b>
+-
+-
+- SET <b>PROTECT</b> - End of help

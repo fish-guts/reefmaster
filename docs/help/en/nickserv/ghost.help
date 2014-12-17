@@ -1,0 +1,14 @@
+NS <b>GHOST</b>
+-
+Usage: /msg Nickserv <b>GHOST</b> <Nickname> <Password>
+Usage: /ns <b>GHOST</b> <Nickname> <Password>
+-
+-
+With <b>GHOST</b>, you can disconnect your client if you have become disconnected but your client is still online. 
+Nickserv will then kill the connection of your ghost.  
+-
+- Example
+- 
+- NS <b>GHOST</b> foo myfoo123 
+-
+- <b>GHOST</b> - End of help

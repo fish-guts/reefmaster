@@ -1,0 +1,27 @@
+NS <b>SET</b>
+-
+Usage: /msg Nickserv <b>SET</b> [Command] <Option> <Arguments>
+Usage: /ns <b>SET</b> [Command] <Option> <Arguments>
+-
+-
+With <b>SET</b>, you can configure various options for your nickname.  
+-
+The following commands are available
+-
+-
+- SET <b>AUTHORIZE</b> 	Set whether your explicit authorization is required	before some can add you to channel access or notify lists
+- SET <b>EMAIL</b> 		Set your e-mail address
+- SET <b>HIDEEMAIL</b>	Prevent your e-mail address from showing up in the INFO command
+- SET <b>MFORWARD</b>	Forward your memos to another registered nickname
+- SET <b>MLOCK</b>		Set a set of usermodes that are set automatically upon identification
+- SET <b>MNOTIFY</b>	Enable / Disable notifications about new memos
+- SET <b>NOMEMO</b>		Disabled Memos for your nickname
+- SET <b>NOOP</b>		Prevent Chanserv from automatically opping you in channels you have access to.
+- SET <b>PASSWORD</b>	Set a new password
+- SET <b>PROTECT</b>	Set the nickname protection level
+- SET <b>URL</b>		Set your URL to be displayed in your nick info. 
+ 
+-
+- For more help on the command, please type /msg Nickserv HELP SET <Command>
+- 
+- <b>SET</b> - End of help

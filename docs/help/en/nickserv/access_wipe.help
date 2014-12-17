@@ -1,7 +1,7 @@
 NS ACCESS <b>WIPE</b>
 -
 Usage: /msg Nickserv ACCESS <b>WIPE</b> [Nickname]
-Usage: /ns ACCESS <b>WIPE</>b [Nickname]
+Usage: /ns ACCESS <b>WIPE</b> [Nickname]
 -
 -
 With <b>WIPE</b>, you can remove all entries from your access list.   

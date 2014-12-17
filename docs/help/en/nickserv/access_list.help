@@ -1,7 +1,7 @@
 NS ACCESS <b>LIST</b>
 -
 Usage: /msg Nickserv ACCESS <b>LIST</b> [Nickname]
-Usage: /ns ACCESS <b>LIST</>b [Nickname]
+Usage: /ns ACCESS <b>LIST</b> [Nickname]
 -
 -
 With <b>LIST</b>, you can view all entries in your access list.   

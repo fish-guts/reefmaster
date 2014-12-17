@@ -1,0 +1,16 @@
+NS SET <b>MNOTIFY</b>
+Usage: /msg Nickserv SET <b>MNOTIFY</b> [ON|OFF]
+Usage: /ns SET <b>MNOTIFY</b> [ON|OFF]
+-
+-
+With <b>MNOTIFY</b>, you can set whether or you want to be notified about new unread memos.
+This setting has only any effect if Memoserv is enabled. This feature will become available in future release of Reefmaster IRC Services.    
+-      
+-
+- Example
+-
+- SET <b>MNOTIFY ON</b> 
+- SET <b>MNOTIFY OFF</b>
+- 
+-
+- SET <b>MNOTIFY</b> - End of help

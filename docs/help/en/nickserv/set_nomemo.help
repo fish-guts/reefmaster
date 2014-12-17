@@ -1,0 +1,19 @@
+NS SET <b>NOMEMO</b>
+Usage: /msg Nickserv SET <b>NOMEMO</b> [ON|OFF]
+Usage: /ns SET <b>NOMEMO</b> [ON|OFF]
+-
+-
+With <b>NOMEMO</b>, you can set whether or not you want to receive memo.    
+Once enabled, you will not be able to receive memos. 
+This setting has only any effect if Memoserv is enabled. This feature will become available in future release of Reefmaster IRC Services.    
+-      
+-
+- Example
+-
+- SET <b>NOMEMO ON</b> 
+- SET <b>NOMEMO OFF</b>
+- 
+- See also: /msg Memoserv <b>HELP</b>
+-
+-
+- SET <b>NOMEMO</b> - End of help

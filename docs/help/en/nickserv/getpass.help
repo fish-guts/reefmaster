@@ -1,0 +1,14 @@
+NS <b>GETPASS</b>
+-
+Usage: /msg Nickserv <b>GETPASS</b> [Nickname]
+Usage: /ns <b>GETPASS</b> [Nickname]
+-
+-
+With <b>GETPASS</b>, you can retrieve a nickname's password.  
+This command required IRC Operator privileges.  
+-
+- Example
+- 
+- NS <b>GETPASS</b> foo 
+-
+- <b>GETPASS</b> - End of help

@@ -1,0 +1,15 @@
+NS <b>LIST</b>
+-
+Usage: /msg Nickserv <b>LIST</b> <Pattern>
+Usage: /ns <b>LIST</b> <Pattern>
+-
+-
+With <b>LIST</b>, you can issue a list of registered nickname matching the provided pattern.  
+This command is only available to users with IRC Operator privileges.  
+-
+- Example
+- 
+- NS <b>LIST</b> a*
+- NS <b>LIST</b> foo* 
+-
+- <b>LIST</b> - End of help

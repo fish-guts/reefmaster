@@ -1,0 +1,13 @@
+NS AUTH <b>LIST</b>
+Usage: /msg Nickserv AUTH <b>LIST</b> <#>
+Usage: /ns AUTH <b>LIST</b> <#>
+-
+-
+With <b>LIST</b>, you can view all pending auth requests as a list.    
+       
+-
+- Example
+-
+- AUTH <b>LIST</b>
+- 
+- AUTH <b>LIST</b> - End of help

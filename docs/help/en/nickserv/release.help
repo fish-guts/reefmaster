@@ -1,0 +1,15 @@
+NS <b>RELEASE</b>
+-
+Usage: /msg Nickserv <b>RELEASE</b> <Nickname> <Password>
+Usage: /ns <b>RELEASE</b> <Nickname> <Password>
+-
+-
+With <b>RELEASE</b>, you can release a nickname that is held by services due to unauthorized used. 
+A nickname will be taken over by service if a users enters the password wrong too many times or a user uses a nick that has the 'aggressive' protection enabled and failed to identify for this nickname before using it. 
+-
+- Example
+- 
+- NS <b>RELEASE</b> foo myfoo123 
+-
+-
+- <b>RELEASE</b> - End of help

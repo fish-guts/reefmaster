@@ -107,7 +107,6 @@ void cancel_user(user *u) {
  * starts a timer, giving the user 60 seconds to identify for the nickname. nick will changed if the user fails to do so
  */
 static void force_identify(user *u, int from_timeout) {
-	printf("we're here");
 	char newnick[NICKMAX];
 	long int buf = 0;
 	double x = RAND_MAX + 1.0;

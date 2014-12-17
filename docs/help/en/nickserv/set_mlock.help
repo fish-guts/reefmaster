@@ -1,0 +1,17 @@
+NS SET <b>MLOCK</b>
+Usage: /msg Nickserv SET <b>MLOCK</b> <Usermodes | OFF>
+Usage: /ns SET <b>MLOCK</b> <Usermodes | OFF>
+-
+-
+With <b>MLOCK</b>, you can set one or multiple user mode options upon identification. This means that these modes will automatically be set once you identified for your nickname. 
+You can remove all modes by using the option <b>OFF</b>
+For a list of valid usermodes, please consult the manual of the IRC daemon you're using Reefmaster IRC Services with.     
+-      
+-
+- Example
+-
+- SET <b>MLOCK</b> +ipsw 
+- SET <b>MLOCK</b> OFF
+- 
+-
+- SET <b>MLOCK</b> - End of help

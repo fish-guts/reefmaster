@@ -1,0 +1,19 @@
+NS <b>AUTH</b>
+-
+Usage: /msg Nickserv <b>AUTH</b> [ACCEPT|DECLINE|LIST|READ] <#>
+Usage: /ns <b>AUTH</b> [ACCEPT|DECLINE|LIST|READ] <#>
+-
+-
+With <b>AUTH</b>, you can manage your authorization requests. If you have authorizations enabled (see <b>SET AUTHORIZE</b>), you need to accept to be added to any list first  
+     
+-
+The following commands are available
+-
+- AUTH <b>ACCEPT</b> <#>  - Accept an auth request.  
+- AUTH <b>DECLINE</b> <#> - Decline an auth request.
+- AUTH <b>LIST</b>  - List all pending auth requests. 
+- AUTH <b>READ</b> <#>  - Read an auth request. 
+-
+- For more help on the command, please type /msg Nickserv HELP AUTH <Command>
+- 
+- <b>AUTH</b> - End of help

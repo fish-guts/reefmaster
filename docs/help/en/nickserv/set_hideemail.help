@@ -1,0 +1,18 @@
+NS SET <b>HIDEEMAIL</b>
+Usage: /msg Nickserv SET <b>HIDEEMAIL</b> [ON|OFF]
+Usage: /ns SET <b>HIDEEMAIL</b> [ON|OFF]
+-
+-
+With <b>HIDEEMAIL</b>, you can set whether or not your e-mail address should be displayed in your info.   
+Once enabled, your e-mail address will not be displayed to others  
+-      
+-
+- Example
+-
+- SET <b>HIDEEMAIL ON</b> 
+- SET <b>HIDEEMAIL OFF</b>
+- 
+- See also: /msg Nickserv help <b>SET EMAIL</b>
+-
+-
+- SET <b>HIDEEMAIL</b> - End of help

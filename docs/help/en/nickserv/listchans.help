@@ -1,0 +1,15 @@
+NS <b>LISTCHANS</b>
+-
+Usage: /msg Nickserv <b>LISTCHANS</b> <Nickname>
+Usage: /ns <b>LISTCHANS</b> <Nickname>
+-
+-
+With <b>LISTCHANS</b>, you can issue a list of all registered channels your have access to.   
+With IRC Operator privileges you can also view all channels the specified nickname has access to.   
+-
+- Example
+- 
+- NS <b>LISTCHANS</b>
+- NS <b>LISTCHANS</b> foo 
+-
+- <b>LISTCHANS</b> - End of help

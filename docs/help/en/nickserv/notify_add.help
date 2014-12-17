@@ -1,0 +1,15 @@
+NS NOTIFY <b>ADD</b>
+Usage: /msg Nickserv NOTIFY <b>ADD</b> <Nickname>
+Usage: /ns NOTIFY <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add a nickname to your notify list.  
+-      
+-
+- Example
+-
+- NOTIFY <b>ADD</b> foo
+- NOTIFY <b>ADD</b> bar
+- NOTIFY <b>ADD</b> foobar
+- 
+- NOTIFY <b>ADD</b> - End of help

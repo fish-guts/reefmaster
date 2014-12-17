@@ -1,0 +1,14 @@
+NS NOTIFY <b>DEL</b>
+-
+Usage: /msg Nickserv NOTIFY <b>DEL</b> <Nickname>
+Usage: /ns NOTIFY <b>ADD</b> <Nickname>
+-
+-
+With <b>DEL</b>, you can remove a nickname from your notify list.  
+-
+- Example
+-
+- NOTIFY <b>DEL</b> foo 
+- NOTIFY <b>DEL</b> foobar
+- 
+- NOTIFY <b>DEL</b> - End of help

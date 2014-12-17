@@ -1,0 +1,15 @@
+NS SET <b>EMAIL</b>
+Usage: /msg Nickserv SET <b>EMAIL</b> <E-Mail Address>
+Usage: /ns SET <b>EMAIL</b> <E-Mail Address>
+-
+-
+With <b>E-MAIL</b>, you can change your e-mail address.  
+Your email address will not show unless you set hideemail off.      
+-
+- Example
+-
+- SET <b>EMAIL></b> my@email.com 
+-
+- See also: /msg Nickserv help <b>SET HIDEEMAIL</b>
+-
+- SET <b>EMAIL</b> - End of help

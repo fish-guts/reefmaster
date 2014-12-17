@@ -1,0 +1,14 @@
+NS AUTH <b>DECLINE</b>
+Usage: /msg Nickserv AUTH <b>DECLINE</b> <#>
+Usage: /ns AUTH <b>DECLINE</b> <#>
+-
+-
+With <b>DECLINE</b>, you can reject the auth request with the number #.   
+The sender will not be notified about this.        
+-
+- Example
+-
+- AUTH <b>DECLINE</b> 1 
+- AUTH <b>DECLINE</b> 7
+- 
+- AUTH <b>DECLINE</b> - End of help

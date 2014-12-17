@@ -1,0 +1,13 @@
+NS AUTH <b>READ</b>
+Usage: /msg Nickserv AUTH <b>READ</b> <#>
+Usage: /ns AUTH <b>READ</b> <#>
+-
+-
+With <b>READ</b>, you can read the message containing the auth request. Just reading will not add you to a list. You have to specifically accept the request. 
+-
+- Example
+-
+- AUTH <b>READ</b> 1 
+- AUTH <b>READ</b> 7
+- 
+- AUTH <b>READ</b> - End of help

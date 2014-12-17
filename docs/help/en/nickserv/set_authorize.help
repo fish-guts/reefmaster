@@ -1,0 +1,19 @@
+NS SET <b>AUTHORIZE</b>
+Usage: /msg Nickserv SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
+Usage: /ns SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
+-
+-
+With <b>AUTHORIZE</b>, you can set whether or not your authorization is required before someone can add you to their notify or a registered channel's operator list.   
+Once enabled you will receive a message that you have pending authorization requests. 
+-      
+-
+- Example
+-
+- SET <b>AUTHORIZE NOTIFY ON</b> 
+- SET <b>AUTHORIZE NOTIFY OFF</b>
+- SET <b>AUTHORIZE CHAN ON</b>
+- 
+- See also: /msg Nickserv help <b>AUTH</b>
+-
+-
+- SET <b>AUTHORIZE</b> - End of help
