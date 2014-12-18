@@ -61,7 +61,6 @@ void ns_info(char *src, int ac, char **av) {
 	strftime(str_now, 100, "%d/%m/%Y %T %Z", localtime(&cur));
 	strftime(str_last, 100, "%d/%m/%Y %T %Z", localtime(&n->last_seen));
 	strftime(str_reg, 100, "%d/%m/%Y %T %Z", localtime(&n->time_reg));
-	notice(ns_name, src, "Time now long: %i", cur);
 	if (u) {
 		if (isidentified(u, src) > 0)
 			notice(ns_name, src, NS_RPL_INF_HEAD1, nick, n->last_realname);

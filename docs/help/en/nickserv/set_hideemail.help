@@ -1,18 +1,19 @@
-NS SET <b>HIDEEMAIL</b>
-Usage: /msg Nickserv SET <b>HIDEEMAIL</b> [ON|OFF]
-Usage: /ns SET <b>HIDEEMAIL</b> [ON|OFF]
+NS SET <b>AUTHORIZE</b>
+Usage: /msg Nickserv SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
+Usage: /ns SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
 -
 -
-With <b>HIDEEMAIL</b>, you can set whether or not your e-mail address should be displayed in your info.   
-Once enabled, your e-mail address will not be displayed to others  
+With <b>AUTHORIZE</b>, you can set whether or not your authorization is required before someone can add you to their notify or a registered channel's operator list.   
+Once enabled you will receive a message that you have pending authorization requests. 
 -      
 -
 - Example
 -
-- SET <b>HIDEEMAIL ON</b> 
-- SET <b>HIDEEMAIL OFF</b>
+- SET <b>AUTHORIZE NOTIFY ON</b> 
+- SET <b>AUTHORIZE NOTIFY OFF</b>
+- SET <b>AUTHORIZE CHAN ON</b>
 - 
-- See also: /msg Nickserv help <b>SET EMAIL</b>
+- See also: /msg Nickserv help <b>AUTH</b>
 -
 -
-- SET <b>HIDEEMAIL</b> - End of help
+- SET <b>AUTHORIZE</b> - End of help

@@ -514,8 +514,7 @@ void remove_timeout(user *u, int type) {
 /**
  * adds a new nickname to the nickserv table
  */
-NickInfo *register_nick(const char *src, const char *password,
-		char *email) {
+NickInfo *register_nick(const char *src, const char *password,char *email) {
 	user *u = finduser(src);
 	NickInfo *n;
 	char *usermask = (char*) malloc(sizeof(char*) * 1024);
@@ -538,7 +537,7 @@ NickInfo *register_nick(const char *src, const char *password,
 	n->last_usermask = sstrdup(usermask);
 	n->mforward = 0;
 	if (ns_autoaccess) {
-
+		ns_access_add_mask(n,usermask);
 	}
 	n->next = nicklist;
 	if (nicklist)

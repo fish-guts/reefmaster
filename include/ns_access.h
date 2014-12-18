@@ -10,6 +10,7 @@
 
 void ns_access(char *src,int ac,char **av);
 void ns_access_add(char *src,char *nick,char *mask);
+void ns_access_add_mask(NickInfo *n, char *mask);
 void ns_access_del(char *src,char *nick,char *mask);
 void ns_access_list(char *src,char *nick);
 void ns_access_wipe(char *src,char *nick);

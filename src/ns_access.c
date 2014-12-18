@@ -111,13 +111,8 @@ void ns_access_add(char *src, char *nick, char *mask) {
 					notice(ns_name, src, NS_ERR_ACC_MASKEXISTS, mask);
 				return;
 			}
-			myacc *a = scalloc(sizeof(myacc), 1);
-			a->next = n->accesslist;
-			if (n->accesslist)
-				n->accesslist->prev = a;
-			n->accesslist = a;
-			a->mask = sstrdup(mask);
 
+			ns_access_add_mask(n,mask);
 
 			if (stricmp(src, nick) != 0)
 				notice(ns_name, src, NS_RPL_ACC_ADDSUCCESS2, mask, nick);
@@ -127,6 +122,16 @@ void ns_access_add(char *src, char *nick, char *mask) {
 	}
 	return;
 }
+
+void ns_access_add_mask(NickInfo *n, char *mask) {
+	myacc *a = scalloc(sizeof(myacc), 1);
+	a->next = n->accesslist;
+	if (n->accesslist)
+		n->accesslist->prev = a;
+	n->accesslist = a;
+	a->mask = sstrdup(mask);
+}
+
 /**
  * remove an entry from the nickname's access list
  */
