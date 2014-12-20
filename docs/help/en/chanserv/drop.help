@@ -1,16 +1,15 @@
-NS <b>DROP</b>
+CS <b>DROP</b>
 -
-Usage: /msg Nickserv <b>DROP</b> [Nickname]
-Usage: /ns <b>DROP</b> [Nickname]
+Usage: /msg Chanserv <b>DROP</b> <Channel>
+Usage: /cs <b>DROP</b> <Channel>
 -
 -
-With <b>DROP</b>, you can unregister a nickname. 
-This means that the nick is no longer protected with a password and all access list entries such as notify or operator list will be deleted.
-Adminstrators can drop any nick. 
+With <b>DROP</b>, you can unregister a channel.  
+This means that the channel can no longer have Operator or akick lists. If there is a bot on the channel, it will also be removed from the channel unless you decided to manage a channel using Adminserv. 
 Be careful - this action cannot be undone.    
 -
 - Example
 - 
-- NS <b>DROP</b> foo 
+- CS <b>DROP</b> #lobby 
 -
 - <b>DROP</b> - End of help
