@@ -1,0 +1,22 @@
+CS <b>AOP</b>
+-
+Usage: /msg Chanserv <b>AOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+Usage: /cs <b>AOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+-
+-
+With <b>AOP</b>, you can manage the Auto Operator list of a channel.  
+Using this command, you may add Auto Operators have Operator access to a channel. They may grant themselves operator status to a channel using the <b>OP</b> Command. Please note that only registered nickname can be added to this list. 
+Operators may use the regular Operator Command provided by the IRC Server.  
+Depending on the Configuration, Auto Operator may add Nicknames to the <b>HOP</b>, <b>Vop</b> and <b>Uop</b> list of a channel.  
+ 
+-
+The following commands are available
+-
+- AOP <Channel> <b>ADD</b> <Nickname> - Add an entry to your Aop list. 
+- AOP <Channel> <b>DEL</b> <Nickname> - Remove an entry from your Aop list.
+- AOP <Channel> <b>LIST</b> <Nickname> - List all entries of your Aop list. 
+- AOP <Channel> <b>WIPE</b> <Nickname> - Remove all entries from your Aop list. 
+-
+- For more help on the command, please type /msg Chanserv HELP AOP <Command>
+- 
+- <b>AOP</b> - End of help

@@ -1,0 +1,14 @@
+CS AOP <b>ADD</b>
+Usage: /msg Chanserv AOP <Channel> <b>ADD</b> <Nickname>
+Usage: /cs AOP <Channel> <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add an entry to the Aop list of a channel. 
+  
+-
+- Example
+-
+- AOP #lobby <b>ADD</b> foo
+- AOP #lobby <b>ADD</b> bar
+- 
+- AOP <b>ADD</b> - End of help

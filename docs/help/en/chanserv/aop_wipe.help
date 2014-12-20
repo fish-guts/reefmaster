@@ -1,0 +1,14 @@
+CS AOP <b>WIPE</b>
+-
+Usage: /msg Chanserv AOP <Channel> <b>WIPE</b>
+Usage: /cs AOP <Channel> <b>WIPE</b>
+-
+-
+With <b>WIPE</b>, you can remove all entries from the Aop list of a channel.    
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- AOP #lobby <b>WIPE</b>
+-
+- AOP <b>WIPE</b> - End of help
