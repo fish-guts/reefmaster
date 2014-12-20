@@ -1,0 +1,31 @@
+CS HOP <b>LIST</b>
+-
+Usage: /msg Chanserv HOP <Channel> <b>LIST</b>
+Usage: /cs HOP <Channel> <b>LIST</b>
+-
+-
+With <b>LIST</b>, you can view all entries in the Hop List of a channel.   
+- The entries will be displayed in the following format: 
+- 1 - foo (Added by ServiceRootAdmin:admin on 06/06/2014 19:20:20 CET)
+- 2 - bar (Added by 5:foo on 06/06/2014 19:20:20 CET)
+-
+- 1 and 2 are the number of the counter. 
+- foo and bar are registered nicknames with Hop access to this channel.
+- ServiceRootAdmin and 5 are the level of access that added the nickname. 
+- The following level are possible:
+-
+- 1 - The user that added the nickname has Uop access to Chanserv.   
+- 2 - The user that added the nickname has Vop access to Chanserv.
+- 3 - The user that added the nickname has Hop access to Chanserv.
+- 4 - The user that added the nickname has Aop access to Chanserv.
+- 5 - The user that added the nickname has Sop access to Chanserv.
+- 6 - The user that added the nickname has Successor access to Chanserv.
+- 7 - The user that added the nickname has Founder access to Chanserv.
+- ServiceRootAdmin - The user that added the nickname has Administrator access to Chanserv.
+-   
+-
+- Example
+-
+- HOP #lobby <b>LIST</b>
+-
+- HOP <b>LIST</b> - End of help

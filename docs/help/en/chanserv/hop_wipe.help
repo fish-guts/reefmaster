@@ -1,0 +1,14 @@
+CS HOP <b>WIPE</b>
+-
+Usage: /msg Chanserv HOP <Channel> <b>WIPE</b>
+Usage: /cs HOP <Channel> <b>WIPE</b>
+-
+-
+With <b>WIPE</b>, you can remove all entries from the Hop list of a channel.    
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- HOP #lobby <b>WIPE</b>
+-
+- HOP <b>WIPE</b> - End of help

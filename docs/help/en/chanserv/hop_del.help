@@ -1,0 +1,14 @@
+CS HOP <b>DEL</b>
+Usage: /msg Chanserv HOP <Channel> <b>DEL</b> <Nickname>
+Usage: /cs HOP <Channel> <b>DEL</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can remove an entry from the Hop list of a channel. 
+  
+-
+- Example
+-
+- HOP #lobby <b>DEL</b> foo
+- HOP #lobby <b>DEL</b> bar
+- 
+- HOP <b>DEL</b> - End of help

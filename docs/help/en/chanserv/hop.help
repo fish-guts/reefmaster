@@ -1,0 +1,22 @@
+CS <b>HOP</b>
+-
+Usage: /msg Chanserv <b>HOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+Usage: /cs <b>HOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+-
+-
+With <b>HOP</b>, you can manage the Half Operator list of a channel.  
+Using this command, you may add Half Operators have Operator access to a channel. They may grant themselves half-operator status to a channel using the <b>HALFOP</b> Command. Please note that only registered nickname can be added to this list. 
+Half-Operators may use the regular Half-Operator Command provided by the IRC Server.  
+Depending on the Configuration, Half Operators may add Nicknames to the <b>Vop</b> and <b>Uop</b> list of a channel.  
+ 
+-
+The following commands are available
+-
+- HOP <Channel> <b>ADD</b> <Nickname> - Add an entry to your Hop list. 
+- HOP <Channel> <b>DEL</b> <Nickname> - Remove an entry from your Hop list.
+- HOP <Channel> <b>LIST</b> <Nickname> - List all entries of your Hop list. 
+- HOP <Channel> <b>WIPE</b> <Nickname> - Remove all entries from your Hop list. 
+-
+- For more help on the command, please type /msg Chanserv HELP HOP <Command>
+- 
+- <b>HOP</b> - End of help

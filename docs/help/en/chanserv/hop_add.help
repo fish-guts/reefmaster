@@ -1,0 +1,14 @@
+CS HOP <b>ADD</b>
+Usage: /msg Chanserv HOP <Channel> <b>ADD</b> <Nickname>
+Usage: /cs HOP <Channel> <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add an entry to the Hop list of a channel. 
+  
+-
+- Example
+-
+- HOP #lobby <b>ADD</b> foo
+- HOP #lobby <b>ADD</b> bar
+- 
+- HOP <b>ADD</b> - End of help
