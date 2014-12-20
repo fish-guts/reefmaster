@@ -1,0 +1,14 @@
+CS <b>DEOP</b>
+-
+Usage: /msg ChanServ <b>DEOP</b> <Channel> <Nickname>
+Usage: /cs <b>DEOP</b> <Channel> <Nickname>
+-
+-
+<b>DEOP</b> Removes Operator Status from a Nickname.   
+-
+Example: 
+-
+- CS <b>DEOP</b> #lobby foo 
+- 
+ 
+- <b>DEOP</b> - End of help

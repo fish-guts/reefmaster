@@ -1,0 +1,14 @@
+CS <b>DEHALFOP</b>
+-
+Usage: /msg ChanServ <b>DEHALFOP</b> <Channel> <Nickname>
+Usage: /cs <b>DEHALFOP</b> <Channel> <Nickname>
+-
+-
+<b>DEHALFOP</b> Removes Half-Operator Status from a Nickname.   
+-
+Example: 
+-
+- CS <b>DEHALFOP</b> #lobby foo 
+- 
+ 
+- <b>DEHALFOP</b> - End of help

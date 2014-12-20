@@ -1,0 +1,14 @@
+CS <b>DEVOICE</b>
+-
+Usage: /msg ChanServ <b>DEVOICE</b> <Channel> <Nickname>
+Usage: /cs <b>DEVOICE</b> <Channel> <Nickname>
+-
+-
+<b>DEVOICE</b> Removes Voice Status from a Nickname.   
+-
+Example: 
+-
+- CS <b>DEVOICE</b> #lobby foo 
+- 
+ 
+- <b>DEVOICE</b> - End of help
