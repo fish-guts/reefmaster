@@ -1,0 +1,13 @@
+CS <b>MDEOP</b>
+-
+Usage: /msg Chanserv <b>MDEOP</b> <Channel>
+Usage: /cs <b>MDEOP</b> <Channel>
+-
+-
+With <b>MDEOP</b>, you can perform a mass deop on a channel. This means that Chanserv will deop every user that is on the channel who has operator status.    
+-
+- Example
+- 
+- CS <b>MDEOP</b> #lobby
+-
+- <b>MDEOP</b> - End of help
