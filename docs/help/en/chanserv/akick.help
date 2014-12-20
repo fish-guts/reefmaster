@@ -1,4 +1,4 @@
-NS <b>AKICK</b>
+CS <b>AKICK</b>
 -
 Usage: /msg Nickserv <b>AKICK</b> [ADD|DEL|LIST|WIPE] <Channel> <Nickname>
 Usage: /ns <b>AKICK</b> [ADD|DEL|LIST|WIPE] <Channel> <Nickname>
