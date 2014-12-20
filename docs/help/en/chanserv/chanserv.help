@@ -1,0 +1,39 @@
+<b>NICKSERV</b>
+Nickserv allows a user to register a nickname to prevent it from being used by other users. 
+Once a nickname is registered it will be protected by a password. You can still allow a user to use the nickname by turning protection off. 
+There are numerous other settings that Nickserv provides
+-
+-
+The following commands are available:
+-
+<b>ACC</b> - Displays the access a user has to a channel
+<b>AKICK</b> - Manage the channel's Akick list.
+<b>AOP</b> - Manage the channel's Aop list.
+<b>DEHALFOP</b> - Remove Half Operator status from a user. 
+<b>DEVOICE</b> - Remove voice status from a user. 
+<b>DEOP</b> - Remove operator status from a user.
+<b>DROP</b> - Drop a registered channel
+<b>GETPASS</b> - Retrieve the password of a channel (IRC Operators only)
+<b>HALFOP</b> - Grant Half Operator status to a user.
+<b>HOP</b> - Manage the channel's Hop List
+<b>IDENTIFY</b> - Identify for the channel
+<b>INFO</b> - Display information about a channel
+<b>INVITE</b> - Invite a user to join the channel
+<b>LIST</b> - List registered Channels (IRC Operators only)
+<b>MKICK</b> - Perform a Mass Kick in a channel.
+<b>MDEOP</b> - Perform a Mass Deop in a channel.  
+<b>OP</b> - Grant Operator status to a user.
+<b>REGISTER</b> - Register a Channel
+<b>SET</b> - Additional Settings
+<b>SETPASS</b> - Set a new password for a channel (IRC Operators only)
+<b>SOP</b> - Manage the channel's Sop List
+<b>UOP</b> - Manage the channel's Uop List
+<b>UNBAN</b> - List a ban in a channl against you.
+<b>VOICE</b> - Grant voice status to a user.
+<b>VOP</b> - Manage the channel's Vop List
+<b>WHY</b> - Display information on why a user has access to a channel. 
+
+For help on a specific topic, type /msg Chanserv <b>HELP</b> <Command> 
+
+
+- \CHANSERV\2 - End of help

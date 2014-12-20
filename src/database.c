@@ -700,6 +700,7 @@ void load_chans(void) {
 			c->id = sqlite3_column_int(stmt, 0);
 			strscpy(c->name, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
 			strscpy(c->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
+			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24),DESCMAX);
 			c->time_reg = sqlite3_column_int(stmt, 3);
 			c->aop_enabled = sqlite3_column_int(stmt, 4);
 			c->hop_enabled = sqlite3_column_int(stmt, 5);
@@ -737,8 +738,6 @@ void load_chans(void) {
 			c->opwatch = sqlite3_column_int(stmt, 21);
 			c->url = sstrdup((char*) sqlite3_column_text(stmt, 22));
 			c->topiclock = sqlite3_column_int(stmt, 23);
-			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24),
-			DESCMAX);
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)

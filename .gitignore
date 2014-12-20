@@ -10,3 +10,4 @@ services
 .gitignore~
 log/
 db/fixture.sql~
+db/services.db

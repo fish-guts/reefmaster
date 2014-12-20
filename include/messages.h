@@ -200,17 +200,6 @@
  ******************************************************************************************************************************************
  */
 
-#define NS_HELP_ADD				"ADD"
-#define NS_HELP_DEL				"DEL"
-#define NS_HELP_LIST			"LIST"
-#define NS_HELP_WIPE			"WIPE"
-#define NS_HELP_GENERAL 		"HELP"
-#define NS_HELP_ACC				"ACC"
-#define NS_HELP_ACCESS			"ACCESS"
-#define NS_HELP_AUTH			"AUTH"
-#define NS_HELP_AUTH_ACCEPT		"ACCEPT"
-#define NS_HELP_AUTH_DECLINE	"DECLINE"
-#define NS_HELP_AUTH_REA		"READ"
 #define NS_HELP_PATH			"docs/help/en/nickserv"
 
 
@@ -413,6 +402,12 @@
 #define CS_CTP_GETPASS_USED			"GETPASS command used by: \2%s\2 for the channel \2%s\2"
 #define CS_RPL_GPASS_SUCCESS		"The Password for the channel \2%s\2 is: %s."
 #define CS_ERR_GPASS_USAGE			"Usage: \2GETPASS\2 <channel>."
+
+
+/* INFO
+ ******************************************************************************************************************************************
+ */
+#define CS_HELP_PATH			"docs/help/en/chanserv"
 
 /* INFO
  ******************************************************************************************************************************************

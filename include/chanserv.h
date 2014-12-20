@@ -10,6 +10,7 @@
 #include "cs_drop.h"
 #include "cs_getpass.h"
 #include "cs_halfop.h"
+#include "cs_help.h"
 #include "cs_identify.h"
 #include "cs_info.h"
 #include "cs_invite.h"

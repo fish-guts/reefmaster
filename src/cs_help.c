@@ -22,23 +22,23 @@
 #include "main.h"
 
 /**
- * ns_help handle the Nickserv HELP commands
- * Displays the usage of the specified Nickserv command
+ * cs_help handle the Chanserv HELP commands
+ * Displays the usage of the specified Chanserv command
  */
-void ns_help(char *src, int ac, char **av) {
+void cs_help(char *src, int ac, char **av) {
 	char help[64];
 	if(ac<2) {
-		sprintf(help,"%s/%s.help",NS_HELP_PATH,"nickserv");
+		sprintf(help,"%s/%s.help",CS_HELP_PATH,"chanserv");
 		help_message(ns_name,src,help);
 		return;
 	} else if(ac==2) {
-		sprintf(help,"%s/%s.help",NS_HELP_PATH,strlower(av[1]));
+		sprintf(help,"%s/%s.help",CS_HELP_PATH,strlower(av[1]));
 	}  else if(ac==3) {
-		sprintf(help,"%s/%s_%s.help",NS_HELP_PATH,strlower(av[1]),strlower(av[2]));
+		sprintf(help,"%s/%s_%s.help",CS_HELP_PATH,strlower(av[1]),strlower(av[2]));
 	}
 	if(file_exists(help)) {
-		help_message(ns_name,src,help);
+		help_message(cs_name,src,help);
 	} else {
-		notice(ns_name,src,"No Help on that Subject is available");
+		notice(cs_name,src,"No Help on that Subject is available");
 	}
 }

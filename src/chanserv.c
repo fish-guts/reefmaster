@@ -39,6 +39,7 @@ cs_cmd cs_cmds[] = {
 	{ "DROP", cs_drop },
 	{ "GETPASS", cs_getpass },
 	{ "HALFOP", cs_halfop },
+	{ "HELP", cs_help },
 	{ "HOP", cs_hop },
 	{ "IDENTIFY", cs_identify },
 	{ "INFO", cs_info },
@@ -55,6 +56,7 @@ cs_cmd cs_cmds[] = {
 	{ "UNBAN", cs_unban },
 	{ "VOICE", cs_voice },
 	{ "VOP", cs_vop },
+	{ "WHY", NULL },
 };
 char *get_oline(int level) {
 	static char *oline[] = {

@@ -40,5 +40,5 @@ extern int os_connect(int sock)
 
 void announce_oper(char *oper,int lvl)
 {
-	chatops(os_name,aoper[lvl-1],oper);
+	globops(os_name,aoper[lvl-1],oper);
 }

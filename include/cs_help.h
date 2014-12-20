@@ -8,6 +8,6 @@
 #ifndef NS_HELP_H_
 #define NS_HELP_H_
 
-void cs_help(char *src, int ac, char **av);
+void ns_help(char *src, int ac, char **av);
 
 #endif /* NS_HELP_H_ */

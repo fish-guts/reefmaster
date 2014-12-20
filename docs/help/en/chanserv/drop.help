@@ -1,0 +1,16 @@
+NS <b>DROP</b>
+-
+Usage: /msg Nickserv <b>DROP</b> [Nickname]
+Usage: /ns <b>DROP</b> [Nickname]
+-
+-
+With <b>DROP</b>, you can unregister a nickname. 
+This means that the nick is no longer protected with a password and all access list entries such as notify or operator list will be deleted.
+Adminstrators can drop any nick. 
+Be careful - this action cannot be undone.    
+-
+- Example
+- 
+- NS <b>DROP</b> foo 
+-
+- <b>DROP</b> - End of help

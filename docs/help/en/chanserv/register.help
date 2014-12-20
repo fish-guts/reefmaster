@@ -1,0 +1,16 @@
+NS <b>REGISTER</b>
+-
+Usage: /msg Nickserv <b>REGISTER</b> <Password> <E-Mail Address>
+Usage: /ns <b>REGISTER</b> <Password> <E-Mail Address> 
+-
+-
+With <b>REGISTER</b>, you can register a nickname with services and thus prohibit it from usage by unauthorized users.
+You will need to provide a password and your e-mail address.
+Your nickname will expire 90 days if remained unused. 
+-
+- Example
+-
+- \2REGISTER\2 mypass123 my@email.com 
+- \2REGISTER\2 myotherpass you@email.com
+- 
+- <b>REGISTER</b> - End of help

@@ -1,0 +1,14 @@
+NS <b>INFO</b>
+-
+Usage: /msg Nickserv <b>INFO</b> [Nickname]
+Usage: /ns <b>INFO</b> [Nickname]
+-
+-
+With <b>DROP</b>, you can display information about a registered nickname. 
+Various information will be displayed such as last realname, options, last seen online, etc. 
+-
+- Example
+- 
+- NS <b>INFO</b> foo 
+-
+- <b>INFO</b> - End of help

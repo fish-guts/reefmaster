@@ -1,0 +1,15 @@
+NS <b>IDENTIFY</b>
+-
+Usage: /msg Nickserv <b>IDENTIFY</b> <Nickname> <Password>
+Usage: /ns <b>IDENTIFY</b> <Nickname> <Password>
+-
+-
+With <b>IDENTIFY</b>, you can identify your registered nickname with your password.
+If you don't provide a nickname, the command will be used for your current nickname.  
+-
+- Example
+- 
+- NS <b>IDENTIFY</b> foo myfoo123 
+- NS <b>IDENTIFY</b> myfoo123
+-
+- <b>IDENTIFY</b> - End of help
