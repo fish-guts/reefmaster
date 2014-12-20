@@ -1,0 +1,13 @@
+CS <b>MKICK</b>
+-
+Usage: /msg Chanserv <b>MKICK</b> <Channel> <Reason>
+Usage: /cs <b>MKICK</b> <Channel> <Reason>
+-
+-
+With <b>MKICK</b>, you can perform a mass kick on a channel. This means that Chanserv will join and kick every user that is on the channel.   
+-
+- Example
+- 
+- CS <b>MKICK</b> #lobby Get outta here!
+-
+- <b>MKICK</b> - End of help

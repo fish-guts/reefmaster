@@ -1,10 +1,10 @@
 CS <b>INVITE</b>
 -
 Usage: /msg Chanserv <b>INVITE</b> <Channel>
-Usage: /cs <b>info.help</b> <Channel>
+Usage: /cs <b>INVITE</b> <Channel>
 -
 -
-With <b>INVITE</b>, you invite yourself into an invite only (Channel Mode +i) Channel.  
+With <b>INVITE</b>, you can invite yourself into an invite only (Channel Mode +i) Channel.  
 -
 - Example
 - 

@@ -1,15 +1,15 @@
-NS <b>LIST</b>
+CS <b>LIST</b>
 -
-Usage: /msg Nickserv <b>LIST</b> <Pattern>
-Usage: /ns <b>LIST</b> <Pattern>
+Usage: /msg Chanserv <b>LIST</b> <Pattern>
+Usage: /cs <b>LIST</b> <Pattern>
 -
 -
-With <b>LIST</b>, you can issue a list of registered nickname matching the provided pattern.  
+With <b>LIST</b>, you can issue a list of registered channels matching the provided pattern.  
 This command is only available to users with IRC Operator privileges.  
 -
 - Example
 - 
-- NS <b>LIST</b> a*
-- NS <b>LIST</b> foo* 
+- CS <b>LIST</b> a*
+- CS <b>LIST</b> foo* 
 -
 - <b>LIST</b> - End of help
