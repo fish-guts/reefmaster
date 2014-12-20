@@ -1,16 +1,16 @@
-NS <b>REGISTER</b>
+CS <b>REGISTER</b>
 -
-Usage: /msg Nickserv <b>REGISTER</b> <Password> <E-Mail Address>
-Usage: /ns <b>REGISTER</b> <Password> <E-Mail Address> 
+Usage: /msg Chanserv <b>REGISTER</b> <Channel> <Password> <Description>
+Usage: /cs <b>REGISTER</b> <Channel> <Password> <Description> 
 -
 -
-With <b>REGISTER</b>, you can register a nickname with services and thus prohibit it from usage by unauthorized users.
-You will need to provide a password and your e-mail address.
-Your nickname will expire 90 days if remained unused. 
+With <b>REGISTER</b>, you can register a channel with services and thus being managed by services. 
+You will need to provide a password and a description. 
+Your Channel will expire if not used for the configured amount of days (Default: 90 days)  
 -
 - Example
 -
-- \2REGISTER\2 mypass123 my@email.com 
-- \2REGISTER\2 myotherpass you@email.com
+- \2REGISTER\2 #lobby mypass123 This is the lobby 
+- \2REGISTER\2 #ops myopspass123 This is the Channel for Operators
 - 
 - <b>REGISTER</b> - End of help
