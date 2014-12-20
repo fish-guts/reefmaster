@@ -1,0 +1,17 @@
+CS AKICK <b>ADD</b>
+Usage: /msg Chanserv AKICK <Channel> <b>ADD</b> <Mask>
+Usage: /cs AKICK <Channel> <b>ADD</b> <Mask>
+-
+-
+With <b>ADD</b>, you can add an entry to the akick list of a channel. 
+The mask needs to be in the following format: Nick!User@host. 
+You can specify a nick only. The mask will automatically converted in the format Nick!*@* which means any user with this nick will match. 
+You can also add wilcards the match any character.  
+-
+- Example
+-
+- AKICK #lobby <b>ADD</b> foo@foo@bar.com 
+- AKICK #lobby <b>ADD</b> *!*@bar.com
+- AKICK #lobby <b>ADD</b> foo!*@foobar.com
+- 
+- AKICK <b>ADD</b> - End of help

@@ -1,7 +1,7 @@
 NS ACCESS <b>DEL</b>
 -
 Usage: /msg Nickserv ACCESS <b>DEL</b> <Mask> [Nickname]
-Usage: /ns ACCESS <b>ADD</b> <Mask> [Nickname]
+Usage: /ns ACCESS <b>DEL</b> <Mask> [Nickname]
 -
 -
 With <b>DEL</b>, you can remove an entry from your access list.  

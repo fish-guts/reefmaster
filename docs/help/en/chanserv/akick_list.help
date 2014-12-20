@@ -1,0 +1,14 @@
+CS AKICK <b>LIST</b>
+-
+Usage: /msg Chanserv AKICK <Channel> <b>LIST</b>
+Usage: /cs AKICK <Channel> <b>LIST</b>
+-
+-
+With <b>LIST</b>, you can view all entries in your akick list.   
+   
+-
+- Example
+-
+- AKICK #lobby <b>LIST</b>
+-
+- AKICK <b>LIST</b> - End of help

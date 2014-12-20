@@ -1,0 +1,14 @@
+CS AKICK <b>WIPE</b>
+-
+Usage: /msg Chanserv AKICK <Channel> <b>WIPE</b>
+Usage: /cs AKICK <Channel> <b>WIPE</b>
+-
+-
+With <b>WIPE</b>, you can remove all entries from the akick list of a channel.    
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- AKICK #lobby <b>WIPE</b>
+-
+- AKICK <b>WIPE</b> - End of help

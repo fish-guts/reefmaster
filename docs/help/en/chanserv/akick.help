@@ -1,0 +1,19 @@
+NS <b>AKICK</b>
+-
+Usage: /msg Nickserv <b>AKICK</b> [ADD|DEL|LIST|WIPE] <Channel> <Nickname>
+Usage: /ns <b>AKICK</b> [ADD|DEL|LIST|WIPE] <Channel> <Nickname>
+-
+-
+With <b>AKICK</b>, you can manage the akick list of a channel.  
+A user matching an entry on the akick list will be automatically kicked and banned from the specified channel if they attempt to join.
+-
+The following commands are available
+-
+- AKICK <b>ADD</b> <mask>  [Nickname] - Add an entry to your akick list. 
+- AKICK <b>DEL</b> <mask>  [Nickname] - Remove an entry from your akick list.
+- AKICK <b>LIST</b>  [Nickname] - List all entries of your akick list. 
+- AKICK <b>WIPE</b> <mask>  [Nickname] - Remove all entries from your akick list. 
+-
+- For more help on the command, please type /msg Chanserv HELP AKICK <Command>
+- 
+- <b>AKICK</b> - End of help

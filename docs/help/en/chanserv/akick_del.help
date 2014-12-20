@@ -1,0 +1,16 @@
+CS AKICK <b>DEL</b>
+-
+Usage: /msg Chanserv AKICK <Channel> <b>DEL</b> <Mask>
+Usage: /cs AKICK <Channel> <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove an entry from the akick list of a channel.   
+-
+-
+- Example
+-
+- AKICK #lobby <b>DEL</b> foo@foo@bar.com 
+- AKICK #lobby <b>DEL</b> *!*@bar.com
+- AKICK #lobby <b>DEL</b> foo!*@foobar.com
+- 
+- AKICK <b>DEL</b> - End of help

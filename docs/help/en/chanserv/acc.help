@@ -1,15 +1,14 @@
-<b>NS ACC</b>
+CS <b>ACC</b>
 -
-Usage: /msg Nickserv <b>ACC</b> <Nickname>
-Usage: /ns <b>ACC</b> <Nickname>
+Usage: /msg ChanServ <b>ACC</b> <Channel> <Nickname>
+Usage: /cs <b>ACC</b> <Channel> <Nickname>
 -
 -
-<b>ACC</b> displays the level of access a user has to the nickname's they're using. 
+<b>ACC</b> displays the level of access a user has to a channel.  
 -
-The following values can be returned:
+Example: 
 -
-<b> 0 - No Access </b> - This user has no access to this nickname. This means they haven't identified yet or they are not the registered owner of this nickname
-<b> 1 - Matches an entry in the nickname's access list </b>. The user's user@host mask matches an entry in this nickname's access list. "
-<b> 2 - User has identified for this nickname.</b> This user has identified for this nickname using the password or is an Administrator.
+- CS <b>ACC</b> #lobby foo 
 - 
+ 
 - <b>ACC</b> - End of help
