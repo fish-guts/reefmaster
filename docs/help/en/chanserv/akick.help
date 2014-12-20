@@ -1,7 +1,7 @@
 CS <b>AKICK</b>
 -
-Usage: /msg Nickserv <b>AKICK</b> [ADD|DEL|LIST|WIPE] <Channel> <Nickname>
-Usage: /ns <b>AKICK</b> [ADD|DEL|LIST|WIPE] <Channel> <Nickname>
+Usage: /msg Chanserv <b>AKICK</b> <Channel> [ADD|DEL|LIST|WIPE] <Mask>
+Usage: /cs <b>AKICK</b> <Mask> [ADD|DEL|LIST|WIPE] <Mask>
 -
 -
 With <b>AKICK</b>, you can manage the akick list of a channel.  
