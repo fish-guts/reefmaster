@@ -1,0 +1,14 @@
+CS VOP <b>DEL</b>
+Usage: /msg Chanserv VOP <Channel> <b>DEL</b> <Nickname>
+Usage: /cs VOP <Channel> <b>DEL</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can remove an entry from the Vop list of a channel. 
+  
+-
+- Example
+-
+- VOP #lobby <b>DEL</b> foo
+- VOP #lobby <b>DEL</b> bar
+- 
+- VOP <b>DEL</b> - End of help

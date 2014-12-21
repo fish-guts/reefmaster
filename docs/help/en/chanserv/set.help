@@ -10,6 +10,7 @@ The following commands are available
 -
 -
 - SET <b>BOT</b> Set an existing bot for your channel. 
+- SET <b>DESC</b> Change the Description of a channel.
 - SET <b>FOUNDER</b> Move ownership of the channel to someone else. 
 - SET <b>OPWATCH</b> Automatically deop Nicknames that do not have at least Aop Access. 
 - SET <b>LEAVEOPS</b> Allow Nicks with no Operator Access to be opped in a channel. 

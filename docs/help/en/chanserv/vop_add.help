@@ -1,0 +1,14 @@
+CS VOP <b>ADD</b>
+Usage: /msg Chanserv VOP <Channel> <b>ADD</b> <Nickname>
+Usage: /cs VOP <Channel> <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add an entry to the Vop list of a channel. 
+  
+-
+- Example
+-
+- VOP #lobby <b>ADD</b> foo
+- VOP #lobby <b>ADD</b> bar
+- 
+- VOP <b>ADD</b> - End of help

@@ -1,0 +1,14 @@
+CS VOP <b>WIPE</b>
+-
+Usage: /msg Chanserv VOP <Channel> <b>WIPE</b>
+Usage: /cs UOP <Channel> <b>WIPE</b>
+-
+-
+With <b>WIPE</b>, you can remove all entries from the Vop list of a channel.    
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- VOP #lobby <b>WIPE</b>
+-
+- VOP <b>WIPE</b> - End of help

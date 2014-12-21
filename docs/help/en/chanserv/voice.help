@@ -1,0 +1,14 @@
+CS <b>VOICE</b>
+-
+Usage: /msg ChanServ <b>VOICE</b> <Channel> <Nickname>
+Usage: /cs <b>VOICE</b> <Channel> <Nickname>
+-
+-
+<b>VOICE</b> Grants Voice Status to a Nickname.   
+-
+Example: 
+-
+- CS <b>VOICE</b> #lobby foo 
+- 
+ 
+- <b>VOICE</b> - End of help

@@ -1,0 +1,19 @@
+CS <b>VOP</b>
+-
+Usage: /msg Chanserv <b>VOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+Usage: /cs <b>VOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+-
+-
+With <b>VOP</b>, you can manage the Voice Operator list of a channel.  
+Users with Voice Access can grant themselves voice access (+v) using the <b>VOICE</b> command. They can send message to a moderated channel (+m).   
+-
+The following commands are available
+-
+- VOP <Channel> <b>ADD</b> <Nickname> - Add an entry to your Vop list. 
+- VOP <Channel> <b>DEL</b> <Nickname> - Remove an entry from your Vop list.
+- VOP <Channel> <b>LIST</b> <Nickname> - List all entries of your Vop list. 
+- VOP <Channel> <b>WIPE</b> <Nickname> - Remove all entries from your Vop list. 
+-
+- For more help on the command, please type /msg Chanserv HELP VOP <Command>
+- 
+- <b>VOP</b> - End of help
