@@ -30,8 +30,7 @@ The following commands are available:
 <b>UOP</b> - Manage the channel's Uop List
 <b>UNBAN</b> - List a ban in a channl against you.
 <b>VOICE</b> - Grant voice status to a user.
-<b>VOP</b> - Manage the channel's Vop List
-<b>WHY</b> - Display information on why a user has access to a channel. 
+<b>VOP</b> - Manage the channel's Vop List 
 
 For help on a specific topic, type /msg Chanserv <b>HELP</b> <Command> 
 
