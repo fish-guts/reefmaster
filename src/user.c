@@ -92,9 +92,7 @@ void delete_user(user *u)
     user_count--;
     if(u->oper>0)
     	oper_count--;
-    //check_del_memos(u);
     cancel_user(u);
-    //check_temp_os(u);
     free(u->username);
     free(u->hostname);
     free(u->realname);
