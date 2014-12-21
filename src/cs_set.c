@@ -348,6 +348,7 @@ void cs_set_mlock(char *src,int ac,char **av) {
 	return;
 }
 void cs_set_opwatch(char *src,int ac,char **av) {
+	notice(as_name,src,"Opwatch: %i",cs_set_opwatch_access);
 	ChanInfo *c;
 	char *chan;
 	user *u = finduser(src);

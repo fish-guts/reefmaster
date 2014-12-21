@@ -271,6 +271,19 @@ int   cs_cmd_invite;
 int   cs_cmd_mkick;
 
 
+int   cs_set_opwatch_access;
+int   cs_set_leaveops_access;
+int   cs_set_keeptopic_access;
+int   cs_set_topiclock_access;
+int   cs_set_memolevel_access;
+int   cs_set_desc_access;
+int   cs_set_password_access;
+int   cs_set_successor_access;
+int   cs_set_founder_access;
+int   cs_set_bot_access;
+int   cs_set_mlock_access;
+
+
 /* Block "memoserv" */
 int   ms_enabled;
 char *ms_name; 

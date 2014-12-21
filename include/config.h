@@ -58,20 +58,6 @@ int config_cs_sop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 int config_cs_sop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_sop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 
-int config_cs_admin_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_admin_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_admin_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_admin_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_admin_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_admin_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-
-int config_cs_owner_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_owner_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_owner_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_owner_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_owner_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_owner_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-
 int config_cs_sop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -87,6 +73,19 @@ int config_cs_vop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 int config_cs_vop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_topiclock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_topiclock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_desc(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_password(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_successor(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_founder(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_bot(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_mlock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+
 int config_oper(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_passAction(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_port(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
