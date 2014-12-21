@@ -1339,19 +1339,6 @@ int config_load(const char *file) {
 			CFG_SEC("settings",cs_settings_opts,CFGF_NONE),
 			CFG_END()
 	};
-	static cfg_opt_t ms_general_opts[] = {
-			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_ms),
-			CFG_STR_CB("name","Memoserv",CFGF_NONE,(void*)&config_str32),
-			CFG_STR_CB("realname","Messaging Service",CFGF_NONE,(void*)&config_str32),
-			CFG_END()
-	};
-	static cfg_opt_t ms_misc_opts[] = {
-			CFG_INT_CB("max_memos",1000,CFGF_NONE,(void*)&config_uint32),
-			CFG_INT_CB("flood_protect",1,CFGF_NONE,(void*)&config_bool),
-			CFG_END() };
-	static cfg_opt_t memoserv_opts[] = {
-			CFG_SEC("general",ms_general_opts,CFGF_NONE),
-			CFG_SEC("misc",ms_misc_opts,CFGF_NONE), CFG_END() };
 	static cfg_opt_t os_general_opts[] = {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_os),
 			CFG_STR_CB("name","Operserv",CFGF_NONE,(void*)&config_str32),
@@ -1368,13 +1355,17 @@ int config_load(const char *file) {
 			CFG_INT_CB("on_sqline",1,CFGF_NONE,(void*)&config_bool),
 			CFG_INT_CB("on_kick",0,CFGF_NONE,(void*)&config_bool),
 			CFG_INT_CB("on_list",0,CFGF_NONE,(void*)&config_bool),
-			CFG_INT_CB("on_kill",1,CFGF_NONE,(void*)&config_bool), CFG_END() };
+			CFG_INT_CB("on_kill",1,CFGF_NONE,(void*)&config_bool),
+			CFG_END()
+	};
 	static cfg_opt_t os_expiry_opts[] = {
 			CFG_INT_CB("akill",30,CFGF_NONE,(void*)&config_uint32),
 			CFG_INT_CB("sgline",30,CFGF_NONE,(void*)&config_uint32),
 			CFG_INT_CB("skline",30,CFGF_NONE,(void*)&config_uint32),
 			CFG_INT_CB("szline",30,CFGF_NONE,(void*)&config_uint32),
-			CFG_INT_CB("sqline",30,CFGF_NONE,(void*)&config_uint32), CFG_END() };
+			CFG_INT_CB("sqline",30,CFGF_NONE,(void*)&config_uint32),
+			CFG_END()
+	};
 	static cfg_opt_t operserv_opts[] = {
 			CFG_SEC("general",os_general_opts,CFGF_NONE),
 			CFG_SEC("wallops",os_wallops_opts,CFGF_NONE),
@@ -1386,33 +1377,40 @@ int config_load(const char *file) {
 			CFG_END() };
 	static cfg_opt_t bs_access_opts[] = {
 			CFG_INT_CB("manage",3,CFGF_NONE,(void*)&config_bs_manage),
-			CFG_INT_CB("channel",3,CFGF_NONE,(void*)&config_bs_channel), };
+			CFG_INT_CB("channel",3,CFGF_NONE,(void*)&config_bs_channel),
+	};
 	static cfg_opt_t bs_misc_opts[] = {
 			CFG_INT_CB("badword_max",1000,CFGF_NONE,(void*)&config_uint32),
 			CFG_INT_CB("min_users",1,CFGF_NONE,(void*)&config_uint32),
-			CFG_END() };
+			CFG_END()
+	};
 	static cfg_opt_t botserv_opts[] = {
 			CFG_SEC("general",bs_general_opts,CFGF_NONE),
 			CFG_SEC("access",bs_access_opts,CFGF_NONE),
-			CFG_SEC("misc",bs_misc_opts,CFGF_NONE), CFG_END() };
-	static cfg_opt_t as_general_opts[] =
-			{ CFG_INT_CB("enabled",0,CFGF_NONE,(void*)&config_bool_as),
-							CFG_STR_CB("name","Adminserv",CFGF_NONE,(void*)&config_str32),
-							CFG_STR_CB("realname","Administrator Service",CFGF_NONE,(void*)&config_str32),
-							CFG_END() };
+			CFG_SEC("misc",bs_misc_opts,CFGF_NONE), CFG_END()
+	};
+	static cfg_opt_t as_general_opts[] = {
+			CFG_INT_CB("enabled",0,CFGF_NONE,(void*)&config_bool_as),
+			CFG_STR_CB("name","Adminserv",CFGF_NONE,(void*)&config_str32),
+			CFG_STR_CB("realname","Administrator Service",CFGF_NONE,(void*)&config_str32),
+			CFG_END()
+	};
 	static cfg_opt_t as_misc_opts[] = {
 			CFG_INT_CB("access_flag",4,CFGF_NONE,(void*)&config_as_access_flag),
-			CFG_END() };
+			CFG_END()
+	};
 	static cfg_opt_t adminserv_opts[] = {
 			CFG_SEC("general",as_general_opts,CFGF_NONE),
-			CFG_SEC("misc",as_misc_opts,CFGF_NONE), CFG_END() };
+			CFG_SEC("misc",as_misc_opts,CFGF_NONE), CFG_END()
+	};
 	static cfg_opt_t opts[] = { CFG_SEC("services",services_opts,CFGF_NONE),
 			CFG_SEC("nickserv",nickserv_opts,CFGF_NONE),
 			CFG_SEC("chanserv",chanserv_opts,CFGF_NONE),
-			CFG_SEC("memoserv",memoserv_opts,CFGF_NONE),
 			CFG_SEC("operserv",operserv_opts,CFGF_NONE),
 			CFG_SEC("botserv",botserv_opts,CFGF_NONE),
-			CFG_SEC("adminserv",adminserv_opts,CFGF_NONE), CFG_END() };
+			CFG_SEC("adminserv",adminserv_opts,CFGF_NONE),
+			CFG_END()
+	};
 	cfg = cfg_init(opts, CFGF_NOCASE);
 	if (cfg_parse(cfg, file) == CFG_PARSE_ERROR) {
 		return -1;
@@ -1550,24 +1548,7 @@ int config_load(const char *file) {
 		cs_akick_max = cfg_getint(cs_misc, "akick_max");
 
 		/* end of section chanserv */
-		/* section memoserv ***********************************************************************************************/
-		cfg_t *memoserv;
-		cfg_t *ms_general;
-		cfg_t *ms_misc;
-		memoserv = cfg_getsec(cfg, "memoserv");
 
-		/* section general */
-		ms_general = cfg_getsec(memoserv, "general");
-		ms_name = cfg_getstr(ms_general, "name");
-		ms_realname = cfg_getstr(ms_general, "realname");
-
-		/* section misc */
-
-		ms_misc = cfg_getsec(memoserv, "misc");
-		ms_max_memos = cfg_getint(ms_misc, "max_memos");
-		ms_flood_protect = cfg_getint(ms_misc, "flood_protect");
-
-		/* end of section memoserv */
 		/* section operserv ***********************************************************************************************/
 		cfg_t *operserv;
 		cfg_t *os_general;

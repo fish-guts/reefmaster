@@ -13,7 +13,6 @@ int config_bool(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_bool_as(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_bs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_cs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_bool_ms(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_ns(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_os(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);

@@ -285,13 +285,6 @@ int   cs_set_bot_access;
 int   cs_set_mlock_access;
 
 
-/* Block "memoserv" */
-int   ms_enabled;
-char *ms_name; 
-char *ms_realname;
-int   ms_max_memos; 
-int   ms_flood_protect; 
-
 /* Block "operserv" */
 int   os_enabled;
 char *os_name; 
