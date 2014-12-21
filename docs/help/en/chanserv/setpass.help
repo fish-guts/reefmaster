@@ -1,14 +1,14 @@
-NS <b>SETPASS</b>
+CS <b>SETPASS</b>
 -
-Usage: /msg Nickserv <b>SETPASS</b> <Nickname> <Password>
-Usage: /ns <b>SETPASS</b> [Nickname]
+Usage: /msg Chanserv <b>SETPASS</b> <Channel> <Password>
+Usage: /cs <b>SETPASS</b> <Channel> <Password>
 -
 -
-With <b>SETPASS</b>, you can set a new password for a registered nickname.   
+With <b>SETPASS</b>, you can set a new password for a registered channel.   
 This command required IRC Operator privileges. 
 -
 - Example
 - 
-- NS <b>SETPASS</b> foo foosnewpass123 
+- CS <b>SETPASS</b> #lobby foosnewpass123 
 -
 - <b>SETPASS</b> - End of help
