@@ -588,6 +588,16 @@ int config_cs_set_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_memolevel_access = val;
 	return 0;
 }
+int config_cs_set_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value,
+		void *result) {
+	int val = atoi(value);
+	if ((val < 6) || (val > 9)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 6, 9);
+		return -1;
+	}
+	cs_set_restricted_access = val;
+	return 0;
+}
 int config_cs_set_desc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -1270,6 +1280,7 @@ int config_load(const char *file) {
 			CFG_INT_CB("keeptopic",8,CFGF_NONE,(void*)&config_cs_set_keeptopic),
 			CFG_INT_CB("topiclock",8,CFGF_NONE,(void*)&config_cs_set_topiclock),
 			CFG_INT_CB("memolevel",8,CFGF_NONE,(void*)&config_cs_set_memolevel),
+			CFG_INT_CB("restricted",8,CFGF_NONE,(void*)&config_cs_set_restricted),
 			CFG_INT_CB("desc",8,CFGF_NONE,(void*)&config_cs_set_desc),
 			CFG_INT_CB("password",8,CFGF_NONE,(void*)&config_cs_set_password),
 			CFG_INT_CB("successor",8,CFGF_NONE,(void*)&config_cs_set_successor),

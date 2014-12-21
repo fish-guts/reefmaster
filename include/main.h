@@ -275,6 +275,7 @@ int   cs_set_opwatch_access;
 int   cs_set_leaveops_access;
 int   cs_set_keeptopic_access;
 int   cs_set_topiclock_access;
+int   cs_set_restricted_access;
 int   cs_set_memolevel_access;
 int   cs_set_desc_access;
 int   cs_set_password_access;

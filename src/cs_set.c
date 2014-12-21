@@ -73,7 +73,7 @@ void cs_set_bot(char *src,int ac,char **av) {
 	}
 	c = findchan(chan);
 
-	if(cs_xop_get_level(u,c)<ACCESS_FND-1) {
+	if(cs_xop_get_level(u,c)<cs_set_bot_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -144,7 +144,7 @@ void cs_set_desc(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_desc_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -171,7 +171,7 @@ void cs_set_founder(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_founder_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -201,7 +201,7 @@ void cs_set_keeptopic(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_keeptopic_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -235,7 +235,7 @@ void cs_set_leaveops(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_leaveops_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -271,7 +271,7 @@ void cs_set_memolevel(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_memolevel_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -328,7 +328,7 @@ void cs_set_mlock(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_mlock_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -348,7 +348,6 @@ void cs_set_mlock(char *src,int ac,char **av) {
 	return;
 }
 void cs_set_opwatch(char *src,int ac,char **av) {
-	notice(as_name,src,"Opwatch: %i",cs_set_opwatch_access);
 	ChanInfo *c;
 	char *chan;
 	user *u = finduser(src);
@@ -363,7 +362,7 @@ void cs_set_opwatch(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_opwatch_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -401,7 +400,7 @@ void cs_set_password(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_password_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -436,7 +435,7 @@ void cs_set_restricted(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_restricted_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -471,7 +470,7 @@ void cs_set_successor(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_successor_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
@@ -502,7 +501,7 @@ void cs_set_topiclock(char *src,int ac,char **av) {
 		return;
 	}
 	c = findchan(chan);
-	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+	if(cs_xop_get_level(u,c)<cs_set_topiclock_access) {
 		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;

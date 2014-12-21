@@ -78,7 +78,7 @@ int config_cs_set_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *
 int config_cs_set_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_topiclock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_set_topiclock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_set_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_desc(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_password(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_successor(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
