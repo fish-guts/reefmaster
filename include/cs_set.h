@@ -11,6 +11,7 @@
 
 void cs_set(char *src,int ac,char **av);
 void cs_set_bot(char *src,int ac,char **av);
+void cs_set_desc(char *src,int ac,char **av);
 void cs_set_founder(char *src,int ac,char **av);
 void cs_set_keeptopic(char *src,int ac,char **av);
 void cs_set_leaveops(char *src,int ac,char **av);

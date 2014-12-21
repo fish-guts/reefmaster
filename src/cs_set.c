@@ -27,6 +27,8 @@ void cs_set(char *src,int ac,char **av) {
 	}
 	if (stricmp(av[2], "BOT") == 0)
 		cs_set_bot(src, ac, av);
+	else if (stricmp(av[2], "DESC") == 0)
+		cs_set_desc(src, ac, av);
 	else if (stricmp(av[2], "FOUNDER") == 0)
 		cs_set_founder(src, ac, av);
 	else if (stricmp(av[2], "OPWATCH") == 0)
@@ -118,6 +120,42 @@ void cs_set_bot(char *src,int ac,char **av) {
 		return;
 	}
 }
+
+void cs_set_desc(char *src,int ac,char **av) {
+	ChanInfo *c;
+	char *chan;
+	char desc[256] = "";
+	user *u = finduser(src);
+	if (ac <= 3) {
+		notice(cs_name, src, CS_ERR_SET_PASSWORD_USAGE);
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"SET PASSWORD");
+		return;
+	}
+	chan = sstrdup(av[1]);
+	int i;
+	for(i = 3; i < ac; i++) {
+		notice(as_name,"fish-guts","counter: %i",i);
+		strcat(desc,av[i]);
+		if(i<(ac-1)) {
+			strcat(desc," ");
+		}
+	}
+	if(!isregcs(chan)) {
+		notice(cs_name,src,CS_ERR_NOTREG,chan);
+		return;
+	}
+	c = findchan(chan);
+	if(cs_xop_get_level(u,c)<ACCESS_FND) {
+		notice(cs_name,src,CS_ERR_ACCESSDENIED,chan);
+		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
+		return;
+	}
+	strscpy(c->pass,desc,sizeof(desc));
+	notice(cs_name,src,CS_RPL_SET_PASS_SUCCESS,chan,desc);
+	return;
+}
+
+
 void cs_set_founder(char *src,int ac,char **av) {
 	ChanInfo *c;
 	char *chan,*nick;
