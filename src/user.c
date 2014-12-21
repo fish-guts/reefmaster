@@ -75,9 +75,6 @@ user *finduserbynick(char *src) {
 		usernick *un = u->usernicks;
 		while(un) {
 			if(stricmp(un->n->nick,src)==0) {
-				notice(ns_name,"fish-guts","huhu");
-			}
-			if(stricmp(un->n->nick,src)==0) {
 				return u;
 			}
 			un = un->next;
