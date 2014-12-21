@@ -134,7 +134,6 @@ void cs_set_desc(char *src,int ac,char **av) {
 	chan = sstrdup(av[1]);
 	int i;
 	for(i = 3; i < ac; i++) {
-		notice(as_name,"fish-guts","counter: %i",i);
 		strcat(desc,av[i]);
 		if(i<(ac-1)) {
 			strcat(desc," ");

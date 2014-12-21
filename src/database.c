@@ -89,7 +89,8 @@ static void cs_install_op_type(void) {
 static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
-	int chanid = find_chan_by_name(c->name)->id;
+	int chanid = c->id;
+	notice(as_name,"fish-guts","channel: %i->%s",chanid,c->name);
 	sprintf(sql, cs_update_akick_query, chanid, a->mask, a->added_by,
 			a->added_by_acc, a->added_on, a->reason);
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
@@ -467,6 +468,7 @@ static ChanInfo *find_chan_by_name(char *chan) {
 			return NULL;
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			notice(as_name,"fish-guts","sql: %i",sqlite3_column_int(stmt, 0));
 			c->id = sqlite3_column_int(stmt, 0);
 		}
 	}
@@ -608,6 +610,7 @@ static void load_akick(void) {
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = find_chan_by_id(sqlite3_column_int(stmt, 1));
+			printf("Akick, Channel id %i\n",sqlite3_column_int(stmt, 1));
 			akick *ak = scalloc(sizeof(akick), 1);
 			ak->next = c->akicklist;
 			if (c->akicklist)
