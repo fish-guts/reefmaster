@@ -237,8 +237,6 @@ int   cs_hops_max;
 int   cs_vops_max; 
 int   cs_uops_max; 
 int   cs_akicks_max;
-int   cs_owners_max;
-int   cs_admins_max;
 int   cs_sop_add;
 int   cs_sop_enable;
 int   cs_sop_del;

@@ -556,6 +556,7 @@
 #define CS_ERR_AOP_GENERALERROR		"Sorry, a general error has occured. Please try again later."
 #define CS_ERR_REG_GENERALERROR		"A general error has occured. Please try again later."
 #define CS_RPL_REG_HLP				"For more help, type /msg %s \2HELP REGISTER\2"
+#define CS_ERR_XOP_LIMIT			"The Limit of \2%i\2 entries in the \2%s\2 list of \2%s\2 has already been reached."
 #define CS_ERR_REG_NEEDTOBEONCHAN	"You must be on the channel \2%s\2 to register it."
 #define CS_ERR_REG_NEEDTOBEOP		"You must be an Operator (+o) on \2%s\2 to register a channel."
 #define CS_ERR_REG_PASSSAMEASCHAN	"The password must not be the same as the channel name."

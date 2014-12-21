@@ -52,6 +52,11 @@ void cs_aop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
+		if(findchan(chan)->aop_count>=cs_aops_max) {
+			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Aop",cs_aops_max,chan);
+			return;
+
+		}
 		cs_xop_add(src, chan, AOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
@@ -105,6 +110,10 @@ void cs_hop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
+		if(findchan(chan)->aop_count>=cs_hops_max) {
+			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Hop",cs_aops_max,chan);
+			return;
+		}
 		cs_xop_add(src, chan, HOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
@@ -158,6 +167,11 @@ void cs_sop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
+		if(findchan(chan)->aop_count>=cs_sops_max) {
+			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Sop",cs_aops_max,chan);
+			return;
+
+		}
 		cs_xop_add(src, chan, SOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
@@ -211,6 +225,11 @@ void cs_uop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
+		if(findchan(chan)->uop_count>=cs_aops_max) {
+			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Uop",cs_aops_max,chan);
+			return;
+
+		}
 		cs_xop_add(src, chan, UOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
@@ -265,6 +284,11 @@ void cs_vop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
+		if(findchan(chan)->aop_count>=cs_vops_max) {
+			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Vop",cs_aops_max,chan);
+			return;
+
+		}
 		cs_xop_add(src, chan, VOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
