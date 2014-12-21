@@ -1,5 +1,5 @@
 /*
- * ns_help.c
+ * cs_help.c
 *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
