@@ -314,7 +314,7 @@ void cs_set_memolevel(char *src,int ac,char **av) {
 void cs_set_mlock(char *src,int ac,char **av) {
 	ChanInfo *c;
 	char *chan;
-	char *mode = (char*)malloc(sizeof(char*)*128);
+	char *chanmode = (char*)malloc(sizeof(char*)*128);
 	user *u = finduser(src);
 	if (ac <= 3) {
 		notice(cs_name, src, CS_ERR_SET_MLOCK_USAGE);
@@ -322,7 +322,7 @@ void cs_set_mlock(char *src,int ac,char **av) {
 		return;
 	}
 	chan = sstrdup(av[1]);
-	mode = sstrdup(av[3]);
+	chanmode = sstrdup(av[3]);
 	if(!isregcs(chan)) {
 		notice(cs_name,src,CS_ERR_NOTREG,chan);
 		return;
@@ -334,17 +334,18 @@ void cs_set_mlock(char *src,int ac,char **av) {
 		return;
 	}
 	/* those modes must not be removed from modelock */
-	if(!strchr(mode,'r')) {
-		strcat(mode,"r");
+	if(!strchr(chanmode,'r')) {
+		strcat(chanmode,"r");
 	}
-	if(!strchr(mode,'t')) {
-		strcat(mode,"t");
+	if(!strchr(chanmode,'t')) {
+		strcat(chanmode,"t");
 	}
-	if(!strchr(mode,'n')) {
-		strcat(mode,"n");
+	if(!strchr(chanmode,'n')) {
+		strcat(chanmode,"n");
 	}
-	c->mlock = sstrdup(mode);
-	notice(cs_name,src,CS_RPL_SET_MLOCK_SUCCESS,chan,mode);
+	c->mlock = sstrdup(chanmode);
+	notice(cs_name,src,CS_RPL_SET_MLOCK_SUCCESS,chan,chanmode);
+	mode(cs_name,chan,chanmode,chan);
 	return;
 }
 void cs_set_opwatch(char *src,int ac,char **av) {
