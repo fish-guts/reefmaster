@@ -50,7 +50,7 @@ void cs_acc(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_RPL_ACC_IRCOP, u->nick, get_oline(u->oper),	c->name);
 		return;
 	case 8:
-		notice(cs_name,src,CS_RPL_ACC_IDENTIFIED,u->nick,why);
+		notice(cs_name,src,CS_RPL_ACC_IDENTIFIED,u->nick,chan);
 		return;
 	case 7:
 		notice(cs_name, src, CS_RPL_ACC_SUCCFND, u->nick, why, "Founder",c->name);

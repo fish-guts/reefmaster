@@ -441,12 +441,21 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
 	}
 	usernick *un = u->usernicks;
 	int level = 0;
+
+	struct cschans *uc = u->cschans;
+	while(uc) {
+		if((stricmp(uc->channel,c->name)==0) && (uc->level==CHAN_IDENTIFIED)) {
+			return ACCESS_FND_FULL;
+		}
+		uc = uc->next;
+	}
 	while(un) {
 		if(un->level==2) {
 			return get_access_for_nick(c,un->n);
 		}
 		un = un->next;
 	}
+
 	return level;
 }
 /********************************************************************/

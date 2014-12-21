@@ -90,12 +90,12 @@ char *get_opacc(int level) {
 
 void add_identifiedcs(user *u, char *channel) {
 	struct cschans *uc = scalloc(sizeof(struct cschans), 1);
-		uc->next = u->cschans;
-		if (u->cschans)
-			u->cschans->prev = uc;
-		u->cschans = uc;
-		uc->channel = channel;
-		uc->level = CHAN_IDENTIFIED;
+	uc->next = u->cschans;
+	if (u->cschans)
+		u->cschans->prev = uc;
+	u->cschans = uc;
+	uc->channel = channel;
+	uc->level = CHAN_IDENTIFIED;
 }
 /********************************************************************/
 /**
