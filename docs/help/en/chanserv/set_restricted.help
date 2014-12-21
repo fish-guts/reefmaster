@@ -1,0 +1,16 @@
+CS SET <b>RESTRICTED</b>
+Usage: /msg Chanserv SET <Channel> <b>RESTRICTED</b> [ON|OFF]
+Usage: /cs SET <Channel> <b>RESTRICTED</b> <Nickname> [ON|OFF]
+-
+-
+With <b>RESTRICTED</b>, you can prevent users not having Access to the channel from joining the channel. If a user attemps to join without having access, Chanserv will kick and ban the user immediately.  
+-      
+-
+- Example
+-
+- SET #lobby <b>RESTRICTED</b> ON
+- SET #lobby <b>RESTRICTED</b> OFF 
+- 
+-
+-
+- SET <b>RESTRICTED</b> - End of help

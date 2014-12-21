@@ -1,0 +1,17 @@
+CS SET <b>SUCCESSOR</b>
+Usage: /msg Chanserv SET <Channel> <b>SUCCESSOR</b> <Nickname>
+Usage: /cs SET <Channel> <b>SUCCESSOR</b> <Nickname>
+-
+-
+With <b>SUCCESSOR</b>, you can choose a new successor for your channel. If the Nickname of the owner is dropped, the successor will automatically become the founder of the channel.  
+You only set a registered Nickname as the Successor of the channel.     
+-      
+-
+- Example
+-
+- SET #lobby <b>SUCCESSOR</b> foo 
+- 
+- See also: /msg Nickserv help
+-
+-
+- SET <b>SUCCESSOR</b> - End of help

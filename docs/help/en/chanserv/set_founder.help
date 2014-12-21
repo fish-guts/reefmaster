@@ -1,0 +1,17 @@
+CS SET <b>FOUNDER</b>
+Usage: /msg Chanserv SET <Channel> <b>FOUNDER</b> <Nickname>
+Usage: /cs SET <Channel> <b>FOUNDER</b> <Nickname>
+-
+-
+With <b>FOUNDER</b>, you can choose a new founder for your channel. This means, you will move ownership of the channel to someone else. 
+You only set a registered Nickname as the founder of the channel.     
+-      
+-
+- Example
+-
+- SET #lobby <b>FOUNDER</b> foo 
+- 
+- See also: /msg Nickserv help
+-
+-
+- SET <b>FOUNDER</b> - End of help

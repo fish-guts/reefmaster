@@ -1,0 +1,18 @@
+CS SET <b>LEAVEOPS</b>
+Usage: /msg Chanserv SET <Channel> <b>LEAVEOPS</b> [ON|OFF]
+Usage: /cs SET <Channel> <b>LEAVEOPS</b> <Nickname> [ON|OFF]
+-
+-
+With <b>LEAVEOPS</b>, you can allow users not having Operator Access to the channel to be opped. 
+If <b>Opwatch</b> is enabled, it will be automatically disabled if Leaveops is being enabled.     
+-      
+-
+- Example
+-
+- SET #lobby <b>LEAVEOPS</b> ON
+- SET #lobby <b>LEAVEOPS</b> OFF 
+- 
+- See also: /msg Chanserv SET OPWATCH help
+-
+-
+- SET <b>LEAVEOPS</b> - End of help

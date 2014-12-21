@@ -1,27 +1,27 @@
-NS <b>SET</b>
+CS <b>SET</b>
 -
-Usage: /msg Nickserv <b>SET</b> [Command] <Option> <Arguments>
-Usage: /ns <b>SET</b> [Command] <Option> <Arguments>
+Usage: /msg Chanserv <b>SET</b> <Channel> [Command] <Option>
+Usage: /cs <b>SET</b> <Channel> [Command] <Option>
 -
 -
-With <b>SET</b>, you can configure various options for your nickname.  
+With <b>SET</b>, you can configure various options for your channel.  
 -
 The following commands are available
 -
 -
-- SET <b>AUTHORIZE</b> 	Set whether your explicit authorization is required	before some can add you to channel access or notify lists
-- SET <b>EMAIL</b> 		Set your e-mail address
-- SET <b>HIDEEMAIL</b>	Prevent your e-mail address from showing up in the INFO command
-- SET <b>MFORWARD</b>	Forward your memos to another registered nickname
-- SET <b>MLOCK</b>		Set a set of usermodes that are set automatically upon identification
-- SET <b>MNOTIFY</b>	Enable / Disable notifications about new memos
-- SET <b>NOMEMO</b>		Disabled Memos for your nickname
-- SET <b>NOOP</b>		Prevent Chanserv from automatically opping you in channels you have access to.
-- SET <b>PASSWORD</b>	Set a new password
-- SET <b>PROTECT</b>	Set the nickname protection level
-- SET <b>URL</b>		Set your URL to be displayed in your nick info. 
+- SET <b>BOT</b> Set an existing bot for your channel. 
+- SET <b>FOUNDER</b> Move ownership of the channel to someone else. 
+- SET <b>OPWATCH</b> Automatically deop Nicknames that do not have at least Aop Access. 
+- SET <b>LEAVEOPS</b> Allow Nicks with no Operator Access to be opped in a channel. 
+- SET <b>KEEPTOPIC</b> Restore the topic if the channel is closed. 
+- SET <b>MEMOLEVEL</b>	Set the sccess a nickname needs to have to send memos to other nicknames with access to the channel. 
+- SET <b>MLOCK</b>	Set the Modes that cannot be changed. 
+- SET <b>PASSWORD</b>		Set a new password 
+- SET <b>RESTRICTED</b>	Restrict access to the channel to people on operators lists only. 
+- SET <b>SUCCESSOR</b> Set a new successor to a channel. 
+- SET <b>TOPICLOCK</b>	Set the access a nickname needs to have to change the topic.   
  
 -
-- For more help on the command, please type /msg Nickserv HELP SET <Command>
+- For more help on the command, please type /msg Chanserv HELP SET <Command>
 - 
 - <b>SET</b> - End of help

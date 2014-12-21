@@ -1,0 +1,18 @@
+CS SET <b>BOT</b>
+Usage: /msg Chanserv SET <Channel> <b>BOT</b> <Bot>
+Usage: /cs SET <Channel> <b>BOT</b> <Bot>
+-
+-
+With <b>BOT</b>, you can add a bot to your channel. Your bot needs to be registered with <b>Botserv</b>.    
+If you wish to remove a bot from your channel you can use <b>NONE</b> as parameter. 
+-      
+-
+- Example
+-
+- SET #lobby <b>BOT</b> Chanbot 
+- SET #lobby <b>BOT</b> none
+- 
+- See also: /msg Botserv help
+-
+-
+- SET <b>BOT</b> - End of help

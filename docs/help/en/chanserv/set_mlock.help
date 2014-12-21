@@ -1,0 +1,23 @@
+CS SET <b>MLOCK</b>
+Usage: /msg Chanserv SET <Channel> <b>MLOCK</b> <Channel Modes | OFF>
+Usage: /cs SET <Channel> <b>MLOCK</b> <Channel Modes | OFF>
+-
+-
+With <b>MLOCK</b>, you can set one or multiple channel mode options that cannot be changed. 
+For example, if MLOCK is set to +i, the +i flag cannot be removed.
+There are numerous modes than cannot be changed by default. These are:
+- +n - No Messages from outside the channels are allowed. 
+- +r - Channel is registered with service
+- +t - Only Operators can change the topic.    
+-
+You can remove all modes by using the option <b>OFF</b>
+For a list of valid channel modes, please consult the manual of the IRC daemon you're using Reefmaster IRC Services with.     
+-      
+-
+- Example
+-
+- SET <b>MLOCK</b> +ntri
+- SET <b>MLOCK</b> OFF
+- 
+-
+- SET <b>MLOCK</b> - End of help

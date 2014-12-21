@@ -1,0 +1,16 @@
+CS SET <b>KEEPTOPIC</b>
+Usage: /msg Chanserv SET <Channel> <b>KEEPTOPIC</b> [ON|OFF]
+Usage: /cs SET <Channel> <b>KEEPTOPIC</b> <Nickname> [ON|OFF]
+-
+-
+With <b>KEEPTOPIC</b>, Chanserv will remember the last topic set, even if the Channel is closed.  
+-
+-
+- Example
+-
+- SET #lobby <b>KEEPTOPIC</b> ON
+- SET #lobby <b>KEEPTOPIC</b> OFF 
+- 
+-
+-
+- SET <b>KEEPTOPIC</b> - End of help

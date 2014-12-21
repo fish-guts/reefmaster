@@ -1,0 +1,18 @@
+CS SET <b>OPWATCH</b>
+Usage: /msg Chanserv SET <Channel> <b>OPWATCH</b> [ON|OFF]
+Usage: /cs SET <Channel> <b>OPWATCH</b> <Nickname> [ON|OFF]
+-
+-
+With <b>OPWATCH</b>, you can prevent users not having Operator Access to the channel from being opped. If a user tried to op someone with no access, Chanserv will remove the status immediately.
+If <b>Leaveops</b> is enabled, it will be automatically disabled if Opwatch is being enabled.     
+-      
+-
+- Example
+-
+- SET #lobby <b>OPWATCH</b> ON
+- SET #lobby <b>OPWATCH</b> OFF 
+- 
+- See also: /msg Chanserv SET LEAVEOPS help
+-
+-
+- SET <b>OPWATCH</b> - End of help

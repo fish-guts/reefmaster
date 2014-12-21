@@ -1,0 +1,24 @@
+CS SET <b>TOPICLOCK</b>
+Usage: /msg Chanserv SET <Channel> <b>TOPICLOCK</b> FOUNDER|SUCCESSOR|SOP|AOP|HOP|VOP|UOP]
+Usage: /cs SET <Channel> <b>TOPICLOCK</b> FOUNDER|SUCCESSOR|SOP|AOP|HOP|VOP|UOP]
+-
+-
+With <b>TOPICLOCK</b>, you can set the access a user must have to the channel in order to change the topic. If the Topic is changed by someone with insufficient access, Chanserv will automatically change the topic back.  
+- Valid Levels are:
+- <b>FOUNDER</b> - Only the Founder can change the topic.
+- <b>SUCCESSOR</b> - The successor and above can change the topic. 
+- <b>SOP</b> - At least Sop Access is required to change the topic.
+- <b>AOP</b> - At least Aop Access is required to change the topic.
+- <b>HOP</b> - At least Hop Access is required to change the topic.
+- <b>VOP</b> - At least Vop Access is required to change the topic.
+- <b>UOP</b> - At least Uop Access is required to change the topic.
+-
+-
+- Example
+-
+- SET #lobby <b>TOPICLOCK</b> FOUNDER
+- SET #lobby <b>TOPICLOCK</b> SOP
+- 
+-
+-
+- SET <b>TOPICLOCK</b> - End of help

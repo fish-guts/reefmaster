@@ -1,0 +1,24 @@
+CS SET <b>MEMOLEVEL</b>
+Usage: /msg Chanserv SET <Channel> <b>MEMOLEVEL</b> FOUNDER|SUCCESSOR|SOP|AOP|HOP|VOP|UOP]
+Usage: /cs SET <Channel> <b>MEMOLEVEL</b> FOUNDER|SUCCESSOR|SOP|AOP|HOP|VOP|UOP]
+-
+-
+With <b>MEMOLEVEL</b>, you can set the access a user must have to the channel in order to send memos to every user with access. 
+- Valid Levels are:
+- <b>FOUNDER</b> - Only the Founder can send memos
+- <b>SUCCESSOR</b> - The successor and above can send memos. 
+- <b>SOP</b> - At least Sop Access is required to send memos.
+- <b>AOP</b> - At least Aop Access is required to send memos.
+- <b>HOP</b> - At least Hop Access is required to send memos.
+- <b>VOP</b> - At least Vop Access is required to send memos.
+- <b>UOP</b> - At least Uop Access is required to send memos.     
+-
+-
+- Example
+-
+- SET #lobby <b>MEMOLEVEL</b> SOP
+- SET #lobby <b>MEMOLEVEL</b> FOUNDER 
+- 
+-
+-
+- SET <b>MEMOLEVEL</b> - End of help
