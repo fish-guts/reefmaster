@@ -479,3 +479,26 @@ char *strlower(char *str) {
 	}
 	return str;
 }
+char* remove_dup(char * input)
+{
+    char *res = (char*)malloc(strlen(input)+1);
+    int i = 0,j=0  ;
+
+    while(input[i] != '\0')
+    {
+        if (search_dup(res,input[i]) == 0)
+            res[j++] = input[i];
+        i++;
+    }
+
+    return res;
+}
+
+int search_dup(char *str, char item) {
+    int i;
+    for(i = 0 ; i < strlen(str) ; i++) {
+        if(item == str[i])
+            return 1;
+    }
+    return 0;
+}

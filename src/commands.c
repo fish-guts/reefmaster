@@ -28,7 +28,6 @@ static void handle_chan_mode_h(char *chan, char *nick,int z);
 static void handle_chan_mode_o(char *chan, char *nick,int z);
 static void handle_chan_mode_q(char *chan, char *nick,int z);
 static void handle_chan_mode_v(char *chan, char *nick,int z);
-static void handle_chan_mode_general(char *chan,int z,char *mode);
 
 
 /* global vars */
@@ -167,7 +166,7 @@ void c_mode(char *src, int ac, char **av)
 					break;		
 				case 'r':
 					if(!z)
-						mode(cs_name,c->name,"+r",NULL);				
+						mode(cs_name,c->name,"+r",NULL);
 					break;
 				case 't':
 					if(!z)
@@ -175,7 +174,7 @@ void c_mode(char *src, int ac, char **av)
 					break;
 				case 'n':
 					if(!z)
-						mode(cs_name,c->name,"+n",NULL);				
+						mode(cs_name,c->name,"+n",NULL);
 					break;
 			} /*switch*/
 			y++;
@@ -348,7 +347,6 @@ void c_topic(char *src, int ac, char **av)
 	cs_check_topiclock(src,c,oldtopic);
 }
 static void handle_chan_mode(char *chan,char *arg,char *mode, int add) {
-	printf("we're here\n");
 	switch(*mode) {
 		case 'o':
 			handle_chan_mode_o(chan,arg,add);
@@ -365,26 +363,7 @@ static void handle_chan_mode(char *chan,char *arg,char *mode, int add) {
 		case 'q':
 			handle_chan_mode_q(chan,arg,add);
 			break;
-		default:
-			handle_chan_mode_general(chan,add,mode);
-			break;
 		}
-}
-static void handle_chan_mode_general(char *chan,int z,char *mode) {
-
-	if(isregcs(chan)) {
-		printf("channel founder\n");
-		ChanInfo *c = findchan(chan);
-		char delimiter[] = "-";
-		char *ptr;
-		ptr = strtok(c->mlock, delimiter);
-
-		while(ptr != NULL) {
-			printf("Abschnitt gefunden: %s\n", ptr);
-			// naechsten Abschnitt erstellen
-		 	ptr = strtok(NULL, delimiter);
-		}
-	}
 }
 static void handle_chan_mode_o(char *chan,char *nick,int z)
 {

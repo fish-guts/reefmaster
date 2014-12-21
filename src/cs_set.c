@@ -314,7 +314,12 @@ void cs_set_memolevel(char *src,int ac,char **av) {
 void cs_set_mlock(char *src,int ac,char **av) {
 	ChanInfo *c;
 	char *chan;
-	char *chanmode = (char*)malloc(sizeof(char*)*128);
+	char addmodes[32];
+	char delmodes[32];
+	char chanmode[70];
+	int z = 2;
+	unsigned char current_mode;
+
 	user *u = finduser(src);
 	if (ac <= 3) {
 		notice(cs_name, src, CS_ERR_SET_MLOCK_USAGE);
@@ -322,7 +327,6 @@ void cs_set_mlock(char *src,int ac,char **av) {
 		return;
 	}
 	chan = sstrdup(av[1]);
-	chanmode = sstrdup(av[3]);
 	if(!isregcs(chan)) {
 		notice(cs_name,src,CS_ERR_NOTREG,chan);
 		return;
@@ -333,15 +337,66 @@ void cs_set_mlock(char *src,int ac,char **av) {
 		notice(cs_name,src,CS_RPL_NEEDIDENTIFY,chan);
 		return;
 	}
-	/* those modes must not be removed from modelock */
-	if(!strchr(chanmode,'r')) {
-		strcat(chanmode,"r");
+	char *ptr = remove_dup(av[3]);
+	if(!strchr(ptr,'r')) {
+		strcat(addmodes,"r");
 	}
-	if(!strchr(chanmode,'t')) {
-		strcat(chanmode,"t");
+	if(!strchr(ptr,'t')) {
+		strcat(addmodes,"t");
 	}
-	if(!strchr(chanmode,'n')) {
-		strcat(chanmode,"n");
+	if(!strchr(ptr,'n')) {
+		strcat(addmodes,"n");
+	}
+	while (ptr && (current_mode = *ptr++)) {
+		switch(current_mode) {
+			case '+':
+				z = 1;
+				continue;
+			case '-':
+				z = 0;
+				continue;
+
+			case 'A':
+			case 'c':
+			case 'C':
+			case 'i':
+			case 'K':
+			case 'M':
+			case 'm':
+			case 'N':
+			case 'O':
+			case 'p':
+			case 'Q':
+			case 'R':
+			case 'S':
+			case 's':
+			case 'T':
+			case 'u':
+			case 'V':
+			case 'z':
+			case 'Z':
+				if(z) {
+					strcat(addmodes,ptr);
+					continue;
+				} else {
+					strcat(delmodes,ptr);
+					continue;
+				}
+			case 'k':
+					strcat(delmodes,ptr);
+					continue;
+			case 'n':
+			case 'r':
+			case 't':
+				strcat(addmodes,ptr);
+				continue;
+		}
+	}
+	strcat(chanmode,"+");
+	strcat(chanmode,addmodes);
+	if(strlen(delmodes)>0) {
+		strcat(chanmode,"-");
+		strcat(chanmode,delmodes);
 	}
 	c->mlock = sstrdup(chanmode);
 	notice(cs_name,src,CS_RPL_SET_MLOCK_SUCCESS,chan,chanmode);

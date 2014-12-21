@@ -39,5 +39,7 @@ char *internal_strrep(const char *str, const char *find, const char *rep, size_t
 void set_service_status(char *service,int status);
 void timer_event_handler(int sigid);
 char *strlower(char *str);
+int search_dup(char *str, char item);
+char* remove_dup(char * input);
 
 #endif /*FUNCTIONS_H_*/
