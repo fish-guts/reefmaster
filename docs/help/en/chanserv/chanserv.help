@@ -1,7 +1,7 @@
-<b>NICKSERV</b>
-Nickserv allows a user to register a nickname to prevent it from being used by other users. 
-Once a nickname is registered it will be protected by a password. You can still allow a user to use the nickname by turning protection off. 
-There are numerous other settings that Nickserv provides
+<b>CHANSERV</b>
+Chanserv allows channel to be registered. You can thus prevent it from being taken over and you may appoint operators to take care of your channel.
+Chanserv also allows you to add a Bot that will keep your channel open.   
+ 
 -
 -
 The following commands are available:

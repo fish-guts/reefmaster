@@ -1,19 +1,19 @@
-NS SET <b>AUTHORIZE</b>
-Usage: /msg Nickserv SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
-Usage: /ns SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
+NS SET <b>MFORWARD</b>
+Usage: /msg Nickserv SET <b>MFORWARD</b> <Nickname | OFF>
+Usage: /ns SET SET <b>MFORWARD</b> <Nickname | OFF>
 -
 -
-With <b>AUTHORIZE</b>, you can set whether or not your authorization is required before someone can add you to their notify or a registered channel's operator list.   
-Once enabled you will receive a message that you have pending authorization requests. 
+With <b>MFORWARD</b>, you can set whether or you want to automatically forward memot sent to you to another registered nickname.    
+You can disabled this forward by using the option off. 
+This setting has only any effect if Memoserv is enabled. This feature will become available in future release of Reefmaster IRC Services.    
 -      
 -
 - Example
 -
-- SET <b>AUTHORIZE NOTIFY ON</b> 
-- SET <b>AUTHORIZE NOTIFY OFF</b>
-- SET <b>AUTHORIZE CHAN ON</b>
+- SET <b>MFORWARD</b> foo 
+- SET <b>MFORWARD</b> OFF
 - 
-- See also: /msg Nickserv help <b>AUTH</b>
+- See also: /msg Memoserv <b>HELP</b>
 -
 -
-- SET <b>AUTHORIZE</b> - End of help
+- SET <b>MFORWARD</b> - End of help

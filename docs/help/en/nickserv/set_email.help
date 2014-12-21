@@ -1,19 +1,15 @@
-NS SET <b>AUTHORIZE</b>
-Usage: /msg Nickserv SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
-Usage: /ns SET <b>AUTHORIZE</b> [CHAN|NOTIFY] [ON|OFF]
+NS SET <b>EMAIL</b>
+Usage: /msg Nickserv SET <b>EMAIL</b> <E-Mail Address>
+Usage: /ns SET <b>EMAIL</b> <E-Mail Address>
 -
 -
-With <b>AUTHORIZE</b>, you can set whether or not your authorization is required before someone can add you to their notify or a registered channel's operator list.   
-Once enabled you will receive a message that you have pending authorization requests. 
--      
+With <b>E-MAIL</b>, you can change your e-mail address.  
+Your email address will not show unless you set hideemail off.      
 -
 - Example
 -
-- SET <b>AUTHORIZE NOTIFY ON</b> 
-- SET <b>AUTHORIZE NOTIFY OFF</b>
-- SET <b>AUTHORIZE CHAN ON</b>
-- 
-- See also: /msg Nickserv help <b>AUTH</b>
+- SET <b>EMAIL></b> my@email.com 
 -
+- See also: /msg Nickserv help <b>SET HIDEEMAIL</b>
 -
-- SET <b>AUTHORIZE</b> - End of help
+- SET <b>EMAIL</b> - End of help

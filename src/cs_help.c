@@ -29,7 +29,7 @@ void cs_help(char *src, int ac, char **av) {
 	char help[64];
 	if(ac<2) {
 		sprintf(help,"%s/%s.help",CS_HELP_PATH,"chanserv");
-		help_message(ns_name,src,help);
+		help_message(cs_name,src,help);
 		return;
 	} else if(ac==2) {
 		sprintf(help,"%s/%s.help",CS_HELP_PATH,strlower(av[1]));

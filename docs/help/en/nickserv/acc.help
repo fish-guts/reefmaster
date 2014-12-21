@@ -4,7 +4,7 @@ Usage: /msg Nickserv <b>ACC</b> <Nickname>
 Usage: /ns <b>ACC</b> <Nickname>
 -
 -
-<b>ACC</b> displays the level of access a user has to the nickname's they're using. 
+<b>ACC</b> displays the level of access a user has to the nickname they're using. 
 -
 The following values can be returned:
 -
