@@ -103,8 +103,6 @@ struct _chaninfo {
 	char pass[PASSMAX];
 	char description[DESCMAX];
 	time_t time_reg;
-	int admin_enabled;
-	int owner_enabled;
 	int aop_enabled;
 	char *bot;
 	NickInfo *founder;
@@ -125,6 +123,11 @@ struct _chaninfo {
 	int opwatch;
 	char *url;
 	int vop_enabled;
+	int aop_count;
+	int hop_count;
+	int sop_count;
+	int uop_count;
+	int vop_count;
 	akick *akicklist;
 };
 

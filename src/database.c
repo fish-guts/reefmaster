@@ -610,7 +610,6 @@ static void load_akick(void) {
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = find_chan_by_id(sqlite3_column_int(stmt, 1));
-			//printf("Akick, Channel name %s\n",c->name);
 			akick *ak = scalloc(sizeof(akick), 1);
 			ak->next = c->akicklist;
 			if (c->akicklist)
@@ -618,7 +617,6 @@ static void load_akick(void) {
 
 			c->akicklist = ak;
 			ak->id = sqlite3_column_int(stmt, 0);
-			printf("Akick, Channel id %i\n",sqlite3_column_int(stmt, 0));
 			ak->mask = sstrdup((const char*) sqlite3_column_text(stmt, 2));
 			ak->added_by = sstrdup((const char*) sqlite3_column_text(stmt, 3));
 			ak->added_by_acc = sqlite3_column_int(stmt, 4);
@@ -699,11 +697,9 @@ void load_chans(void) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_chans()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
-		printf("sql: %s\n",load_cs_chans);
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
 			c->id = sqlite3_column_int(stmt, 0);
-			printf("load_chans: %i\n",sqlite3_column_int(stmt, 0));
 			strscpy(c->name, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
 			strscpy(c->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
 			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24),DESCMAX);
@@ -744,7 +740,11 @@ void load_chans(void) {
 			c->opwatch = sqlite3_column_int(stmt, 21);
 			c->url = sstrdup((char*) sqlite3_column_text(stmt, 22));
 			c->topiclock = sqlite3_column_int(stmt, 23);
-			printf("Channel loaded %s\n",c->name);
+			c->aop_count = 0;
+			c->hop_count = 0;
+			c->sop_count = 0;
+			c->uop_count = 0;
+			c->vop_count = 0;
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)
@@ -756,7 +756,6 @@ void load_chans(void) {
 	addlog(DEBUG, LOG_DBG_EXIT, "load_chans");
 }
 void load_chanserv(void) {
-	printf("debug 4\n");
 	load_chans();
 	load_akick();
 	load_ops();
@@ -879,6 +878,18 @@ static void load_ops(void) {
 			o->addedby = sstrdup((const char*) sqlite3_column_text(stmt, 4));
 			o->addedbyacc = sqlite3_column_int(stmt, 5);
 			o->addedon = sqlite3_column_int(stmt, 6);
+			ChanInfo *c = o->chan;
+			if(o->level==AUTH_AOP) {
+				c->aop_count++;
+			} else if(o->level==AUTH_HOP) {
+				c->hop_count++;
+			}  else if(o->level==AUTH_SOP) {
+				c->sop_count++;
+			} else if(o->level==AUTH_UOP) {
+				c->uop_count++;
+			}  else if(o->level==AUTH_VOP) {
+				c->vop_count++;
+			}
 			o->next = global_op_list;
 			if (global_op_list)
 				global_op_list->prev = o;

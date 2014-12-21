@@ -59,16 +59,6 @@ int config_bool_cs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	cs_enabled = val;
 	return 0;
 }
-int config_bool_ms(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
-	int val = atoi(value);
-	if (!isbool(val)) {
-		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
-		addlog(2, CONF_LOG_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
-		return -1;
-	}
-	ms_enabled = val;
-	return 0;
-}
 int config_bool_ns(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {

@@ -61,7 +61,6 @@ int check_valid_nickname(char *nick) {
 	if((stricmp(nick,"NONE")==0)
 			|| (stricmp(nick,cs_name)==0)
 			|| (stricmp(nick,ns_name)==0)
-			|| (stricmp(nick,ms_name)==0)
 			|| (stricmp(nick,cs_name)==0)
 			|| (stricmp(nick,bs_name)==0)
 			|| (stricmp(nick,as_name)==0)
