@@ -1,0 +1,13 @@
+CS <b>UNBAN</b>
+-
+Usage: /msg Chanserv <b>UNBAN</b> <Channel>
+Usage: /cs <b>UNBAN</b> <Channel>
+-
+-
+With <b>UNBAN</b>, you can lift any bans against you on a channel.   
+-
+- Example
+- 
+- CS <b>UNBAN</b> #lobby 
+-
+- <b>UNBAN</b> - End of help
