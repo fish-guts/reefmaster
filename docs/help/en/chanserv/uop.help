@@ -1,0 +1,19 @@
+CS <b>UOP</b>
+-
+Usage: /msg Chanserv <b>UOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+Usage: /cs <b>UOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+-
+-
+With <b>UOP</b>, you can manage the User Operator list of a channel.  
+Users with Uop have no special privileges. This Access Level is usually used to grant users access to a restricted channel or to invite themselves. 
+-
+The following commands are available
+-
+- UOP <Channel> <b>ADD</b> <Nickname> - Add an entry to your Uop list. 
+- UOP <Channel> <b>DEL</b> <Nickname> - Remove an entry from your Uop list.
+- UOP <Channel> <b>LIST</b> <Nickname> - List all entries of your Uop list. 
+- UOP <Channel> <b>WIPE</b> <Nickname> - Remove all entries from your Uop list. 
+-
+- For more help on the command, please type /msg Chanserv HELP UOP <Command>
+- 
+- <b>UOP</b> - End of help

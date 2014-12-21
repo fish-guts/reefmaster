@@ -1,0 +1,14 @@
+CS UOP <b>DEL</b>
+Usage: /msg Chanserv UOP <Channel> <b>DEL</b> <Nickname>
+Usage: /cs UOP <Channel> <b>DEL</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can remove an entry from the Uop list of a channel. 
+  
+-
+- Example
+-
+- UOP #lobby <b>DEL</b> foo
+- UOP #lobby <b>DEL</b> bar
+- 
+- UOP <b>DEL</b> - End of help

@@ -1,0 +1,14 @@
+CS UOP <b>WIPE</b>
+-
+Usage: /msg Chanserv UOP <Channel> <b>WIPE</b>
+Usage: /cs UOP <Channel> <b>WIPE</b>
+-
+-
+With <b>WIPE</b>, you can remove all entries from the Uop list of a channel.    
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- UOP #lobby <b>WIPE</b>
+-
+- UOP <b>WIPE</b> - End of help

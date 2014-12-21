@@ -1,0 +1,14 @@
+CS UOP <b>ADD</b>
+Usage: /msg Chanserv UOP <Channel> <b>ADD</b> <Nickname>
+Usage: /cs UOP <Channel> <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add an entry to the Uop list of a channel. 
+  
+-
+- Example
+-
+- UOP #lobby <b>ADD</b> foo
+- UOP #lobby <b>ADD</b> bar
+- 
+- UOP <b>ADD</b> - End of help
