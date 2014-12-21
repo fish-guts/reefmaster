@@ -1,0 +1,14 @@
+CS SOP <b>WIPE</b>
+-
+Usage: /msg Chanserv SOP <Channel> <b>WIPE</b>
+Usage: /cs SOP <Channel> <b>WIPE</b>
+-
+-
+With <b>WIPE</b>, you can remove all entries from the Sop list of a channel.    
+Please be careful when using this command. You cannot undo this!       
+-
+- Example
+-
+- SOP #lobby <b>WIPE</b>
+-
+- SOP <b>WIPE</b> - End of help

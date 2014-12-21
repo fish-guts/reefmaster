@@ -1,0 +1,22 @@
+CS <b>SOP</b>
+-
+Usage: /msg Chanserv <b>SOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+Usage: /cs <b>SOP</b> <Channel> [ADD|DEL|LIST|WIPE] <Nickname>
+-
+-
+With <b>SOP</b>, you can manage the Super Operator list of a channel.  
+Using this command, you may add Super Operators who have Operator access to a channel. They may grant themselves operator status to a channel using the <b>OP</b> Command. Please note that only registered nickname can be added to this list. 
+Super Operators may use the regular Operator Command provided by the IRC Server.    
+Depending on the Configuration, Auto Operator may add Nicknames to the <b>AOP</b>, <b>HOP</b>, <b>Vop</b> and <b>Uop</b> list of a channel.  
+ 
+-
+The following commands are available
+-
+- SOP <Channel> <b>ADD</b> <Nickname> - Add an entry to your Sop list. 
+- SOP <Channel> <b>DEL</b> <Nickname> - Remove an entry from your Sop list.
+- SOP <Channel> <b>LIST</b> <Nickname> - List all entries of your Sop list. 
+- SOP <Channel> <b>WIPE</b> <Nickname> - Remove all entries from your Sop list. 
+-
+- For more help on the command, please type /msg Chanserv HELP SOP <Command>
+- 
+- <b>SOP</b> - End of help

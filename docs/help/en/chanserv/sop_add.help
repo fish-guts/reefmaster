@@ -1,0 +1,14 @@
+CS SOP <b>ADD</b>
+Usage: /msg Chanserv SOP <Channel> <b>ADD</b> <Nickname>
+Usage: /cs SOP <Channel> <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add an entry to the Sop list of a channel. 
+  
+-
+- Example
+-
+- SOP #lobby <b>ADD</b> foo
+- SOP #lobby <b>ADD</b> bar
+- 
+- SOP <b>ADD</b> - End of help
