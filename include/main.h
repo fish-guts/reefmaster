@@ -112,14 +112,15 @@ void create_files(void);
 #define AUTH_SUCC	6
 #define AUTH_FOUND	7
 
-#define ACCESS_UOP	1
-#define ACCESS_VOP	2
-#define ACCESS_HOP	3
-#define ACCESS_AOP	4
-#define ACCESS_SOP	5
-#define ACCESS_SUC  6
-#define ACCESS_FND	7
-#define ACCESS_SRA	8
+#define ACCESS_UOP		1
+#define ACCESS_VOP		2
+#define ACCESS_HOP		3
+#define ACCESS_AOP		4
+#define ACCESS_SOP		5
+#define ACCESS_SUC  	6
+#define ACCESS_FND		7
+#define ACCESS_FND_DULL	8
+#define ACCESS_SRA		9
 
 #define NOTIFY_ONLINE 2
 #define NOTIFY_OFFLINE 4

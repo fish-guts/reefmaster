@@ -23,7 +23,7 @@
 
 volatile int sig_flag = 0;
 static timer *timeouts = NULL;
-int save_interval = 20;
+int save_interval = 60;
 static int ifmatch(const char *pattern, const char *str, int mode);
 
 int hasaccess(user *u, char *nick) {

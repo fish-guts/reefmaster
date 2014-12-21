@@ -90,7 +90,6 @@ static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
 	int chanid = c->id;
-	notice(as_name,"fish-guts","channel: %i->%s",chanid,c->name);
 	sprintf(sql, cs_update_akick_query, chanid, a->mask, a->added_by,
 			a->added_by_acc, a->added_on, a->reason);
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
@@ -154,7 +153,7 @@ static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 	}
 	int botid;
 	if (c->bot) {
-		botid = find_bot_by_name(c->bot)->id;
+		botid = findbot(c->bot)->id;
 	} else {
 		botid = -1;
 	}
@@ -330,7 +329,8 @@ void db_save_chans(void) {
 	}
 	ChanInfo *c = chans;
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM CHANS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE CHANS", 0, 0, 0);
+	sqlite3_exec(db, cs_create_chans_table, 0, 0, 0);
 	while (c) {
 		if (!(query_result = db_add_chan(db, c))) {
 			sqlite3_exec(db, "ROLLBACK", 0, 0, 0);
@@ -468,7 +468,6 @@ static ChanInfo *find_chan_by_name(char *chan) {
 			return NULL;
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			notice(as_name,"fish-guts","sql: %i",sqlite3_column_int(stmt, 0));
 			c->id = sqlite3_column_int(stmt, 0);
 		}
 	}
@@ -607,10 +606,11 @@ static void load_akick(void) {
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_akick()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
+			return;
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = find_chan_by_id(sqlite3_column_int(stmt, 1));
-			printf("Akick, Channel id %i\n",sqlite3_column_int(stmt, 1));
+			//printf("Akick, Channel name %s\n",c->name);
 			akick *ak = scalloc(sizeof(akick), 1);
 			ak->next = c->akicklist;
 			if (c->akicklist)
@@ -618,6 +618,7 @@ static void load_akick(void) {
 
 			c->akicklist = ak;
 			ak->id = sqlite3_column_int(stmt, 0);
+			printf("Akick, Channel id %i\n",sqlite3_column_int(stmt, 0));
 			ak->mask = sstrdup((const char*) sqlite3_column_text(stmt, 2));
 			ak->added_by = sstrdup((const char*) sqlite3_column_text(stmt, 3));
 			ak->added_by_acc = sqlite3_column_int(stmt, 4);
@@ -698,9 +699,11 @@ void load_chans(void) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_chans()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
+		printf("sql: %s\n",load_cs_chans);
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
 			c->id = sqlite3_column_int(stmt, 0);
+			printf("load_chans: %i\n",sqlite3_column_int(stmt, 0));
 			strscpy(c->name, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
 			strscpy(c->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
 			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24),DESCMAX);
@@ -741,6 +744,7 @@ void load_chans(void) {
 			c->opwatch = sqlite3_column_int(stmt, 21);
 			c->url = sstrdup((char*) sqlite3_column_text(stmt, 22));
 			c->topiclock = sqlite3_column_int(stmt, 23);
+			printf("Channel loaded %s\n",c->name);
 			c->akicklist = NULL;
 			c->next = chans;
 			if (chans)
@@ -752,6 +756,7 @@ void load_chans(void) {
 	addlog(DEBUG, LOG_DBG_EXIT, "load_chans");
 }
 void load_chanserv(void) {
+	printf("debug 4\n");
 	load_chans();
 	load_akick();
 	load_ops();

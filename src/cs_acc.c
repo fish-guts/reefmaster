@@ -44,35 +44,20 @@ void cs_acc(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	int level = cs_xop_get_level(u, c);
-	char *why;
-	if(level==12) {
-		why = sstrdup(c->name);
-	} else {
-		why = cs_get_why(u, c);
-	}
+	char *why = cs_get_why(u, c);
 	switch (level) {
-	case 13:
-		notice(cs_name, src, CS_RPL_ACC_IRCOP, u->nick, get_oline(u->oper),
-				c->name);
+	case 9:
+		notice(cs_name, src, CS_RPL_ACC_IRCOP, u->nick, get_oline(u->oper),	c->name);
 		return;
-	case 12:
+	case 8:
 		notice(cs_name,src,CS_RPL_ACC_IDENTIFIED,u->nick,why);
 		return;
-	case 11:
+	case 7:
 		notice(cs_name, src, CS_RPL_ACC_SUCCFND, u->nick, why, "Founder",c->name);
 		return;
-	case 10:
-		notice(cs_name, src, CS_RPL_ACC_SUCCFND_ACC, u->nick, why, "Founder",c->name);
-		return;
-	case 9:
+	case 6:
 		notice(cs_name, src, CS_RPL_ACC_SUCCFND, u->nick, why, "Successor",c->name);
 		return;
-
-	case 8:
-		notice(cs_name, src, CS_RPL_ACC_SUCCFND_ACC, u->nick, why, "Successor",c->name);
-		return;
-	case 7:
-	case 6:
 	case 5:
 	case 4:
 	case 3:

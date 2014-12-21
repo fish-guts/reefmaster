@@ -124,7 +124,7 @@ void start_app(void) {
 	}
 	set_timer(2);
 	load_database();
-	next_save = time(NULL) + 20;
+	next_save = time(NULL) + 2;
 	addlog(1,"Services successfully started");
 	// start the socket
 	mainsock = sock_connect();

@@ -195,12 +195,19 @@ extern int cs_connect(int sock) {
 /**
  * determine, why a user has access to a registered channel
  */
-//TODO: implenment
 char *cs_get_why(user *u, ChanInfo *c) {
-	//int lvl = 0;
-	//int i = 0;
-	char *why = (char*) malloc(sizeof(char*) * NICKMAX);
-	return why;
+	usernick *un = u->usernicks;
+	while(un) {
+		op *o = global_op_list;
+		while(o) {
+			if((stricmp(c->name,o->chan->name)==0) && (stricmp(un->n->nick,o->nick->nick)==0)) {
+				return un->n->nick;
+			}
+			o  = o->next;
+		}
+		un = un->next;
+	}
+	return NULL;
 }
 
 void cs_drop_nick(char *nick) {
@@ -331,6 +338,7 @@ ChanInfo *find_chan_by_id(unsigned int id) {
 	ChanInfo *c = chans;
 	while(c) {
 		if(c->id == id) {
+		printf("Chan id for akick: %i\n",id);
 			return c;
 		}
 		c = c->next;

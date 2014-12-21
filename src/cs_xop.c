@@ -442,9 +442,7 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
 	usernick *un = u->usernicks;
 	int level = 0;
 	while(un) {
-		if(un->level==1) {
-			return get_access_for_nick(c,un->n) -1;
-		} else {
+		if(un->level==2) {
 			return get_access_for_nick(c,un->n);
 		}
 		un = un->next;
