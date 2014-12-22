@@ -38,7 +38,14 @@ extern int bs_connect(int sock)
 static bs_cmd bs_cmds[] = {
 	{ "ADD", bs_add },
 	{ "DEL", bs_del },
+	{ "HELP", NULL },
+	{ "IDENTIFY", NULL },
+	{ "INFO", NULL },
+	{ "KICK", NULL },
 	{ "LIST", NULL },
+	{ "MSG", NULL },
+	{ "SET", NULL },
+
 
 };
 
