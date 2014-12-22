@@ -112,7 +112,6 @@ void c_kill(char *src, int ac, char **av)
 /**
  * Handles a Server's MODE message
  */
-//TODO refactor code, this provokes eye cancer
 void c_mode(char *src, int ac, char **av)
 {
 	int x = 0;
@@ -135,6 +134,7 @@ void c_mode(char *src, int ac, char **av)
 		c = findchannel(av[0]);
 		for(ptr = av[1];*ptr;ptr++)
 		{
+
 			switch(*ptr)
 			{
 				case '+':
@@ -175,6 +175,8 @@ void c_mode(char *src, int ac, char **av)
 				case 'n':
 					if(!z)
 						mode(cs_name,c->name,"+n",NULL);
+					break;
+				default:
 					break;
 			} /*switch*/
 			y++;

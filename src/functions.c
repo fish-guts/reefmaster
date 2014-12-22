@@ -457,19 +457,19 @@ void timer_event_handler(int sigid) {
 }
 
 int match(char *str, char *pattern) {
-	int    status;
+	int status;
     regex_t re;
     if (regcomp(&re, pattern, REG_ICASE | REG_EXTENDED | REG_NOSUB) != 0) {
         /* Report error. */
-    	return(0);
+    	return 1;
     }
     status = regexec(&re, str, (size_t) 0, NULL, 0);
     regfree(&re);
     if (status != 0) {
         /* Report error. */
-    	return(0);
+    	return 0;
     }
-    return(1);
+    return 1;
 }
 
 char *strlower(char *str) {
@@ -479,26 +479,26 @@ char *strlower(char *str) {
 	}
 	return str;
 }
-char* remove_dup(char * input)
+char *remove_dup(char *input)
 {
-    char *res = (char*)malloc(strlen(input)+1);
-    int i = 0,j=0  ;
-
-    while(input[i] != '\0')
-    {
-        if (search_dup(res,input[i]) == 0)
-            res[j++] = input[i];
-        i++;
+	static int chars[127];
+    char *ptr;
+    char *str = (char*)malloc(sizeof(char*)*256);
+    for(ptr = input;*ptr;ptr++) {
+    	int i = 0;
+    	for(i = 0; i< sizeof(chars);i++) {
+    		if(i==*ptr) {
+    			if(chars[i]==0) {
+    				chars[i] = 1;
+    				char *s = (char*)malloc(2);
+    				sprintf(s,"%c",*ptr);
+    				strcat(str,s);
+    				continue;
+    			} else {
+    				continue;
+    			}
+    		}
+    	}
     }
-
-    return res;
-}
-
-int search_dup(char *str, char item) {
-    int i;
-    for(i = 0 ; i < strlen(str) ; i++) {
-        if(item == str[i])
-            return 1;
-    }
-    return 0;
+    return str;
 }

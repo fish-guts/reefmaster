@@ -79,6 +79,9 @@ void s_join(char *src, int ac, char **av) {
 		if (*t)
 			*t++ = 0;
 		join_user_update(u, findchannel(s), s);
+		if(isregcs(s)) {
+			mode(cs_name,s,"+rtn",s);
+		}
 		check_status(findchannel(s),u);
 	}
 }
