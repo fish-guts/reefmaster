@@ -152,6 +152,7 @@ static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 		successor = -1;
 	}
 	int botid;
+	notice(as_name,"fish-guts","Channel %s -> %s", c->name,c->bot);
 	if (c->bot) {
 		botid = findbot(c->bot)->id;
 	} else {
@@ -218,7 +219,8 @@ static void db_save_akicks(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM CS_AKICK", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE CS_AKICK", 0, 0, 0);
+	sqlite3_exec(db, create_cs_akick_table, 0, 0, 0);
 	ChanInfo *c = chans;
 	while (c) {
 		akick *a = c->akicklist;
@@ -246,7 +248,8 @@ static void db_save_auth(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM NS_AUTH", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE NS_AUTH", 0, 0, 0);
+	sqlite3_exec(db, ns_create_auth_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
 		auth *a = n->authlist;
@@ -274,7 +277,8 @@ static void db_save_access(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM NS_ACCESS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE NS_ACCESS", 0, 0, 0);
+	sqlite3_exec(db, ns_create_access_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
 		myacc *a = n->accesslist;
@@ -302,7 +306,8 @@ void db_save_bots(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM BOTS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE BOTS", 0, 0, 0);
+	sqlite3_exec(db, bs_create_bots_table, 0, 0, 0);
 	bot *b = botlist;
 	while (b) {
 		if (!(query_result = db_add_bot(db, b))) {
@@ -352,7 +357,8 @@ void db_save_nicks(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM NICKS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE NICKS", 0, 0, 0);
+	sqlite3_exec(db, ns_create_nicks_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
 		if (!(query_result = db_add_nick(db, n))) {
@@ -378,7 +384,8 @@ static void db_save_notify(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM NS_NOTIFY", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE NS_NOTIFY", 0, 0, 0);
+	sqlite3_exec(db, ns_create_notify_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
 		notify *no = n->notifylist;
@@ -407,7 +414,9 @@ void db_save_ops(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DELETE FROM OP_LIST", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE OP_LIST", 0, 0, 0);
+	sqlite3_exec(db, cs_create_op_list_table, 0, 0, 0);
+
 
 	op *o = global_op_list;
 	while (o) {
