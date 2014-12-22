@@ -21,6 +21,8 @@
  
 #include "main.h"
 
+static bs_cmd *find_os(const char *name);
+
 static char *aoper[] = {
 	OS_RPL_ISNOWHELPOP,				
 	OS_RPL_ISNOWIRCOP,
@@ -29,6 +31,61 @@ static char *aoper[] = {
 	OS_RPL_ISNOWSA,
 	OS_RPL_ISNOWNETADMIN
 };
+
+static os_cmd os_cmds[] = {
+	{ "GLOBAL", NULL },
+	{ "LOCAL", NULL },
+	{ "SGLINE", NULL },
+	{ "CHANKILL", NULL },
+	{ "SVSNICK", NULL },
+	{ "CHGHOST", NULL },
+	{ "SZLINE", NULL },
+	{ "SKLINE", NULL },
+	{ "OPER", NULL },
+	{ "KICK", NULL },
+	{ "KILL", NULL },
+	{ "SQLINE", NULL },
+	{ "HELP", NULL },
+	{ "SOP", NULL },
+	{ "AOP", NULL },
+	{ "UOP", NULL },
+	{ "VOP", NULL },
+	{ "HOP", NULL },
+};
+
+/**
+ * the main operserv routine
+ */
+void operserv(char *src, char *av) {
+	int i = 0;
+	char **uv = (char**) malloc(sizeof(char**) * 4096);
+	char *pch = strtok(av, " ");
+	os_cmd *os;
+	user *u = finduser(src);
+	while (pch != NULL) {
+		uv[i] = sstrdup(pch);
+		i++;
+		pch = strtok(NULL, " ");
+	}
+	if ((os = find_os(uv[0]))) {
+		if (os->func)
+			os->func(src, i, uv);
+	} else {
+		addlog(2, LOG_DBG_NS_UNKNOWN, bs_name, src, u->username, u->hostname,av);
+	}
+}
+/********************************************************************/
+/**
+ * find the correct operserv command
+ */
+static bs_cmd *find_os(const char *name) {
+	os_cmd *cmd;
+	for (cmd = os_cmds; cmd->name; cmd++) {
+		if (stricmp(name, cmd->name) == 0)
+			return cmd;
+	}
+	return NULL;
+}
 
 extern int os_connect(int sock)
 {

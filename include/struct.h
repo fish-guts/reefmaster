@@ -25,6 +25,7 @@ typedef struct _command com;
 typedef struct _cs_cmd cs_cmd;
 typedef struct _irc_command irc_cmd;
 typedef struct _ns_cmd ns_cmd;
+typedef struct _os_cmd os_cmd;
 typedef struct _cs_xop_check xop_check;
 typedef struct _user user;
 typedef struct _oper operline;
@@ -151,6 +152,11 @@ struct _cs_cmd
 	void(*func)(char *src,int ac, char **av);
 };
 struct _ns_cmd
+{
+	const char *name;
+	void (*func)(char *src,int ac,char **av);
+};
+struct _os_cmd
 {
 	const char *name;
 	void (*func)(char *src,int ac,char **av);
