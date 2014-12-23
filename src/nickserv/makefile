@@ -3,9 +3,6 @@ INCLUDES = -Iinclude
 SRCS := $(wildcard src/*.c)
 OBJS := $(addprefix obj/,$(notdir $(SRCS:.c=.o)))
 OBJ_DIR := ../../obj
-
-
-
 CC = gcc
 CFLAGS = -Wall -O2 -g -c
 
