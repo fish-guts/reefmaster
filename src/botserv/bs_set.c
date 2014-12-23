@@ -99,10 +99,18 @@ static void bs_set_realname(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET REALNAME");
 		return;
 	}
+	char realname[256];
+	int i = 3;
+	for(i=3;i<ac;i++) {
+		strcat(realname,av[i]);
+		if(i<ac) {
+			strcat(realname," ");
+		}
+	}
 	s_kill(bs_name,av[1],BS_KILL_NAMECHANGE);
 	bot *b = findbot(av[1]);
-	b->realname = sstrdup(av[3]);
-	notice(bs_name,src,BS_SET_REALNAME_SUCCESS,av[1],av[3]);
+	b->realname = sstrdup(realname);
+	notice(bs_name,src,BS_SET_REALNAME_SUCCESS,av[1],realname);
 }
 static void bs_set_username(char *src,int ac,char **av) {
 	if(ac<4) {
