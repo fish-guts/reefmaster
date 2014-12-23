@@ -79,6 +79,42 @@ int config_bool_os(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	os_enabled = val;
 	return 0;
 }
+int config_bs_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	bs_access_add = val;
+	return 0;
+}
+int config_bs_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	bs_access_del = val;
+	return 0;
+}
+int config_bs_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	bs_access_list = val;
+	return 0;
+}
+int config_bs_set(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	bs_access_set = val;
+	return 0;
+}
 int config_cs_akick_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -1302,15 +1338,8 @@ int config_load(const char *file) {
 			CFG_INT_CB("restricted",1,CFGF_NONE,(void*)&config_cs_restricted),
 			CFG_INT_CB("topiclock",0,CFGF_NONE,(void*)&config_cs_tlock),
 			CFG_INT_CB("memolevel",4,CFGF_NONE,(void*)&config_cs_memolevel),
-			CFG_STR_CB("mlock","ernt-k",CFGF_NONE,(void*)&config_str32),
+			CFG_STR_CB("mlock","rnt-k",CFGF_NONE,(void*)&config_str32),
 			CFG_END()
-	};
-	static cfg_opt_t cs_command_opts[] = {
-			CFG_INT_CB("kick",1,CFGF_NONE,(void*)&config_cs_cmd_kick),
-			CFG_INT_CB("ban",1,CFGF_NONE,(void*)&config_cs_cmd_ban),
-			CFG_INT_CB("op",1,CFGF_NONE,(void*)&config_cs_cmd_op),
-			CFG_INT_CB("mkick",1,CFGF_NONE,(void*)&config_cs_cmd_mkick),
-			CFG_INT_CB("invite",1,CFGF_NONE,(void*)&config_cs_cmd_invite),
 	};
 	static cfg_opt_t cs_misc_opts[] = {
 			CFG_INT("akick_max",0,CFGF_NONE),
@@ -1324,7 +1353,6 @@ int config_load(const char *file) {
 			CFG_SEC("password",cs_password_opts,CFGF_NONE),
 			CFG_SEC("registration",cs_reg_opts,CFGF_NONE),
 			CFG_SEC("default",cs_default_opts,CFGF_NONE),
-			CFG_SEC("commands",cs_command_opts,CFGF_NONE),
 			CFG_SEC("misc",cs_misc_opts,CFGF_NONE),
 			CFG_SEC("settings",cs_settings_opts,CFGF_NONE),
 			CFG_END()
@@ -1366,18 +1394,14 @@ int config_load(const char *file) {
 			CFG_STR_CB("realname","Bot Service",CFGF_NONE,(void*)&config_str32),
 			CFG_END() };
 	static cfg_opt_t bs_access_opts[] = {
-			CFG_INT_CB("manage",3,CFGF_NONE,(void*)&config_bs_manage),
-			CFG_INT_CB("channel",3,CFGF_NONE,(void*)&config_bs_channel),
-	};
-	static cfg_opt_t bs_misc_opts[] = {
-			CFG_INT_CB("badword_max",1000,CFGF_NONE,(void*)&config_uint32),
-			CFG_INT_CB("min_users",1,CFGF_NONE,(void*)&config_uint32),
-			CFG_END()
+			CFG_INT_CB("add",2,CFGF_NONE,(void*)&config_bs_add),
+			CFG_INT_CB("del",3,CFGF_NONE,(void*)&config_bs_del),
+			CFG_INT_CB("list",3,CFGF_NONE,(void*)&config_bs_list),
+			CFG_INT_CB("set",3,CFGF_NONE,(void*)&config_bs_set),
 	};
 	static cfg_opt_t botserv_opts[] = {
 			CFG_SEC("general",bs_general_opts,CFGF_NONE),
 			CFG_SEC("access",bs_access_opts,CFGF_NONE),
-			CFG_SEC("misc",bs_misc_opts,CFGF_NONE), CFG_END()
 	};
 	static cfg_opt_t as_general_opts[] = {
 			CFG_INT_CB("enabled",0,CFGF_NONE,(void*)&config_bool_as),
@@ -1493,7 +1517,6 @@ int config_load(const char *file) {
 		cfg_t *cs_ops;
 		cfg_t *cs_password;
 		cfg_t *cs_default;
-		cfg_t *cs_commands;
 		cfg_t *cs_misc;
 		cfg_t *cs_list;
 		chanserv = cfg_getsec(cfg, "chanserv");
@@ -1524,14 +1547,6 @@ int config_load(const char *file) {
 		/* section default */
 		cs_default = cfg_getsec(chanserv, "default");
 		cs_mlock = cfg_getstr(cs_default, "mlock");
-
-		/* section commands */
-		cs_commands = cfg_getsec(chanserv, "commands");
-		cs_cmd_op = cfg_getint(cs_commands, "op");
-		cs_cmd_mkick = cfg_getint(cs_commands, "mkick");
-		cs_cmd_kick = cfg_getint(cs_commands, "kick");
-		cs_cmd_ban = cfg_getint(cs_commands, "ban");
-		cs_cmd_invite = cfg_getint(cs_commands, "invite");
 
 		/* section misc */
 		cs_misc = cfg_getsec(chanserv, "misc");
@@ -1577,7 +1592,6 @@ int config_load(const char *file) {
 		cfg_t *botserv;
 		cfg_t *bs_general;
 		cfg_t *bs_access_cfg;
-		cfg_t *bs_misc;
 		botserv = cfg_getsec(cfg, "botserv");
 
 		/* section general */
@@ -1588,28 +1602,22 @@ int config_load(const char *file) {
 		/* section access */
 
 		bs_access_cfg = cfg_getsec(botserv, "access");
-		bs_acc_manage = cfg_getint(bs_access_cfg, "manage");
-		bs_acc_channel = cfg_getint(bs_access_cfg, "channel");
+		bs_access_add = cfg_getint(bs_access_cfg, "add");
+		bs_access_del = cfg_getint(bs_access_cfg, "del");
+		bs_access_list = cfg_getint(bs_access_cfg, "list");
+		bs_access_set = cfg_getint(bs_access_cfg, "set");
 
-		/* section miscallaneous */
-		bs_misc = cfg_getsec(botserv, "misc");
-		bs_badword_max = cfg_getint(bs_misc, "badword_max");
-		bs_min_users = cfg_getint(bs_misc, "min_users");
 
 		/* end of section botserv */
 		/* section adminserv ************************************************************************************************/
 		cfg_t *adminserv;
 		cfg_t *as_general;
-		cfg_t *as_misc;
 		adminserv = cfg_getsec(cfg, "adminserv");
 
 		/* section general */
 		as_general = cfg_getsec(adminserv, "general");
 		as_name = cfg_getstr(as_general, "name");
 		as_realname = cfg_getstr(as_general, "realname");
-
-		/* section misc */
-		as_misc = cfg_getsec(adminserv, "misc");
 	}
 	return 0;
 }
@@ -1948,26 +1956,6 @@ int config_cs_tlock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 		return -1;
 	}
 	*(const char **) result = (const char *) value;
-	return 0;
-}
-int config_bs_channel(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
-	int val = atoi(value);
-	if ((val < 0) || (val > 6)) {
-		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
-		return -1;
-	}
-	bs_acc_channel = val;
-	return 0;
-}
-int config_bs_manage(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
-	int val = atoi(value);
-	if ((val < 0) || (val > 6)) {
-		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
-		return -1;
-	}
-	bs_acc_manage = val;
 	return 0;
 }
 /* EOF */

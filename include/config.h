@@ -15,6 +15,10 @@ int config_bool_bs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_cs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_ns(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_os(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_bs_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
+int config_bs_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
+int config_bs_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
+int config_bs_set(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
 int config_cs_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_akick_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_akick_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -115,7 +119,5 @@ int config_cs_cmd_kick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 int config_cs_cmd_ban(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_cmd_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int parse_config(void);
-int config_bs_channel(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
-int config_bs_manage(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 
 #endif /*CONFIG_H_*/

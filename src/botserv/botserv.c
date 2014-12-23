@@ -25,6 +25,7 @@ bot *botlist = NULL;
 
 
 static bs_cmd *find_bs(const char *name);
+
 static void chan_del_bot(bot *b,botchan *bc);
 
 extern int bs_connect(int sock)
@@ -42,7 +43,7 @@ static bs_cmd bs_cmds[] = {
 	{ "IDENTIFY", NULL },
 	{ "INFO", NULL },
 	{ "KICK", NULL },
-	{ "LIST", NULL },
+	{ "LIST", bs_list },
 	{ "MSG", NULL },
 	{ "SET", NULL },
 

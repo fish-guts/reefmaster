@@ -306,10 +306,11 @@ int   os_sqline;
 int   bs_enabled;
 char *bs_name; 
 char *bs_realname; 
-int   bs_badword_max; 
-int   bs_min_users; 
-int   bs_acc_manage;
-int	  bs_acc_channel;
+int   bs_access_add;
+int   bs_access_del;
+int   bs_access_list;
+int   bs_access_set;
+
 
 /* Block "adminserv" */
 int   as_enabled;
