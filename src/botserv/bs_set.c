@@ -72,10 +72,27 @@ static void bs_set_name(char *src,int ac,char **av) {
 	notice(bs_name,src,BS_SET_NAME_SUCCESS,av[1],av[3]);
 }
 static void bs_set_password(char *src,int ac,char **av) {
-
+	if(ac<4) {
+		notice(bs_name,src,BS_ERR_SET_OPT_USAGE,"PASSWORD");
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET PASSWORD");
+		return;
+	}
+	if (strlen(av[3]) < 5) {
+		notice(bs_name, src, BS_ERR_PASSTOOSHORT);
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"ADD");
+		return;
+	}
+	/* the password shouldn't be the same as the nickname */
+	if (stricmp(av[3], av[1]) == 0) {
+		notice(bs_name, src, BS_ERR_PASSSAMEASNICK);
+		notice(bs_name, src, CS_RPL_REG_HLP, cs_name,"ADD");
+		return;
+	}
+	bot *b = findbot(av[1]);
+	b->password = sstrdup(av[3]);
+	notice(bs_name,src,BS_SET_PASS_SUCCESS,av[1],av[3]);
 }
 static void bs_set_realname(char *src,int ac,char **av) {
-
 }
 static void bs_set_username(char *src,int ac,char **av) {
 
