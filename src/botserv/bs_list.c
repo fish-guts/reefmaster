@@ -23,7 +23,6 @@
 
 void bs_list(char *src,int ac,char **av) {
 	user *u = finduser(src);
-	notice(bs_name,src,"Access: %i",bs_access_list);
 	if(u->oper<bs_access_list) {
 		notice(bs_name,src,BS_ERR_NEEDMOREPRIVS,bs_name);
 		return;
