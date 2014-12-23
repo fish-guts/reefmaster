@@ -24,7 +24,7 @@
 void bs_del(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
-	if(u->oper<bs_acc_manage) {
+	if(u->oper<bs_access_del) {
 		notice(bs_name,src,NS_ERR_NEEDMOREPRIVS);
 		return;
 	}

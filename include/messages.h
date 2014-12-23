@@ -579,6 +579,7 @@
  ******************************************************************************************************************************************
  */
 #define BS_ERR_INVALIDNICKNAME		"%s: Invalid Nickname"
+#define BS_ERR_NEEDMOREPRIVS		"Access denied for that command for %s. You don't have the required privileges."
 #define BS_ERR_ADD_USAGE			"Usage: \2ADD\2 [Botname] [Password]"
 #define BS_ERR_ADD_EXISTS			"A bot with the name \2%s\2 already exists"
 #define BS_ERR_ADD_INVALIDCHARS		"Invalid characters - Please use Nickname-only characters"
@@ -591,6 +592,10 @@
 #define BS_ERR_PASSSAMEASNICK		"Your bot password must be the same as your bot name - Please use a more obscure password"
 #define BS_ERR_DEL_USAGE			"Usage: \2DEL\2 [Botname]"
 #define BS_ERR_LIST_USAGE			"Usage: \2LIST\2"
+#define BS_RPL_LIST_BEGIN			"The following Bot are registered with Botserv"
+#define BS_RPL_LIST_ENTRY			"%i - \2%s\2 (%s@%s) (%s)"
+#define BS_RPL_LIST_COMPLETE1		"Listing complete - 1 match found"
+#define BS_RPL_LIST_COMPLETE2		"Listing complete - %i matches found"
 #define BS_ERR_CHAN_ADD_USAGE		"Usage: \2CHAN\2 [Botname] \2ADD\2 [#channel]"
 #define BS_ERR_CHAN_DEL_USAGE		"Usage: \2CHAN\2 [Botname] \2DEL\2 [#channel]"
 #define BS_ERR_CHAN_LIST_USAGE		"Usage: \2CHAN\2 [Botname] \2LIST\2"

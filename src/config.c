@@ -1409,15 +1409,12 @@ int config_load(const char *file) {
 			CFG_STR_CB("realname","Administrator Service",CFGF_NONE,(void*)&config_str32),
 			CFG_END()
 	};
-	static cfg_opt_t as_misc_opts[] = {
-			CFG_INT_CB("access_flag",4,CFGF_NONE,(void*)&config_as_access_flag),
-			CFG_END()
-	};
 	static cfg_opt_t adminserv_opts[] = {
 			CFG_SEC("general",as_general_opts,CFGF_NONE),
-			CFG_SEC("misc",as_misc_opts,CFGF_NONE), CFG_END()
+			CFG_END()
 	};
-	static cfg_opt_t opts[] = { CFG_SEC("services",services_opts,CFGF_NONE),
+	static cfg_opt_t opts[] = {
+			CFG_SEC("services",services_opts,CFGF_NONE),
 			CFG_SEC("nickserv",nickserv_opts,CFGF_NONE),
 			CFG_SEC("chanserv",chanserv_opts,CFGF_NONE),
 			CFG_SEC("operserv",operserv_opts,CFGF_NONE),
@@ -1602,10 +1599,7 @@ int config_load(const char *file) {
 		/* section access */
 
 		bs_access_cfg = cfg_getsec(botserv, "access");
-		bs_access_add = cfg_getint(bs_access_cfg, "add");
-		bs_access_del = cfg_getint(bs_access_cfg, "del");
-		bs_access_list = cfg_getint(bs_access_cfg, "list");
-		bs_access_set = cfg_getint(bs_access_cfg, "set");
+
 
 
 		/* end of section botserv */
@@ -1630,8 +1624,7 @@ int config_cs_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	cs_admin_access = val;
 	return 0;
 }
-int config_cs_cmd_kick(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_cs_cmd_kick(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 13);
@@ -1640,8 +1633,7 @@ int config_cs_cmd_kick(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_cmd_kick = val;
 	return 0;
 }
-int config_cs_cmd_ban(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_cs_cmd_ban(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 13);
@@ -1650,8 +1642,7 @@ int config_cs_cmd_ban(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_cmd_ban = val;
 	return 0;
 }
-int config_cs_cmd_op(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_cs_cmd_op(cfg_t *cfg, cfg_opt_t *opt, const char *value,	void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 13);
@@ -1660,8 +1651,7 @@ int config_cs_cmd_op(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_cmd_op = val;
 	return 0;
 }
-int config_cs_cmd_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_cs_cmd_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 13);
@@ -1670,8 +1660,7 @@ int config_cs_cmd_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_cmd_mkick = val;
 	return 0;
 }
-int config_cs_cmd_invite(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_cs_cmd_invite(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 13);
@@ -1689,8 +1678,7 @@ int config_ns_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	ns_admin = val;
 	return 0;
 }
-int config_ns_authchan(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_authchan(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1700,8 +1688,7 @@ int config_ns_authchan(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_auth_channel = val;
 	return 0;
 }
-int config_ns_authnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_authnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1711,8 +1698,7 @@ int config_ns_authnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_auth_notify = val;
 	return 0;
 }
-int config_ns_autoacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_autoacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1734,8 +1720,7 @@ int config_ns_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	ns_delay = val;
 	return 0;
 }
-int config_ns_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
@@ -1744,8 +1729,7 @@ int config_ns_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_gpass = val;
 	return 0;
 }
-int config_ns_hidemail(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_hidemail(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1755,8 +1739,7 @@ int config_ns_hidemail(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_hide_email = val;
 	return 0;
 }
-int config_ns_mnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_mnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1766,8 +1749,7 @@ int config_ns_mnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_mnotify = val;
 	return 0;
 }
-int config_ns_nomemo(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_nomemo(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1777,8 +1759,7 @@ int config_ns_nomemo(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_no_memo = val;
 	return 0;
 }
-int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 2)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 2);
@@ -1787,8 +1768,7 @@ int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_high_protect = val;
 	return 0;
 }
-int config_ns_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
@@ -1797,8 +1777,7 @@ int config_ns_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	ns_usage_access = val;
 	return 0;
 }
-int config_ns_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_ns_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
@@ -1816,8 +1795,7 @@ int config_oper(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	*(const char **) result = (const char *) value;
 	return 0;
 }
-int config_as_access_flag(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_as_access_flag(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
@@ -1827,8 +1805,7 @@ int config_as_access_flag(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	as_access_flag = val;
 	return 0;
 }
-int config_passAction(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_passAction(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 4)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 4);
@@ -1849,8 +1826,7 @@ int config_port(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	s_port = val;
 	return 0;
 }
-int config_s_globaloncycle(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_s_globaloncycle(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -1860,21 +1836,17 @@ int config_s_globaloncycle(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	s_global_on_cycle = val;
 	return 0;
 }
-int config_s_keeplogs(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_s_keeplogs(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (val < 0) {
-		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,
-				opt->name);
-		addlog(2, CONF_LOG_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,
-				opt->name);
+		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line, opt->name);
+		addlog(2, CONF_LOG_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line, opt->name);
 		return -1;
 	}
 	//s_keeplogfiles = val;
 	return 0;
 }
-int config_s_passlimit(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+int config_s_passlimit(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int var = atoi(value);
 	if (var < 0) {
 		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,

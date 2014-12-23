@@ -25,7 +25,7 @@ void bs_add(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
 	char *password;
-	if(u->oper<bs_acc_manage) {
+	if(u->oper<bs_access_add) {
 		notice(bs_name,src,NS_ERR_NEEDMOREPRIVS);
 		return;
 	}
