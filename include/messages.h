@@ -605,7 +605,7 @@
 #define BS_SET_PASS_SUCCESS			"The Password of bot \2%s\2 has been changed to \2%s\2"
 #define BS_SET_USERNAME_SUCCESS		"The Username of bot \2%s\2 has been changed to \2%s\2"
 #define BS_SET_REALNAME_SUCCESS		"The Realname of bot \2%s\2 has been changed to \2%s\2"
-#define BS_KILL_NAMECHANGE			"Bot is reconnecting"
+#define BS_KILL_NAMECHANGE			"Bot is reconnecting due to changed settings. "
 #define BS_ERR_SET_USERNAME_USAGE	"Usage: \2SET\2 <Botname> \2USERNAME\2 <Username>"
 #define BS_ERR_SET_REALNAME_USAGE	"Usage: \2SET\2 <Botname> \2REALNAME\2 <Realname>"
 #define BS_ERR_SET_PASSWORD_USAGE	"Usage: \2SET\2 <Botname> \2PASSWORD\2 <Password>"
