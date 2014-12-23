@@ -98,16 +98,16 @@ bot *register_bot(char *botname,char *password) {
 	return b;
 }
 void load_bot(int id,char *botname, char *password, char *username, char *realname) {
-		bot *b = scalloc(sizeof(bot),1);
-		b->id = id;
-		b->name = sstrdup(botname);
-		b->password = sstrdup(password);
-		b->realname = sstrdup(realname);
-		b->username = sstrdup(username);
-		b->next = botlist;
-		if (botlist)
-			botlist->prev = b;
-		botlist = b;
+	bot *b = scalloc(sizeof(bot),1);
+	b->id = id;
+	b->name = sstrdup(botname);
+	b->password = sstrdup(password);
+	b->realname = sstrdup(realname);
+	b->username = sstrdup(username);
+	b->next = botlist;
+	if (botlist)
+		botlist->prev = b;
+	botlist = b;
 }
 void connect_bot(char *botname) {
 	bot *b = findbot(botname);
@@ -166,7 +166,7 @@ static void chan_del_bot(bot *b,botchan *bc) {
 }
 /********************************************************************/
 /**
- * find a registered channel in the chanserv table
+ * find a registered channel in the botserv table
  */
 bot *findbot(const char *botname) {
 	bot *b = botlist;
@@ -194,13 +194,12 @@ bot *findbot_onchan(char *botname,char *chan) {
 }
 /********************************************************************/
 /**
- * write the chan table to the database
+ * write the bot table to the database
  */
 bot *find_bot_by_id(unsigned int id) {
 	bot *b = botlist;
 	while(b) {
 		if(b->id == id) {
-			notice(as_name,"fish-guts","bot id: %s",b->name);
 			return b;
 		}
 		b = b->next;

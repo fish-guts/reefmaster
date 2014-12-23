@@ -337,7 +337,6 @@ ChanInfo *find_chan_by_id(unsigned int id) {
 	ChanInfo *c = chans;
 	while(c) {
 		if(c->id == id) {
-		printf("Chan id for akick: %i\n",id);
 			return c;
 		}
 		c = c->next;
