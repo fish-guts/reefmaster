@@ -93,7 +93,14 @@ static void bs_set_password(char *src,int ac,char **av) {
 	notice(bs_name,src,BS_SET_PASS_SUCCESS,av[1],av[3]);
 }
 static void bs_set_realname(char *src,int ac,char **av) {
+	if(ac<4) {
+		notice(bs_name,src,BS_ERR_SET_OPT_USAGE,"REALNAME");
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET REALNAME");
+		return;
+	}
+	bot *b = findbot(av[1]);
+	b->realname = sstrdup(av[3]);
+	notice(bs_name,src,BS_SET_REALNAME_SUCCESS,av[1],av[3]);
 }
 static void bs_set_username(char *src,int ac,char **av) {
-
 }
