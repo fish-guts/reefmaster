@@ -28,7 +28,7 @@
 
 #include "serverprotocol.h"
 #include "channel.h"
-#include "chanserv.h"
+#include "chanserv/chanserv.h"
 #include "commands.h"
 #include "config.h"
 #include "database.h"
@@ -36,14 +36,13 @@
 #include "help.h"
 #include "irc.h"
 #include "log.h"
-#include "memoserv.h"
 #include "messages.h"
-#include "nickserv.h"
-#include "operserv.h"
+#include "nickserv/nickserv.h"
+#include "operserv/operserv.h"
 #include "sock.h"
 #include "user.h"
-#include "botserv.h"
-#include "adminserv.h"
+#include "botserv/botserv.h"
+#include "adminserv/adminserv.h"
 
 /* global vars */ 
 int mainsock;

@@ -1,7 +1,7 @@
 RM := rm -rf
-INCLUDES = -Iinclude
-SRCS := $(wildcard src/*.c)
-OBJS := $(addprefix obj/,$(notdir $(SRCS:.c=.o)))
+INCLUDES = -Iinclude 
+SRCS := $(wildcard src/*.c src/nickserv/*.c src/chanserv/*.c src/botserv/*.c src/operserv/*.c src/adminserv/*.c)
+OBJS := $(addprefix obj/,$(notdir $(SRCS:.c=.o))) 
 OBJ_DIR := obj
 LFLAGS = -Llib
 LIBS = -ldl
@@ -14,7 +14,7 @@ CFLAGS = -Wall -O2 -g -c
 all: services
 
 # Tool invocations
-services: $(OBJS)
+services: $(OBJS) 
 	@echo 'Building target: $@'
 	
 	@echo 'Invoking: GCC C Linker'
@@ -22,10 +22,38 @@ services: $(OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
+obj/%.o: src/nickserv/%.c
+	@mkdir -p obj
+	@echo 'Compiling Nickserv'
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
+	@echo 'done...'
+	
+obj/%.o: src/chanserv/%.c
+	@mkdir -p obj
+	@echo 'Compiling Chanserv'
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
+	@echo 'done...'
+		
+obj/%.o: src/botserv/%.c
+	@mkdir -p obj
+	@echo 'Compiling Botserv'
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
+	@echo 'done...'
+obj/%.o: src/operserv/%.c
+	@mkdir -p obj
+	@echo 'Compiling Operserv'
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
+	@echo 'done...'
+	
+obj/%.o: src/adminserv/%.c
+	@mkdir -p obj
+	@echo 'Compiling Adminserv'
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
+	@echo 'done...'
 
 obj/%.o: src/%.c
 	@mkdir -p obj
-	@echo 'Invoking C Compiler'
+	@echo 'Compiling Main Files'
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
 	@echo 'done...'
    
