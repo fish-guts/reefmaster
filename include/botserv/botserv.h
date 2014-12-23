@@ -5,6 +5,7 @@
 #include "bs_add.h"
 #include "bs_del.h"
 #include "bs_list.h"
+#include "bs_set.h"
 
 
 extern bot *botlist;

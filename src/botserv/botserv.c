@@ -45,7 +45,7 @@ static bs_cmd bs_cmds[] = {
 	{ "KICK", NULL },
 	{ "LIST", bs_list },
 	{ "MSG", NULL },
-	{ "SET", NULL },
+	{ "SET", bs_set },
 
 
 };

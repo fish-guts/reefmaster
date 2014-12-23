@@ -1,5 +1,5 @@
 /*
- *      botserv.c - severin
+ *      bs_add.c - severin
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *

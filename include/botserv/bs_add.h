@@ -1,10 +1,3 @@
-/*
- * bs_add.h
- *
- *  Created on: Dec 8, 2014
- *      Author: fish-guts
- */
-
 #ifndef BS_ADD_H_
 #define BS_ADD_H_
 
