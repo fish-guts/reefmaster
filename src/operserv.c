@@ -21,7 +21,7 @@
  
 #include "main.h"
 
-static bs_cmd *find_os(const char *name);
+static os_cmd *find_os(const char *name);
 
 static char *aoper[] = {
 	OS_RPL_ISNOWHELPOP,				
@@ -71,14 +71,14 @@ void operserv(char *src, char *av) {
 		if (os->func)
 			os->func(src, i, uv);
 	} else {
-		addlog(2, LOG_DBG_NS_UNKNOWN, bs_name, src, u->username, u->hostname,av);
+		addlog(2, LOG_DBG_NS_UNKNOWN, ns_name, src, u->username, u->hostname,av);
 	}
 }
 /********************************************************************/
 /**
  * find the correct operserv command
  */
-static bs_cmd *find_os(const char *name) {
+static os_cmd *find_os(const char *name) {
 	os_cmd *cmd;
 	for (cmd = os_cmds; cmd->name; cmd++) {
 		if (stricmp(name, cmd->name) == 0)
