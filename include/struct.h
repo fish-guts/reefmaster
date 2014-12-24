@@ -10,6 +10,7 @@
 
 typedef struct _access myacc;
 typedef struct _auth auth;
+typedef struct _botaccess botaccess;
 typedef struct _botchan botchan;
 typedef struct _botinfo bot;
 typedef struct _chanban chanban;
@@ -263,6 +264,7 @@ struct _user
     	char *nick;
     	int level;
     } *acc; 
+    botaccess *bots;
 };
 struct _usernick {
 	usernick *next, *prev;
@@ -282,6 +284,11 @@ struct _timeout_ {
     void (*code)(timer *);
     void *data;
     int type;
+};
+
+struct _botaccess {
+	botaccess *prev,*next;
+	bot *b;
 };
 
 #endif /*STRUCT_H_*/

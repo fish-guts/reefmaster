@@ -174,3 +174,13 @@ static void change_user_nick(user *u, const char *nick)
 {
     strscpy(u->nick,nick,NICKMAX);
 }
+
+void user_add_bot(user *u,bot *b) {
+	botaccess *ba = scalloc(sizeof(botaccess),1);
+	ba->next = u->bots;
+	if(u->bots)
+		u->bots->prev = ba;
+	ba->b = b;
+	u->bots = ba;
+	return;
+}
