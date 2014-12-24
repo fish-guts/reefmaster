@@ -18,6 +18,7 @@
 #define KILL		":%s KILL %s :%s!%s %s\r\n"
 #define SNICK		"& %s 1 0 %s %s %s 0 +qdS * :%s\r\n"
 #define NOTICE		":%s NOTICE %s :%s\r\n"
+#define PRIVMSG		":%s PRIVMSG %s :%s\r\n"
 #define PART		":%s PART %s :%s\r\n"
 #define PONG		"PONG %s :%s\r\n"
 #define QUIT		":%s QUIT :Quit: Leaving\r\n"

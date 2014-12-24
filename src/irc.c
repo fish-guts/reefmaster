@@ -226,6 +226,22 @@ void notice(const char *src,char *dest,char *msg, ...)
 }
 /********************************************************************/
 /**
+ * Send an IRC message
+ */
+void privmsg(const char *src,char *dest,char *msg, ...)
+{
+	char buf[512];
+	char *buff = (char*)malloc(sizeof(char)*512);
+	va_list va;
+	va_start(va,msg);
+	vsprintf(buf,msg,va);
+	sprintf(buff,PRIVMSG,src,dest,buf);
+	send(mainsock,buff,(int)strlen(buff),0);
+	free(buff);
+	va_end(va);
+}
+/********************************************************************/
+/**
  * 	send a PONG message to server
  */
 void pong(void)

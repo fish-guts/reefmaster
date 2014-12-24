@@ -24,6 +24,7 @@ void kline(char *user,char *host,char *reason,int time);
 void mode(const char *src,const char *target,char *modes,char *chan);
 void notice(const char *src,char *dest,char *msg, ...);
 void pong(void);
+void privmsg(const char *src,char *dest,char *msg, ...);
 void quit(char *nick);
 void s_kill(const char *src,char *dest,char *reason);
 void s_send(char *cmd, ...);
