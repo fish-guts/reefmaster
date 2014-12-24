@@ -1,5 +1,5 @@
 /*
- *      bs_identify.c - severin
+ *      bs_op.c - severin
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
@@ -21,19 +21,20 @@
 
 #include "main.h"
 
-void bs_identify(char *src,int ac,char **av) {
+void bs_op(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
-	char *password;
+	char *chan;
+	char *nick;
 
-	if(ac<2) {
-		notice(bs_name,src,BS_ERR_IDENTIFY_USAGE);
-		notice(bs_name,src,BS_RPL_HLP,bs_name,"IDENTIFY");
+	if(ac<3) {
+		notice(bs_name,src,BS_ERR_OP_USAGE);
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"OP");
 		return;
 	}
-
 	botname = sstrdup(av[1]);
-	password = sstrdup(av[2]);
+	chan = sstrdup(av[2]);
+	nick = sstrdup(av[3]);
 
 	bot *b = findbot(botname);
 
@@ -42,25 +43,16 @@ void bs_identify(char *src,int ac,char **av) {
 		return;
 	}
 
-	if(stricmp(b->password,password)!=0) {
-		notice(bs_name,src,BS_ERR_IDENTIFY_WRONGPASS,b->name);
+	if(!is_bot_on_chan(botname,chan)) {
+		notice(bs_name,src,BS_ERR_OP_NOT_ON_CHAN,botname,chan);
 		return;
-	} else {
-		notice(bs_name,src,BS_ERR_IDENTIFY_PASSACC,b->name);
-		user_add_bot(u,b);
 	}
+	if(!bot_identified(u,b)) {
+		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
+		return;
+	}
+	do_op(b->name,nick,chan);
 
 	return;
 
-}
-
-int bot_identified(user *u, bot *b) {
-	botaccess *ba = u->bots;
-	while(ba) {
-		if(ba->b->id==b->id) {
-			return 1;
-		}
-		ba = ba->next;
-	}
-	return 0;
 }

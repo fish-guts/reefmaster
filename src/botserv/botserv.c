@@ -43,6 +43,7 @@ static bs_cmd bs_cmds[] = {
 	{ "IDENTIFY", bs_identify },
 	{ "INFO", NULL },
 	{ "KICK", NULL },
+	{ "OP", bs_op },
 	{ "LIST", bs_list },
 	{ "MSG", NULL },
 	{ "SET", bs_set },
