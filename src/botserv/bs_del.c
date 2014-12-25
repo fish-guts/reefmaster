@@ -39,7 +39,7 @@ void bs_del(char *src,int ac,char **av) {
 		return;
 	}
 	if(!isregbot(botname)) {
-		notice(bs_name,src,BS_ERR_DEL_NOTFOUND,botname);
+		notice(bs_name,src,BS_ERR_NOTFOUND,botname);
 		return;
 	}
 	disconnect_bot(botname);

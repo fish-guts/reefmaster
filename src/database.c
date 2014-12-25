@@ -22,11 +22,6 @@
 #include "main.h"
 #include "query.h"
 
-static void bs_install_bots(void);
-static void cs_install_chans(void);
-static void cs_install_acc_level(void);
-static void cs_install_op_list(void);
-static void cs_install_op_type(void);
 static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a);
 static int db_add_auth(sqlite3 *db, NickInfo*c, auth *a);
 static int db_add_bot(sqlite3 *db,bot *b);
@@ -43,27 +38,16 @@ static void db_save_ops(void);
 static ChanInfo *find_chan_by_name(char *chan);
 static NickInfo *find_nick_by_name(char *chan);
 static bot *find_bot_by_name(char *nick);
-static void install_ns(void);
-static void install_cs(void);
-static void install_bs(void);
-static void install_table(const char *sql);
 static void load_access();
 static void load_akick(void);
 static void load_auth();
 static void load_botserv(void);
 void load_chans(void);
 static void load_chanserv(void);
-static void load_main(void);
 static void load_nicks(void);
 static void load_nickserv(void);
 static void load_notify();
 static void load_ops(void);
-static void ns_install_nicks(void);
-static void ns_install_access(void);
-static void ns_install_auth_status(void);
-static void ns_install_notify(void);
-static void ns_install_target_type(void);
-static void ns_install_auth(void);
 static void save_botserv_db(void);
 static void save_chanserv_db(void);
 static void save_nickserv_db(void);
@@ -71,21 +55,6 @@ static void update_bot_ids(void);
 static void update_chan_ids(void);
 static void update_nick_ids(void);
 
-static void bs_install_bots(void) {
-	install_table(bs_create_bots_table);
-}
-static void cs_install_acc_level(void) {
-	install_table(cs_create_acc_level_table);
-}
-static void cs_install_chans(void) {
-	install_table(cs_create_chans_table);
-}
-static void cs_install_op_list(void) {
-	install_table(cs_create_op_list_table);
-}
-static void cs_install_op_type(void) {
-	install_table(cs_create_op_type_table);
-}
 static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -163,6 +132,7 @@ static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 			c->mlock, c->topic, c->topic_user, c->topic_time, c->restricted,
 			c->keeptopic, c->autovop, c->memolevel, c->leaveops, c->opwatch,
 			c->url, c->topiclock);
+
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		return 0;
@@ -218,7 +188,7 @@ static void db_save_akicks(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE CS_AKICK", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS CS_AKICK", 0, 0, 0);
 	sqlite3_exec(db, create_cs_akick_table, 0, 0, 0);
 	ChanInfo *c = chans;
 	while (c) {
@@ -239,6 +209,7 @@ static void db_save_akicks(void) {
 	return;
 }
 static void db_save_auth(void) {
+	addlog(1, LOG_DBG_ENTRY, "db_save_auth");
 	sqlite3 *db;
 	int query_result = 0;
 	int rc = 0;
@@ -247,7 +218,7 @@ static void db_save_auth(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE NS_AUTH", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS NS_AUTH", 0, 0, 0);
 	sqlite3_exec(db, ns_create_auth_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
@@ -268,6 +239,7 @@ static void db_save_auth(void) {
 	return;
 }
 static void db_save_access(void) {
+	addlog(1, LOG_DBG_ENTRY, "db_save_access");
 	sqlite3 *db;
 	int query_result = 0;
 	int rc = 0;
@@ -276,7 +248,7 @@ static void db_save_access(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE NS_ACCESS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS NS_ACCESS", 0, 0, 0);
 	sqlite3_exec(db, ns_create_access_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
@@ -305,7 +277,7 @@ void db_save_bots(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE BOTS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS BOTS", 0, 0, 0);
 	sqlite3_exec(db, bs_create_bots_table, 0, 0, 0);
 	bot *b = botlist;
 	while (b) {
@@ -333,7 +305,7 @@ void db_save_chans(void) {
 	}
 	ChanInfo *c = chans;
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE CHANS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS CHANS", 0, 0, 0);
 	sqlite3_exec(db, cs_create_chans_table, 0, 0, 0);
 	while (c) {
 		if (!(query_result = db_add_chan(db, c))) {
@@ -356,7 +328,7 @@ void db_save_nicks(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE NICKS", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS NICKS", 0, 0, 0);
 	sqlite3_exec(db, ns_create_nicks_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
@@ -383,7 +355,7 @@ static void db_save_notify(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE NS_NOTIFY", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS NS_NOTIFY", 0, 0, 0);
 	sqlite3_exec(db, ns_create_notify_table, 0, 0, 0);
 	NickInfo *n = nicklist;
 	while (n) {
@@ -413,7 +385,7 @@ void db_save_ops(void) {
 		return;
 	}
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
-	sqlite3_exec(db, "DROP TABLE OP_LIST", 0, 0, 0);
+	sqlite3_exec(db, "DROP TABLE IF EXISTS OP_LIST", 0, 0, 0);
 	sqlite3_exec(db, cs_create_op_list_table, 0, 0, 0);
 	op *o = global_op_list;
 	while (o) {
@@ -529,50 +501,6 @@ static NickInfo *find_nick_by_name(char *nick) {
 	}
 	sqlite3_close(db);
 	return n;
-}
-static void install_bs(void) {
-	bs_install_bots();
-}
-static void install_cs(void) {
-	cs_install_chans();
-	cs_install_acc_level();
-	cs_install_op_list();
-	cs_install_op_type();
-}
-void install_db(void) {
-	install_ns();
-	install_bs();
-	install_cs();
-}
-static void install_ns() {
-	addlog(1, LOG_DBG_ENTRY, "install_ns");
-	ns_install_nicks();
-	ns_install_access();
-	ns_install_auth_status();
-	ns_install_notify();
-	ns_install_target_type();
-	ns_install_auth();
-	addlog(1, LOG_DBG_EXIT, "install_ns");
-}
-
-static void load_main(void) {
-
-}
-
-static void install_table(const char *sql) {
-	char *sqlite_err = 0;
-	sqlite3 *db;
-	int rc;
-	if ((rc = sqlite3_open(DB, &db)) == SQLITE_OK) {
-
-		if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
-			sqlite3_free(sqlite_err);
-			addlog(2, LOG_ERR_SQLERROR, "in install table()", sql);
-			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		}
-	}
-	sqlite3_close(db);
-	return;
 }
 static void load_access(void) {
 	sqlite3 *db;
@@ -769,7 +697,6 @@ void load_chanserv(void) {
 
 void load_database(void) {
 	addlog(1, LOG_DBG_ENTRY, "load_database");
-	load_main();
 	if (bs_enabled) {
 		load_botserv();
 	}
@@ -905,24 +832,6 @@ static void load_ops(void) {
 	sqlite3_close(db);
 }
 
-static void ns_install_access(void) {
-	install_table(ns_create_access_table);
-}
-static void ns_install_auth_status(void) {
-	install_table(ns_create_auth_status_table);
-}
-static void ns_install_auth(void) {
-	install_table(ns_create_auth_table);
-}
-static void ns_install_target_type(void) {
-	install_table(ns_create_target_type_table);
-}
-static void ns_install_notify(void) {
-	install_table(ns_create_notify_table);
-}
-static void ns_install_nicks(void) {
-	install_table(ns_create_nicks_table);
-}
 static void save_botserv_db(void) {
 	db_save_bots();
 	update_bot_ids();
