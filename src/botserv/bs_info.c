@@ -21,21 +21,15 @@
 
 #include "main.h"
 
-void bs_kick(char *src,int ac,char **av) {
-	user *u = finduser(src);
+void bs_info(char *src,int ac,char **av) {
 	char *botname;
-	char *chan;
-	char *nick;
 
-	if(ac<3) {
-		notice(bs_name,src,BS_ERR_OP_USAGE);
-		notice(bs_name,src,BS_RPL_HLP,bs_name,"OP");
+	if(ac<1) {
+		notice(bs_name,src,BS_ERR_INFO_USAGE);
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"INFO");
 		return;
 	}
 	botname = sstrdup(av[1]);
-	chan = sstrdup(av[2]);
-	nick = sstrdup(av[3]);
-
 	bot *b = findbot(botname);
 
 	if(!b) {
@@ -43,26 +37,19 @@ void bs_kick(char *src,int ac,char **av) {
 		return;
 	}
 
-	if(!is_bot_on_chan(botname,chan)) {
-		notice(bs_name,src,BS_ERR_OP_NOT_ON_CHAN,botname,chan);
-		return;
-	}
-	if(!bot_identified(u,b)) {
-		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
-		return;
-	}
-	if(findbot(nick)) {
-		notice(bs_name,src,BS_ERR_KICK_BOT,nick);
-		return;
-	}
-	char reason[256];
-	int i = 3;
-	for(i=3;i<ac;i++) {
-		strcat(reason,av[i]);
-		if(i<ac) {
-			strcat(reason," ");
+	char channellist[8196] = "";
+	channel *c = chanlist;
+	while(c) {
+		if(stricmp(c->bot,b->name)==0) {
+			strcat(channellist,c->name);
+			strcat(channellist,", ");
 		}
+		c = c->next;
 	}
-	kick(b->name,nick,chan,reason);
+	if(strlen(channellist)>2) {
+		channellist[strlen(channellist)-2] = 0;
+	}
+	notice(bs_name,src,BS_RPL_INF_HEAD,b->name,b->realname);
+	notice(bs_name,src,BS_RPL_INF_CHANS,b->name,channellist);
 	return;
 }

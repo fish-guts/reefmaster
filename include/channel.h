@@ -3,6 +3,8 @@
 
 #include "struct.h"
 
+extern channel *chanlist;
+
 void add_bot(char *chan, char *bot);
 void add_status(channel *c,user *u,int status);
 int is_bot_on_chan(char *botname,char *chan);

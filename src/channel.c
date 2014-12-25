@@ -25,7 +25,7 @@ static channel *new_channel(const char *chan);
 static void chan_adduser(user *u, channel *c);
 static channel *join_user_update(user *u, channel *c, char *name);
 
-static channel *chanlist = NULL;
+channel *chanlist = NULL;
 
 int chan_count;
 

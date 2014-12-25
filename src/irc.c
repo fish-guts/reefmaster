@@ -214,8 +214,8 @@ void mode(const char *src,const char *target,char *modes,char *chan)
  */
 void notice(const char *src,char *dest,char *msg, ...)
 {
-	char buf[512];
-	char *buff = (char*)malloc(sizeof(char)*512);
+	char buf[8196];
+	char *buff = (char*)malloc(sizeof(char)*8196);
 	va_list va;
 	va_start(va,msg);
 	vsprintf(buf,msg,va);

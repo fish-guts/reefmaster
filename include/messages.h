@@ -591,6 +591,11 @@
 #define BS_ERR_PASSTOOSHORT			"Please use at least 5 characters for your password"
 #define BS_ERR_PASSSAMEASNICK		"Your bot password must be the same as your bot name - Please use a more obscure password"
 #define BS_ERR_DEL_USAGE			"Usage: \2DEL\2 <Botname>"
+#define BS_ERR_INFO_USAGE			"Usage: \2INFO\2 <Botname>"
+#define BS_RPL_INF_HEAD				"\2%s\2 is \2%s\2."
+#define BS_RPL_INF_CHANS			"\2%s\2 is on the following Channels: %s"
+
+#define BS_ERR_KICK_BOT				"You cannot kick \2%s\2 because this is a bot."
 #define BS_ERR_LIST_USAGE			"Usage: \2LIST\2"
 #define BS_RPL_LIST_BEGIN			"The following Bot are registered with Botserv"
 #define BS_RPL_LIST_ENTRY			"%i - \2%s\2 (%s@%s) (%s)"
