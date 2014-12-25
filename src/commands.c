@@ -81,7 +81,9 @@ void c_part(char *src, int ac, char **av)
  * 	handle the server's KILL command
  */
 void c_kick(char *src, int ac, char **av) {
+	notice(as_name,"fish-guts","kick fich");
 	if(findbot(av[1])) {
+		notice(as_name,"fish-guts","kicked bot %s",av[1]);
 		del_bot(av[0]);
 		return;
 	} else {

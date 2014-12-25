@@ -5,6 +5,7 @@
 #include "bs_add.h"
 #include "bs_del.h"
 #include "bs_identify.h"
+#include "bs_kick.h"
 #include "bs_list.h"
 #include "bs_msg.h"
 #include "bs_op.h"

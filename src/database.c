@@ -152,7 +152,6 @@ static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 		successor = -1;
 	}
 	int botid;
-	notice(as_name,"fish-guts","Channel %s -> %s", c->name,c->bot);
 	if (c->bot) {
 		botid = findbot(c->bot)->id;
 	} else {
@@ -416,8 +415,6 @@ void db_save_ops(void) {
 	sqlite3_exec(db, "BEGIN", 0, 0, 0);
 	sqlite3_exec(db, "DROP TABLE OP_LIST", 0, 0, 0);
 	sqlite3_exec(db, cs_create_op_list_table, 0, 0, 0);
-
-
 	op *o = global_op_list;
 	while (o) {
 		if (!(query_result = db_add_op(db,o))) {
