@@ -10,8 +10,8 @@ The following commands are available:
 <b>AKICK</b> - Manage the channel's Akick list.
 <b>AOP</b> - Manage the channel's Aop list.
 <b>DEHALFOP</b> - Remove Half Operator status from a user. 
-<b>DEVOICE</b> - Remove voice status from a user. 
 <b>DEOP</b> - Remove operator status from a user.
+<b>DEVOICE</b> - Remove voice status from a user. 
 <b>DROP</b> - Drop a registered channel
 <b>GETPASS</b> - Retrieve the password of a channel (IRC Operators only)
 <b>HALFOP</b> - Grant Half Operator status to a user.
@@ -31,8 +31,8 @@ The following commands are available:
 <b>UNBAN</b> - List a ban in a channl against you.
 <b>VOICE</b> - Grant voice status to a user.
 <b>VOP</b> - Manage the channel's Vop List 
-
+-
 For help on a specific topic, type /msg Chanserv <b>HELP</b> <Command> 
-
-
-- \CHANSERV\2 - End of help
+-
+-
+- <b>CHANSERV</b> - End of help
