@@ -1,0 +1,15 @@
+BS <b>VOICE</b>
+-
+Usage: /msg Botserv <Bot> <b>VOICE</b> <Channel> <Nickname>
+Usage: /bs <Bot> <b>VOICE</b> <Channel> <Nickname>
+-
+-
+<b>VOICE</b> Grants a user Voice Operator Status on a channel
+The Bot must be present on that channel. 
+-
+Example: 
+-
+- BS Chanbot <b>VOICE</b> #lobby foo 
+- 
+ 
+- <b>VOICE</b> - End of help

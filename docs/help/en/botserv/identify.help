@@ -1,0 +1,13 @@
+BS <b>IDENTIFY</b>
+-
+Usage: /msg Botserv <b>IDENTIFY</b> <Bot> <Password>
+Usage: /bs <b>IDENTIFY</b> <Bot> <Password>
+-
+-
+With <b>IDENTIFY</b>, you can identify to a bot using its password, thus gaining access to all commands of the bot.   
+-
+- Example
+- 
+- BS <b>IDENTIFY</b> Chanbot myfoo123 
+-
+- <b>IDENTIFY</b> - End of help

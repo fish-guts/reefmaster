@@ -1,0 +1,15 @@
+BS <b>OP</b>
+-
+Usage: /msg Botserv <Bot> <b>OP</b> <Channel> <Nickname>
+Usage: /bs <Bot> <b>OP</b> <Channel> <Nickname>
+-
+-
+<b>OP</b> Grants a user Operator Status on a channel
+The bot must be present on that channel. 
+-
+Example: 
+-
+- BS Chanbot <b>OP</b> #lobby foo 
+- 
+ 
+- <b>OP</b> - End of help

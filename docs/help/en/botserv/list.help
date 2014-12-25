@@ -1,0 +1,14 @@
+BS <b>LIST</b>
+-
+Usage: /msg Botserv <b>LIST</b>
+Usage: /bs <b>LIST</b>
+-
+-
+With <b>LIST</b>, you can issue a list of all bots.   
+This command is only available to users with IRC Operator privileges by default.   
+-
+- Example
+- 
+- BS <b>LIST</b>
+-
+- <b>LIST</b> - End of help

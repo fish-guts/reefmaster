@@ -1,0 +1,13 @@
+BS <b>INFO</b>
+-
+Usage: /msg Botserv <b>INFO</b> <Bot>
+Usage: /bs <b>INFO</b> <Bot>
+-
+-
+With <b>INFO</b>, you can display information about a bot 
+-
+- Example
+- 
+- BS <b>INFO</b> Chanbot 
+-
+- <b>INFO</b> - End of help

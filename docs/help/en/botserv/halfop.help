@@ -1,0 +1,14 @@
+BS <b>HALFOP</b>
+-
+Usage: /msg Botserv <b>HALFOP</b> <Channel> <Nickname>
+Usage: /bs <b>HALFOP</b> <Channel> <Nickname>
+-
+-
+<b>HALFOP</b> Grants a user Half-Operator Status on a channel
+-
+Example: 
+-
+- BS Chanbot <b>HALFOP</b> #lobby foo 
+- 
+ 
+- <b>HALFOP</b> - End of help

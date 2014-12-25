@@ -1,0 +1,14 @@
+BS <b>SETPASS</b>
+-
+Usage: /msg Botserv <b>SETPASS</b> <Bot> <Password>
+Usage: /cs <b>SETPASS</b> <Bot> <Password>
+-
+-
+With <b>SETPASS</b>, you can set a new password for a bot.   
+This command required IRC Operator privileges. 
+-
+- Example
+- 
+- BS <b>SETPASS</b> Chanbot foosnewpass123 
+-
+- <b>SETPASS</b> - End of help

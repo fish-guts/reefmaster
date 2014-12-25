@@ -1,0 +1,14 @@
+BS <b>DEOP</b>
+-
+Usage: /msg <Bot> Botserv <b>DEOP</b> <Channel> <Nickname>
+Usage: /bs <Bot> <b>DEOP</b> <Channel> <Nickname>
+-
+-
+<b>DEOP</b> Removes Operator Status from a user.   
+-
+Example: 
+-
+- BS Chanbot <b>DEOP</b> #lobby foo 
+- 
+ 
+- <b>DEOP</b> - End of help

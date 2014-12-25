@@ -1,0 +1,30 @@
+<b>BOTSERV</b>
+Botserv allows a a bot to be added to a channel. The channel doesn't need to be registered to add a bot. 
+However, if you wish to add a bot to an unregistered channel you need to manage the channel using <b>Adminserv</b>
+Botserv support a set of command listed below.  
+-
+-
+The following commands are available:
+-
+<b>ADD</b> - Create a new bot
+<b>DEL</b> - Delete an existing bot
+<b>DEHALFOP</b> - Remove Half Operator status from a user. 
+<b>DEOP</b> - Remove operator status from a user.
+<b>DEVOICE</b> - Remove voice status from a user. 
+<b>GETPASS</b> - Retrieve the password of a bot (IRC Operators only)
+<b>HALFOP</b> - Grant a user Half_operator Operator status on a channel
+<b>IDENTIFY</b> - Identify to a bot using the bot's password
+<b>INFO</b> - Display information about a bot
+<b>KICK</b> - Kick a user from a channel
+<b>LIST</b> - List all existing bots
+<b>MSG</b> - Send a message to a channel using the bot
+<b>OP</b> - Grant a user Operator status on a channel
+<b>SET</b> - Additional Settings
+<b>SETPASS</b> - Set a new password for a bot (IRC Operator only)
+<b>VOICE</b> - Grant a user Voice Operator status on a channel        
+-
+For help on a specific topic, type /msg Botserv <b>HELP</b> <Command> 
+-
+-
+- <b>BOTSERV</b> - End of help
+

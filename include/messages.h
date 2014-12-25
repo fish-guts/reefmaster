@@ -203,7 +203,6 @@
 #define NS_HELP_PATH			"docs/help/en/nickserv"
 
 
-
 /* IDENTIFY
  ******************************************************************************************************************************************
  */
@@ -626,6 +625,8 @@
 #define BS_RPL_HLP					"For more help, type /msg %s HELP \2%s\2"
 #define BS_RPL_PART_MSG				"Channel management by Bot discontinued"
 #define BS_ERR_NOSUCHCMD			"Unknown command: SET \2%s\2."
+
+#define BS_HELP_PATH				"docs/help/en/botserv"
 
 #define OS_RPL_ISNOWHELPOP			"\2%s\2 is now a Help Operator\2"
 #define OS_RPL_ISNOWIRCOP			"\2%s\2 is now an \2IRC Operator\2"

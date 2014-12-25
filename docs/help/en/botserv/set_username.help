@@ -1,0 +1,14 @@
+BS SET <b>USERNAME</b>
+Usage: /msg Botserv <Bot> SET <b>USERNAME</b> <Name>
+Usage: /bs <Bot> SET <b>USERNAME</b> <Name>
+-
+-
+With <b>USERNAME</b>, you can set a new Username for a bot.  
+-   
+-
+- Example
+-
+- Chanbot SET <b>USERNAME</b> newchanbot
+- 
+-
+- SET <b>USERNAME</b> - End of help

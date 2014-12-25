@@ -1,0 +1,20 @@
+BS <b>SET</b>
+-
+Usage: /msg Botserv <Bot> <b>SET</b> [Command] <Option>
+Usage: /bs <Bot> <b>SET</b> <Channel> [Command] <Option>
+-
+-
+With <b>SET</b>, you can configure various options for your channel.  
+-
+The following commands are available
+-
+-
+- SET <b>NAME</b> Set an new Nickname for a bot.
+- SET <b>PASSWORD</b> Set a new password for a bot. 
+- SET <b>REALNAME/b> Set a new realname for a bot.  
+- SET <b>USERNAME</b> set a new username for a bot. 
+- 
+-
+- For more help on the command, please type /msg Botserv HELP SET <Command>
+- 
+- <b>SET</b> - End of help

@@ -1,0 +1,14 @@
+BS <b>GETPASS</b>
+-
+Usage: /msg Botserv <b>GETPASS</b> <Bot>
+Usage: /bs <b>GETPASS</b> <Bot>
+-
+-
+With <b>GETPASS</b>, you can retrieve a bot's password.  
+This command requires IRC Operator privileges.  
+-
+- Example
+- 
+- BS <b>GETPASS</b> Chanbot 
+-
+- <b>GETPASS</b> - End of help

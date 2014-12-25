@@ -1,0 +1,15 @@
+BS <b>MSG</b>
+-
+Usage: /msg Botserv <bot> <b>MSG</b> <Channel> <Message>
+Usage: /bs <bot> <b>KICK</b> <Channel> <Message>
+-
+-
+<b>MSG</b> Makes the bot send a message to the specified. channel. 
+The bot must be present on that channel.  
+-
+Example: 
+-
+- BS Chanbot <b>MSG</b> #lobby Hello everyone! 
+- 
+ 
+- <b>MSG</b> - End of help
