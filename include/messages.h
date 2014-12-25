@@ -594,6 +594,7 @@
 #define BS_ERR_INFO_USAGE			"Usage: \2INFO\2 <Botname>"
 #define BS_RPL_INF_HEAD				"\2%s\2 is \2%s\2."
 #define BS_RPL_INF_CHANS			"\2%s\2 is on the following Channels: %s"
+#define BS_RPL_INF_END				"End of Bot Info"
 
 #define BS_ERR_KICK_BOT				"You cannot kick \2%s\2 because this is a bot."
 #define BS_ERR_LIST_USAGE			"Usage: \2LIST\2"

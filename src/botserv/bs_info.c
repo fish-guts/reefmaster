@@ -51,5 +51,6 @@ void bs_info(char *src,int ac,char **av) {
 	}
 	notice(bs_name,src,BS_RPL_INF_HEAD,b->name,b->realname);
 	notice(bs_name,src,BS_RPL_INF_CHANS,b->name,channellist);
+	notice(bs_name,src,BS_RPL_INF_END);
 	return;
 }
