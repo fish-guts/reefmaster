@@ -4,7 +4,7 @@ Usage: /msg ChanServ <b>DEVOICE</b> <Channel> <Nickname>
 Usage: /cs <b>DEVOICE</b> <Channel> <Nickname>
 -
 -
-<b>DEVOICE</b> Removes Voice Status from a Nickname.   
+<b>DEVOICE</b> Removes Voice Status from a user.   
 -
 Example: 
 -

@@ -4,7 +4,7 @@ Usage: /msg ChanServ <b>OP</b> <Channel> <Nickname>
 Usage: /cs <b>OP</b> <Channel> <Nickname>
 -
 -
-<b>OP</b> Grants Operator Status from a Nickname.   
+<b>OP</b> Grants a user Operator Status on a channel   
 -
 Example: 
 -

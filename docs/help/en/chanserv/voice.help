@@ -4,7 +4,7 @@ Usage: /msg ChanServ <b>VOICE</b> <Channel> <Nickname>
 Usage: /cs <b>VOICE</b> <Channel> <Nickname>
 -
 -
-<b>VOICE</b> Grants Voice Status to a Nickname.   
+<b>VOICE</b> Grants a user Voice Operator Status on a channel
 -
 Example: 
 -

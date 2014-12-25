@@ -4,7 +4,7 @@ Usage: /msg ChanServ <b>DEOP</b> <Channel> <Nickname>
 Usage: /cs <b>DEOP</b> <Channel> <Nickname>
 -
 -
-<b>DEOP</b> Removes Operator Status from a Nickname.   
+<b>DEOP</b> Removes Operator Status from a user.   
 -
 Example: 
 -

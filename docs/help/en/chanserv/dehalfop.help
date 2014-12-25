@@ -4,7 +4,7 @@ Usage: /msg ChanServ <b>DEHALFOP</b> <Channel> <Nickname>
 Usage: /cs <b>DEHALFOP</b> <Channel> <Nickname>
 -
 -
-<b>DEHALFOP</b> Removes Half-Operator Status from a Nickname.   
+<b>DEHALFOP</b> Removes Half-Operator Status from a user.   
 -
 Example: 
 -

@@ -1,0 +1,14 @@
+CS <b>HALFOP</b>
+-
+Usage: /msg Chanserv <b>HALFOP</b> <Channel> <Nickname>
+Usage: /cs <b>HALFOP</b> <Channel> <Nickname>
+-
+-
+<b>HALFOP</b> Grants a user Half-Operator Status on a channel
+-
+Example: 
+-
+- CS <b>HALFOP</b> #lobby foo 
+- 
+ 
+- <b>HALFOP</b> - End of help
