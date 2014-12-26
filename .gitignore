@@ -1,10 +1,3 @@
-.cdtbuild
-.cdtbuild_initial
-.cdtproject
-.cproject
-.project
-.project_initial
-.settings/
 obj/
 services
 .gitignore~
