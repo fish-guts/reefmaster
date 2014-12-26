@@ -4,6 +4,9 @@
 
 #include "bs_add.h"
 #include "bs_del.h"
+#include "bs_dehalfop.h"
+#include "bs_deop.h"
+#include "bs_devoice.h"
 #include "bs_identify.h"
 #include "bs_help.h"
 #include "bs_info.h"
