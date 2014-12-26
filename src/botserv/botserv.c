@@ -66,7 +66,6 @@ void botserv(char *src, char *av) {
 	char **uv = (char**) malloc(sizeof(char**) * 4096);
 	char *pch = strtok(av, " ");
 	bs_cmd *bs;
-	user *u = finduser(src);
 	while (pch != NULL) {
 		uv[i] = sstrdup(pch);
 		i++;
@@ -76,7 +75,9 @@ void botserv(char *src, char *av) {
 		if (bs->func)
 			bs->func(src, i, uv);
 	} else {
-		addlog(2, LOG_DBG_NS_UNKNOWN, bs_name, src, u->username, u->hostname,av);
+		notice(cs_name,src,CS_ERR_NOSUCHCMD, uv[0]);
+		notice(cs_name,src,NS_RPL_HLP_MAIN,bs_name);
+		return;
 	}
 }
 
@@ -86,7 +87,7 @@ void botserv(char *src, char *av) {
  */
 static bs_cmd *find_bs(const char *name) {
 	bs_cmd *cmd;
-	for (cmd = bs_cmds; cmd->name; cmd++) {
+	for (cmd = bs_cmds; cmd->name-1; cmd++) {
 		if (stricmp(name, cmd->name) == 0)
 			return cmd;
 	}
