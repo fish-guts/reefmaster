@@ -29,6 +29,15 @@ int config_bool(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	}
 	return 0;
 }
+int config_os_access(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 2) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 2, 6);
+		return -1;
+	}
+	os_access_flag = val;
+	return 0;
+}
 int config_bool_as(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1379,6 +1388,7 @@ int config_load(const char *file) {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_os),
 			CFG_STR_CB("name","Operserv",CFGF_NONE,(void*)&config_str32),
 			CFG_STR_CB("realname","Operator Service",CFGF_NONE,(void*)&config_str32),
+			CFG_INT_CB("access",2,CFGF_NONE,(void*)&config_os_access),
 			CFG_END()
 	};
 	static cfg_opt_t os_default_opts[] = {

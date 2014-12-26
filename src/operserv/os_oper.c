@@ -39,7 +39,44 @@ void os_oper(char *src, int ac, char **av) {
 }
 
 static void os_oper_add(char *src, int ac, char **av) {
+	if(ac<3) {
+		notice(os_name,src,OS_RPL_OPER_ADD_USAGE);
+		notice(os_name,src,OS_RPL_HELP,"OPER ADD");
+		return;
+	}
+	user *u = finduser(src);
+	if(u->oper<os_access_flag) {
+		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
+		return;
+	}
+	if(!isreg(av[2])) {
+		notice(os_name,src,NS_ERR_NOTREG,av[2]);
+		return;
+	}
 
+
+}
+
+void new_oper(char *nick) {
+	operuser *o = scalloc(sizeof(operuser), 1);
+	o->nick = sstrdup(nick);
+	o->can_akill = os_can_akill;
+	o->can_chatops = os_can_chatops;
+	o->can_chghost = os_can_chghost;
+	o->can_global = os_can_global;
+	o->can_kick = os_can_kick;
+	o->can_kill = os_can_kill;
+	o->can_local = os_can_local;
+	o->can_sgline = os_can_sgline;
+	o->can_skline = os_can_skline;
+	o->can_sqline = os_can_sqline;
+	o->can_svsnick = os_can_svsnick;
+	o->can_szline = os_can_szline;
+	o->vhost = sstrdup(os_vhost);
+	o->next = opers;
+	if (opers)
+		opers->prev = o;
+	opers = o;
 }
 static void os_oper_del(char *src, int ac, char **av) {
 }

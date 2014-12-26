@@ -316,6 +316,19 @@ int   os_can_skline;
 int   os_can_szline;
 char  *os_vhost;
 
+int os_access_flag;
+
+char *oline[] = {
+		"",
+		"",
+		"Help Operator",
+		"IRC Operator",
+		"Co Administrator",
+		"Server Administrator",
+		"Services Administrator",
+		"Network Administrator"
+};
+
 
 
 /* Block "botserv" */
