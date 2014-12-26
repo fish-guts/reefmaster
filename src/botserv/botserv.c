@@ -51,6 +51,7 @@ static bs_cmd bs_cmds[] = {
 	{ "LIST", bs_list },
 	{ "MSG", bs_msg },
 	{ "SET", bs_set },
+	{ "SETPASS", bs_setpass },
 
 
 };
