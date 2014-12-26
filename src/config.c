@@ -1381,7 +1381,23 @@ int config_load(const char *file) {
 			CFG_STR_CB("realname","Operator Service",CFGF_NONE,(void*)&config_str32),
 			CFG_END()
 	};
-	static cfg_opt_t os_wallops_opts[] = {
+	static cfg_opt_t os_default_opts[] = {
+			CFG_INT_CB("can_akill",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_chghost",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_global",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_local",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_kick",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_kill",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_chatops",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_sgline",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_sqline",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_svsnick",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_skline",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_szline",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_STR_CB("vhost","ircops.reefmaster.ch",CFGF_NONE,(void*)&config_str64),
+			CFG_END()
+	};
+	static cfg_opt_t os_global_opts[] = {
 			CFG_INT_CB("on_oper",0,CFGF_NONE,(void*)&config_bool),
 			CFG_INT_CB("on_mode",0,CFGF_NONE,(void*)&config_bool),
 			CFG_INT_CB("on_akill",1,CFGF_NONE,(void*)&config_bool),
@@ -1404,8 +1420,11 @@ int config_load(const char *file) {
 	};
 	static cfg_opt_t operserv_opts[] = {
 			CFG_SEC("general",os_general_opts,CFGF_NONE),
-			CFG_SEC("wallops",os_wallops_opts,CFGF_NONE),
-			CFG_SEC("expiry",os_expiry_opts,CFGF_NONE), CFG_END() };
+			CFG_SEC("global",os_global_opts,CFGF_NONE),
+			CFG_SEC("default",os_default_opts,CFGF_NONE),
+			CFG_SEC("expiry",os_expiry_opts,CFGF_NONE),
+			CFG_END()
+	};
 	static cfg_opt_t bs_general_opts[] = {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_bs),
 			CFG_STR_CB("name","Botserv",CFGF_NONE,(void*)&config_str32),
@@ -1574,7 +1593,8 @@ int config_load(const char *file) {
 		/* section operserv ***********************************************************************************************/
 		cfg_t *operserv;
 		cfg_t *os_general;
-		cfg_t *os_wallops;
+		cfg_t *os_global_acc;
+		cfg_t *os_default;
 		cfg_t *os_expiry;
 		operserv = cfg_getsec(cfg, "operserv");
 
@@ -1583,43 +1603,54 @@ int config_load(const char *file) {
 		os_name = cfg_getstr(os_general, "name");
 		os_realname = cfg_getstr(os_general, "realname");
 
-		/* section wallops */
-		os_wallops = cfg_getsec(operserv, "wallops");
-		os_on_oper = cfg_getint(os_wallops, "on_oper");
-		os_on_mode = cfg_getint(os_wallops, "on_mode");
-		os_on_akill = cfg_getint(os_wallops, "on_akill");
-		os_on_sgline = cfg_getint(os_wallops, "on_sgline");
-		os_on_skline = cfg_getint(os_wallops, "on_skline");
-		os_on_szline = cfg_getint(os_wallops, "on_szline");
-		os_on_sqline = cfg_getint(os_wallops, "on_sqline");
-		os_on_kick = cfg_getint(os_wallops, "on_kick");
-		os_on_list = cfg_getint(os_wallops, "on_list");
-		os_on_kill = cfg_getint(os_wallops, "on_kill");
+		/* section global */
+		os_global_acc = cfg_getsec(operserv, "global");
+		os_on_oper = cfg_getint(os_global_acc, "on_oper");
+		os_on_mode = cfg_getint(os_global_acc, "on_mode");
+		os_on_akill = cfg_getint(os_global_acc, "on_akill");
+		os_on_sgline = cfg_getint(os_global_acc, "on_sgline");
+		os_on_skline = cfg_getint(os_global_acc, "on_skline");
+		os_on_szline = cfg_getint(os_global_acc, "on_szline");
+		os_on_sqline = cfg_getint(os_global_acc, "on_sqline");
+		os_on_kick = cfg_getint(os_global_acc, "on_kick");
+		os_on_list = cfg_getint(os_global_acc, "on_list");
+		os_on_kill = cfg_getint(os_global_acc, "on_kill");
 
 		/* section expiry */
 		os_expiry = cfg_getsec(operserv, "expiry");
-		os_akill = cfg_getint(os_expiry, "akill");
-		os_sgline = cfg_getint(os_expiry, "sqline");
-		os_skline = cfg_getint(os_expiry, "skline");
-		os_szline = cfg_getint(os_expiry, "szline");
-		os_sqline = cfg_getint(os_expiry, "sqline");
+		os_akill_expiry = cfg_getint(os_expiry, "akill");
+		os_sgline_expiry = cfg_getint(os_expiry, "sqline");
+		os_skline_expiry = cfg_getint(os_expiry, "skline");
+		os_szline_expiry = cfg_getint(os_expiry, "szline");
+		os_sqline_expiry = cfg_getint(os_expiry, "sqline");
+
+		/* section default */
+
+		os_default = cfg_getsec(operserv, "default");
+		os_can_akill = cfg_getint(os_default, "can_akill");
+		os_can_chghost = cfg_getint(os_default, "can_chghost");
+		os_can_global = cfg_getint(os_default, "can_global");
+		os_can_local = cfg_getint(os_default, "can_local");
+		os_can_kick = cfg_getint(os_default, "can_kick");
+		os_can_kill = cfg_getint(os_default, "can_kill");
+		os_can_chatops = cfg_getint(os_default, "can_chatops");
+		os_can_sgline = cfg_getint(os_default, "can_sgline");
+		os_can_sqline = cfg_getint(os_default, "can_sqline");
+		os_can_svsnick = cfg_getint(os_default, "can_svsnick");
+		os_can_skline = cfg_getint(os_default, "can_skline");
+		os_can_szline = cfg_getint(os_default, "can_szline");
+		os_vhost = cfg_getstr(os_default, "vhost");
 
 		/* end of section operserv */
 		/* section botserv ************************************************************************************************/
 		cfg_t *botserv;
 		cfg_t *bs_general;
-		cfg_t *bs_access_cfg;
 		botserv = cfg_getsec(cfg, "botserv");
 
 		/* section general */
 		bs_general = cfg_getsec(botserv, "general");
 		bs_name = cfg_getstr(bs_general, "name");
 		bs_realname = cfg_getstr(bs_general, "realname");
-
-		/* section access */
-
-		bs_access_cfg = cfg_getsec(botserv, "access");
-
 
 
 		/* end of section botserv */

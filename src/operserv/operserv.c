@@ -33,24 +33,20 @@ static char *aoper[] = {
 };
 
 static os_cmd os_cmds[] = {
+	{ "AKILL", NULL },
+	{ "CHGHOST", NULL },
 	{ "GLOBAL", NULL },
 	{ "LOCAL", NULL },
-	{ "SGLINE", NULL },
-	{ "CHANKILL", NULL },
-	{ "SVSNICK", NULL },
-	{ "CHGHOST", NULL },
-	{ "SZLINE", NULL },
-	{ "SKLINE", NULL },
-	{ "OPER", NULL },
+	{ "HELP", NULL },
 	{ "KICK", NULL },
 	{ "KILL", NULL },
+	{ "OPER", NULL },
+	{ "SGLINE", NULL },
+	{ "SKLINE", NULL },
 	{ "SQLINE", NULL },
-	{ "HELP", NULL },
-	{ "SOP", NULL },
-	{ "AOP", NULL },
-	{ "UOP", NULL },
-	{ "VOP", NULL },
-	{ "HOP", NULL },
+	{ "SVSNICK", NULL },
+	{ "SZLINE", NULL },
+
 };
 
 /**

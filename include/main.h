@@ -296,11 +296,37 @@ int   os_on_sqline;
 int   os_on_kick; 
 int   os_on_list; 
 int   os_on_kill; 
-int   os_akill; 
-int   os_sgline; 
-int   os_skline; 
-int   os_szline; 
-int   os_sqline;  
+int   os_akill_expiry;
+int   os_sgline_expiry;
+int   os_skline_expiry;
+int   os_szline_expiry;
+int   os_sqline_expiry;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+int   os_can_akill;
+
+
+int   os_can_akill;
+int   os_can_chghost;
+int   os_can_global;
+int   os_can_local;
+int   os_can_kick;
+int   os_can_kill;
+int   os_can_chatops;
+int   os_can_sgline;
+int   os_can_sqline;
+int   os_can_svsnick;
+int   os_can_skline;
+int   os_can_szline;
+char  *os_vhost;
+
+
 
 /* Block "botserv" */
 int   bs_enabled;

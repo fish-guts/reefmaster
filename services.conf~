@@ -238,7 +238,6 @@ operserv
 		can_sqline = 0
 		can_svsnick = 0
 		can_szline = 0
-		vhost = "ircops.reefmaster.ch"
 	}
 	expiry
 	{
