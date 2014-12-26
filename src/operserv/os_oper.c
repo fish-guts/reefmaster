@@ -39,6 +39,7 @@ void os_oper(char *src, int ac, char **av) {
 }
 
 static void os_oper_add(char *src, int ac, char **av) {
+
 }
 static void os_oper_del(char *src, int ac, char **av) {
 }
