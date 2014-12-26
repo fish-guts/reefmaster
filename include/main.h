@@ -301,16 +301,6 @@ int   os_sgline_expiry;
 int   os_skline_expiry;
 int   os_szline_expiry;
 int   os_sqline_expiry;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-int   os_can_akill;
-
 
 int   os_can_akill;
 int   os_can_chghost;

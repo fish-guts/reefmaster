@@ -1429,7 +1429,8 @@ int config_load(const char *file) {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_bs),
 			CFG_STR_CB("name","Botserv",CFGF_NONE,(void*)&config_str32),
 			CFG_STR_CB("realname","Bot Service",CFGF_NONE,(void*)&config_str32),
-			CFG_END() };
+			CFG_END()
+	};
 	static cfg_opt_t bs_access_opts[] = {
 			CFG_INT_CB("add",2,CFGF_NONE,(void*)&config_bs_add),
 			CFG_INT_CB("del",3,CFGF_NONE,(void*)&config_bs_del),
@@ -1437,6 +1438,7 @@ int config_load(const char *file) {
 			CFG_INT_CB("set",3,CFGF_NONE,(void*)&config_bs_set),
 			CFG_INT_CB("setpass",3,CFGF_NONE,(void*)&config_bs_setpass),
 			CFG_INT_CB("getpass",3,CFGF_NONE,(void*)&config_bs_getpass),
+			CFG_END()
 	};
 	static cfg_opt_t botserv_opts[] = {
 			CFG_SEC("general",bs_general_opts,CFGF_NONE),
@@ -1602,6 +1604,7 @@ int config_load(const char *file) {
 		os_general = cfg_getsec(operserv, "general");
 		os_name = cfg_getstr(os_general, "name");
 		os_realname = cfg_getstr(os_general, "realname");
+		os_enabled = cfg_getint(os_general,"enabled");
 
 		/* section global */
 		os_global_acc = cfg_getsec(operserv, "global");
@@ -1645,6 +1648,7 @@ int config_load(const char *file) {
 		/* section botserv ************************************************************************************************/
 		cfg_t *botserv;
 		cfg_t *bs_general;
+		cfg_t *bs_access_conf;
 		botserv = cfg_getsec(cfg, "botserv");
 
 		/* section general */
@@ -1652,8 +1656,18 @@ int config_load(const char *file) {
 		bs_name = cfg_getstr(bs_general, "name");
 		bs_realname = cfg_getstr(bs_general, "realname");
 
+		/* section access */
+
+		bs_access_conf = cfg_getsec(botserv,"access");
+		bs_access_add = cfg_getint(bs_access_conf,"add");
+		bs_access_del = cfg_getint(bs_access_conf,"del");
+		bs_access_list = cfg_getint(bs_access_conf,"list");
+		bs_access_set = cfg_getint(bs_access_conf,"set");
+		bs_access_getpass = cfg_getint(bs_access_conf,"getpass");
+		bs_access_setpass = cfg_getint(bs_access_conf,"setpass");
 
 		/* end of section botserv */
+
 		/* section adminserv ************************************************************************************************/
 		cfg_t *adminserv;
 		cfg_t *as_general;
