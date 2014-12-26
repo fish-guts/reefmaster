@@ -18,6 +18,7 @@ typedef struct _chanuser chanuser;
 typedef struct _as_cmd as_cmd;
 typedef struct _bs_cmd bs_cmd;
 typedef struct _op op;
+typedef struct _operuser operuser;
 typedef struct _chanacc chanacc;
 typedef struct _akick akick;
 typedef struct _chaninfo ChanInfo;
@@ -27,14 +28,11 @@ typedef struct _cs_cmd cs_cmd;
 typedef struct _irc_command irc_cmd;
 typedef struct _ns_cmd ns_cmd;
 typedef struct _os_cmd os_cmd;
-typedef struct _cs_xop_check xop_check;
 typedef struct _user user;
-typedef struct _oper operline;
 typedef struct _nickinfo NickInfo;
 typedef struct _timeout_ timer;
 typedef struct _notify_text ntext;
 typedef struct _notify notify;
-typedef struct _targettype targettype;
 typedef struct _usernick usernick;
 typedef struct _userchan userchan;
 
@@ -96,6 +94,23 @@ struct _op {
 	time_t addedon;
 	char *addedby;
 	int addedbyacc;
+};
+struct _operuser {
+	operuser *prev, *next;
+	char *nick;
+	char *vhost;
+	int   can_akill;
+	int   can_chghost;
+	int   can_global;
+	int   can_local;
+	int   can_kick;
+	int   can_kill;
+	int   can_chatops;
+	int   can_sgline;
+	int   can_sqline;
+	int   can_svsnick;
+	int   can_skline;
+	int   can_szline;
 };
 
 struct _chaninfo {
@@ -223,11 +238,7 @@ struct _timer {
     void (*code)(timer *);
     void *data;
 };
-struct _targettype {
-	targettype *prev,*next;
-	int id;
-	char *name;
-};
+
 struct _user 
 {
 	user *next;

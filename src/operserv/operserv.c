@@ -21,6 +21,8 @@
  
 #include "main.h"
 
+operuser *opers = NULL;
+
 static os_cmd *find_os(const char *name);
 
 static char *aoper[] = {
