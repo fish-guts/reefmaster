@@ -605,6 +605,7 @@
 #define BS_ERR_CHAN_DEL_USAGE		"Usage: \2CHAN\2 <Botname> \2DEL\2 <Channel>"
 #define BS_ERR_CHAN_LIST_USAGE		"Usage: \2CHAN\2 <Botname> \2LIST\2"
 #define BS_ERR_DEOP_USAGE			"Usage: \2DEOP\2 <Botname> <Channel> <Nickname>"
+#define BS_ERR_HALFOP_USAGE			"Usage: \2HALFOP\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_DEHALFOP_USAGE		"Usage: \2DEHALFOP\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_DEVOICE_USAGE		"Usage: \2DEVOICE\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_OP_USAGE				"Usage: \2OP\2 <Botname> <Channel> <Nickname>"

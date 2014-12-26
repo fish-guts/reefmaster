@@ -3,4 +3,4 @@
 
 void bs_dehalfop(char *src,int ac,char **av);
 
-#endif /* BS_DEOP_H_ */
+#endif /* BS_DEHALFOP_H_ */

@@ -8,6 +8,7 @@
 #include "bs_deop.h"
 #include "bs_devoice.h"
 #include "bs_getpass.h"
+#include "bs_halfop.h"
 #include "bs_help.h"
 #include "bs_identify.h"
 #include "bs_info.h"

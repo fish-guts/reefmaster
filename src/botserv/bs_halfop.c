@@ -1,5 +1,5 @@
 /*
- *      bs_dehalfop.c - severin
+ *      bs_halfop.c - severin
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-void bs_dehalfop(char *src,int ac,char **av) {
+void bs_halfop(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
 	char *chan;
@@ -29,7 +29,7 @@ void bs_dehalfop(char *src,int ac,char **av) {
 
 	if(ac<3) {
 		notice(bs_name,src,BS_ERR_DEHALFOP_USAGE);
-		notice(bs_name,src,BS_RPL_HLP,bs_name,"DEHALFOP");
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"HALFOP");
 		return;
 	}
 	botname = sstrdup(av[1]);
@@ -51,7 +51,7 @@ void bs_dehalfop(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
 		return;
 	}
-	dehop(b->name,nick,chan);
+	hop(b->name,nick,chan);
 
 	return;
 

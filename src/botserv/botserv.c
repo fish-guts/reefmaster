@@ -43,6 +43,7 @@ static bs_cmd bs_cmds[] = {
 	{ "DEOP", bs_deop },
 	{ "DEVOICE", bs_devoice },
 	{ "GETPASS", bs_getpass },
+	{ "HALFOP", bs_halfop },
 	{ "HELP", bs_help },
 	{ "IDENTIFY", bs_identify },
 	{ "INFO", bs_info },
