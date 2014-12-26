@@ -1,5 +1,5 @@
 /*
- *      bs_devoice.c - severin
+ *      bs_voice.c - severin
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
@@ -21,15 +21,15 @@
 
 #include "main.h"
 
-void bs_devoice(char *src,int ac,char **av) {
+void bs_voice(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
 	char *chan;
 	char *nick;
 
 	if(ac<3) {
-		notice(bs_name,src,BS_ERR_DEVOICE_USAGE);
-		notice(bs_name,src,BS_RPL_HLP,bs_name,"DEVOICE");
+		notice(bs_name,src,BS_ERR_VOICE_USAGE);
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"VOICE");
 		return;
 	}
 	botname = sstrdup(av[1]);
@@ -51,7 +51,7 @@ void bs_devoice(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
 		return;
 	}
-	devoice(b->name,nick,chan);
+	voice(b->name,nick,chan);
 
 	return;
 

@@ -18,6 +18,7 @@
 #include "bs_op.h"
 #include "bs_set.h"
 #include "bs_setpass.h"
+#include "bs_voice.h"
 
 
 extern bot *botlist;

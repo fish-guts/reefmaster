@@ -608,6 +608,7 @@
 #define BS_ERR_HALFOP_USAGE			"Usage: \2HALFOP\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_DEHALFOP_USAGE		"Usage: \2DEHALFOP\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_DEVOICE_USAGE		"Usage: \2DEVOICE\2 <Botname> <Channel> <Nickname>"
+#define BS_ERR_VOICE_USAGE			"Usage: \2VOICE\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_OP_USAGE				"Usage: \2OP\2 <Botname> <Channel> <Nickname>"
 #define BS_ERR_KICK_USAGE			"Usage: \2KICK\2 <Botname> <Channel> <Nickname> <Reason>"
 #define BS_ERR_OP_NOT_ON_CHAN		"Bot \2%s\2 is not on channel \2%s\2"
