@@ -115,6 +115,24 @@ int config_bs_set(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	bs_access_set = val;
 	return 0;
 }
+int config_bs_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	bs_access_setpass = val;
+	return 0;
+}
+int config_bs_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	bs_access_getpass = val;
+	return 0;
+}
 int config_cs_akick_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -1398,6 +1416,8 @@ int config_load(const char *file) {
 			CFG_INT_CB("del",3,CFGF_NONE,(void*)&config_bs_del),
 			CFG_INT_CB("list",3,CFGF_NONE,(void*)&config_bs_list),
 			CFG_INT_CB("set",3,CFGF_NONE,(void*)&config_bs_set),
+			CFG_INT_CB("setpass",3,CFGF_NONE,(void*)&config_bs_setpass),
+			CFG_INT_CB("getpass",3,CFGF_NONE,(void*)&config_bs_getpass),
 	};
 	static cfg_opt_t botserv_opts[] = {
 			CFG_SEC("general",bs_general_opts,CFGF_NONE),

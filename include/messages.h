@@ -629,6 +629,9 @@
 #define BS_RPL_HLP					"For more help, type /msg %s HELP \2%s\2"
 #define BS_RPL_PART_MSG				"Channel management by Bot discontinued"
 #define BS_ERR_NOSUCHCMD			"Unknown command: SET \2%s\2."
+#define BS_ERR_GETPASS_USAGE		"Usage: \2GETPASS\2 <Bot>."
+#define BS_RPL_GETPASS_SUCCESS		"The Password for the Bot \2%s\2 is: %s."
+#define BS_RPL_GETPASS_LOGGED		"This command has been logged."
 
 #define BS_HELP_PATH				"docs/help/en/botserv"
 

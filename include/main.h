@@ -310,6 +310,9 @@ int   bs_access_add;
 int   bs_access_del;
 int   bs_access_list;
 int   bs_access_set;
+int   bs_access_getpass;
+int   bs_access_setpass;
+
 
 
 /* Block "adminserv" */
