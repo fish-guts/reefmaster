@@ -39,8 +39,17 @@ void bs_set(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET");
 		return;
 	}
-	if(!findbot(av[1])) {
-		notice(bs_name,src,BS_ERR_NOTFOUND,av[1]);
+	bot *b = findbot(av[1]);
+	if(!b) {
+		notice(bs_name,src,BS_ERR_KICK_BOT,av[1]);
+		return;
+	}
+	if(!bot_identified(u,b)) {
+		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
+		return;
+	}
+	if(!is_bot_on_chan(av[1],av[2])) {
+		notice(bs_name,src,BS_ERR_OP_NOT_ON_CHAN,av[1],av[2]);
 		return;
 	}
 	if(stricmp(av[2],"NAME")==0) {
@@ -66,9 +75,9 @@ static void bs_set_name(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_ERR_INVALIDNICKNAME,av[3]);
 		return;
 	}
-	s_kill(bs_name,av[1],BS_KILL_NAMECHANGE);
 	bot *b = findbot(av[1]);
 	b->name = sstrdup(av[3]);
+	s_kill(bs_name,av[1],BS_KILL_NAMECHANGE);
 	notice(bs_name,src,BS_SET_NAME_SUCCESS,av[1],av[3]);
 }
 static void bs_set_password(char *src,int ac,char **av) {
@@ -88,8 +97,8 @@ static void bs_set_password(char *src,int ac,char **av) {
 		notice(bs_name, src, CS_RPL_REG_HLP, cs_name,"ADD");
 		return;
 	}
-	s_kill(bs_name,av[1],BS_KILL_NAMECHANGE);
 	bot *b = findbot(av[1]);
+	s_kill(bs_name,av[1],BS_KILL_NAMECHANGE);
 	b->password = sstrdup(av[3]);
 	notice(bs_name,src,BS_SET_PASS_SUCCESS,av[1],av[3]);
 }

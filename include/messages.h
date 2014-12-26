@@ -605,6 +605,7 @@
 #define BS_ERR_CHAN_DEL_USAGE		"Usage: \2CHAN\2 <Botname> \2DEL\2 <Channel>"
 #define BS_ERR_CHAN_LIST_USAGE		"Usage: \2CHAN\2 <Botname> \2LIST\2"
 #define BS_ERR_OP_USAGE				"Usage: \2OP\2 <Botname> <Channel> <Nickname>"
+#define BS_ERR_KICK_USAGE			"Usage: \2KICK\2 <Botname> <Channel> <Nickname> <Reason>"
 #define BS_ERR_OP_NOT_ON_CHAN		"Bot \2%s\2 is not on channel \2%s\2"
 #define BS_ERR_ACCESSDENIED			"Access denied for that function of bot \2%s\2. Please identify using /msg %s IDENTIFY <Botname> <Password>"
 #define BS_ERR_SET_USAGE			"Usage: \2SET\2 <Botname> \2SET\2 [NAME|USERNAME|REALNAME|PASSWORD] <Argument>"

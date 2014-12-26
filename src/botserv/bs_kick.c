@@ -27,9 +27,9 @@ void bs_kick(char *src,int ac,char **av) {
 	char *chan;
 	char *nick;
 
-	if(ac<3) {
-		notice(bs_name,src,BS_ERR_OP_USAGE);
-		notice(bs_name,src,BS_RPL_HLP,bs_name,"OP");
+	if(ac<4) {
+		notice(bs_name,src,BS_ERR_KICK_USAGE);
+		notice(bs_name,src,BS_RPL_HLP,bs_name,"KICK");
 		return;
 	}
 	botname = sstrdup(av[1]);
@@ -56,8 +56,8 @@ void bs_kick(char *src,int ac,char **av) {
 		return;
 	}
 	char reason[256];
-	int i = 3;
-	for(i=3;i<ac;i++) {
+	int i = 4;
+	for(i=4;i<ac;i++) {
 		strcat(reason,av[i]);
 		if(i<ac) {
 			strcat(reason," ");
