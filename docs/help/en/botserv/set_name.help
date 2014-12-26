@@ -1,6 +1,6 @@
 BS SET <b>NAME</b>
-Usage: /msg Botserv <Bot> SET <b>NAME</b> <Name>
-Usage: /bs <Bot> SET <b>NAME</b> <Name>
+Usage: /msg Botserv SET <Bot> <b>NAME</b> <Name>
+Usage: /bs <Bot> SET <Bot> <b>NAME</b> <Name>
 -
 -
 With <b>NAME</b>, you can set a new Nickname for a bot.  
@@ -8,7 +8,7 @@ With <b>NAME</b>, you can set a new Nickname for a bot.
 -
 - Example
 -
-- Chanbot SET <b>NAME</b> NewChanbot 
+- SET Chanbot <b>NAME</b> NewChanbot 
 - 
 -
 - SET <b>NAME</b> - End of help

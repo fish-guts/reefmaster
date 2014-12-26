@@ -1,7 +1,7 @@
 BS <b>SET</b>
 -
-Usage: /msg Botserv <Bot> <b>SET</b> [Command] <Option>
-Usage: /bs <Bot> <b>SET</b> <Channel> [Command] <Option>
+Usage: /msg Botserv <b>SET</b> <Bot> [Command] <Option>
+Usage: /bs <b>SET</b> <Bot> <Channel> [Command] <Option>
 -
 -
 With <b>SET</b>, you can configure various options for your channel.  

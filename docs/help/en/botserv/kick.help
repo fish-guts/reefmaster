@@ -1,7 +1,7 @@
 BS <b>OP</b>
 -
-Usage: /msg Botserv <Bot> <b>KICK</b> <Channel> <Nickname> <Reason>
-Usage: /bs <Bot> <b>KICK</b> <Channel> <Nickname> <Reason>
+Usage: /msg Botserv <b>KICK</b> <Bot> <Channel> <Nickname> <Reason>
+Usage: /bs <b>KICK</b> <Bot> <Channel> <Nickname> <Reason>
 -
 -
 <b>KICK</b> Makes the bot kick a user from a channel for the specified reason.
@@ -9,7 +9,7 @@ The Bot must be present on that channel.
 -
 Example: 
 -
-- BS Chanbot <b>MSG</b> #lobby foo behave! 
+- BS <b>MSG</b> Chanbot #lobby foo behave! 
 - 
  
 - <b>KICK</b> - End of help

@@ -1,6 +1,6 @@
 BS SET <b>REALNAME</b>
-Usage: /msg Botserv <Bot> SET <b>REALNAME</b> <Name>
-Usage: /bs <Bot> SET <b>REALNAME</b> <Name>
+Usage: /msg Botserv SET <Bot> <b>REALNAME</b> <Name>
+Usage: /bs SET <Bot> <b>REALNAME</b> <Name>
 -
 -
 With <b>REALNAME</b>, you can set a new Realname for a bot.  
@@ -8,7 +8,7 @@ With <b>REALNAME</b>, you can set a new Realname for a bot.
 -
 - Example
 -
-- Chanbot SET <b>REALNAME</b> This is my new Chanbot 
+- SET Chanbot <b>REALNAME</b> This is my new Chanbot 
 - 
 -
 - SET <b>REALNAME</b> - End of help

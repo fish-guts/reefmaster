@@ -1,14 +1,14 @@
 BS <b>DEVOICE</b>
 -
-Usage: /msg Botserv <Bot> <b>DEVOICE</b> <Channel> <Nickname>
-Usage: /bs <Bot> <b>DEVOICE</b> <Channel> <Nickname>
+Usage: /msg Botserv <b>DEVOICE</b> <Bot> <Channel> <Nickname>
+Usage: /bs <b>DEVOICE</b> <Bot> <Channel> <Nickname>
 -
 -
 <b>DEVOICE</b> Removes Voice Operator Status from a user.   
 -
 Example: 
 -
-- BS Chanbot <b>DEVOICE</b> #lobby foo 
+- BS <b>DEVOICE</b> Chanbot #lobby foo 
 - 
  
 - <b>DEVOICE</b> - End of help
