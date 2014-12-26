@@ -21,6 +21,7 @@
  
 #include "main.h"
 
+static void new_oper(char *nick);
 static void os_oper_add(char *src, int ac, char **av);
 static void os_oper_del(char *src, int ac, char **av);
 static void os_oper_list(char *src, int ac, char **av);
@@ -53,11 +54,12 @@ static void os_oper_add(char *src, int ac, char **av) {
 		notice(os_name,src,NS_ERR_NOTREG,av[2]);
 		return;
 	}
-
-
+	new_oper(av[2]);
+	notice(os_name,src,OS_RPL_OPER_ADD_SUCCESS,av[2]);
+	return;
 }
 
-void new_oper(char *nick) {
+static void new_oper(char *nick) {
 	operuser *o = scalloc(sizeof(operuser), 1);
 	o->nick = sstrdup(nick);
 	o->can_akill = os_can_akill;

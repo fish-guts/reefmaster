@@ -649,6 +649,7 @@
 #define OS_ERR_ACCESSDENIED			"Access denied for that function of %s. You need \2%s\2 or higher access"
 #define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
 #define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
+#define OS_RPL_OPER_ADD_SUCCESS		"The Nickname \2%s\2 has been granted Oper Access"
 
 
 #define AS_FUNCTIONDISABLED			"Sorry, This function has been disabled by the Administration."
