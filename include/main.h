@@ -318,18 +318,6 @@ char  *os_vhost;
 
 int os_access_flag;
 
-char *oline[] = {
-		"",
-		"",
-		"Help Operator",
-		"IRC Operator",
-		"Co Administrator",
-		"Server Administrator",
-		"Services Administrator",
-		"Network Administrator"
-};
-
-
 
 /* Block "botserv" */
 int   bs_enabled;
@@ -341,7 +329,6 @@ int   bs_access_list;
 int   bs_access_set;
 int   bs_access_getpass;
 int   bs_access_setpass;
-
 
 
 /* Block "adminserv" */

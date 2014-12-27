@@ -25,7 +25,6 @@ void bs_msg(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
 	char *chan;
-	char *nick;
 
 	if(ac<3) {
 		notice(bs_name,src,BS_ERR_OP_USAGE);
@@ -34,7 +33,6 @@ void bs_msg(char *src,int ac,char **av) {
 	}
 	botname = sstrdup(av[1]);
 	chan = sstrdup(av[2]);
-	nick = sstrdup(av[3]);
 
 	bot *b = findbot(botname);
 

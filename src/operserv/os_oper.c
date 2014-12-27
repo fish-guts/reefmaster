@@ -26,6 +26,17 @@ static void os_oper_add(char *src, int ac, char **av);
 static void os_oper_del(char *src, int ac, char **av);
 static void os_oper_list(char *src, int ac, char **av);
 
+static char *oline[] = {
+		"",
+		"",
+		"Help Operator",
+		"IRC Operator",
+		"Co Administrator",
+		"Server Administrator",
+		"Services Administrator",
+		"Network Administrator"
+};
+
 void os_oper(char *src, int ac, char **av) {
 	if(stricmp(av[2],"ADD")==0) {
 		os_oper_add(src,ac,av);
