@@ -649,7 +649,17 @@
 #define OS_ERR_ACCESSDENIED			"Access denied for that function of %s. You need \2%s\2 or higher access"
 #define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
 #define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
+#define OS_RPL_OPER_DEL_USAGE		"Usage: OPER \2DEL\2 <Nickname>"
+#define OS_RPL_OPER_LIST_USAGE		"Usage: OPER \2LIST\2"
 #define OS_RPL_OPER_ADD_SUCCESS		"The Nickname \2%s\2 has been granted Oper Access"
+#define OS_RPL_OPER_DEL_SUCCESS		"The Nickname \2%s\2 was removed from the Oper list."
+#define OS_ERR_OPER_EXISTS			"The Nickname \2%s\2 already has Oper access"
+#define OS_RPL_OPER_NOTFOUND		"The Nickname \2%s\2 was not found on the Oper list."
+#define OS_RPL_OPER_LIST_BEGIN		"The following Nicknames have been granted access to %s:"
+#define OS_RPL_OPER_LIST_ENTRY		"\2%i\2 - %s"
+#define	OS_RPL_OPER_LIST_END1		"Listing Complete - 1 entry found"
+#define	OS_RPL_OPER_LIST_END2		"Listing Complete - %i entries found"
+
 
 
 #define AS_FUNCTIONDISABLED			"Sorry, This function has been disabled by the Administration."

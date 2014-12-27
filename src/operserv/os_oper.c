@@ -65,6 +65,10 @@ static void os_oper_add(char *src, int ac, char **av) {
 		notice(os_name,src,NS_ERR_NOTREG,av[2]);
 		return;
 	}
+	if(findoper(av[2])) {
+		notice(os_name,src,OS_ERR_OPER_EXISTS,av[2]);
+		return;
+	}
 	new_oper(av[2]);
 	notice(os_name,src,OS_RPL_OPER_ADD_SUCCESS,av[2]);
 	return;
@@ -92,7 +96,57 @@ static void new_oper(char *nick) {
 	opers = o;
 }
 static void os_oper_del(char *src, int ac, char **av) {
+	if(ac<3) {
+		notice(os_name,src,OS_RPL_OPER_ADD_USAGE);
+		notice(os_name,src,OS_RPL_HELP,"OPER DEL");
+		return;
+	}
+	user *u = finduser(src);
+	if(u->oper<os_access_flag) {
+		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
+		return;
+	}
+	if(!findoper(av[2])) {
+		notice(os_name,src,OS_RPL_OPER_NOTFOUND,av[2]);
+		return;
+	}
+	delete_oper(av[2]);
+	notice(os_name,src,OS_RPL_OPER_DEL_SUCCESS,av[2]);
+	return;
+}
+void delete_oper(char *nick) {
+	operuser *o = findoper(nick);
+	if (o->prev)
+		o->prev->next = o->next;
+	else
+		opers = o->next;
+	if (o->next)
+		o->next->prev = o->prev;
+	free(o);
 }
 static void os_oper_list(char *src, int ac, char **av) {
+	if(ac<2) {
+		notice(os_name,src,OS_RPL_OPER_LIST_USAGE);
+		notice(os_name,src,OS_RPL_HELP,"OPER LIST");
+		return;
+	}
+	user *u = finduser(src);
+	if(u->oper<os_access_flag) {
+		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
+		return;
+	}
+	int i = 0;
+	notice(os_name,src,OS_RPL_OPER_LIST_BEGIN,os_name);
+	operuser *o = opers;
+	while(o) {
+		++i;
+		notice(os_name,src,OS_RPL_OPER_LIST_ENTRY,i,o->nick);
+		o = o->next;
+	}
+	if(i==1) {
+		notice(os_name,src,OS_RPL_OPER_LIST_END1);
+	} else {
+		notice(os_name,src,OS_RPL_OPER_LIST_END2);
+	}
 }
 

@@ -97,3 +97,10 @@ void announce_oper(char *oper,int lvl)
 {
 	globops(os_name,aoper[lvl-1],oper);
 }
+operuser *findoper(const char *src) {
+	operuser *o = opers;
+	while (o && stricmp(o->nick, src) != 0) {
+		o = o->next;
+	}
+	return o;
+}

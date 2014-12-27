@@ -157,7 +157,6 @@ void s_nick(const char *src, int ac, char **av)
 		u = finduser(src);
 		if (!u)
 	    	return;
-	    //cancel_user(u);
 		ns_checknotify(u,NOTIFY_OFFLINE);
 		remove_timeout(u, TO_COLLIDE);
 		remove_timeout(u, TO_COLLIDE_TL);
