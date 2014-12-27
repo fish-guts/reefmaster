@@ -653,6 +653,7 @@
 #define OS_RPL_AKILL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Reason> <Duration>"
 #define OS_RPL_AKILL_DEL_USAGE		"Usage: OPER AKILL \2DEL\2 <Mask>"
 #define OS_RPL_AKILL_NOTFOUND		"The mask \2%s\2 was not found in the AKILL list."
+#define OS_RPL_AKILL_ADD_SUCCESS	"The mask \2%s\2 was added to the AKILL list."
 #define OS_RPL_AKILL_DEL_SUCCESS	"The mask \2%s\2 was removed from the AKILL list."
 #define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
 #define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"

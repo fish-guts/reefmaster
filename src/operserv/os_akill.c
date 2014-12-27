@@ -81,7 +81,7 @@ static void os_akill_add(char *src, int ac, char **av) {
 		}
 	}
 	new_akill(src,av[2],reason,atoi(av[4]));
-	notice(os_name,src,OS_RPL_OPER_ADD_SUCCESS,av[2]);
+	notice(os_name,src,OS_RPL_AKILL_ADD_SUCCESS,av[2]);
 	return;
 }
 
