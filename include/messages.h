@@ -647,6 +647,13 @@
 #define OS_RPL_ISNOWNETADMIN		"\2%s\2 is now a \2Network Administrator\2"
 
 #define OS_ERR_ACCESSDENIED			"Access denied for that function of %s. You need \2%s\2 or higher access"
+#define OS_ERR_ACCESSDENIED2		"Access denied for that function of %s. You don't have the required privileges"
+#define OS_ERR_AKILL_EXISTS			"There is already an AKILL entry for %2"
+#define OS_RPL_AKILL_LIST_ENTRY		"\2%i\2 - \2%s\2 (Added by: %s (%s) - Expires %s)"
+#define OS_RPL_AKILL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Reason> <Duration>"
+#define OS_RPL_AKILL_DEL_USAGE		"Usage: OPER AKILL \2DEL\2 <Mask>"
+#define OS_RPL_AKILL_NOTFOUND		"The mask \2%s\2 was not found in the AKILL list."
+#define OS_RPL_AKILL_DEL_SUCCESS	"The mask \2%s\2 was removed from the AKILL list."
 #define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
 #define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
 #define OS_RPL_OPER_DEL_USAGE		"Usage: OPER \2DEL\2 <Nickname>"
@@ -657,8 +664,9 @@
 #define OS_RPL_OPER_NOTFOUND		"The Nickname \2%s\2 was not found on the Oper list."
 #define OS_RPL_OPER_LIST_BEGIN		"The following Nicknames have been granted access to %s:"
 #define OS_RPL_OPER_LIST_ENTRY		"\2%i\2 - %s"
-#define	OS_RPL_OPER_LIST_END1		"Listing Complete - 1 entry found"
-#define	OS_RPL_OPER_LIST_END2		"Listing Complete - %i entries found"
+#define	OS_RPL_LIST_END1			"Listing Complete - 1 entry found"
+#define	OS_RPL_LIST_END2			"Listing Complete - %i entries found"
+
 
 
 

@@ -9,6 +9,7 @@
 #define DESCMAX 2048
 
 typedef struct _access myacc;
+typedef struct _akill akill;
 typedef struct _auth auth;
 typedef struct _botaccess botaccess;
 typedef struct _botchan botchan;
@@ -36,6 +37,14 @@ typedef struct _notify notify;
 typedef struct _usernick usernick;
 typedef struct _userchan userchan;
 
+
+struct _akill {
+	akill *prev, *next;
+	char *mask;
+	char *reason;
+	char *added_by;
+	time_t expires;
+};
 struct _auth
 {
 	auth *next, *prev;

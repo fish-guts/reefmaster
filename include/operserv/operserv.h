@@ -1,10 +1,12 @@
 #ifndef OPERSERV_H_
 #define OPERSERV_H_
 
+#include "os_akill.h"
 #include "os_oper.h"
 
 
 extern operuser *opers;
+extern akill *akills;
 
 void delete_oper(char *nick);
 operuser *findoper(const char *src);
