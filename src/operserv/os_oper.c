@@ -38,11 +38,11 @@ static char *oline[] = {
 };
 
 void os_oper(char *src, int ac, char **av) {
-	if(stricmp(av[2],"ADD")==0) {
+	if(stricmp(av[1],"ADD")==0) {
 		os_oper_add(src,ac,av);
-	} else if(stricmp(av[2],"DEL")==0) {
+	} else if(stricmp(av[1],"DEL")==0) {
 		os_oper_del(src,ac,av);
-	} else if(stricmp(av[2],"LIST")==0) {
+	} else if(stricmp(av[1],"LIST")==0) {
 		os_oper_list(src,ac,av);
 	} else {
 		notice(bs_name,src,BS_ERR_NOSUCHCMD,av[2]);
@@ -58,7 +58,7 @@ static void os_oper_add(char *src, int ac, char **av) {
 	}
 	user *u = finduser(src);
 	if(u->oper<os_access_flag) {
-		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
+		notice(os_name,src,OS_ERR_ACCESSDENIED,os_name,oline[os_access_flag]);
 		return;
 	}
 	if(!isreg(av[2])) {

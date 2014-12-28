@@ -64,6 +64,11 @@ static void os_akill_add(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	operuser *o = findoper(src);
 	if(o) {
+		if(!isidentified(u,src)) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			notice(os_name,src,NS_RPL_NEEDIDENTIFY,src);
+			return;
+		}
 		if(!o->can_akill) {
 			notice(os_name,src,OS_ERR_ACCESSDENIED2);
 			return;

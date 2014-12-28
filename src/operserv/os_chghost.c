@@ -46,6 +46,11 @@ void os_chghost(char *src, int ac, char **av) {
 	}
 	operuser *o = findoper(src);
 	if(o) {
+		if(!isidentified(u,src)) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			notice(os_name,src,NS_RPL_NEEDIDENTIFY,src);
+			return;
+		}
 		if(!o->can_chghost) {
 			notice(os_name,src,OS_ERR_ACCESSDENIED2);
 			return;
