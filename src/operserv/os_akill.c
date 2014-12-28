@@ -62,18 +62,19 @@ static void os_akill_add(char *src, int ac, char **av) {
 		duration = atoi(av[ac-1]);
 	}
 	user *u = finduser(src);
-	if(u->oper<os_access_flag) {
-		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
-		return;
+	operuser *o = findoper(src);
+	if(o) {
+		if(!o->can_akill) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			return;
+		}
 	} else {
-		operuser *o = findoper(src);
-		if(o) {
-			if(!o->can_akill) {
-				notice(os_name,src,OS_ERR_ACCESSDENIED2);
-				return;
-			}
+		if(u->oper<os_access_flag) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED,os_name,oline[os_access_flag]);
+			return;
 		}
 	}
+
 	if(findakill(av[2])) {
 		notice(os_name,src,OS_ERR_AKILL_EXISTS,av[2]);
 		return;

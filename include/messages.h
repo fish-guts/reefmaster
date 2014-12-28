@@ -659,6 +659,7 @@
 #define OS_RPL_AKILL_NOTFOUND		"The mask \2%s\2 was not found in the AKILL list."
 #define OS_RPL_AKILL_ADD_SUCCESS	"The mask \2%s\2 was added to the AKILL list."
 #define OS_RPL_AKILL_DEL_SUCCESS	"The mask \2%s\2 was removed from the AKILL list."
+#define OS_RPL_CHGHOST_USAGE		"Usage: CHGHOST <Nickname> <Host>"
 #define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
 #define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
 #define OS_RPL_OPER_DEL_USAGE		"Usage: OPER \2DEL\2 <Nickname>"
@@ -667,12 +668,14 @@
 #define OS_RPL_OPER_DEL_SUCCESS		"The Nickname \2%s\2 was removed from the Oper list."
 #define OS_ERR_OPER_EXISTS			"The Nickname \2%s\2 already has Oper access"
 #define OS_RPL_OPER_NOTFOUND		"The Nickname \2%s\2 was not found on the Oper list."
+#define OS_ERR_USERNOTFOUND			"User \2%s\2 is not online."
 #define OS_RPL_OPER_LIST_BEGIN		"The following Nicknames have been granted access to %s:"
 #define OS_RPL_OPER_LIST_ENTRY		"\2%i\2 - %s"
 #define	OS_RPL_LIST_END1			"Listing Complete - 1 entry found"
 #define	OS_RPL_LIST_END2			"Listing Complete - %i entries found"
 #define OS_ERR_AKILL_NOSUCHCMD		"Unknown command: AKILL \2%s\2."
 #define OS_ERR_NOSUCHCMD			"Unknown command: \2%s\2"
+#define OS_RPL_CHGHOST_SUCCESS		"The host of user \2%s\2 was changed to \2%s\2"
 
 
 

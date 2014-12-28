@@ -32,29 +32,31 @@ static char *oline[] = {
 };
 
 void os_chghost(char *src, int ac, char **av) {
-	if(ac<4) {
-		notice(os_name,src,OS_RPL_AKILL_ADD_USAGE);
-		notice(os_name,src,OS_RPL_HELP,"AKILL ADD");
+	if(ac<3) {
+		notice(os_name,src,OS_RPL_CHGHOST_USAGE);
+		notice(os_name,src,OS_RPL_HELP,"CHGHOST");
 		return;
 	}
+	char *nick = sstrdup(av[1]);
+	char *host = sstrdup(av[2]);
 	user *u = finduser(src);
-	if(u->oper<os_access_flag) {
-		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
+	if(!finduser(nick)) {
+		notice(os_name,src,OS_ERR_USERNOTFOUND,nick);
 		return;
+	}
+	operuser *o = findoper(src);
+	if(o) {
+		if(!o->can_chghost) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			return;
+		}
 	} else {
-		operuser *o = findoper(src);
-		if(o) {
-			if(!o->can_akill) {
-				notice(os_name,src,OS_ERR_ACCESSDENIED2);
-				return;
-			}
+		if(u->oper<os_access_flag) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED,os_name,oline[os_access_flag]);
+			return;
 		}
 	}
-	if(findakill(av[2])) {
-		notice(os_name,src,OS_ERR_AKILL_EXISTS,av[2]);
-		return;
-	}
-
-	notice(os_name,src,OS_RPL_AKILL_ADD_SUCCESS,av[2]);
+	chghost(os_name,nick,host);
+	notice(os_name,src,OS_RPL_CHGHOST_SUCCESS,nick,host);
 	return;
 }

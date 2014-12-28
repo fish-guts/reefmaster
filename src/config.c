@@ -1388,22 +1388,22 @@ int config_load(const char *file) {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_os),
 			CFG_STR_CB("name","Operserv",CFGF_NONE,(void*)&config_str32),
 			CFG_STR_CB("realname","Operator Service",CFGF_NONE,(void*)&config_str32),
-			CFG_INT_CB("access",2,CFGF_NONE,(void*)&config_os_access),
+			CFG_INT_CB("access_flag",2,CFGF_NONE,(void*)&config_os_access),
 			CFG_END()
 	};
 	static cfg_opt_t os_default_opts[] = {
-			CFG_INT_CB("can_akill",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_chghost",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_global",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_local",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_kick",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_kill",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_chatops",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_sgline",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_sqline",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_svsnick",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_skline",1,CFGF_NONE,(void*)&config_bool_os),
-			CFG_INT_CB("can_szline",1,CFGF_NONE,(void*)&config_bool_os),
+			CFG_INT_CB("can_akill",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_chghost",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_global",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_local",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_kick",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_kill",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_chatops",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_sgline",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_sqline",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_svsnick",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_skline",1,CFGF_NONE,(void*)&config_bool),
+			CFG_INT_CB("can_szline",1,CFGF_NONE,(void*)&config_bool),
 			CFG_STR_CB("vhost","ircops.reefmaster.ch",CFGF_NONE,(void*)&config_str64),
 			CFG_END()
 	};
@@ -1614,7 +1614,6 @@ int config_load(const char *file) {
 		os_general = cfg_getsec(operserv, "general");
 		os_name = cfg_getstr(os_general, "name");
 		os_realname = cfg_getstr(os_general, "realname");
-		os_enabled = cfg_getint(os_general,"enabled");
 
 		/* section global */
 		os_global_acc = cfg_getsec(operserv, "global");

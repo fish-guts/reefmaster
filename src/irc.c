@@ -171,11 +171,22 @@ void hop(char *src,char *target,char *chan) {
 }
 /********************************************************************/
 /*
- * kick a user from a channel
+ * invite a user to a channel
  */
 void invite(char *src,char *target,char *chan) {
 	char  buf[512];
 	sprintf(buf,":%s INVITE %s %s\r\n",src,target,chan);
+	send(mainsock,buf,strlen(buf),0);
+}
+
+
+/********************************************************************/
+/*
+ * change the host of a user
+ */
+void chghost(char *src,char *target,char *host) {
+	char  buf[512];
+	sprintf(buf,":%s CHGHOST %s %s\r\n",src,target,host);
 	send(mainsock,buf,strlen(buf),0);
 }
 /********************************************************************/
