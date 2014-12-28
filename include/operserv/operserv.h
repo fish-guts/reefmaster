@@ -2,6 +2,7 @@
 #define OPERSERV_H_
 
 #include "os_akill.h"
+#include "os_chghost.h"
 #include "os_oper.h"
 
 
