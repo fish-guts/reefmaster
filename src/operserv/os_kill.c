@@ -31,10 +31,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
-void os_local(char *src, int ac, char **av) {
-	if(ac<2) {
-		notice(os_name,src,OS_RPL_LOCAL_USAGE);
-		notice(os_name,src,OS_RPL_HELP,"LOCAL");
+void os_kill(char *src, int ac, char **av) {
+	if(ac<3) {
+		notice(os_name,src,OS_RPL_KILL_USAGE);
+		notice(os_name,src,OS_RPL_HELP,"KILL");
 		return;
 	}
 	user *u = finduser(src);
@@ -45,7 +45,7 @@ void os_local(char *src, int ac, char **av) {
 			notice(os_name,src,NS_RPL_NEEDIDENTIFY,src);
 			return;
 		}
-		if(!o->can_local) {
+		if(!o->can_kill) {
 			notice(os_name,src,OS_ERR_ACCESSDENIED2);
 			return;
 		}
@@ -55,15 +55,20 @@ void os_local(char *src, int ac, char **av) {
 			return;
 		}
 	}
-	char message[1024] = "";
-		int i = 1;
-		for(i=1;i<ac;i++) {
-		strcat(message,av[i]);
+	char *nick = sstrdup(av[1]);
+	if(!finduser(nick)) {
+		notice(os_name,src,OS_ERR_USERNOTFOUND,nick);
+		return;
+	}
+	char reason[1024] = "";
+		int i = 2;
+		for(i=2;i<ac;i++) {
+		strcat(reason,av[i]);
 		if(i<ac) {
-			strcat(message," ");
+			strcat(reason," ");
 		}
 	}
-	locops(os_name,message);
-	notice(os_name,src,OS_RPL_GLOBAL_SENT);
+	s_kill(os_name,av[1],reason);
+	notice(os_name,src,OS_RPL_KILL_SUCCESS,av[1]);
 	return;
 }

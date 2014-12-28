@@ -679,6 +679,8 @@
 #define OS_ERR_AKILL_NOSUCHCMD		"Unknown command: AKILL \2%s\2."
 #define OS_ERR_NOSUCHCMD			"Unknown command: \2%s\2"
 #define OS_RPL_CHGHOST_SUCCESS		"The host of user \2%s\2 was changed to \2%s\2"
+#define OS_RPL_KILL_USAGE			"Usage: \2KILL\2 <Nick> <Reason>"
+#define OS_RPL_KILL_SUCCESS			"The user \2%s\2 has been killed"
 
 
 
