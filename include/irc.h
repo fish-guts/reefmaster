@@ -23,6 +23,7 @@ void hop(char *src,char *target,char *chan);
 void invite(char *src,char *target,char *chan);
 void kick(char *src,const char *target,char *chan,char *reason);
 void kline(char *user,char *host,char *reason,int time);
+void locops(char *src,char *msg,...);
 void mode(const char *src,const char *target,char *modes,char *chan);
 void notice(const char *src,char *dest,char *msg, ...);
 void pong(void);

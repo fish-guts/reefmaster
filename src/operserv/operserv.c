@@ -38,7 +38,7 @@ static os_cmd os_cmds[] = {
 	{ "AKILL", os_akill },
 	{ "CHGHOST", os_chghost },
 	{ "GLOBAL", os_global },
-	{ "LOCAL", NULL },
+	{ "LOCAL", os_local },
 	{ "HELP", NULL },
 	{ "KICK", NULL },
 	{ "KILL", NULL },
