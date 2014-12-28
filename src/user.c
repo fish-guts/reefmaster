@@ -24,7 +24,7 @@
 /* Function prototypes */
 static void change_user_nick(user *u, const char *nick);
 static user *new_user(const char *nick);
-static user *userlist = NULL;
+user *userlist = NULL;
 
 /* Global vars */
 int user_count = 0;

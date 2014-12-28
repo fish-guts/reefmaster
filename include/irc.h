@@ -11,6 +11,7 @@ void deop(char *src,char *target,char *chan);
 void deowner(char *src,char *target,char *chan);
 void devoice(char *src,char *target,char *chan);
 void do_admin(char *src,char *target,char *chan);
+void do_akill(const char *src,char *dest,char *reason);
 void do_join(char *src,char *chan);
 void do_op(char *src,char *target,char *chan);
 void do_owner(char *src,char *target,char *chan);

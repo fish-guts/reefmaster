@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-static void new_akill(char *src,char *mask, char *reason, int duration);
+static void new_akill(char *src,char *mask, char *reason, time_t duration);
 static void os_akill_add(char *src, int ac, char **av);
 static void os_akill_del(char *src, int ac, char **av);
 static void os_akill_list(char *src, int ac, char **av);
@@ -29,7 +29,6 @@ static void os_akill_list(char *src, int ac, char **av);
 akill *akills = NULL;
 
 static char *oline[] = {
-		"",
 		"",
 		"Help Operator",
 		"IRC Operator",
@@ -40,57 +39,86 @@ static char *oline[] = {
 };
 
 void os_akill(char *src, int ac, char **av) {
-	if(stricmp(av[2],"ADD")==0) {
+	if(stricmp(av[1],"ADD")==0) {
 		os_akill_add(src,ac,av);
-	} else if(stricmp(av[2],"DEL")==0) {
+	} else if(stricmp(av[1],"DEL")==0) {
 		os_akill_del(src,ac,av);
-	} else if(stricmp(av[2],"LIST")==0) {
+	} else if(stricmp(av[1],"LIST")==0) {
 		os_akill_list(src,ac,av);
 	} else {
-		notice(bs_name,src,BS_ERR_NOSUCHCMD,av[2]);
+		notice(os_name,src,OS_ERR_AKILL_NOSUCHCMD,av[1]);
 		return;
 	}
 }
 
 static void os_akill_add(char *src, int ac, char **av) {
-	if(ac<5) {
+	int duration = 0;
+	if(ac<4) {
 		notice(os_name,src,OS_RPL_AKILL_ADD_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"AKILL ADD");
 		return;
+	}
+	if(isnum(av[ac-1])) {
+		duration = atoi(av[ac-1]);
 	}
 	user *u = finduser(src);
 	if(u->oper<os_access_flag) {
 		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
 		return;
-	}
-	operuser *o = findoper(src);
-	if(!o->can_akill) {
-		notice(os_name,src,OS_ERR_ACCESSDENIED2);
-		return;
+	} else {
+		operuser *o = findoper(src);
+		if(o) {
+			if(!o->can_akill) {
+				notice(os_name,src,OS_ERR_ACCESSDENIED2);
+				return;
+			}
+		}
 	}
 	if(findakill(av[2])) {
 		notice(os_name,src,OS_ERR_AKILL_EXISTS,av[2]);
 		return;
 	}
-	char reason[1024];
+	char reason[1024] = "";
 	int i = 3;
-	for(i=3;i<ac;i++) {
-		strcat(reason,av[i]);
-		if(i<ac) {
-			strcat(reason," ");
+	if(duration) {
+		for(i=3;i<ac-1;i++) {
+			strcat(reason,av[i]);
+			if(i<ac-1) {
+				strcat(reason," ");
+			}
+		}
+	} else {
+		for(i=3;i<ac;i++) {
+			strcat(reason,av[i]);
+			if(i<ac) {
+				strcat(reason," ");
+			}
 		}
 	}
-	new_akill(src,av[2],reason,atoi(av[4]));
+	if(duration > 0) {
+		char str[100];
+		time_t expiry = (time(NULL) + duration * 60);
+		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&expiry));
+		globops(os_name,OS_RPL_AKILL_ADDED,src,av[2],reason,str);
+		new_akill(src,av[2],reason,duration);
+	} else {
+		globops(os_name,OS_RPL_AKILL_ADDED2,src,av[2],reason);
+		new_akill(src,av[2],reason,0);
+	}
 	notice(os_name,src,OS_RPL_AKILL_ADD_SUCCESS,av[2]);
 	return;
 }
 
-static void new_akill(char *src,char *mask, char *reason, int duration) {
+static void new_akill(char *src,char *mask, char *reason, time_t duration) {
 	akill *a = scalloc(sizeof(akill), 1);
 	a->added_by = sstrdup(src);
 	a->mask = sstrdup(mask);
 	a->reason = sstrdup(reason);
-	a->expires = (time(NULL) + (duration*60));
+	if(duration) {
+		a->expires = (time(NULL) + (duration*60));
+	} else {
+		a->expires = 0;
+	}
 	a->next = akills;
 	if (akills)
 		akills->prev = a;
@@ -107,7 +135,7 @@ static void os_akill_del(char *src, int ac, char **av) {
 		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
 		return;
 	}
-	if(!findoper(av[2])) {
+	if(!findakill(av[2])) {
 		notice(os_name,src,OS_RPL_AKILL_NOTFOUND,av[2]);
 		return;
 	}
@@ -137,7 +165,7 @@ static void os_akill_list(char *src, int ac, char **av) {
 		return;
 	}
 	int i = 0;
-	notice(os_name,src,OS_RPL_OPER_LIST_BEGIN,os_name);
+	notice(os_name,src,OS_RPL_AKILL_LIST_BEGIN,os_name);
 	akill *a = akills;
 	while(a) {
 		++i;

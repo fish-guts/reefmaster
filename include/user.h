@@ -6,4 +6,6 @@ void user_add_bot(user *u,bot *b);
 user *finduser(const char *nick);
 user *finduserbynick(char *src);
 
+extern user *userlist;
+
 #endif /*USER_H_*/

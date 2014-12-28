@@ -275,6 +275,23 @@ void s_kill(const char *src,char *dest,char *reason)
 }
 /********************************************************************/
 /**
+ * send a KILL command to the server
+ */
+void do_akill(const char *src,char *dest,char *reason)
+{
+	char buf[512];
+	user *u1 = finduser(dest);
+	/* for logging purposes only */
+	sprintf(buf,KILL,src,dest,src,src,reason);
+	if((!isservice(dest)) && (!findbot(dest))) {
+		addlog(1,LOG_DBG_IRC_KILL,src,dest,u1->username,u1->hostname,reason);
+	}
+	send(mainsock,buf,strlen(buf),0);
+}
+
+
+/********************************************************************/
+/**
  * send a line to the server
  */
 void s_send(char *cmd, ...)

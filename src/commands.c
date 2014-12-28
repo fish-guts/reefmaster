@@ -266,6 +266,9 @@ void c_privmsg(char *src,int ac,char **av)
 	if(stricmp(dest,cs_name)==0) {
 		chanserv(src,av[1]);
 	}
+	if(stricmp(dest,os_name)==0) {
+		operserv(src,av[1]);
+	}
 	if(stricmp(dest,as_name)==0)
 		adminserv(src,av[1]);
 	if(stricmp(dest,bs_name)==0)

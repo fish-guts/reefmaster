@@ -377,6 +377,28 @@ void check_connections(void) {
 	check_services();
 	check_bots();
 }
+void check_akills(void) {
+	akill *a = akills;
+	while(a) {
+		user *u = userlist;
+		while(u) {
+			char mask[256];
+			char final_reason[1024];
+			sprintf(mask,"%s@%s",u->username,u->hostname);
+			if(ifmatch(a->mask,mask,0)) {
+				if(a->expires==0) {
+					sprintf(final_reason,"You are banned from this Network. %s",a->reason);
+					do_akill(s_name,u->nick,final_reason);
+				} else {
+					sprintf(final_reason,"You are temporarily banned from this Network. %s",a->reason);
+					do_akill(s_name,u->nick,final_reason);
+				}
+			}
+			u = u->next;
+		}
+		a = a->next;
+	}
+}
 void check_save(void) {
 	time_t now = time(NULL);
 	if(now >= next_save) {
@@ -452,6 +474,7 @@ void timer_event_handler(int sigid) {
 	if (sigid == SIGALRM) {
 		check_timeouts();
 		check_connections();
+		check_akills();
 		check_save();
 	}
 }

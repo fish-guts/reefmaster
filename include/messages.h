@@ -648,9 +648,13 @@
 
 #define OS_ERR_ACCESSDENIED			"Access denied for that function of %s. You need \2%s\2 or higher access"
 #define OS_ERR_ACCESSDENIED2		"Access denied for that function of %s. You don't have the required privileges"
-#define OS_ERR_AKILL_EXISTS			"There is already an AKILL entry for %2"
+#define OS_RPL_AKILL_LIST_BEGIN		"The following mask are autokilled"
+#define OS_ERR_AKILL_EXISTS			"There is already an AKILL entry for %s"
 #define OS_RPL_AKILL_LIST_ENTRY		"\2%i\2 - \2%s\2 (Added by: %s (%s) - Expires %s)"
+#define OS_RPL_AKILL_LIST_ENTRY2	"\2%i\2 - \2%s\2 (Added by: %s (%s) (Permanent)"
 #define OS_RPL_AKILL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Reason> <Duration>"
+#define OS_RPL_AKILL_ADDED			"%s added a service Autokill for %s (%s) (Expiry: %s)"
+#define OS_RPL_AKILL_ADDED2			"%s added a permanent service Autokill for %s (%s)"
 #define OS_RPL_AKILL_DEL_USAGE		"Usage: OPER AKILL \2DEL\2 <Mask>"
 #define OS_RPL_AKILL_NOTFOUND		"The mask \2%s\2 was not found in the AKILL list."
 #define OS_RPL_AKILL_ADD_SUCCESS	"The mask \2%s\2 was added to the AKILL list."
@@ -667,6 +671,8 @@
 #define OS_RPL_OPER_LIST_ENTRY		"\2%i\2 - %s"
 #define	OS_RPL_LIST_END1			"Listing Complete - 1 entry found"
 #define	OS_RPL_LIST_END2			"Listing Complete - %i entries found"
+#define OS_ERR_AKILL_NOSUCHCMD		"Unknown command: AKILL \2%s\2."
+#define OS_ERR_NOSUCHCMD			"Unknown command: \2%s\2"
 
 
 
