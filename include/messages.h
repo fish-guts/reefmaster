@@ -31,6 +31,18 @@
 #define FAIL  "\x1b[32;1mfailed\x1b[0m \n"
 #define OK	  "\x1b[32;2mok\x1b[0m \n"
 
+#define TIME_FORMAT_H "[[:digit:]]+h"
+#define TIME_FORMAT_M "[[:digit:]]+m"
+#define TIME_FORMAT_W "[[:digit:]]+w"
+#define TIME_FORMAT_D "[[:digit:]]+d"
+#define TIME_FORMAT_Y "[[:digit:]]+y"
+
+#define SECONDS_PER_HOUR 3600
+#define SECONDS_PER_DAY 86400
+#define SECONDS_PER_WEEK 604800
+#define SECONDS_PER_MONTH 2592000
+#define SECONDS_PER_YEAR 31104000
+
 /* Main messages
  ******************************************************************************************************************************************
  */
@@ -652,7 +664,7 @@
 #define OS_ERR_AKILL_EXISTS			"There is already an AKILL entry for %s"
 #define OS_RPL_AKILL_LIST_ENTRY		"\2%i\2 - \2%s\2 (Added by: %s (%s) - Expires %s)"
 #define OS_RPL_AKILL_LIST_ENTRY2	"\2%i\2 - \2%s\2 (Added by: %s (%s) (Permanent)"
-#define OS_RPL_AKILL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Reason> <Duration>"
+#define OS_RPL_AKILL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Duration> <Reason>"
 #define OS_RPL_AKILL_ADDED			"%s added a service Autokill for %s (%s) (Expiry: %s)"
 #define OS_RPL_AKILL_ADDED2			"%s added a permanent service Autokill for %s (%s)"
 #define OS_RPL_AKILL_DEL_USAGE		"Usage: OPER AKILL \2DEL\2 <Mask>"

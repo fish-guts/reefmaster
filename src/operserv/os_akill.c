@@ -58,9 +58,7 @@ static void os_akill_add(char *src, int ac, char **av) {
 		notice(os_name,src,OS_RPL_HELP,"AKILL ADD");
 		return;
 	}
-	if(isnum(av[ac-1])) {
-		duration = atoi(av[ac-1]);
-	}
+	duration = get_duration(av[2]);
 	user *u = finduser(src);
 	operuser *o = findoper(src);
 	if(o) {

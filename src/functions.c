@@ -26,6 +26,34 @@ static timer *timeouts = NULL;
 int save_interval = 60;
 static int ifmatch(const char *pattern, const char *str, int mode);
 
+unsigned long get_duration(char *dur) {
+
+
+	char t[16] = "";
+	if(isnum(dur)) {
+		return atol(dur);
+	}
+	if(match(dur,TIME_FORMAT_H)) {
+
+		char t[256];
+		printf("atol: %ld\n",atol(dur));
+		return (atol(t) * SECONDS_PER_HOUR);
+
+
+
+
+	} else if(match(dur,TIME_FORMAT_D)) {
+		return (atol(t) * SECONDS_PER_DAY);
+	} else if(match(dur,TIME_FORMAT_W)) {
+		return (atol(t) * SECONDS_PER_WEEK);
+	} else if(match(dur,TIME_FORMAT_M)) {
+		return (atol(t) * SECONDS_PER_MONTH);
+	} else if(match(dur,TIME_FORMAT_Y)) {
+		return (atol(t) * SECONDS_PER_YEAR);
+	}
+	return 0;
+}
+
 int hasaccess(user *u, char *nick) {
 	char *mask = (char*) malloc(sizeof(char*) * 256);
 	sprintf(mask, "%s@%s", u->username, u->hostname);
