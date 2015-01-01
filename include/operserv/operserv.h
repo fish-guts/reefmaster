@@ -10,6 +10,7 @@
 #include "os_sgline.h"
 #include "os_skline.h"
 #include "os_sqline.h"
+#include "os_szline.h"
 
 extern operuser *opers;
 extern akill *akills;

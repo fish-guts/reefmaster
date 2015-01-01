@@ -44,6 +44,8 @@ void svsnick(char *src,char *newnick,time_t t);
 void topic(char *src, char *chan,char *nick,time_t timestamp,char *topic);
 void voice(char *src,char *target,char *chan);
 void wallops(char *src,char *msg,...);
-void zline(char *src,char *user, char *host, char *reason, int timestamp);
+void zline(char *src,char *mask, char *reason, int timestamp);
+void rzline(char *src,char *user, char *host);
+
 
 #endif /*IRC_H_*/

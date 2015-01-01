@@ -430,7 +430,10 @@ void wallops(char *src,char *msg,...)
 	free(buff);
 	va_end(va);
 }
-void zline(char *src,char *user, char *host, char *reason, int timestamp) {
-	addserverban(src,'Z',user,host,reason,timestamp);
+void zline(char *src,char *mask, char *reason, int timestamp) {
+	addserverban(src,'Z',NULL,mask,reason,timestamp);
+}
+void rzline(char *src,char *user, char *host) {
+	remove_serverban(src,'Z',user,host);
 }
 /* EOF */

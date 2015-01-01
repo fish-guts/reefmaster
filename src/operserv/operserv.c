@@ -46,7 +46,7 @@ static os_cmd os_cmds[] = {
 	{ "SKLINE", os_skline },
 	{ "SQLINE", os_sqline },
 	{ "SVSNICK", NULL },
-	{ "SZLINE", NULL },
+	{ "SZLINE", os_szline },
 
 };
 
