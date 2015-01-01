@@ -1,0 +1,16 @@
+OS OPER SET <b>KILL</b>
+Usage: /msg Operserv SET <Oper> <b>KILL</b> [ON|OFF]
+Usage: /os SET <Oper> <b>KILL</b> [ON|OFF]
+-
+-
+With <b>KILL</b>, you can set whether the specified oper is allowed to use the KILL command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>KILL ON</b> 
+- OPER SET foo <b>KILL OFF</b>
+- 
+-
+- OPER SET <b>KILL</b> - End of help

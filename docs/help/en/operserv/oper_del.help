@@ -1,0 +1,14 @@
+OS OPER <b>DEL</b>
+-
+Usage: /msg Operserv OPER <b>DEL</b> <Mask>
+Usage: /os OPER <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove a user from the OPER list.     
+-
+-
+- Example
+-
+- OPER <b>DEL</b> foo
+- 
+- OPER <b>DEL</b> - End of help

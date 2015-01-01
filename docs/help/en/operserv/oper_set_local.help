@@ -1,0 +1,16 @@
+OS OPER SET <b>LOCAL</b>
+Usage: /msg Operserv SET <Oper> <b>LOCAL</b> [ON|OFF]
+Usage: /os SET <Oper> <b>LOCAL</b> [ON|OFF]
+-
+-
+With <b>LOCAL</b>, you can set whether the specified oper is allowed to use the LOCAL command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>LOCAL ON</b> 
+- OPER SET foo <b>LOCAL OFF</b>
+- 
+-
+- OPER SET <b>LOCAL</b> - End of help

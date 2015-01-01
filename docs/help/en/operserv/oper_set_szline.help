@@ -1,0 +1,16 @@
+OS OPER SET <b>SZLINE</b>
+Usage: /msg Operserv SET <Oper> <b>SZLINE</b> [ON|OFF]
+Usage: /os SET <Oper> <b>SZLINE</b> [ON|OFF]
+-
+-
+With <b>SZLINE</b>, you can set whether the specified oper is allowed to use the SZLINE command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>SZLINE ON</b> 
+- OPER SET foo <b>SZLINE OFF</b>
+- 
+-
+- OPER SET <b>SZLINE</b> - End of help

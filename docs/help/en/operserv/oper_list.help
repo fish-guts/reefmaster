@@ -1,0 +1,14 @@
+OS OPER <b>LIST</b>
+-
+Usage: /msg Operserv OPER <b>LIST</b>
+Usage: /os OPER <b>LIST</b>
+-
+-
+With <b>LIST</b>, you can view all entries in the server's OPER list.    
+   
+-
+- Example
+-
+- OPER <b>LIST</b>
+-
+- OPER <b>LIST</b> - End of help

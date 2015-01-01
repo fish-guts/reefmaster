@@ -1,0 +1,16 @@
+OS OPER SET <b>GLOBAL</b>
+Usage: /msg Operserv SET <Oper> <b>GLOBAL</b> [ON|OFF]
+Usage: /os SET <Oper> <b>GLOBAL</b> [ON|OFF]
+-
+-
+With <b>GLOBAL</b>, you can set whether the specified oper is allowed to use the GLOBAL command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>GLOBAL ON</b> 
+- OPER SET foo <b>GLOBAL OFF</b>
+- 
+-
+- OPER SET <b>GLOBAL</b> - End of help

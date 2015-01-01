@@ -1,0 +1,16 @@
+OS OPER SET <b>VHOST</b>
+Usage: /msg Operserv SET <Oper> <b>VHOST</b> <Hostname>
+Usage: /os SET <Oper> <b>VHOST</b> <Hostname>
+-
+-
+With <b>VHOST</b>, you can set a new vhost for an oper. This will not have any effect until the user reconnects.  
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>VHOST</b> my.new.host 
+- OPER SET foo <b>VHOST</b> ircops.foonet.com
+- 
+-
+- OPER SET <b>VHOST</b> - End of help

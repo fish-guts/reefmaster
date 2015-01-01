@@ -1,0 +1,16 @@
+OS OPER SET <b>CHATOPS</b>
+Usage: /msg Operserv SET <Oper> <b>CHATOPS</b> [ON|OFF]
+Usage: /os SET <Oper> <b>CHATOPS</b> [ON|OFF]
+-
+-
+With <b>CHATOPS</b>, you can set whether the specified oper is allowed to use the CHATOPS command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>CHATOPS ON</b> 
+- OPER SET foo <b>CHATOPS OFF</b>
+- 
+-
+- OPER SET <b>CHATOPS</b> - End of help

@@ -1,0 +1,16 @@
+OS OPER SET <b>SQLINE</b>
+Usage: /msg Operserv SET <Oper> <b>SQLINE</b> [ON|OFF]
+Usage: /os SET <Oper> <b>SQLINE</b> [ON|OFF]
+-
+-
+With <b>SQLINE</b>, you can set whether the specified oper is allowed to use the SQLINE command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>SQLINE ON</b> 
+- OPER SET foo <b>SQLINE OFF</b>
+- 
+-
+- OPER SET <b>SQLINE</b> - End of help

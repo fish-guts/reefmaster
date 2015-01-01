@@ -1,0 +1,17 @@
+OS OPER <b>ADD</b>
+Usage: /msg Operserv OPER <b>ADD</b> <Nickname>
+Usage: /os OPER <b>ADD</b> <Nickname>
+-
+-
+With <b>ADD</b>, you can add a user to the OPER list.
+The Nickname must be registered with Nickserv.    
+The settings for the new Oper will be automatically set to the default values. 
+-
+-
+- Example
+-
+- OPER ADD foo
+-
+- See also: /os HELP OPER SET
+- 
+- OPER <b>ADD</b> - End of help

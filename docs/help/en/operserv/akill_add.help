@@ -1,6 +1,6 @@
 OS AKILL <b>ADD</b>
 Usage: /msg Operserv AKILL <b>ADD</b> <Mask> <Duration> <Reason>
-Usage: /cs AKILL <b>ADD</b> <Mask> <Duration> <Reason>
+Usage: /os AKILL <b>ADD</b> <Mask> <Duration> <Reason>
 -
 -
 With <b>ADD</b>, you can add an entry to the server's AKILL list.  

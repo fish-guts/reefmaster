@@ -1,0 +1,16 @@
+OS OPER SET <b>CHGHOST/b>
+Usage: /msg Operserv SET <Oper> <b>CHGHOST</b> [ON|OFF]
+Usage: /os SET <Oper> <b>CHGHOST</b> [ON|OFF]
+-
+-
+With <b>CHGHOST</b>, you can set whether the specified oper is allowed to use the CHGHOST command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>CHGHOST ON</b> 
+- OPER SET foo <b>CHGHOST OFF</b>
+- 
+-
+- OPER SET <b>CHGHOST</b> - End of help

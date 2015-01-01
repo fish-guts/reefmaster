@@ -1,0 +1,16 @@
+OS OPER SET <b>AKILL</b>
+Usage: /msg Operserv SET <Oper> <b>AKILL</b> [ON|OFF]
+Usage: /os SET <Oper> <b>AKILL</b> [ON|OFF]
+-
+-
+With <b>AKILL</b>, you can set whether the specified oper is allowed to use the AKILL command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>AKILL ON</b> 
+- OPER SET foo <b>AKILL OFF</b>
+- 
+-
+- OPER SET <b>AKILL</b> - End of help

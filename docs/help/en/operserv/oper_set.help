@@ -1,0 +1,27 @@
+OS <b>SET</b>
+-
+Usage: /msg Operserv OPER <Nickname> <b>SET</b> [Command] <Arguments>
+Usage: /os OPER <Nickname> <b>SET</b> [Command] <Arguments>
+-
+-
+With <b>SET</b>, you can configure various options for an oper.   
+-
+The following commands are available
+-
+-
+- SET <b>AKILL</b> Enable / disable the oper's ability to use the AKILL command. 
+- SET <b>CHGHOST</b> Enable / disable the oper's ability to use the CHGHOST command.
+- SET <b>CHATOPS</b> Enable / disable the oper's ability to use the CHATOPS command.
+- SET <b>GLOBAL</b> Enable / disable the oper's ability to use the GLOBAL command.
+- SET <b>LOCAL</b> Enable / disable the oper's ability to use the LOCAL command.
+- SET <b>KILL</b> Enable / disable the oper's ability to use the KILL command.
+- SET <b>SGLINE</b> Enable / disable the oper's ability to use the SGLINE command.
+- SET <b>SKLINE</b> Enable / disable the oper's ability to use the SKLINE command.
+- SET <b>SQLINE</b> Enable / disable the oper's ability to use the SQLINE command.
+- SET <b>SZLINE</b> Enable / disable the oper's ability to use the SZLINE command.
+- SET <b>VHOST</b> Set a new vhost for the oper. 
+ 
+-
+- For more help on the command, please type /msg Operserv HELP SET <Command>
+- 
+- <b>SET</b> - End of help

@@ -1,0 +1,21 @@
+OS <b>OPER</b>
+-
+Usage: /msg Operserv <b>OPER</b> [ADD|DEL|LIST] <Nickname>
+Usage: /os <b>OPER</b> <Channel> [ADD|DEL|LIST] <Nickname>
+-
+-
+With <b>OPER</b>, you can manage the Operator list of the server.    
+IRC Operators may have access to Operserv by default. However, this may be depending on the configuration of services. 
+Please contact your Administrator in case of any questions regarding Operserv access.   
+Only Services Administrators with default access to Operserv can use this command.     
+-
+The following commands are available
+-
+- OPER <b>ADD</b> <Nickname - Add a user to the OPER list.  
+- OPER <b>DEL</b> <Nickname> - Remove a user from the OPER list.
+- OPER <b>LIST</b> - List all entries of the OPER list.  
+- OPER <b>SET</b> <Nickname> <Option> <Argument> - Change the settings of an operator. 
+-
+- For more help on the command, please type /msg Operserv HELP OPER <Command>
+- 
+- <b>OPER</b> - End of help

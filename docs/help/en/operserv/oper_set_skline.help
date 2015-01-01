@@ -1,0 +1,16 @@
+OS OPER SET <b>SKLINE</b>
+Usage: /msg Operserv SET <Oper> <b>SKLINE</b> [ON|OFF]
+Usage: /os SET <Oper> <b>SKLINE</b> [ON|OFF]
+-
+-
+With <b>SKLINE</b>, you can set whether the specified oper is allowed to use the SKLINE command. 
+Only Services Administrators with default access to Operserv can use this command.   
+-      
+-
+- Example
+-
+- OPER SET foo <b>SKLINE ON</b> 
+- OPER SET foo <b>SKLINE OFF</b>
+- 
+-
+- OPER SET <b>SKLINE</b> - End of help
