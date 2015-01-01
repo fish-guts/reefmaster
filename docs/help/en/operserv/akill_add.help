@@ -1,0 +1,25 @@
+OS AKILL <b>ADD</b>
+Usage: /msg Operserv AKILL <b>ADD</b> <Mask> <Duration> <Reason>
+Usage: /cs AKILL <b>ADD</b> <Mask> <Duration> <Reason>
+-
+-
+With <b>ADD</b>, you can add an entry to the server's AKILL list.  
+The duration is optional. The following values are accepted:
+- Number without suffix: Duration in minutes. 
+- h hours
+- w weeks
+- m months
+- y years. 
+-
+- If no duration is supplied, the AKILL will be permanent until removed. 
+-  
+- The Autokill will then expire after the expiration time has been reached. 
+-
+- Example
+-
+- AKILL ADD foo@bar.com 1w You are not welcome here for 1 week .
+- AKILL ADD foo@bar.com 3m You are not welcome here for 3 months.
+- AKILL ADD foo@bar.com 5y You are not welcome here for 5 years.
+- AKILL ADD foo@bar.com You are not welcome (permanently).
+- 
+- AKILL <b>ADD</b> - End of help

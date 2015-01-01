@@ -1,0 +1,14 @@
+OS AKILL <b>LIST</b>
+-
+Usage: /msg Operserv AKILL <b>LIST</b>
+Usage: /os AKILL <b>LIST</b>
+-
+-
+With <b>LIST</b>, you can view all entries in the server's AKILL list.    
+   
+-
+- Example
+-
+- AKILL <b>LIST</b>
+-
+- AKILL <b>LIST</b> - End of help

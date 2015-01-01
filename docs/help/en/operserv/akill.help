@@ -1,0 +1,19 @@
+OS <b>AKILL</b>
+-
+Usage: /msg Operserv <b>AKILL</b> [ADD|DEL|LIST] <Mask> <Options>
+Usage: /os <b>AKILL</b> <Channel> [ADD|DEL|LIST] <Mask> <Options>
+-
+-
+With <b>AKILL</b>, you can manage the auto kill list the server.   
+Akills can only be added using services. A user matching an entry in the AKILL list will automatically be killed by services.
+Only IRC Operators matching the level configured or is existing in the OPER list can use this command.   
+-
+The following commands are available
+-
+- AKILL <b>ADD</b> <mask> <duration> <reason> - Add an entry to the AKILL list.  
+- AKILL <b>DEL</b> <mask> - Remove an entry from the AKILL list.
+- AKILL <b>LIST</b>  - List all entries of the AKILL list.  
+-
+- For more help on the command, please type /msg Operserv HELP AKILL <Command>
+- 
+- <b>AKILL</b> - End of help

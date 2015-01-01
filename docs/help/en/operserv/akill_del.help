@@ -1,0 +1,15 @@
+OS AKILL <b>DEL</b>
+-
+Usage: /msg Operserv AKILL <b>DEL</b> <Mask>
+Usage: /os AKILL <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove an entry from the server's AKILL list.    
+-
+-
+- Example
+-
+- AKILL <b>DEL</b> @foo@bar.com 
+- AKILL <b>DEL</b> *@bar.com
+- 
+- AKILL <b>DEL</b> - End of help
