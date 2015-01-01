@@ -1,0 +1,16 @@
+OS <b>GLOBAL</b>
+-
+Usage: /msg Operserv <b>GLOBAL</b> <Message>
+Usage: /os <b>GLOBAL</b> <Message>
+-
+-
+With <b>GLOBAL</b>, you can send a chatops message to all global IRC Operators.    
+If you have Operserv access but aren't a global IRC Operator, you will not see this message. 
+Only IRC Operators and Users with access to this function of Operserv can use this command.     
+-
+-
+- Example
+-
+- GLOBAL Hello IRCops
+-
+- <b>GLOBAL</b> - End of help
