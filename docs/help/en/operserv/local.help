@@ -1,0 +1,16 @@
+OS <b>LOCAL</b>
+-
+Usage: /msg Operserv <b>LOCAL</b> <Message>
+Usage: /os <b>LOCAL</b> <Message>
+-
+-
+With <b>LOCAL</b>, you can send a message to all local IRC Operators.    
+If you have Operserv access but aren't a local IRC Operator, you will not see this message. 
+Only IRC Operators and Users with access to this function of Operserv can use this command.     
+-
+-
+- Example
+-
+- LOCAL Hello IRCops
+-
+- <b>LOCAL</b> - End of help
