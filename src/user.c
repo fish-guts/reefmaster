@@ -131,6 +131,7 @@ void s_nick(const char *src, int ac, char **av)
 		 * A = Server Administrator
 		 * N = Network Administrator
 		 */
+		u->oper = 0;
 		if(strchr(av[7],'h'))
 			u->oper = 1;
 		if((strchr(av[7],'o')) || (strchr(av[7],'O')))
@@ -143,13 +144,13 @@ void s_nick(const char *src, int ac, char **av)
 			u->oper = 5;
 		if(strchr(av[7],'N'))
 			u->oper = 6;
-		if((!strchr(av[7],'a')) && (!strchr(av[7],'A')) &&
-		    (!strchr(av[7],'o')) && (!strchr(av[7],'C')) &&
-		    (!strchr(av[7],'N')) && (!strchr(av[7],'h')))
-			u->oper = 0;
 		if(u->oper>0)
 			announce_oper(av[0],u->oper);
 		u->pw_cnt = 0;
+		operuser *o = findoper(av[0]);
+		if(o) {
+			chghost(s_name,av[0],o->vhost);
+		}
 		ns_checknotify(u,NOTIFY_ONLINE);
 	}
     else
