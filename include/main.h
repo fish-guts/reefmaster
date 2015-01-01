@@ -306,7 +306,6 @@ int   os_can_akill;
 int   os_can_chghost;
 int   os_can_global;
 int   os_can_local;
-int   os_can_kick;
 int   os_can_kill;
 int   os_can_chatops;
 int   os_can_sgline;

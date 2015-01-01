@@ -1,0 +1,27 @@
+<b>OPERSERV</b>
+Operserv allows operations that require special privileges. This service is useful for IRC Operators and Admins.
+Service Admin can also grant non-IRC Operators access to Operserv. This is useful if there are no Operators present and you'd like a trusted user to temporarily look after law and order.   
+-
+-
+The following commands are available:
+-
+<b>ACC</b> - Displays the access a user has to a nick
+<b>ACCESS</b> - Manage your access list
+<b>AUTH</b> - Manage your AUTH requests 
+<b>DROP</b> - Drop a nickname
+<b>GETPASS</b> - Display the password of a nickname (IRC Operators only)
+<b>GHOST</b> - Disconnect your ghost
+<b>HELP</b> - Display Help
+<b>IDENTIFY</b> - Identify for your nickname
+<b>INFO</b> - Display information about a nickname
+<b>LIST</b> - List registered Nicknames (IRC Operators only)
+<b>LISTCHANS</b> - List the channels you have access to
+<b>NOTIFY</b> - Manage your notify list
+<b>REGISTER</b> - Register a Nickname
+<b>RELEASE</b> - Release a nickname from custody
+<b>SET</b> - Additional Settings
+<b>SETPASS</b> - Set a new password for a nickname (IRC Operators only)
+
+For help on a specific topic, type /msg Nickserv <b>HELP</b> <Command> 
+-
+- \Nickserv\2 - End of help

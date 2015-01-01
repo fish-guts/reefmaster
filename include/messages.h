@@ -717,6 +717,9 @@
 #define OS_RPL_SZLINE_ADDED2		"%s added a permanent service Z:Line for %s (%s)"
 #define OS_RPL_SZLINE_ADD_SUCCESS	"A Z:Line for \2%s\2 was added"
 #define OS_RPL_SZLINE_DEL_SUCCESS	"A Z:Line for \2%s\2 was removed"
+#define OS_RPL_OPER_SET_USAGE		"Usage: SET [Command] <Arguments>"
+#define OS_ERR_OPER_SET_OPT_USAGE	"Usage: SET \2%s\2 [On|Off]"
+#define OS_RPL_SET_SUCCESS			"Success - Setting for user \2%s\2 was changed."
 
 
 
