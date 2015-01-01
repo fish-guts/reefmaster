@@ -230,6 +230,9 @@ void kick(char *src,const char *target,char *chan,char *reason) {
 void kline(char *src,char *user,char *host,char *reason,int timestamp) {
 	addserverban(src,'k',user,host,reason,timestamp);
 }
+void rkline(char *src,char *username,char *hostname) {
+	remove_serverban(src,'K',username,hostname);
+}
 
 /********************************************************************/
 /**

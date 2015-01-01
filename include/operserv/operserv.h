@@ -8,7 +8,7 @@
 #include "os_local.h"
 #include "os_oper.h"
 #include "os_sgline.h"
-
+#include "os_skline.h"
 
 extern operuser *opers;
 extern akill *akills;

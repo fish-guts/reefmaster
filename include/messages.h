@@ -699,7 +699,12 @@
 #define OS_RPL_SGLINE_ADDED2		"%s added a permanent service G:Line for %s (%s)"
 #define OS_RPL_SGLINE_ADD_SUCCESS	"A G:Line for \2%s\2 was added"
 #define OS_RPL_SGLINE_DEL_SUCCESS	"A G:Line for \2%s\2 was removed"
-
+#define OS_RPL_SKLINE_ADD_USAGE		"Usage: SKLINE \2ADD\2 <Mask> <Duration> <Reason>"
+#define OS_RPL_SKLINE_DEL_USAGE		"Usage: SKLINE \2DEL\2 <Mask>"
+#define OS_RPL_SKLINE_ADDED			"%s added a service K:Line for %s (%s) (Expiry: %s)"
+#define OS_RPL_SKLINE_ADDED2		"%s added a permanent service K:Line for %s (%s)"
+#define OS_RPL_SKLINE_ADD_SUCCESS	"A K:Line for \2%s\2 was added"
+#define OS_RPL_SKLINE_DEL_SUCCESS	"A K:Line for \2%s\2 was removed"
 
 
 
