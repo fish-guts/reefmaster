@@ -1,0 +1,15 @@
+OS SKLINE <b>DEL</b>
+-
+Usage: /msg Operserv SKLINE <b>DEL</b> <Mask>
+Usage: /os SKLINE <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove a K:Line.     
+-
+-
+- Example
+-
+- SKLINE <b>DEL</b> foo@bar.com 
+- SKLINE <b>DEL</b> *@bar.com
+- 
+- SKLINE <b>DEL</b> - End of help

@@ -1,0 +1,26 @@
+OS SKLINE <b>ADD</b>
+Usage: /msg Operserv SKLINE <b>ADD</b> <Mask> <Duration> <Reason>
+Usage: /os SKLINE <b>ADD</b> <Mask> <Duration> <Reason>
+-
+-
+With <b>ADD</b>, you can add a K:Line.  
+The duration is optional. The following values are accepted:
+- Number without suffix: Duration in minutes. 
+- h hours
+- w weeks
+- m months
+- y years.
+- 
+- The ban will expire after the expiration time has been reached. 
+-
+- If no duration is supplied, the SKLINE will be permanent until removed. 
+-  
+-
+- Example
+-
+- SKLINE ADD foo@bar.com 1w You are not welcome here for 1 week .
+- SKLINE ADD foo@bar.com 3m You are not welcome here for 3 months.
+- SKLINE ADD foo@bar.com 5y You are not welcome here for 5 years.
+- SKLINE ADD foo@bar.com You are not welcome (permanently).
+- 
+- SKLINE <b>ADD</b> - End of help

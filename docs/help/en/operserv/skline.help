@@ -1,0 +1,18 @@
+OS <b>SKLINE</b>
+-
+Usage: /msg Operserv <b>SKLINE</b> [ADD|DEL] <Mask> <Options>
+Usage: /os <b>SKLINE</b> <Channel> [ADD|DEL] <Mask> <Options>
+-
+-
+With <b>SKLINE</b>, you can add a G:Line. 
+A K:Line is a local server ban. This means a user matching K:Lined host will be banned from this server but may still connect to other servers on the network.     
+Only IRC Operators and Users with access to this function of Operserv can use this command.    
+-
+The following commands are available
+-
+- SKLINE <b>ADD</b> <mask> <duration> <reason> - Add a K:Line  
+- SKLINE <b>DEL</b> <mask> - Remove a K:Line.
+-
+- For more help on the command, please type /msg Operserv HELP SKLINE <Command>
+- 
+- <b>SKLINE</b> - End of help
