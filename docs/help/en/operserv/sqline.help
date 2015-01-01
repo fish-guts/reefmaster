@@ -1,0 +1,18 @@
+OS <b>SQLINE</b>
+-
+Usage: /msg Operserv <b>SQLINE</b> [ADD|DEL] <Mask> <Options>
+Usage: /os <b>SQLINE</b> <Channel> [ADD|DEL] <Mask> <Options>
+-
+-
+With <b>SQLINE</b>, you can add a Q:Line. 
+A Q:Line is a ban on a nickname. This means that a q:lined nick cannot be used by users anymore.      
+Only IRC Operators and Users with access to this function of Operserv can use this command.    
+-
+The following commands are available
+-
+- SQLINE <b>ADD</b> <mask> <duration> <reason> - Add a Q:Line  
+- SQLINE <b>DEL</b> <mask> - Remove a Q:Line.
+-
+- For more help on the command, please type /msg Operserv HELP SQLINE <Command>
+- 
+- <b>SQLINE</b> - End of help

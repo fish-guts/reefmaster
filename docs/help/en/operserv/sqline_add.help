@@ -1,0 +1,24 @@
+OS SQLINE <b>ADD</b>
+Usage: /msg Operserv SQLINE <b>ADD</b> <Nickname> <Duration> <Reason>
+Usage: /os SQLINE <b>ADD</b> <Nickname> <Duration> <Reason>
+-
+-
+With <b>ADD</b>, you can add a Q:Line.  
+The duration is optional. The following values are accepted:
+- Number without suffix: Duration in minutes. 
+- h hours
+- w weeks
+- m months
+- y years.
+- 
+- The ban will expire after the expiration time has been reached. 
+-
+- If no duration is supplied, the SQLINE will be permanent until removed. 
+-  
+-
+- Example
+-
+- SQLINE ADD foo Invalid Nickname
+- SQLINE ADD NoBlacks Offensive Nickname
+- 
+- SQLINE <b>ADD</b> - End of help

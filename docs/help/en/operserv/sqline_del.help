@@ -1,0 +1,15 @@
+OS SQLINE <b>DEL</b>
+-
+Usage: /msg Operserv SQLINE <b>DEL</b> <Mask>
+Usage: /os SQLINE <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove a Q:Line.     
+-
+-
+- Example
+-
+- SQLINE <b>DEL</b> foo
+- SQLINE <b>DEL</b> bar
+- 
+- SQLINE <b>DEL</b> - End of help
