@@ -1,7 +1,7 @@
 OS <b>SKLINE</b>
 -
 Usage: /msg Operserv <b>SKLINE</b> [ADD|DEL] <Mask> <Options>
-Usage: /os <b>SKLINE</b> <Channel> [ADD|DEL] <Mask> <Options>
+Usage: /os <b>SKLINE</b> [ADD|DEL] <Mask> <Options>
 -
 -
 With <b>SKLINE</b>, you can add a G:Line. 

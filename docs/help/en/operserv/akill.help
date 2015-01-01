@@ -1,7 +1,7 @@
 OS <b>AKILL</b>
 -
 Usage: /msg Operserv <b>AKILL</b> [ADD|DEL|LIST] <Mask> <Options>
-Usage: /os <b>AKILL</b> <Channel> [ADD|DEL|LIST] <Mask> <Options>
+Usage: /os <b>AKILL</b> [ADD|DEL|LIST] <Mask> <Options>
 -
 -
 With <b>AKILL</b>, you can manage the auto kill list the server.   

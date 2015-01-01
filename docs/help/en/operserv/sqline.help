@@ -1,7 +1,7 @@
 OS <b>SQLINE</b>
 -
 Usage: /msg Operserv <b>SQLINE</b> [ADD|DEL] <Mask> <Options>
-Usage: /os <b>SQLINE</b> <Channel> [ADD|DEL] <Mask> <Options>
+Usage: /os <b>SQLINE</b> [ADD|DEL] <Mask> <Options>
 -
 -
 With <b>SQLINE</b>, you can add a Q:Line. 

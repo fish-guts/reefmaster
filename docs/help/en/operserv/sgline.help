@@ -1,7 +1,7 @@
 OS <b>SGLINE</b>
 -
 Usage: /msg Operserv <b>SGLINE</b> [ADD|DEL] <Mask> <Options>
-Usage: /os <b>SGLINE</b> <Channel> [ADD|DEL] <Mask> <Options>
+Usage: /os <b>SGLINE</b> [ADD|DEL] <Mask> <Options>
 -
 -
 With <b>SGLINE</b>, you can add a G:Line. 

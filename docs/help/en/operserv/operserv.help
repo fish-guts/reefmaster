@@ -5,18 +5,18 @@ Service Admin can also grant non-IRC Operators access to Operserv. This is usefu
 -
 The following commands are available:
 -
-<b>AKILL</b> - Displays the access a user has to a nick
-<b>CHATOPS</b> - Manage your access list
-<b>CHGHOST</b> - Manage your AUTH requests 
-<b>GLOBAL</b> - Drop a nickname
+<b>AKILL</b> - Manage the Server's Autokill list. 
+<b>CHATOPS</b> - Send a message to all global and local IRC Operators. 
+<b>CHGHOST</b> - Change the host of a user. 
+<b>GLOBAL</b> - Send a message to all global IRC Operators. 
 <b>HELP</b> - Display Help
-<b>KILL</b> - Identify for your nickname
-<b>LOCAL</b> - Display information about a nickname
-<b>OPER</b> - List registered Nicknames (IRC Operators only)
-<b>SGLINE</b> - List the channels you have access to
-<b>SKLINE</b> - Manage your notify list
-<b>SQLINE</b> - Register a Nickname
-<b>SZLINE</b> - Release a nickname from custody
+<b>KILL</b> - Kill a connected user. 
+<b>LOCAL</b> - Send a message to all local IRC Operator
+<b>OPER</b> - Manage the server's OPER List. 
+<b>SGLINE</b> - G:Line a user
+<b>SKLINE</b> - K:Line a user 
+<b>SQLINE</b> - Q:Line a nickname
+<b>SZLINE</b> - Z:Line a user. 
 
 
 For help on a specific topic, type /msg Operserv <b>HELP</b> <Command> 
