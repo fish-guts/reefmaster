@@ -190,7 +190,7 @@ static void os_sgline_del(char *src, int ac, char **av) {
 	char pubmask[128];
 	sprintf(pubmask,"%s@%s",username,hostname);
 	rgline(s_name,username,hostname);
-	notice(os_name,src,OS_RPL_AKILL_DEL_SUCCESS,pubmask);
+	notice(os_name,src,OS_RPL_SGLINE_DEL_SUCCESS,pubmask);
 	return;
 }
 

@@ -698,6 +698,8 @@
 #define OS_RPL_SGLINE_ADDED			"%s added a service G:Line for %s (%s) (Expiry: %s)"
 #define OS_RPL_SGLINE_ADDED2		"%s added a permanent service G:Line for %s (%s)"
 #define OS_RPL_SGLINE_ADD_SUCCESS	"A G:Line for \2%s\2 was added"
+#define OS_RPL_SGLINE_DEL_SUCCESS	"A G:Line for \2%s\2 was removed"
+
 
 
 
