@@ -310,7 +310,6 @@ int   os_can_kill;
 int   os_can_chatops;
 int   os_can_sgline;
 int   os_can_sqline;
-int   os_can_svsnick;
 int   os_can_skline;
 int   os_can_szline;
 char  *os_vhost;

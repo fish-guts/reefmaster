@@ -676,6 +676,7 @@
 #define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
 #define OS_RPL_OPER_DEL_USAGE		"Usage: OPER \2DEL\2 <Nickname>"
 #define OS_RPL_GLOBAL_USAGE			"Usage: \2GLOBAL\2 <Message>"
+#define OS_RPL_CHATOPS_USAGE		"Usage: \2CHATOPS\2 <Message>"
 #define OS_RPL_LOCAL_USAGE			"Usage: \2LOCAL\2 <Message>"
 #define OS_RPL_GLOBAL_SENT			"Success - Message sent to opers"
 #define OS_RPL_OPER_LIST_USAGE		"Usage: OPER \2LIST\2"

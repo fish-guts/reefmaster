@@ -96,13 +96,11 @@ static void new_oper(char *nick) {
 	o->can_chatops = os_can_chatops;
 	o->can_chghost = os_can_chghost;
 	o->can_global = os_can_global;
-	o->can_kick = os_can_kick;
 	o->can_kill = os_can_kill;
 	o->can_local = os_can_local;
 	o->can_sgline = os_can_sgline;
 	o->can_skline = os_can_skline;
 	o->can_sqline = os_can_sqline;
-	o->can_svsnick = os_can_svsnick;
 	o->can_szline = os_can_szline;
 	o->vhost = sstrdup(os_vhost);
 	o->next = opers;

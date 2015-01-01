@@ -10,8 +10,6 @@
 
 
 
-#endif /* SERVERPROTOCOL_H_ */
-
 #define CHANMODE	":%s MODE %s %s %s %ld\r\n"
 #define CHATOPS		":%s CHATOPS : %s\r\n"
 #define JOIN		":%s JOIN %s\r\n"
@@ -34,3 +32,4 @@
 #define RXLINE		"BD - %c %s %s %s\r\n"
 #define ZLINE		"BD + Z %s %s %ld %ld :%s\r\n"
 
+#endif /* SERVERPROTOCOL_H_ */

@@ -36,7 +36,7 @@ static char *aoper[] = {
 
 static os_cmd os_cmds[] = {
 	{ "AKILL", os_akill },
-	{ "CHATOPS", NULL },
+	{ "CHATOPS", os_chatops },
 	{ "CHGHOST", os_chghost },
 	{ "GLOBAL", os_global },
 	{ "LOCAL", os_local },
