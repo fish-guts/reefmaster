@@ -1,0 +1,18 @@
+OS <b>SGLINE</b>
+-
+Usage: /msg Operserv <b>SGLINE</b> [ADD|DEL] <Mask> <Options>
+Usage: /os <b>SGLINE</b> <Channel> [ADD|DEL] <Mask> <Options>
+-
+-
+With <b>SGLINE</b>, you can add a G:Line. 
+A G:Line is a global server ban. This means a user matching G:Lined host will be banned from all servers on the network.    
+Only IRC Operators and Users with access to this function of Operserv can use this command.    
+-
+The following commands are available
+-
+- SGLINE <b>ADD</b> <mask> <duration> <reason> - Add a G:Line  
+- SGLINE <b>DEL</b> <mask> - Remove a G:Line.
+-
+- For more help on the command, please type /msg Operserv HELP SGLINE <Command>
+- 
+- <b>SGLINE</b> - End of help

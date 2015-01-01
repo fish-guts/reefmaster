@@ -1,0 +1,15 @@
+OS SGLINE <b>DEL</b>
+-
+Usage: /msg Operserv SGLINE <b>DEL</b> <Mask>
+Usage: /os SGLINE <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove G:Line.     
+-
+-
+- Example
+-
+- SGLINE <b>DEL</b> foo@bar.com 
+- SGLINE <b>DEL</b> *@bar.com
+- 
+- SGLINE <b>DEL</b> - End of help
