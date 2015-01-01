@@ -235,6 +235,28 @@ void rkline(char *src,char *username,char *hostname) {
 }
 
 /********************************************************************/
+/*
+ * sqline a nickname
+ */
+void sqline(char *src,char *hold,char *nickname,char *reason,int timestamp) {
+	addserverban(src,'Q',hold,nickname,reason,timestamp);
+}
+void rsqline(char *src,char *hold,char *nickname) {
+	remove_serverban(src,'Q',hold,nickname);
+}
+
+void qline(char *src,char *nick,char *reason) {
+	char  buf[512];
+	sprintf(buf,":%s c %s :%s\r\n",src,nick,reason);
+	send(mainsock,buf,strlen(buf),0);
+}
+void unqline(char *src, char *nick) {
+	char  buf[512];
+	sprintf(buf,":%s d %s\r\n",src,nick);
+	send(mainsock,buf,strlen(buf),0);
+}
+
+/********************************************************************/
 /**
  * change a mode on IRC
  */

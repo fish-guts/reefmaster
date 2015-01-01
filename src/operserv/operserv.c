@@ -43,8 +43,8 @@ static os_cmd os_cmds[] = {
 	{ "KILL", os_kill },
 	{ "OPER", os_oper },
 	{ "SGLINE", os_sgline },
-	{ "SKLINE", NULL },
-	{ "SQLINE", NULL },
+	{ "SKLINE", os_skline },
+	{ "SQLINE", os_sqline },
 	{ "SVSNICK", NULL },
 	{ "SZLINE", NULL },
 
