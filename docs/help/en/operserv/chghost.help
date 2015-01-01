@@ -1,0 +1,15 @@
+OS <b>CHGHOST</b>
+-
+Usage: /msg Operserv <b>CHGHOST</b> <Nickname> <Hostname>
+Usage: /os  <b>CHGHOST</b> <Nickname> <Hostname>
+-
+-
+With <b>CHGHOST</b>, you can change the host of a user on the server.     
+Only IRC Operators and Users with access to this function of Operserv can use this command.     
+-
+-
+- Example
+-
+- CHGHOST foo you.have.a.new.hostname
+-
+- <b>CHGHOST</b> - End of help

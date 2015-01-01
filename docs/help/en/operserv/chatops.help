@@ -6,7 +6,7 @@ Usage: /os <b>CHATOPS</b> <Message>
 -
 With <b>CHATOPS</b>, you can send a chatops message to all local and global IRC Operators.    
 If you have Operserv access but aren't an IRC Operator you will not see Chatops messages.
-Only IRC Operators and Users with access to this function of operserv can use this command.     
+Only IRC Operators and Users with access to this function of Operserv can use this command.     
 -
 -
 - Example
