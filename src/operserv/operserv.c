@@ -39,13 +39,12 @@ static os_cmd os_cmds[] = {
 	{ "CHGHOST", os_chghost },
 	{ "GLOBAL", os_global },
 	{ "LOCAL", os_local },
-	{ "HELP", NULL },
+	{ "HELP", os_help },
 	{ "KILL", os_kill },
 	{ "OPER", os_oper },
 	{ "SGLINE", os_sgline },
 	{ "SKLINE", os_skline },
 	{ "SQLINE", os_sqline },
-	{ "SVSNICK", NULL },
 	{ "SZLINE", os_szline },
 
 };

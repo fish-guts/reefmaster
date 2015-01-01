@@ -4,6 +4,7 @@
 #include "os_akill.h"
 #include "os_chghost.h"
 #include "os_global.h"
+#include "os_help.h"
 #include "os_kill.h"
 #include "os_local.h"
 #include "os_oper.h"
