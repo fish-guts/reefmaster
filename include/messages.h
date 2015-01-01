@@ -37,11 +37,11 @@
 #define TIME_FORMAT_D "[[:digit:]]+d"
 #define TIME_FORMAT_Y "[[:digit:]]+y"
 
-#define SECONDS_PER_HOUR 3600
-#define SECONDS_PER_DAY 86400
-#define SECONDS_PER_WEEK 604800
-#define SECONDS_PER_MONTH 2592000
-#define SECONDS_PER_YEAR 31104000
+#define MINUTES_PER_HOUR 60
+#define MINUTES_PER_DAY 1440
+#define MINUTES_PER_WEEK 10080
+#define MINUTES_PER_MONTH 43200
+#define MINUTES_PER_YEAR 525948
 
 /* Main messages
  ******************************************************************************************************************************************
@@ -693,6 +693,12 @@
 #define OS_RPL_CHGHOST_SUCCESS		"The host of user \2%s\2 was changed to \2%s\2"
 #define OS_RPL_KILL_USAGE			"Usage: \2KILL\2 <Nick> <Reason>"
 #define OS_RPL_KILL_SUCCESS			"The user \2%s\2 has been killed"
+#define OS_RPL_SGLINE_ADD_USAGE		"Usage: SGLINE \2ADD\2 <Mask> <Duration> <Reason>"
+#define OS_RPL_SGLINE_DEL_USAGE		"Usage: SGLINE \2DEL\2 <Mask>"
+#define OS_RPL_SGLINE_ADDED			"%s added a service G:Line for %s (%s) (Expiry: %s)"
+#define OS_RPL_SGLINE_ADDED2		"%s added a permanent service G:Line for %s (%s)"
+#define OS_RPL_SGLINE_ADD_SUCCESS	"A G:Line for \2%s\2 was added"
+
 
 
 

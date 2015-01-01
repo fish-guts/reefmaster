@@ -369,11 +369,11 @@ void ns_passlimit(user *u) {
 			break;
 		/* kline the user */
 		case 2:
-			kline("*",u->hostname,"Too many wrong password attemps. Try again in 30 Minutes",30);
+			kline(ns_name,"*",u->hostname,"Too many wrong password attemps. Try again in 30 Minutes",30);
 			break;
 		/* gline the user */
 		case 3:
-			gline("*",u->hostname,"Too many wrong password attemps. Try again in 30 Minutes",30);
+			gline(ns_name,"*",u->hostname,"Too many wrong password attemps. Try again in 30 Minutes",30);
 			break;
 		default:
 			break;

@@ -31,5 +31,6 @@
 #define USERMODE	":%s MODE %s %s\r\n"
 #define WALLOPS		":%s WALLOPS :%s\r\n"
 #define XLINE		"BD + %c %s %s %s %ld %ld :%s\r\n"
+#define RXLINE		"BD - %c %s %s %s\r\n"
 #define ZLINE		"BD + Z %s %s %ld %ld :%s\r\n"
 

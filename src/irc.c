@@ -22,16 +22,22 @@
 #include "main.h"
 
 
-void addserverban(char type,char *user,char *host,char *reason,int timestamp) {
+void addserverban(char *src,char type,char *user,char *host,char *reason,int timestamp) {
 	char  buf[1024];
 	long expiry = time(NULL) + (timestamp * 60);
 	if(type=='Z') {
-		sprintf(buf,ZLINE,host,ns_name,expiry,time(NULL),reason);
+		sprintf(buf,ZLINE,host,src,expiry,time(NULL),reason);
 	} else {
-	sprintf(buf,XLINE,type,user,host,ns_name,expiry,time(NULL),reason);
+	sprintf(buf,XLINE,type,user,host,src,expiry,time(NULL),reason);
 	}
 	send(mainsock,buf,strlen(buf),0);
 }
+void remove_serverban(char *src,char type, char *username,char *hostname) {
+	char buf[1024];
+	sprintf(buf,RXLINE,type,username,hostname,src);
+	send(mainsock,buf,strlen(buf),0);
+}
+
 
 /********************************************************************/
 /**
@@ -143,8 +149,11 @@ void do_part(char *src,char *chan,char *msg) {
 /*
  * gline a user
  */
-void gline(char *user,char *host,char *reason,int timestamp) {
-	addserverban('G',user,host,reason,timestamp);
+void gline(char *src,char *user,char *host,char *reason,int timestamp) {
+	addserverban(src,'G',user,host,reason,timestamp);
+}
+void rgline(char *src,char *username,char *hostname) {
+	remove_serverban(src,'G',username,hostname);
 }
 /********************************************************************/
 /**
@@ -218,8 +227,8 @@ void kick(char *src,const char *target,char *chan,char *reason) {
 /*
  * kline a user
  */
-void kline(char *user,char *host,char *reason,int timestamp) {
-	addserverban('k',user,host,reason,timestamp);
+void kline(char *src,char *user,char *host,char *reason,int timestamp) {
+	addserverban(src,'k',user,host,reason,timestamp);
 }
 
 /********************************************************************/
@@ -396,7 +405,7 @@ void wallops(char *src,char *msg,...)
 	free(buff);
 	va_end(va);
 }
-void zline(char *user, char *host, char *reason, int timestamp) {
-	addserverban('Z',user,host,reason,timestamp);
+void zline(char *src,char *user, char *host, char *reason, int timestamp) {
+	addserverban(src,'Z',user,host,reason,timestamp);
 }
 /* EOF */

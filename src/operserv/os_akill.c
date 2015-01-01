@@ -58,7 +58,7 @@ static void os_akill_add(char *src, int ac, char **av) {
 		notice(os_name,src,OS_RPL_HELP,"AKILL ADD");
 		return;
 	}
-	duration = get_duration(av[2]);
+	duration = get_duration(av[3]);
 	user *u = finduser(src);
 	operuser *o = findoper(src);
 	if(o) {
@@ -83,9 +83,9 @@ static void os_akill_add(char *src, int ac, char **av) {
 		return;
 	}
 	char reason[1024] = "";
-	int i = 3;
+	int i = 4;
 	if(duration) {
-		for(i=3;i<ac-1;i++) {
+		for(i=4;i<ac;i++) {
 			strcat(reason,av[i]);
 			if(i<ac-1) {
 				strcat(reason," ");
@@ -101,7 +101,7 @@ static void os_akill_add(char *src, int ac, char **av) {
 	}
 	if(duration > 0) {
 		char str[100];
-		time_t expiry = (time(NULL) + duration * 60);
+		time_t expiry = (time(NULL) + duration*60);
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&expiry));
 		globops(os_name,OS_RPL_AKILL_ADDED,src,av[2],reason,str);
 		new_akill(src,av[2],reason,duration);
@@ -131,13 +131,26 @@ static void new_akill(char *src,char *mask, char *reason, time_t duration) {
 static void os_akill_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_AKILL_DEL_USAGE);
-		notice(os_name,src,OS_RPL_HELP,"OPER DEL");
+		notice(os_name,src,OS_RPL_HELP,"AKILL DEL");
 		return;
 	}
 	user *u = finduser(src);
-	if(u->oper<os_access_flag) {
-		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
-		return;
+	operuser *o = findoper(src);
+	if(o) {
+		if(!isidentified(u,src)) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			notice(os_name,src,NS_RPL_NEEDIDENTIFY,src);
+			return;
+		}
+		if(!o->can_sgline) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			return;
+		}
+	} else {
+		if(u->oper<os_access_flag) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED,os_name,oline[os_access_flag]);
+			return;
+		}
 	}
 	if(!findakill(av[2])) {
 		notice(os_name,src,OS_RPL_AKILL_NOTFOUND,av[2]);
@@ -160,13 +173,26 @@ void delete_akill(char *mask) {
 static void os_akill_list(char *src, int ac, char **av) {
 	if(ac<2) {
 		notice(os_name,src,OS_RPL_OPER_LIST_USAGE);
-		notice(os_name,src,OS_RPL_HELP,"OPER LIST");
+		notice(os_name,src,OS_RPL_HELP,"AKILL LIST");
 		return;
 	}
 	user *u = finduser(src);
-	if(u->oper<os_access_flag) {
-		notice(os_name,src,OS_ERR_ACCESSDENIED,oline[os_access_flag]);
-		return;
+	operuser *o = findoper(src);
+	if(o) {
+		if(!isidentified(u,src)) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			notice(os_name,src,NS_RPL_NEEDIDENTIFY,src);
+			return;
+		}
+		if(!o->can_sgline) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED2);
+			return;
+		}
+	} else {
+		if(u->oper<os_access_flag) {
+			notice(os_name,src,OS_ERR_ACCESSDENIED,os_name,oline[os_access_flag]);
+			return;
+		}
 	}
 	int i = 0;
 	notice(os_name,src,OS_RPL_AKILL_LIST_BEGIN,os_name);

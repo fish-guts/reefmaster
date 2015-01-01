@@ -34,8 +34,6 @@ static void daemonize(void);
  */
 int main(int argc,char **argv)
 {
-	get_duration("123rdsgrewt");
-	exit(EXIT_SUCCESS);
 	if(!argv[1]) {
 		printf(APP_DBG_UNKNOWN_CMD);
 		exit(EXIT_FAILURE);
