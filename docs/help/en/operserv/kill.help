@@ -1,0 +1,15 @@
+OS <b>KILL</b>
+-
+Usage: /msg Operserv <b>KILL</b> <User> <Reason>
+Usage: /os <b>LOCAL</b> <User> <Reason>
+-
+-
+With <b>KILL</b>, you can kill the connecton of a user connected to the server.     
+Only IRC Operators and Users with access to this function of Operserv can use this command.     
+-
+-
+- Example
+-
+- KILL foo behave
+-
+- <b>KILL</b> - End of help
