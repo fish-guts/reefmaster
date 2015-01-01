@@ -3,7 +3,7 @@ Usage: /msg Operserv SGLINE <b>ADD</b> <Mask> <Duration> <Reason>
 Usage: /os SGLINE <b>ADD</b> <Mask> <Duration> <Reason>
 -
 -
-With <b>ADD</b>, you can add an entry to the server's SGLINE list.  
+With <b>ADD</b>, you can add a G:Line.   
 The duration is optional. The following values are accepted:
 - Number without suffix: Duration in minutes. 
 - h hours
