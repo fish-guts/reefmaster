@@ -1,0 +1,18 @@
+OS <b>SZLINE</b>
+-
+Usage: /msg Operserv <b>SZLINE</b> [ADD|DEL] <Nick> <Options>
+Usage: /os <b>SZLINE</b> [ADD|DEL] <Nick> <Options>
+-
+-
+With <b>SZLINE</b>, you can add a Z:Line. 
+A Z:Line is a global server ban on the IP Address. This means a user matching Z:Lined IP Address will be banned from all servers on the network.    
+Only IRC Operators and Users with access to this function of Operserv can use this command.    
+-
+The following commands are available
+-
+- SZLINE <b>ADD</b> <Nick> <duration> <reason> - Add a Z:Line  
+- SZLINE <b>DEL</b> <Nick> - Remove a Z:Line.
+-
+- For more help on the command, please type /msg Operserv HELP SZLINE <Command>
+- 
+- <b>SZLINE</b> - End of help

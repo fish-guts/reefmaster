@@ -1,0 +1,26 @@
+OS SZLINE <b>ADD</b>
+Usage: /msg Operserv SZLINE <b>ADD</b> <Nick> <Duration> <Reason>
+Usage: /os SZLINE <b>ADD</b> <Nick> <Duration> <Reason>
+-
+-
+With <b>ADD</b>, you can add a Z:Line.   
+The duration is optional. The following values are accepted:
+- Number without suffix: Duration in minutes. 
+- h hours
+- w weeks
+- m months
+- y years.
+- 
+- The ban will expire after the expiration time has been reached. 
+-
+- If no duration is supplied, the SZLINE will be permanent until removed. 
+-  
+-
+- Example
+-
+- SZLINE ADD foo@bar.com 1w You are not welcome here for 1 week .
+- SZLINE ADD foo@bar.com 3m You are not welcome here for 3 months.
+- SZLINE ADD foo@bar.com 5y You are not welcome here for 5 years.
+- SZLINE ADD foo@bar.com You are not welcome (permanently).
+- 
+- SZLINE <b>ADD</b> - End of help

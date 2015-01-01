@@ -1,0 +1,14 @@
+OS SZLINE <b>DEL</b>
+-
+Usage: /msg Operserv SZLINE <b>DEL</b> <Mask>
+Usage: /os SZLINE <b>DEL</b> <Mask>
+-
+-
+With <b>DEL</b>, you can remove Z:Line.     
+-
+-
+- Example
+-
+- SZLINE <b>DEL</b> 62.73.84.120
+- 
+- SZLINE <b>DEL</b> - End of help
