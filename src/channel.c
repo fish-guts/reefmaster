@@ -21,90 +21,42 @@
 
 #include "main.h"
 
-static channel *new_channel(const char *chan);
 static void chan_adduser(user *u, channel *c);
 static channel *join_user_update(user *u, channel *c, char *name);
+static channel *new_channel(const char *chan);
 
 channel *chanlist = NULL;
-
 int chan_count;
 
-channel *findchannel(const char *chan) {
-	channel *c = chanlist;
-	while (c && stricmp(c->name, chan) != 0)
-		c = c->next;
-	return c;
-}
-static channel *new_channel(const char *chan) {
-	channel *c;
-	c = scalloc(sizeof(channel), 1);
-	if (!chan)
-		chan = "";
-	c->name = sstrdup(chan);
-	c->next = chanlist;
-	c->ops = 0;
-	c->vops = 0;
-	c->pus = 0;
-	c->owners = 0;
-	c->ucnt = 0;
-	c->topic = "";
-	if (chanlist)
-		chanlist->prev = c;
-	chanlist = c;
-	chan_count++;
-	if (isregcs(chan)) {
-		ChanInfo *c2 = findchan(chan);
-		mode(cs_name, c->name, "+rtn", NULL);
-		if(c2->topic) {
-			topic(cs_name,c2->name,c2->topic_user,c2->topic_time,c2->topic);
-			c->topic = sstrdup(c2->topic);
-			c->topic_user = sstrdup(c2->topic_user);
-			c->topic_time = c2->topic_time;
-		}
-	}
-	return c;
-}
-
-void s_join(char *src, int ac, char **av) {
-	user *u;
-	char *s, *t;
-	u = finduser(src);
-	if (!u) {
-		addlog(2, LOG_DBG_JOINNONEXIST, s_unreal, src);
-		return;
-	}
-	t = av[0];
-	while (*(s = t)) {
-		t = s + strcspn(s, ",");
-		if (*t)
-			*t++ = 0;
-		join_user_update(u, findchannel(s), s);
-		if(isregcs(s)) {
-			mode(cs_name,s,"+rtn",s);
-		}
-		check_status(findchannel(s),u);
-	}
-}
-
+/********************************************************************/
+/**
+ * add a bot to a channel
+ */
 void add_bot(char *chan, char *bot) {
 	channel *c = findchannel(chan);
 	if(!c)
 		c = new_channel(chan);
 	c->bot = sstrdup(bot);
 }
-void del_bot(char *chan) {
-	channel *c = findchannel(chan);
-	c->bot = NULL;
-}
 
-int is_bot_on_chan(char *botname,char *chan) {
-	channel *c = findchannel(chan);
-	if((c) && (c->bot) && (stricmp(c->bot,botname)==0)) {
-		return 1;
+/********************************************************************/
+/**
+ * add a status to a user on a channel
+ */
+void add_status(channel *c, user *u, int status) {
+	userchan *uc;
+	for (uc = u->chans; uc; uc = uc->next) {
+		if (uc->chan == c) {
+			uc->status |= status;
+			break;
+		}
 	}
-	return 0;
 }
 
+/********************************************************************/
+/**
+ * add a user/channel assginment
+ */
 static void chan_adduser(user *u, channel *c) {
 	chanuser *cu = scalloc(sizeof(chanuser), 1);
 	userchan *uc = scalloc(sizeof(userchan), 1);
@@ -123,6 +75,60 @@ static void chan_adduser(user *u, channel *c) {
 	c->ucnt++;
 	return;
 }
+
+/********************************************************************/
+/**
+ * add a channel/ban assignment
+ */
+void channel_add_ban(char *src,channel *c, char *mask) {
+	chanban *b = scalloc(sizeof(chanban),1);
+	b->next = c->banlist;
+	if(c->banlist)
+		c->banlist->prev = b;
+	c->banlist = b;
+	b->mask = sstrdup(mask);
+	b->from = sstrdup(src);
+	return;
+}
+
+/********************************************************************/
+/**
+ * remove a channel from the channel list
+ */
+void chan_delete(channel *c) {
+	if (c->prev)
+		c->prev->next = c->next;
+	else
+		chanlist = c->next;
+	if (c->next)
+		c->next->prev = c->prev;
+	free(c);
+}
+
+/********************************************************************/
+/**
+ * remove a channel/ban assignment
+ */
+void channel_remove_ban(char *src,channel *c, char *mask) {
+	chanban *b = c->banlist;
+	while (b) {
+		if (stricmp(mask,b->mask) == 0) {
+			if (b->prev)
+				b->prev->next = b->next;
+			else
+				c->banlist = b->next;
+			if (b->next)
+				b->next->prev = b->prev;
+			free(b);
+		}
+		b = b->next;
+	}
+}
+
+/********************************************************************/
+/**
+ * the user's status on a channel
+ */
 void check_status(channel *c, user *u) {
 	if (isregcs(c->name)) {
 		ChanInfo *cs = findchan(c->name);
@@ -159,59 +165,20 @@ void check_status(channel *c, user *u) {
 		}
 	}
 }
-int ison(channel *c, user *u) {
-	userchan *uc;
-	for (uc = u->chans; uc; uc = uc->next)
-		if (uc->chan == c)
-			return 1;
-	return 0;
+
+/********************************************************************/
+/**
+ * remove a bot from a channel
+ */
+void del_bot(char *chan) {
+	channel *c = findchannel(chan);
+	c->bot = NULL;
 }
 
-int isop(channel *c, user *u) {
-	userchan *uc;
-	for (uc = u->chans; uc; uc = uc->next) {
-		if (uc->chan == c) {
-			if ((uc->status == OP) || (uc->status == OWNER)
-					|| (uc->status == ADMIN))
-				return 1;
-		}
-	}
-	return 0;
-}
-void channel_add_ban(char *src,channel *c, char *mask) {
-	chanban *b = scalloc(sizeof(chanban),1);
-	b->next = c->banlist;
-	if(c->banlist)
-		c->banlist->prev = b;
-	c->banlist = b;
-	b->mask = sstrdup(mask);
-	b->from = sstrdup(src);
-	return;
-}
-void channel_remove_ban(char *src,channel *c, char *mask) {
-	chanban *b = c->banlist;
-	while (b) {
-		if (stricmp(mask,b->mask) == 0) {
-			if (b->prev)
-				b->prev->next = b->next;
-			else
-				c->banlist = b->next;
-			if (b->next)
-				b->next->prev = b->prev;
-			free(b);
-		}
-		b = b->next;
-	}
-}
-void add_status(channel *c, user *u, int status) {
-	userchan *uc;
-	for (uc = u->chans; uc; uc = uc->next) {
-		if (uc->chan == c) {
-			uc->status |= status;
-			break;
-		}
-	}
-}
+/********************************************************************/
+/**
+ * remove a user's status on a channel
+ */
 void del_status(channel *c, user *u, int status) {
 	userchan *uc;
 	for (uc = u->chans; uc; uc = uc->next) {
@@ -221,16 +188,11 @@ void del_status(channel *c, user *u, int status) {
 		}
 	}
 }
-static channel *join_user_update(user *u, channel *c, char *name) {
-	/* If it's a new channel, we need to create it first. */
-	if (!c)
-		c = new_channel(name);
-	chan_adduser(u, c);
-	return c;
-}
-void s_part(char *src, int ac, char **av) {
-	del_user(finduser(src),findchannel(av[0]));
-}
+
+/********************************************************************/
+/**
+ * remove a user from a channel
+ */
 void del_user(user *u, channel *c) {
 	chanuser *cu;
 	userchan *uc;
@@ -259,13 +221,134 @@ void del_user(user *u, channel *c) {
 	if(!c->users)
 	 chan_delete(c);
 }
-void chan_delete(channel *c) {
-	if (c->prev)
-		c->prev->next = c->next;
-	else
-		chanlist = c->next;
-	if (c->next)
-		c->next->prev = c->prev;
-	free(c);
+
+/********************************************************************/
+/**
+ * find a channel in the channel list
+ */
+channel *findchannel(const char *chan) {
+	channel *c = chanlist;
+	while (c && stricmp(c->name, chan) != 0)
+		c = c->next;
+	return c;
+}
+
+/********************************************************************/
+/**
+ * check whether the specified bot is on the specified channel
+ */
+int is_bot_on_chan(char *botname,char *chan) {
+	channel *c = findchannel(chan);
+	if((c) && (c->bot) && (stricmp(c->bot,botname)==0)) {
+		return 1;
+	}
+	return 0;
+}
+
+/********************************************************************/
+/**
+ * check whether a user is on a channel
+ */
+int ison(channel *c, user *u) {
+	userchan *uc;
+	for (uc = u->chans; uc; uc = uc->next)
+		if (uc->chan == c)
+			return 1;
+	return 0;
+}
+
+/********************************************************************/
+/**
+ * check whether a user has operator status on a channel
+ */
+int isop(channel *c, user *u) {
+	userchan *uc;
+	for (uc = u->chans; uc; uc = uc->next) {
+		if (uc->chan == c) {
+			if ((uc->status == OP) || (uc->status == OWNER)
+					|| (uc->status == ADMIN))
+				return 1;
+		}
+	}
+	return 0;
+}
+
+/********************************************************************/
+/**
+ * update on join
+ */
+static channel *join_user_update(user *u, channel *c, char *name) {
+	/* If it's a new channel, we need to create it first. */
+	if (!c)
+		c = new_channel(name);
+	chan_adduser(u, c);
+	return c;
+}
+
+/********************************************************************/
+/**
+ * create a new channel and add it to the list
+ */
+static channel *new_channel(const char *chan) {
+	channel *c;
+	c = scalloc(sizeof(channel), 1);
+	if (!chan)
+		chan = "";
+	c->name = sstrdup(chan);
+	c->next = chanlist;
+	c->ops = 0;
+	c->vops = 0;
+	c->pus = 0;
+	c->owners = 0;
+	c->ucnt = 0;
+	c->topic = "";
+	if (chanlist)
+		chanlist->prev = c;
+	chanlist = c;
+	chan_count++;
+	if (isregcs(chan)) {
+		ChanInfo *c2 = findchan(chan);
+		mode(cs_name, c->name, "+rtn", NULL);
+		if(c2->topic) {
+			topic(cs_name,c2->name,c2->topic_user,c2->topic_time,c2->topic);
+			c->topic = sstrdup(c2->topic);
+			c->topic_user = sstrdup(c2->topic_user);
+			c->topic_time = c2->topic_time;
+		}
+	}
+	return c;
+}
+
+/********************************************************************/
+/**
+ * handle the server's JOIN command
+ */
+void s_join(char *src, int ac, char **av) {
+	user *u;
+	char *s, *t;
+	u = finduser(src);
+	if (!u) {
+		addlog(2, LOG_DBG_JOINNONEXIST, s_unreal, src);
+		return;
+	}
+	t = av[0];
+	while (*(s = t)) {
+		t = s + strcspn(s, ",");
+		if (*t)
+			*t++ = 0;
+		join_user_update(u, findchannel(s), s);
+		if(isregcs(s)) {
+			mode(cs_name,s,"+rtn",s);
+		}
+		check_status(findchannel(s),u);
+	}
+}
+
+/********************************************************************/
+/**
+ * handle the Server's PART command
+ */
+void s_part(char *src, int ac, char **av) {
+	del_user(finduser(src),findchannel(av[0]));
 }
 /* EOF */
