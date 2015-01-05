@@ -24,14 +24,10 @@ int config_cs_akick_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *res
 int config_cs_akick_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_akick_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_akick_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_akick_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_akick_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_aop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_aop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_aop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_aop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_aop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_aop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_aop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_autovop(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -41,8 +37,6 @@ int config_cs_hop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_hop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_hop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_hop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_hop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_hop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_hop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -58,23 +52,16 @@ int config_cs_sop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_sop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_sop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_sop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_sop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_sop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-
 int config_cs_sop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_uop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_uop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_uop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_vop_enable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_vop_disable(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_vop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
