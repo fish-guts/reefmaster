@@ -34,7 +34,10 @@ static char *acc[] = {
 
 
 as_cmd as_cmds[] = {
-		{ "SAVEDATA",	as_savedata }
+		{ "SAVEDATA",	as_savedata },
+		{ "SQUIT",	NULL },
+		{ "CHANNEL" , NULL }
+
 };
 
 
