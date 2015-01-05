@@ -60,30 +60,29 @@ irc_cmd irc_cmds[] = {
 	{ "SMO",	  NULL 		},
 	{ "TOPIC",    c_topic 	},
 }; 
+
 /********************************************************************/
 /**
  * 	handle the server's JOIN command
  */
-void c_join(char *src, int ac, char **av)
-{
+void c_join(char *src, int ac, char **av) {
 	s_join(src,ac,av);
 }
+
 /********************************************************************/
 /**
  * 	handle the server's JOIN command
  */
-void c_part(char *src, int ac, char **av)
-{
+void c_part(char *src, int ac, char **av) {
 	s_part(src,ac,av);
 }
+
 /********************************************************************/
 /**
- * 	handle the server's KILL command
+ * 	handle the server's KICK command
  */
 void c_kick(char *src, int ac, char **av) {
-	notice(as_name,"fish-guts","kick fich");
 	if(findbot(av[1])) {
-		notice(as_name,"fish-guts","kicked bot %s",av[1]);
 		del_bot(av[0]);
 		return;
 	} else {
@@ -91,8 +90,12 @@ void c_kick(char *src, int ac, char **av) {
 		return;
 	}
 }
-void c_kill(char *src, int ac, char **av)
-{
+
+/********************************************************************/
+/**
+ * 	handle the server's KILL command
+ */
+void c_kill(char *src, int ac, char **av) {
 	if(isservice(av[0])) {
 		set_service_status(av[0],0);
 	}
@@ -110,12 +113,12 @@ void c_kill(char *src, int ac, char **av)
 	cancel_user(u);
 	return;
 }
+
 /********************************************************************/
 /**
  * Handles a Server's MODE message
  */
-void c_mode(char *src, int ac, char **av)
-{
+void c_mode(char *src, int ac, char **av) {
 	int x = 0;
 	int t = 2;
 	int y = 2;
@@ -216,12 +219,12 @@ void c_mode(char *src, int ac, char **av)
 		}
 	}
 }
+
 /********************************************************************/
 /**
  * 	handle the server's NICK message
  */
-static void c_nick(char *src,int ac,char **av)
-{
+static void c_nick(char *src,int ac,char **av) {
     if(ac==8) 
     {
 		av[6] = av[7];
@@ -245,13 +248,13 @@ static void c_nick(char *src,int ac,char **av)
         s_nick(src,ac,av);
         return;
     }
-}		
+}
+
 /********************************************************************/
 /**
  * 	handle the server's PRIVMSG message
  */
-void c_privmsg(char *src,int ac,char **av)
-{
+void c_privmsg(char *src,int ac,char **av) {
 	char *pch,*dest;
 	/* strip the usermask (@host) if found */
 	if(strchr(av[0],'@'))
@@ -274,20 +277,20 @@ void c_privmsg(char *src,int ac,char **av)
 	if(stricmp(dest,bs_name)==0)
 		botserv(src,av[1]);
 }
- /********************************************************************/
+
+/********************************************************************/
  /**
   * 	handle the server's PING message
   */
-void c_ping(char *src,int ac,char **av)
-{
+void c_ping(char *src,int ac,char **av) {
 	pong();
 }
+
 /********************************************************************/
 /**
  * 	handle the server's split a message line from the server
  */
-int tokenize(char *buf, char ***argv)
-{
+int tokenize(char *buf, char ***argv) {
     int argvsize = 8;
     int argc = 0;
     char *pch;
@@ -325,19 +328,24 @@ int tokenize(char *buf, char ***argv)
     }
     return argc;
 }
+
 /********************************************************************/
 /**
  * 	handle the server's QUIT message
  */
- void c_quit(char *src, int ac, char **av)
- {
+ void c_quit(char *src, int ac, char **av) {
  	user *u = finduser(src);
  	if(u)
  	{
  		ns_checknotify(u,NOTIFY_OFFLINE);
  		cancel_user(u);
  	}
- }
+}
+
+/********************************************************************/
+/**
+ * handle the server's TOPIC message
+ */
 void c_topic(char *src, int ac, char **av)
 {
 	if(isservice(src))  {
@@ -353,6 +361,11 @@ void c_topic(char *src, int ac, char **av)
 	c->topic = sstrdup(av[3]);
 	cs_check_topiclock(src,c,oldtopic);
 }
+
+/********************************************************************/
+/**
+ * handle a channel mode
+ */
 static void handle_chan_mode(char *chan,char *arg,char *mode, int add) {
 	switch(*mode) {
 		case 'o':
@@ -372,6 +385,11 @@ static void handle_chan_mode(char *chan,char *arg,char *mode, int add) {
 			break;
 		}
 }
+
+/********************************************************************/
+/**
+ * handle channel mode o
+ */
 static void handle_chan_mode_o(char *chan,char *nick,int z)
 {
 	user *u = finduser(nick);
@@ -389,6 +407,11 @@ static void handle_chan_mode_o(char *chan,char *nick,int z)
 		del_status(c,u,OP);
 	}
 }
+
+/********************************************************************/
+/**
+ * handle channel mode v
+ */
 static void handle_chan_mode_v(char *chan, char *nick,int z) {
 	user *u = finduser(nick);
 	channel *c = findchannel(chan);
@@ -405,6 +428,10 @@ static void handle_chan_mode_v(char *chan, char *nick,int z) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle channel mode h
+ */
 static void handle_chan_mode_h(char *chan, char *nick, int z) {
 	user *u = finduser(nick);
 	channel *c = findchannel(chan);
@@ -424,6 +451,11 @@ static void handle_chan_mode_h(char *chan, char *nick, int z) {
 		del_status(c,u,HOP);
 	}
 }
+
+/********************************************************************/
+/**
+ * handle channel mode a
+ */
 static void handle_chan_mode_a(char *chan, char *nick, int z) {
 	user *u = finduser(nick);
 	channel *c = findchannel(chan);
@@ -443,6 +475,11 @@ static void handle_chan_mode_a(char *chan, char *nick, int z) {
 		del_status(c,u,ADMIN);
 	}
 }
+
+/********************************************************************/
+/**
+ * handle channel mode q
+ */
 void handle_chan_mode_q(char *chan, char *nick, int z) {
 	channel *c = findchannel(chan);
 	if(isregbot(nick)) {
