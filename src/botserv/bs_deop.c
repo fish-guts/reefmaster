@@ -21,6 +21,11 @@
 
 #include "main.h"
 
+
+/********************************************************************/
+/**
+ * handle the Botserv DEOP command
+ */
 void bs_deop(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

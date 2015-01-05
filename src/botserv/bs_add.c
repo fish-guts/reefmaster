@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the Botserv ADD command
+ */
 void bs_add(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

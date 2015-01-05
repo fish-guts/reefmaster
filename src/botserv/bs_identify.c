@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the Botserv IDENTIFY command
+ */
 void bs_identify(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the Botserv DEVOICE command
+ */
 void bs_devoice(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

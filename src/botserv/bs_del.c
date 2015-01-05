@@ -21,6 +21,11 @@
 
 #include "main.h"
 
+
+/********************************************************************/
+/**
+ * handle the Botserv DEL command
+ */
 void bs_del(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

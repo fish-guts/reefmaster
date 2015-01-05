@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the Botserv KICK command
+ */
 void bs_kick(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

@@ -21,6 +21,11 @@
 
 #include "main.h"
 
+
+/********************************************************************/
+/**
+ * handle the Botserv INFO command
+ */
 void bs_info(char *src,int ac,char **av) {
 	char *botname;
 

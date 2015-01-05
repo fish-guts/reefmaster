@@ -21,9 +21,9 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
- * bs_help handle the Botserv HELP commands
- * Displays the usage of the specified Botserv command
+ * handle the Botserv HELP command
  */
 void bs_help(char *src, int ac, char **av) {
 	char help[64];

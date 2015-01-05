@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the Botserv LIST command
+ */
 void bs_list(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	if(u->oper<bs_access_list) {

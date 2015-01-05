@@ -28,14 +28,6 @@ static bs_cmd *find_bs(const char *name);
 
 static void chan_del_bot(bot *b,botchan *bc);
 
-extern int bs_connect(int sock)
-{
-	char *nick = (char*)malloc(sizeof(char)*256);
-	sprintf(nick,SNICK,bs_name,s_user,s__host,s_name,bs_realname);
-	int rc = send(sock,nick,(int)strlen(nick),0);
-	return rc;
-}
-
 static bs_cmd bs_cmds[] = {
 	{ "ADD", bs_add },
 	{ "DEL", bs_del },
@@ -53,9 +45,20 @@ static bs_cmd bs_cmds[] = {
 	{ "MSG", bs_msg },
 	{ "SET", bs_set },
 	{ "SETPASS", bs_setpass },
-
-
 };
+
+/********************************************************************/
+/**
+ * connect botserv
+ */
+extern int bs_connect(int sock)
+{
+	char *nick = (char*)malloc(sizeof(char)*256);
+	sprintf(nick,SNICK,bs_name,s_user,s__host,s_name,bs_realname);
+	int rc = send(sock,nick,(int)strlen(nick),0);
+	return rc;
+}
+
 
 /********************************************************************/
 /**
@@ -93,6 +96,11 @@ static bs_cmd *find_bs(const char *name) {
 	}
 	return NULL;
 }
+
+/********************************************************************/
+/**
+ * add a bot to the botlist
+ */
 bot *register_bot(char *botname,char *password) {
 	bot *b;
 	b = scalloc(sizeof(bot)+1, 1);
@@ -106,6 +114,11 @@ bot *register_bot(char *botname,char *password) {
 	botlist = b;
 	return b;
 }
+
+/********************************************************************/
+/**
+ * load a bot from the database
+ */
 void load_bot(int id,char *botname, char *password, char *username, char *realname) {
 	bot *b = scalloc(sizeof(bot),1);
 	b->id = id;
@@ -118,12 +131,22 @@ void load_bot(int id,char *botname, char *password, char *username, char *realna
 		botlist->prev = b;
 	botlist = b;
 }
+
+/********************************************************************/
+/**
+ * connect a bot to the server
+ */
 void connect_bot(char *botname) {
 	bot *b = findbot(botname);
 	char *nick = (char*)malloc(sizeof(char)*1024);
 	sprintf(nick,"& %s 1 0 %s %s %s 0 +qdB * :%s\r\n",b->name,b->username,s_name,s_name,b->realname);
 	send(mainsock,nick,(int)strlen(nick),0);
 }
+
+/********************************************************************/
+/**
+ * connect all registered bots
+ */
 void connect_bots(void) {
 	bot *b = botlist;
 	while(b) {
@@ -131,6 +154,11 @@ void connect_bots(void) {
 		b = b->next;
 	}
 }
+
+/********************************************************************/
+/**
+ * remove a bot from the botlist
+ */
 void delete_bot(char *botname) {
 	bot *b = findbot(botname);
 	if (b->prev)
@@ -141,9 +169,19 @@ void delete_bot(char *botname) {
 		b->next->prev = b->prev;
 	free(b);
 }
+
+/********************************************************************/
+/**
+ * disconnect a bot from the server
+ */
 void disconnect_bot(char *botname) {
 	quit(botname);
 }
+
+/********************************************************************/
+/**
+ * add a bot to a channel
+ */
 void add_bot_to_chan(char *botname, char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = scalloc(sizeof(botchan),1);
@@ -153,6 +191,11 @@ void add_bot_to_chan(char *botname, char *chan) {
 	b->chanlist = bc;
 	bc->chan = sstrdup(chan);
 }
+
+/********************************************************************/
+/**
+ * remove a bot from a channel
+ */
 void remove_bot_from_chan(char *botname, char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = b->chanlist;
@@ -163,6 +206,11 @@ void remove_bot_from_chan(char *botname, char *chan) {
 		bc = bc->next;
 	}
 }
+
+/********************************************************************/
+/**
+ * remove channel registry from a bot
+ */
 static void chan_del_bot(bot *b,botchan *bc) {
     free(bc->chan);
     if(bc->prev)
@@ -173,9 +221,10 @@ static void chan_del_bot(bot *b,botchan *bc) {
 		bc->next->prev = bc->prev;
 	free(bc);
 }
+
 /********************************************************************/
 /**
- * find a registered channel in the botserv table
+ * find a registered bot in the botserv table
  */
 bot *findbot(const char *botname) {
 	bot *b = botlist;
@@ -190,6 +239,11 @@ bot *findbot(const char *botname) {
 	}
 	return NULL;
 }
+
+/********************************************************************/
+/**
+ * find a bot on a channel
+ */
 bot *findbot_onchan(char *botname,char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = b->chanlist;

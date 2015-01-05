@@ -21,9 +21,9 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
- * ns_getpass Handle the Botserv SETPASS commands
- * Set a new password for the specified bot. This requires the privileges set in the config.
+ * handle the Botserv SETPASS command
  */
 void bs_setpass(char *src, int ac, char **av) {
 	user *u = finduser(src);

@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the Botserv SETPASS command
+ */
 void bs_voice(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;

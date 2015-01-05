@@ -21,9 +21,9 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
- * ns_getpass Handle the Botserv GETPASS commands
- * Retrieve the specified bot's password. The required privileges are configurable in the config.
+ * Handle the Botserv GETPASS commands
  */
 void bs_getpass(char *src, int ac, char **av) {
 	user *u = finduser(src);
