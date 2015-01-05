@@ -25,6 +25,43 @@ static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop", "Successor",
 
 /********************************************************************/
 /**
+ * if the target nick has authorization for channel lists enabled
+ * add an auth entry
+ */
+void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
+	NickInfo *n = findnick(nick);
+	if(find_auth_entry(nick,chan)) {
+		notice(cs_name,src,CS_RPL_ATH_ALREADYSENT,nick);
+		return;
+	} else {
+		auth*a = scalloc(sizeof(auth), 1);
+		a->next = n->authlist;
+		if (n->authlist)
+			n->authlist->prev = a;
+		n->authlist = a;
+		a->type = list;
+		a->target = sstrdup(chan);
+		a->sender = sstrdup(src);
+		a->date = time(NULL);
+		a->status = 0;
+		a->acclevel = listacc;
+		notice(cs_name,src,CS_RPL_XOP_AUTH_REQUIRED,nick);
+		if(list<AUTH_SUCC) {
+			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_XOP,nick,acclist[list],chan);
+		} else {
+			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_SF,nick,acclist[list],chan);
+		}
+		notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_END,nick);
+		user *u = finduser(nick);
+		if (u) {
+			notice(ns_name, nick, NS_RPL_ATH_TEXT_NOTIFY, src);
+		}
+		return;
+	}
+}
+
+/********************************************************************/
+/**
  * add an access entry to the global op list
  */
 void add_to_list(char *nick, char *chan, int level, char *addnick, int addlevel) {
@@ -381,61 +418,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		add_to_list(nick,chan,list,src,listacc);
 	}
 }
-/********************************************************************/
-/**
- * find an auth entry
- */
-auth *find_auth_entry(char *nick,char *chan) {
-	NickInfo *n = findnick(nick);
-	auth *a = n->authlist;
-	if (n->authlist == NULL) {
-		return NULL;
-	}
-	while (a) {
-		if(stricmp(a->target,chan)==0) {
-			return a;
-		}
-		a = a->next;
-	}
-	return NULL;
-}
 
-/********************************************************************/
-/**
- * if the target nick has authorization for channel lists enabled
- * add an auth entry
- */
-void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
-	NickInfo *n = findnick(nick);
-	if(find_auth_entry(nick,chan)) {
-		notice(cs_name,src,CS_RPL_ATH_ALREADYSENT,nick);
-		return;
-	} else {
-		auth*a = scalloc(sizeof(auth), 1);
-		a->next = n->authlist;
-		if (n->authlist)
-			n->authlist->prev = a;
-		n->authlist = a;
-		a->type = list;
-		a->target = sstrdup(chan);
-		a->sender = sstrdup(src);
-		a->date = time(NULL);
-		a->status = 0;
-		a->acclevel = listacc;
-		notice(cs_name,src,CS_RPL_XOP_AUTH_REQUIRED,nick);
-		if(list<AUTH_SUCC) {
-			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_XOP,nick,acclist[list],chan);
-		} else {
-			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_SF,nick,acclist[list],chan);
-		}
-		notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_END,nick);
-		user *u = finduser(nick);
-		if (u) {
-			notice(ns_name, nick, NS_RPL_ATH_TEXT_NOTIFY, src);
-		}
-		return;
-	}
-}
 /********************************************************************/
 /**
  * input of a chanserv SOP/AOP/UOP/HOP/VOP command - remove a nick
@@ -574,6 +557,26 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		notice(cs_name, src, CS_RPL_XOP_WIPED2, get_opacc(list), chan, i);
 	return;
 }
+
+/********************************************************************/
+/**
+ * find an auth entry
+ */
+auth *find_auth_entry(char *nick,char *chan) {
+	NickInfo *n = findnick(nick);
+	auth *a = n->authlist;
+	if (n->authlist == NULL) {
+		return NULL;
+	}
+	while (a) {
+		if(stricmp(a->target,chan)==0) {
+			return a;
+		}
+		a = a->next;
+	}
+	return NULL;
+}
+
 /********************************************************************/
 /**
  * find a op list entry
