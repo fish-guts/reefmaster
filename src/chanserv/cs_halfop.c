@@ -20,6 +20,11 @@
  */
 #include "main.h"
 
+
+/********************************************************************/
+/**
+ * handle the DEHALFOP command
+ */
 void cs_dehalfop(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
@@ -61,6 +66,11 @@ void cs_dehalfop(char *src, int ac, char **av) {
 	dehop(cs_name,nick,chan);
 	return;
 }
+
+/********************************************************************/
+/**
+ * handle the HALFOP command
+ */
 void cs_halfop(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;

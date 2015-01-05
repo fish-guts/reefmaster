@@ -20,6 +20,11 @@
  */
 #include "main.h"
 
+
+/********************************************************************/
+/**
+ * handle the SETPASS command
+ */
 void cs_setpass(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	/* check if the function is enabled */

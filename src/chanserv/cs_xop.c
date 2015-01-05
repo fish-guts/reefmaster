@@ -23,6 +23,10 @@
 
 static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop", "Successor", "Founder" };
 
+/********************************************************************/
+/**
+ * add an access entry to the global op list
+ */
 void add_to_list(char *nick, char *chan, int level, char *addnick, int addlevel) {
 	op *o = scalloc(sizeof(op),1);
 	o->id = 0;
@@ -377,6 +381,10 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		add_to_list(nick,chan,list,src,listacc);
 	}
 }
+/********************************************************************/
+/**
+ * find an auth entry
+ */
 auth *find_auth_entry(char *nick,char *chan) {
 	NickInfo *n = findnick(nick);
 	auth *a = n->authlist;
@@ -391,6 +399,12 @@ auth *find_auth_entry(char *nick,char *chan) {
 	}
 	return NULL;
 }
+
+/********************************************************************/
+/**
+ * if the target nick has authorization for channel lists enabled
+ * add an auth entry
+ */
 void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
 	NickInfo *n = findnick(nick);
 	if(find_auth_entry(nick,chan)) {
@@ -560,6 +574,10 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		notice(cs_name, src, CS_RPL_XOP_WIPED2, get_opacc(list), chan, i);
 	return;
 }
+/********************************************************************/
+/**
+ * find a op list entry
+ */
 op *find_list_entry(char *nick,char *chan,int level) {
 	op *o = global_op_list;
 	while (o) {
@@ -570,6 +588,10 @@ op *find_list_entry(char *nick,char *chan,int level) {
 	}
 	return NULL;
 }
+/********************************************************************/
+/**
+ * return the type of access a nick has to a channel
+ */
 int get_access_for_nick(ChanInfo *c, NickInfo *n) {
 	op *o = global_op_list;
 	while(o) {
@@ -580,6 +602,11 @@ int get_access_for_nick(ChanInfo *c, NickInfo *n) {
 	}
 	return 0;
 }
+
+/********************************************************************/
+/**
+ * change the access type of a nick
+ */
 void move_in_list(char *nick, char *chan, int level, int existing_level, char *addnick, int addlevel) {
 	op *o = find_list_entry(nick,chan,existing_level);
 	o->level = level;
@@ -588,6 +615,10 @@ void move_in_list(char *nick, char *chan, int level, int existing_level, char *a
 	o->addedon = time(NULL);
 }
 
+/********************************************************************/
+/**
+ * remove a nick from the global op list
+ */
 void remove_from_list(op *o) {
 	if (o->prev)
 		o->prev->next = o->next;

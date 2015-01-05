@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the SET command
+ */
 void cs_set(char *src, int ac, char **av) {
 	if (ac <= 1) {
 		notice(cs_name, src, NS_ERR_SET_USAGE);
@@ -55,6 +59,11 @@ void cs_set(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the SET BOT command
+ */
 void cs_set_bot(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -121,6 +130,10 @@ void cs_set_bot(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the SET DESC command
+ */
 void cs_set_desc(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -154,6 +167,10 @@ void cs_set_desc(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * handle the SET FOUNDER command
+ */
 void cs_set_founder(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan, *nick;
@@ -185,6 +202,11 @@ void cs_set_founder(char *src, int ac, char **av) {
 	notice(cs_name, src, CS_RPL_SET_FOUNDER_SUCCESS, nick, chan);
 	return;
 }
+
+/********************************************************************/
+/**
+ * handle the SET KEEPTOPIC command
+ */
 void cs_set_keeptopic(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -219,6 +241,11 @@ void cs_set_keeptopic(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the SET LEAVEOPS command
+ */
 void cs_set_leaveops(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -255,6 +282,11 @@ void cs_set_leaveops(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the SET MEMOLEVEL command
+ */
 void cs_set_memolevel(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -310,6 +342,10 @@ void cs_set_memolevel(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the SET MLOCK command
+ */
 void cs_set_mlock(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -415,6 +451,11 @@ void cs_set_mlock(char *src, int ac, char **av) {
 	mode(cs_name, chan, chanmode, chan);
 	return;
 }
+
+/********************************************************************/
+/**
+ * handle the SET OPWATCH command
+ */
 void cs_set_opwatch(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -451,6 +492,11 @@ void cs_set_opwatch(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the SET PASSWORD command
+ */
 void cs_set_password(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -488,6 +534,11 @@ void cs_set_password(char *src, int ac, char **av) {
 	notice(cs_name, src, CS_RPL_SET_PASS_SUCCESS, chan, pass);
 	return;
 }
+
+/********************************************************************/
+/**
+ * handle the SET RESTRICTED command
+ */
 void cs_set_restricted(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
@@ -522,6 +573,11 @@ void cs_set_restricted(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the SET SUCCESSOR command
+ */
 void cs_set_successor(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan, *nick;
@@ -554,6 +610,11 @@ void cs_set_successor(char *src, int ac, char **av) {
 	add_to_list(n->nick, c->name, ACCESS_SUC, src, cs_xop_get_level(u, c));
 	return;
 }
+
+/********************************************************************/
+/**
+ * handle the SET TOPICLOCK command
+ */
 void cs_set_topiclock(char *src, int ac, char **av) {
 	ChanInfo *c;
 	char *chan;

@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the MDEOP command
+ */
 void cs_mdeop(char *src, int ac, char **av) {
 	int addacc;
 	if (ac < 1) {

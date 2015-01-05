@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the DEOP command
+ */
 void cs_deop(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
@@ -63,6 +67,10 @@ void cs_deop(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * handle the OP command
+ */
 void cs_op(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;

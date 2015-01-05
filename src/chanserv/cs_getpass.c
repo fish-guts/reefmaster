@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the GETPASS command
+ */
 void cs_getpass(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (cs_gpass <= 0) {

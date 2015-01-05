@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the MKICK command
+ */
 void cs_mkick(char *src, int ac, char **av) {
 	int addacc;
 	if (ac < 2) {
@@ -57,6 +61,10 @@ void cs_mkick(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * kick every user off the channel
+ */
 void do_mkick(channel *c, char *reason) {
 	do_join(cs_name,c->name);
 	do_op(cs_name,cs_name,c->name);

@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the LIST command
+ */
 void cs_list(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	ChanInfo *c = chans;

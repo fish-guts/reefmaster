@@ -20,6 +20,11 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the DROP command
+ */
+
 void cs_drop(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	ChanInfo *c;

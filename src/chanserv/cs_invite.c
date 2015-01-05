@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the INVITE command
+ */
 void cs_invite(char *src,int ac, char **av) {
 	ChanInfo *c;
 	char *chan;

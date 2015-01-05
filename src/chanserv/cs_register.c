@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the REGISTER command
+ */
 void cs_register(char *src, int ac, char **av) {
 	char *chan = av[1];
 	char *pass = av[2];

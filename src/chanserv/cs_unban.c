@@ -21,11 +21,11 @@
 
 #include "main.h"
 
-/**
- * cs_unban Handle the Chanserv UNBAN command
- * User can lift a ban from Chanserv that matches its mask. UOP Access is required.
- */
 
+/********************************************************************/
+/**
+ * check if there a matching bans on the channel
+ */
 chanban *match_ban(char *mask,channel *c) {
 	chanban *b = c->banlist;
 	while(b) {
@@ -37,6 +37,10 @@ chanban *match_ban(char *mask,channel *c) {
 	return NULL;
 }
 
+/**
+ * cs_unban Handle the Chanserv UNBAN command
+ * User can lift a ban from Chanserv that matches its mask. UOP Access is required.
+ */
 void cs_unban(char *src, int ac, char **av) {
 	if(ac<2) {
 		notice(cs_name,src,CS_RPL_UBN_USAGE);

@@ -21,6 +21,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the INFO command
+ */
 void cs_info(char *src,int ac, char **av) {
 	ChanInfo *c;
 	char *chan;

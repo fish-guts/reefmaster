@@ -22,7 +22,7 @@
 #include "main.h"
 
 /**
- * cs_help handle the Chanserv HELP commands
+ * handle the Chanserv HELP commands
  * Displays the usage of the specified Chanserv command
  */
 void cs_help(char *src, int ac, char **av) {

@@ -22,6 +22,10 @@
 
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the IDENTIFY command
+ */
 void cs_identify(char *src,int ac,char **av) {
 	if(ac<3) {
 		notice(cs_name,src,CS_ERR_IDF_USAGE);

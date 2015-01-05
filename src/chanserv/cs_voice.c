@@ -20,6 +20,11 @@
  */
 #include "main.h"
 
+
+/********************************************************************/
+/**
+ * handle the DEVOICE command
+ */
 void cs_devoice(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
@@ -61,6 +66,11 @@ void cs_devoice(char *src, int ac, char **av) {
 	devoice(cs_name,nick,chan);
 	return;
 }
+
+/********************************************************************/
+/**
+ * handle the VOICE command
+ */
 void cs_voice(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;

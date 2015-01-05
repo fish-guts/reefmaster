@@ -20,6 +20,10 @@
  */
 #include "main.h"
 
+/********************************************************************/
+/**
+ * handle the AKICK command
+ */
 void cs_akick(char *src, int ac, char **av) {
 	if (ac < 3) {
 		notice(cs_name, src, CS_ERR_AKICK_USAGE);
@@ -45,6 +49,11 @@ void cs_akick(char *src, int ac, char **av) {
 	}
 	return;
 }
+
+/********************************************************************/
+/**
+ * add an akick mask to a channel
+ */
 void cs_akick_addmask(char *src, int ac, char **av) {
 	int addacc;
 	char *finalmask = (char*) malloc(sizeof(char*) * 1024);
@@ -114,6 +123,11 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 	}
 
 }
+
+/********************************************************************/
+/**
+ * remove a mask from a channel's akick list
+ */
 void cs_akick_delmask(char *src, int ac, char **av) {
 	int addacc;
 	char *finalmask = (char*) malloc(sizeof(char*) * 256);
@@ -161,11 +175,10 @@ void cs_akick_delmask(char *src, int ac, char **av) {
 		ak = ak->next;
 	}
 }
+
 /********************************************************************/
 /**
- * input of a chanserv SOP/AOP/UOP/HOP/VOP command - list all the nicks
- * that have the specified access to the specified channel
- *
+ * list all akick entries of the specified channel
  */
 void cs_akick_listentries(char *src, int ac, char **av) {
 	int listacc;
@@ -214,8 +227,7 @@ akick *cs_akick_match(user *u,ChanInfo *c) {
 }
 /********************************************************************/
 /**
- * input of a chanserv AKICK command - remove all the
- * nicks from the specified list of the specified channel
+ * remove all akick entries from the specified channel
  */
 void cs_akick_wipeall(char *src, int ac, char **av) {
 	int wipeacc;

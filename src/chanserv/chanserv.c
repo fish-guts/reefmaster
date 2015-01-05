@@ -21,8 +21,6 @@
 
 #include "main.h"
 
-/********************************************************************/
-
 /* global variables */
 static cs_cmd *find_cs(const char *name);
 ChanInfo *chans = NULL;
@@ -86,7 +84,10 @@ char *get_opacc(int level) {
 	return opacc[level];
 }
 
-
+/********************************************************************/
+/**
+ * add a channel identification to a user
+ */
 void add_identifiedcs(user *u, char *channel) {
 	struct cschans *uc = scalloc(sizeof(struct cschans), 1);
 	uc->next = u->cschans;
@@ -96,6 +97,7 @@ void add_identifiedcs(user *u, char *channel) {
 	uc->channel = channel;
 	uc->level = CHAN_IDENTIFIED;
 }
+
 /********************************************************************/
 /**
  * the main chanserv routine
@@ -121,6 +123,11 @@ void chanserv(char *src, char *av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * check whether a registered channel has opwatch enabled
+ * deop unauthorized users if opped
+ */
 int cs_check_opwatch(char *chan,user *u) {
 	if(!isregcs(chan)) {
 		return 0;
@@ -136,6 +143,13 @@ int cs_check_opwatch(char *chan,user *u) {
 	}
 	return 1;
 }
+
+/********************************************************************/
+/**
+ * check for a successor if the founder's nickname is dropped
+ * the successor will then become the founder and no
+ * successor is set
+ */
 void cs_check_successor(char *nick) {
 	op *o = global_op_list;
 	while(o) {
@@ -157,6 +171,12 @@ void cs_check_successor(char *nick) {
 		o = o->next;
 	}
 }
+
+/********************************************************************/
+/**
+ * reverse the topic if topiclock is enabled and changed by
+ * a user below the required level
+ */
 void cs_check_topiclock(char *src,channel *cl,char *oldtopic) {
 	if(isservice(src)) {
 		return;
@@ -209,6 +229,10 @@ char *cs_get_why(user *u, ChanInfo *c) {
 	return NULL;
 }
 
+/********************************************************************/
+/**
+ * remove all op entries of a dropped nick
+ */
 void cs_drop_nick(char *nick) {
 	op *o = global_op_list;
 	while(o) {
@@ -333,6 +357,10 @@ ChanInfo *findchan(const char *chan) {
 	return c;
 }
 
+/********************************************************************/
+/**
+ * find a channel using the specified id
+ */
 ChanInfo *find_chan_by_id(unsigned int id) {
 	ChanInfo *c = chans;
 	while(c) {
