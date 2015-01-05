@@ -266,19 +266,6 @@ int config_cs_autovop(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_autovop = val;
 	return 0;
 }
-int config_cs_expiry(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
-	int val = atoi(value);
-	if (val < 0) {
-		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,
-				opt->name);
-		addlog(2, CONF_LOG_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,
-				opt->name);
-		return -1;
-	}
-	cs_expiry = val;
-	return 0;
-}
 int config_cs_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (val < 0) {
@@ -965,12 +952,6 @@ int config_load(const char *file) {
 			CFG_STR_CB("log",0,CFGF_NONE,(void*)config_str32),
 			CFG_STR_CB("error",0,CFGF_NONE,(void*)config_str32),
 			CFG_STR_CB("pid",0,CFGF_NONE,(void*)config_str32),
-			CFG_INT_CB("keeplogfiles",0,CFGF_NONE,(void*)config_s_keeplogs),
-			CFG_END()
-	};
-	static cfg_opt_t main_cycle_opts[] = {
-			CFG_INT_CB("global_on_cycle",0,CFGF_NONE,(void*)config_s_globaloncycle),
-			CFG_STR_CB("cycle_message",0,CFGF_NONE,(void*)config_str64),
 			CFG_END()
 	};
 	static cfg_opt_t main_password_opts[] = {
@@ -986,7 +967,6 @@ int config_load(const char *file) {
 	static cfg_opt_t services_opts[] = {
 			CFG_SEC("general",main_general_opts,CFGF_NONE),
 			CFG_SEC("files",main_files_opts,CFGF_NONE),
-			CFG_SEC("cycle",main_cycle_opts,CFGF_NONE),
 			CFG_SEC("password",main_password_opts,CFGF_NONE),
 			CFG_SEC("registration",main_reg_opts,CFGF_NONE), CFG_END()
 	};
@@ -1038,7 +1018,6 @@ int config_load(const char *file) {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_cs),
 			CFG_STR_CB("name","Chanserv",CFGF_NONE,(void*)&config_str32),
 			CFG_STR_CB("realname","Channel Services",CFGF_NONE,(void*)&config_str32),
-			CFG_INT_CB("expiry",90,CFGF_NONE,(void*)&config_cs_expiry),
 			CFG_INT_CB("admin",6,CFGF_NONE,(void*)&config_cs_admin),
 			CFG_END()
 	};
@@ -1258,7 +1237,6 @@ int config_load(const char *file) {
 		services = cfg_getsec(cfg, "services");
 		cfg_t *general;
 		cfg_t *files;
-		cfg_t *cycle;
 		cfg_t *reg;
 		cfg_t *password;
 
@@ -1269,7 +1247,6 @@ int config_load(const char *file) {
 			s_name = cfg_getstr(general, "name");
 			s_description = cfg_getstr(general, "description");
 			s__host = cfg_getstr(general, "host");
-			s_help_channel = cfg_getstr(general, "help_channel");
 			s_user = cfg_getstr(general, "user");
 			s_address = cfg_getstr(general, "address");
 			s_unreal = cfg_getstr(general, "irc");
@@ -1281,13 +1258,6 @@ int config_load(const char *file) {
 			s_motd = cfg_getstr(files, "motd");
 			s_log = cfg_getstr(files, "log");
 			s_pid = cfg_getstr(files, "pid");
-		}
-
-		/* section cycle */
-		cycle = cfg_getsec(services, "cycle");
-		if (cycle) {
-			s_global_on_cycle = cfg_getint(cycle, "global_on_cycle");
-			s_cycle_message = cfg_getstr(cycle, "cycle_message");
 		}
 
 		/* section password */
@@ -1342,7 +1312,6 @@ int config_load(const char *file) {
 		cfg_t *cs_ops;
 		cfg_t *cs_password;
 		cfg_t *cs_default;
-		cfg_t *cs_misc;
 		cfg_t *cs_list;
 		chanserv = cfg_getsec(cfg, "chanserv");
 
@@ -1372,10 +1341,6 @@ int config_load(const char *file) {
 		/* section default */
 		cs_default = cfg_getsec(chanserv, "default");
 		cs_mlock = cfg_getstr(cs_default, "mlock");
-
-		/* section misc */
-		cs_misc = cfg_getsec(chanserv, "misc");
-		cs_akick_max = cfg_getint(cs_misc, "akick_max");
 
 		/* end of section chanserv */
 
@@ -1675,26 +1640,7 @@ int config_port(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	s_port = val;
 	return 0;
 }
-int config_s_globaloncycle(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
-	int val = atoi(value);
-	if (!isbool(val)) {
-		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
-		addlog(2, CONF_LOG_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
-		return -1;
-	}
-	s_global_on_cycle = val;
-	return 0;
-}
-int config_s_keeplogs(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
-	int val = atoi(value);
-	if (val < 0) {
-		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line, opt->name);
-		addlog(2, CONF_LOG_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line, opt->name);
-		return -1;
-	}
-	//s_keeplogfiles = val;
-	return 0;
-}
+
 int config_s_passlimit(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int var = atoi(value);
 	if (var < 0) {

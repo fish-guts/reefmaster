@@ -25,6 +25,8 @@ volatile int sig_flag = 0;
 static timer *timeouts = NULL;
 int save_interval = 60;
 static int ifmatch(const char *pattern, const char *str, int mode);
+static void check_expiry(void);
+static void check_ns_expiry(void);
 
 unsigned long get_duration(char *dur) {
 
@@ -141,6 +143,21 @@ void check_services(void) {
 void check_connections(void) {
 	check_services();
 	check_bots();
+}
+static void check_expiry(void) {
+	check_ns_expiry();
+}
+
+static void check_ns_expiry(void) {
+	long expiration = time(NULL) - (ns_expiry * 86400);
+	NickInfo *n = nicklist;
+	while(n) {
+		if(n->last_seen < expiration) {
+			delete_nick(n);
+			addlog(1, NS_LOG_NICK_DROPPED, n->nick);
+		}
+		n = n->next;
+	}
 }
 void check_save(void) {
 	time_t now = time(NULL);
@@ -498,6 +515,7 @@ void timer_event_handler(int sigid) {
 	if (sigid == SIGALRM) {
 		check_timeouts();
 		check_connections();
+		check_expiry();
 		check_akills();
 		check_save();
 	}

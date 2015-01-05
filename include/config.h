@@ -31,7 +31,6 @@ int config_cs_aop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resu
 int config_cs_aop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_autovop(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_cs_expiry(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_getpass(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_cs_hop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_hop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -92,8 +91,6 @@ int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_ns_regacc(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_ns_getpass(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_ns_setpass(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
-int config_s_keeplogs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-int config_s_globaloncycle(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_s_passlimit(cfg_t *cfg,cfg_opt_t *opt, const char *value, void *result);
 int config_str32(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_str64(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);

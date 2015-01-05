@@ -119,6 +119,7 @@
 #define NS_RPL_PLZ_30SECSLEFT		"You have\2 30 Seconds\2 left to identify before your nickname is changed"
 #define NS_RPL_PLZ_NOTIMELEFT		"Time's up. Your nickname is now being changed. If this is your nickname, please identify."
 #define NS_ERR_TOOMANYPASS			"Too many wrong passwords. Please try again later."
+#define NS_LOG_NICK_DROPPED			"Nick %s has expired and is now being dropped"
 
 /* Access
  ******************************************************************************************************************************************

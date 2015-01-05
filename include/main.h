@@ -217,7 +217,6 @@ int   cs_enabled;
 char *cs_name; 
 char *cs_realname;
 int   cs_delay; 
-int   cs_expiry; 
 int   cs_sops_max; 
 int   cs_aops_max;
 int   cs_hops_max; 
