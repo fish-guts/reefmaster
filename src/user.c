@@ -34,28 +34,36 @@ int connection_count = 0;
 
 /********************************************************************/
 /**
- * register a new user with services
+ * update a user who changed its nick
  */
-static user *new_user(const char *src)
+static void change_user_nick(user *u, const char *nick)
 {
-    user *u;
-    u = scalloc(sizeof(user),1);
-    if(!src)
-		src = "";
-    strscpy(u->nick,src,NICKMAX);
-    u->flood_level1 = 0;
-    u->next = userlist;
-    if (userlist)
-		userlist->prev = u;
-    userlist = u;
-    user_count++;
-    connection_count++;
-    if(u->oper>0)
-    	oper_count++;
-    if (user_count > max_user_count)
-    	max_user_count = user_count;
-    return u;
+    strscpy(u->nick,nick,NICKMAX);
 }
+
+/********************************************************************/
+/**
+ * remove a user registration
+ */
+void delete_user(user *u)
+{
+    user_count--;
+    if(u->oper>0)
+    	oper_count--;
+    cancel_user(u);
+    free(u->username);
+    free(u->hostname);
+    free(u->realname);
+    free(u->server);
+    if(u->prev)
+	u->prev->next = u->next;
+    else
+	userlist = u->next;
+    if (u->next)
+	u->next->prev = u->prev;
+    free(u);
+}
+
 /********************************************************************/
 /**
  * find a registered user
@@ -83,28 +91,32 @@ user *finduserbynick(char *src) {
 	}
 	return NULL;
 }
+
 /********************************************************************/
 /**
- * remove a user registration
+ * register a new user with services
  */
-void delete_user(user *u)
+static user *new_user(const char *src)
 {
-    user_count--;
+    user *u;
+    u = scalloc(sizeof(user),1);
+    if(!src)
+		src = "";
+    strscpy(u->nick,src,NICKMAX);
+    u->flood_level1 = 0;
+    u->next = userlist;
+    if (userlist)
+		userlist->prev = u;
+    userlist = u;
+    user_count++;
+    connection_count++;
     if(u->oper>0)
-    	oper_count--;
-    cancel_user(u);
-    free(u->username);
-    free(u->hostname);
-    free(u->realname);
-    free(u->server);
-    if(u->prev)
-	u->prev->next = u->next;
-    else
-	userlist = u->next;
-    if (u->next)
-	u->next->prev = u->prev;
-    free(u);
+    	oper_count++;
+    if (user_count > max_user_count)
+    	max_user_count = user_count;
+    return u;
 }
+
 /********************************************************************/
 /**
  * handle the server's NICK message
@@ -165,14 +177,6 @@ void s_nick(const char *src, int ac, char **av)
 		u->signon = atol(av[1]);
 	}
     validate_user(u);
-}
-/********************************************************************/
-/**
- * update a user who changed its nick
- */
-static void change_user_nick(user *u, const char *nick)
-{
-    strscpy(u->nick,nick,NICKMAX);
 }
 
 void user_add_bot(user *u,bot *b) {

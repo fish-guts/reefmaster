@@ -29,42 +29,10 @@ int check_ping = 0;
 static void daemonize(void);
 
 
-/**
- * the application's main method
- */
-int main(int argc,char **argv)
-{
-	if(!argv[1]) {
-		printf(APP_DBG_UNKNOWN_CMD);
-		exit(EXIT_FAILURE);
-	}
-	else if(strcmp(argv[1],"start")==0)	{
-		daemonize();
-	}
-	else if(strcmp(argv[1],"stop")==0)
-		exit(EXIT_SUCCESS);
-	else
-	{
-		printf(APP_DBG_UNKNOWN_CMD);
-		exit(EXIT_FAILURE);
-	}
-	return -1;
-}
-/* formatted message */
-void print_msg(char *msg, ...)
-{
-	va_list	va;
-	char buf[1024];
-	va_start(va,msg);
-	vsprintf(buf,msg,va);
-	va_end(va);
-	printf("*** %s",buf);
-}
 static void daemonize(void)
 {
 
 	mainsock = -1;
-	/*
 	pid_t pid, sid;
 	if (getppid()==1)
     	return;
@@ -77,7 +45,6 @@ static void daemonize(void)
     sid = setsid();
     if(sid<0)
         exit(EXIT_FAILURE);
-        */
 	int rc;
 	if((rc=load_app())!=0)
 	{
@@ -112,7 +79,27 @@ int load_app(void) {
 	}
 	return rc;
 }
-
+/**
+ * the application's main method
+ */
+int main(int argc,char **argv)
+{
+	if(!argv[1]) {
+		printf(APP_DBG_UNKNOWN_CMD);
+		exit(EXIT_FAILURE);
+	}
+	else if(strcmp(argv[1],"start")==0)	{
+		daemonize();
+	}
+	else if(strcmp(argv[1],"stop")==0)
+		exit(EXIT_SUCCESS);
+	else
+	{
+		printf(APP_DBG_UNKNOWN_CMD);
+		exit(EXIT_FAILURE);
+	}
+	return -1;
+}
 void start_app(void) {
 	int s;
 	char buf[100000];
@@ -151,6 +138,17 @@ void start_app(void) {
 			}
 		}
 	}
+}
+
+/* formatted message */
+void print_msg(char *msg, ...)
+{
+	va_list	va;
+	char buf[1024];
+	va_start(va,msg);
+	vsprintf(buf,msg,va);
+	va_end(va);
+	printf("*** %s",buf);
 }
 
 /* the application's startup message */

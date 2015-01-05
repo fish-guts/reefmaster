@@ -23,67 +23,6 @@
 
 char ircbuf[IRCBUF_SIZE];
 
-int sock_init(void) {
-	int rc = 0;
-	return rc;
-}
-
-int sock_connect(void) {
-	int sock, port;
-	char serverip[20];
-	/* server address in config file */
-	char *server = s_address;
-	 /* server password in config file */
-	char *password = s_password;
-	/* server description in config file */
-	char *description = s_description;
-	/* server name in config file */
-	char *servername = s_name;
-	char *SRV = (char*) malloc(sizeof(char) * 128);
-	char *PASS = (char*) malloc(sizeof(char) * 64);
-	char *PROT = (char*) malloc(sizeof(char) * 64);
-	struct sockaddr_in addr; /* server address; */
-	struct hostent *dns;
-	server = s_address;
-	password = s_password;
-	description = s_description;
-	servername = s_name;
-	port = s_port; /* server port in config file */
-	dns = gethostbyname(server);
-	/* resolving host to an IP address; */
-	sprintf(serverip, "%u.%u.%u.%u", (unsigned char) dns->h_addr_list[0][0],
-			(unsigned char) dns->h_addr_list[0][1],
-			(unsigned char) dns->h_addr_list[0][2],
-			(unsigned char) dns->h_addr_list[0][3]);
-	sock = socket(AF_INET, SOCK_STREAM, 0);
-	if (sock < 0) {
-		printf(APP_ERR_SOCKET);
-		return -1;
-	}
-	printf(APP_DBG_CONNECTINGTOSERVER, s_unreal);
-	bzero(&addr, sizeof(addr));
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons((unsigned short) port);
-	addr.sin_addr.s_addr = inet_addr(serverip);
-	if (connect(sock, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
-		printf(FAIL);
-		printf(APP_ERR_CONNECTIONERROR, s_unreal);
-		printf("Error message: %s\n", strerror(errno));
-		return -1;
-	}
-	printf(OK);
-	printf(APP_DBG_REGISTERINGSRV, s_unreal);
-	sprintf(PASS, "PASS %s\r\n", password);
-	sprintf(SRV, "SERVER %s 1 :[%s] %s\r\n", servername, servername,
-			description);
-	PROT = "PROTOCTL NICKv2\r\n";
-	send(sock, PROT, (int) strlen(PROT), 0);
-	send(sock, PASS, (int) strlen(PASS), 0);
-	send(sock, SRV, (int) strlen(SRV), 0);
-	printf(OK);
-	return sock;
-}
-
 void load_modules(int sock) {
 	if (ns_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, ns_name);
@@ -184,5 +123,63 @@ void parse(void) {
 		addlog(2, APP_ERR_UNKNOWNMSG, ircbuf);
 	free(av);
 }
+
+int sock_connect(void) {
+	int sock, port;
+	char serverip[20];
+	/* server address in config file */
+	char *server = s_address;
+	 /* server password in config file */
+	char *password = s_password;
+	/* server description in config file */
+	char *description = s_description;
+	/* server name in config file */
+	char *servername = s_name;
+	char *SRV = (char*) malloc(sizeof(char) * 128);
+	char *PASS = (char*) malloc(sizeof(char) * 64);
+	char *PROT = (char*) malloc(sizeof(char) * 64);
+	struct sockaddr_in addr; /* server address; */
+	struct hostent *dns;
+	server = s_address;
+	password = s_password;
+	description = s_description;
+	servername = s_name;
+	port = s_port; /* server port in config file */
+	dns = gethostbyname(server);
+	/* resolving host to an IP address; */
+	sprintf(serverip, "%u.%u.%u.%u", (unsigned char) dns->h_addr_list[0][0],
+			(unsigned char) dns->h_addr_list[0][1],
+			(unsigned char) dns->h_addr_list[0][2],
+			(unsigned char) dns->h_addr_list[0][3]);
+	sock = socket(AF_INET, SOCK_STREAM, 0);
+	if (sock < 0) {
+		printf(APP_ERR_SOCKET);
+		return -1;
+	}
+	printf(APP_DBG_CONNECTINGTOSERVER, s_unreal);
+	bzero(&addr, sizeof(addr));
+	addr.sin_family = AF_INET;
+	addr.sin_port = htons((unsigned short) port);
+	addr.sin_addr.s_addr = inet_addr(serverip);
+	if (connect(sock, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
+		printf(FAIL);
+		printf(APP_ERR_CONNECTIONERROR, s_unreal);
+		printf("Error message: %s\n", strerror(errno));
+		return -1;
+	}
+	printf(OK);
+	printf(APP_DBG_REGISTERINGSRV, s_unreal);
+	sprintf(PASS, "PASS %s\r\n", password);
+	sprintf(SRV, "SERVER %s 1 :[%s] %s\r\n", servername, servername,
+			description);
+	PROT = "PROTOCTL NICKv2\r\n";
+	send(sock, PROT, (int) strlen(PROT), 0);
+	send(sock, PASS, (int) strlen(PASS), 0);
+	send(sock, SRV, (int) strlen(SRV), 0);
+	printf(OK);
+	return sock;
+}
+
+
 
 /* EOF */
