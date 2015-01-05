@@ -31,6 +31,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv LOCAL command
+ */
 void os_local(char *src, int ac, char **av) {
 	if(ac<2) {
 		notice(os_name,src,OS_RPL_LOCAL_USAGE);

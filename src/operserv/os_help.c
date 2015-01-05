@@ -21,9 +21,9 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
- * os_help handle the Operserv HELP commands
- * Displays the usage of the specified Operserv command
+ * handle the Operserv HELP command
  */
 void os_help(char *src, int ac, char **av) {
 	char help[64];

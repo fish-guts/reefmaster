@@ -50,8 +50,42 @@ static os_cmd os_cmds[] = {
 
 };
 
+/********************************************************************/
 /**
- * the main operserv routine
+ * announce a new operator
+ */
+void announce_oper(char *oper,int lvl) {
+	globops(os_name,aoper[lvl-1],oper);
+}
+
+/********************************************************************/
+/**
+ * find the correct operserv command
+ */
+static os_cmd *find_os(const char *name) {
+	os_cmd *cmd;
+	for (cmd = os_cmds; cmd->name; cmd++) {
+		if (stricmp(name, cmd->name) == 0)
+			return cmd;
+	}
+	return NULL;
+}
+
+/********************************************************************/
+/**
+ * find an oper registered with operserv
+ */
+operuser *findoper(const char *src) {
+	operuser *o = opers;
+	while (o && stricmp(o->nick, src) != 0) {
+		o = o->next;
+	}
+	return o;
+}
+
+/********************************************************************/
+/**
+ * handle the operserv command
  */
 void operserv(char *src, char *av) {
 	int i = 0;
@@ -71,19 +105,11 @@ void operserv(char *src, char *av) {
 		addlog(2, LOG_DBG_NS_UNKNOWN, ns_name, src, u->username, u->hostname,av);
 	}
 }
+
 /********************************************************************/
 /**
- * find the correct operserv command
+ * Connect operserv to server
  */
-static os_cmd *find_os(const char *name) {
-	os_cmd *cmd;
-	for (cmd = os_cmds; cmd->name; cmd++) {
-		if (stricmp(name, cmd->name) == 0)
-			return cmd;
-	}
-	return NULL;
-}
-
 extern int os_connect(int sock)
 {
 	char *nick = (char*) malloc(sizeof(char)*256);
@@ -92,14 +118,3 @@ extern int os_connect(int sock)
 	return 0;
 }
 
-void announce_oper(char *oper,int lvl)
-{
-	globops(os_name,aoper[lvl-1],oper);
-}
-operuser *findoper(const char *src) {
-	operuser *o = opers;
-	while (o && stricmp(o->nick, src) != 0) {
-		o = o->next;
-	}
-	return o;
-}

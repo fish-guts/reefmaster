@@ -35,6 +35,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv SQLINE command
+ */
 void os_sqline(char *src, int ac, char **av) {
 	if(stricmp(av[1],"ADD")==0) {
 		os_sqline_add(src,ac,av);
@@ -47,6 +51,10 @@ void os_sqline(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv SQLINE ADD command
+ */
 static void os_sqline_add(char *src, int ac, char **av) {
 	long duration = 0;
 	if(ac<4) {
@@ -105,6 +113,10 @@ static void os_sqline_add(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv SQLINE DEL command
+ */
 static void os_sqline_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_SQLINE_DEL_USAGE);

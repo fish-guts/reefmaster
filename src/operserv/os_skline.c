@@ -35,6 +35,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv SKLINE command
+ */
 void os_skline(char *src, int ac, char **av) {
 	if(stricmp(av[1],"ADD")==0) {
 		os_skline_add(src,ac,av);
@@ -47,6 +51,10 @@ void os_skline(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv SKLINE ADD command
+ */
 static void os_skline_add(char *src, int ac, char **av) {
 	long duration = 0;
 	if(ac<4) {
@@ -135,6 +143,11 @@ static void os_skline_add(char *src, int ac, char **av) {
 	return;
 }
 
+
+/********************************************************************/
+/**
+ * handle the Operserv SKLINE DEL command
+ */
 static void os_skline_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_SKLINE_DEL_USAGE);

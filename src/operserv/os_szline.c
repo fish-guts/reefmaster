@@ -35,6 +35,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv SZLINE command
+ */
 void os_szline(char *src, int ac, char **av) {
 	if(stricmp(av[1],"ADD")==0) {
 		os_szline_add(src,ac,av);
@@ -47,6 +51,10 @@ void os_szline(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv SZLINE ADD command
+ */
 static void os_szline_add(char *src, int ac, char **av) {
 	long duration = 0;
 	if(ac<4) {
@@ -110,6 +118,10 @@ static void os_szline_add(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv SZLINE DEL command
+ */
 static void os_szline_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_SZLINE_DEL_USAGE);

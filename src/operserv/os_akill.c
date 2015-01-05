@@ -38,6 +38,57 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * remove an akill mask from the akill list
+ */
+void delete_akill(char *mask) {
+	akill *a = findakill(mask);
+	if (a->prev)
+		a->prev->next = a->next;
+	else
+		akills = a->next;
+	if (a->next)
+		a->next->prev = a->prev;
+	free(a);
+}
+
+/********************************************************************/
+/**
+ * find an akill entry in the akill list
+ */
+akill *findakill(const char *mask) {
+	akill *a = akills;
+	while (a && stricmp(a->mask, mask) != 0) {
+		a = a->next;
+	}
+	return a;
+}
+
+/********************************************************************/
+/**
+ * add new akill mask to akill list
+ */
+static void new_akill(char *src,char *mask, char *reason, time_t duration) {
+	akill *a = scalloc(sizeof(akill), 1);
+	a->added_by = sstrdup(src);
+	a->mask = sstrdup(mask);
+	a->reason = sstrdup(reason);
+	if(duration) {
+		a->expires = (time(NULL) + (duration*60));
+	} else {
+		a->expires = 0;
+	}
+	a->next = akills;
+	if (akills)
+		akills->prev = a;
+	akills = a;
+}
+
+/********************************************************************/
+/**
+ * handle the Operserv AKILL command
+ */
 void os_akill(char *src, int ac, char **av) {
 	if(stricmp(av[1],"ADD")==0) {
 		os_akill_add(src,ac,av);
@@ -51,6 +102,10 @@ void os_akill(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv AKILL ADD command
+ */
 static void os_akill_add(char *src, int ac, char **av) {
 	int duration = 0;
 	if(ac<4) {
@@ -113,21 +168,10 @@ static void os_akill_add(char *src, int ac, char **av) {
 	return;
 }
 
-static void new_akill(char *src,char *mask, char *reason, time_t duration) {
-	akill *a = scalloc(sizeof(akill), 1);
-	a->added_by = sstrdup(src);
-	a->mask = sstrdup(mask);
-	a->reason = sstrdup(reason);
-	if(duration) {
-		a->expires = (time(NULL) + (duration*60));
-	} else {
-		a->expires = 0;
-	}
-	a->next = akills;
-	if (akills)
-		akills->prev = a;
-	akills = a;
-}
+/********************************************************************/
+/**
+ * handle the Operserv AKILL DEL command
+ */
 static void os_akill_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_AKILL_DEL_USAGE);
@@ -160,16 +204,12 @@ static void os_akill_del(char *src, int ac, char **av) {
 	notice(os_name,src,OS_RPL_AKILL_DEL_SUCCESS,av[2]);
 	return;
 }
-void delete_akill(char *mask) {
-	akill *a = findakill(mask);
-	if (a->prev)
-		a->prev->next = a->next;
-	else
-		akills = a->next;
-	if (a->next)
-		a->next->prev = a->prev;
-	free(a);
-}
+
+
+/********************************************************************/
+/**
+ * handle the Operserv AKILL LIST command
+ */
 static void os_akill_list(char *src, int ac, char **av) {
 	if(ac<2) {
 		notice(os_name,src,OS_RPL_OPER_LIST_USAGE);
@@ -208,10 +248,4 @@ static void os_akill_list(char *src, int ac, char **av) {
 		notice(os_name,src,OS_RPL_LIST_END2);
 	}
 }
-akill *findakill(const char *mask) {
-	akill *a = akills;
-	while (a && stricmp(a->mask, mask) != 0) {
-		a = a->next;
-	}
-	return a;
-}
+

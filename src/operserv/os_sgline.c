@@ -35,6 +35,11 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+
+/********************************************************************/
+/**
+ * handle the Operserv SGLINE command
+ */
 void os_sgline(char *src, int ac, char **av) {
 	if(stricmp(av[1],"ADD")==0) {
 		os_sgline_add(src,ac,av);
@@ -47,6 +52,10 @@ void os_sgline(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv SGLINE ADDcommand
+ */
 static void os_sgline_add(char *src, int ac, char **av) {
 	long duration = 0;
 	if(ac<4) {
@@ -135,6 +144,11 @@ static void os_sgline_add(char *src, int ac, char **av) {
 	return;
 }
 
+
+/********************************************************************/
+/**
+ * handle the Operserv SGLINE DEL command
+ */
 static void os_sgline_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_SGLINE_DEL_USAGE);

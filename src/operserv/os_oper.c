@@ -27,11 +27,11 @@ static void os_oper_del(char *src, int ac, char **av);
 static void os_oper_list(char *src, int ac, char **av);
 static void os_oper_set(char *src, int ac, char **av);
 static void os_oper_set_akill(char *src,operuser *o,char *option);
+static void os_oper_set_chatops(char *src,operuser *o,char *option);
 static void os_oper_set_chghost(char *src,operuser *o,char *option);
 static void os_oper_set_global(char *src,operuser *o,char *option);
-static void os_oper_set_local(char *src,operuser *o,char *option);
 static void os_oper_set_kill(char *src,operuser *o,char *option);
-static void os_oper_set_chatops(char *src,operuser *o,char *option);
+static void os_oper_set_local(char *src,operuser *o,char *option);
 static void os_oper_set_sgline(char *src,operuser *o,char *option);
 static void os_oper_set_skline(char *src,operuser *o,char *option);
 static void os_oper_set_sqline(char *src,operuser *o,char *option);
@@ -50,6 +50,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv OPER command
+ */
 void os_oper(char *src, int ac, char **av) {
 	if(stricmp(av[1],"ADD")==0) {
 		os_oper_add(src,ac,av);
@@ -65,6 +69,10 @@ void os_oper(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv OPER ADD command
+ */
 static void os_oper_add(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_OPER_ADD_USAGE);
@@ -89,6 +97,10 @@ static void os_oper_add(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * add a new oper to the oper list
+ */
 static void new_oper(char *nick) {
 	operuser *o = scalloc(sizeof(operuser), 1);
 	o->nick = sstrdup(nick);
@@ -108,6 +120,11 @@ static void new_oper(char *nick) {
 		opers->prev = o;
 	opers = o;
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER DEL command
+ */
 static void os_oper_del(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_OPER_DEL_USAGE);
@@ -127,6 +144,11 @@ static void os_oper_del(char *src, int ac, char **av) {
 	notice(os_name,src,OS_RPL_OPER_DEL_SUCCESS,av[2]);
 	return;
 }
+
+/********************************************************************/
+/**
+ * remove an oper from the oper list
+ */
 void delete_oper(char *nick) {
 	operuser *o = findoper(nick);
 	if (o->prev)
@@ -137,6 +159,11 @@ void delete_oper(char *nick) {
 		o->next->prev = o->prev;
 	free(o);
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER LIST command
+ */
 static void os_oper_list(char *src, int ac, char **av) {
 	if(ac<2) {
 		notice(os_name,src,OS_RPL_OPER_LIST_USAGE);
@@ -163,6 +190,10 @@ static void os_oper_list(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET command
+ */
 static void os_oper_set(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_OPER_SET_USAGE);
@@ -204,6 +235,10 @@ static void os_oper_set(char *src, int ac, char **av) {
 	}
 }
 
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET AKILL command
+ */
 static void os_oper_set_akill(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_akill = 1;
@@ -218,6 +253,30 @@ static void os_oper_set_akill(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET CHATOPS command
+ */
+static void os_oper_set_chatops(char *src,operuser *o,char *option) {
+	if(stricmp(option,"ON")==0) {
+		o->can_chatops = 1;
+		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
+		return;
+	} else if(stricmp(option,"OFF")==0) {
+		o->can_chatops = 0;
+		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
+		return;
+	} else {
+		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"CHATOPS");
+		return;
+	}
+}
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET CHGHOST command
+ */
 static void os_oper_set_chghost(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_chghost = 1;
@@ -232,6 +291,11 @@ static void os_oper_set_chghost(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET GLOBAL command
+ */
 static void os_oper_set_global(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_global = 1;
@@ -246,6 +310,30 @@ static void os_oper_set_global(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET KILL command
+ */
+static void os_oper_set_kill(char *src,operuser *o,char *option) {
+	if(stricmp(option,"ON")==0) {
+		o->can_kill = 1;
+		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
+		return;
+	} else if(stricmp(option,"OFF")==0) {
+		o->can_kill = 0;
+		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
+		return;
+	} else {
+		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"KILL");
+		return;
+	}
+}
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET LOCAL command
+ */
 static void os_oper_set_local(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_local = 1;
@@ -261,34 +349,11 @@ static void os_oper_set_local(char *src,operuser *o,char *option) {
 		return;
 	}
 }
-static void os_oper_set_kill(char *src,operuser *o,char *option) {
-	if(stricmp(option,"ON")==0) {
-		o->can_kill = 1;
-		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
-		return;
-	} else if(stricmp(option,"OFF")==0) {
-		o->can_kill = 0;
-		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
-		return;
-	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"KILL");
-		return;
-	}
-}
-static void os_oper_set_chatops(char *src,operuser *o,char *option) {
-	if(stricmp(option,"ON")==0) {
-		o->can_chatops = 1;
-		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
-		return;
-	} else if(stricmp(option,"OFF")==0) {
-		o->can_chatops = 0;
-		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
-		return;
-	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"CHATOPS");
-		return;
-	}
-}
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET SGLINE command
+ */
 static void os_oper_set_sgline(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_sgline = 1;
@@ -303,6 +368,11 @@ static void os_oper_set_sgline(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET SKLINE command
+ */
 static void os_oper_set_skline(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_skline = 1;
@@ -318,6 +388,11 @@ static void os_oper_set_skline(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET SQLINE command
+ */
 static void os_oper_set_sqline(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_sqline = 1;
@@ -332,6 +407,11 @@ static void os_oper_set_sqline(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET SZLINE command
+ */
 static void os_oper_set_szline(char *src,operuser *o,char *option) {
 	if(stricmp(option,"ON")==0) {
 		o->can_szline = 1;
@@ -346,6 +426,11 @@ static void os_oper_set_szline(char *src,operuser *o,char *option) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * handle the Operserv OPER SET VHOST command
+ */
 static void os_oper_set_vhost(char *src,operuser *o,char *option) {
 	o->vhost = sstrdup(option);
 	notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);

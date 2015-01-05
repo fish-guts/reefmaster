@@ -31,6 +31,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv KILl command
+ */
 void os_kill(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_KILL_USAGE);

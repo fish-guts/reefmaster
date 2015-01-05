@@ -31,6 +31,10 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
+/**
+ * handle the Operserv GLOBAL command
+ */
 void os_global(char *src, int ac, char **av) {
 	if(ac<3) {
 		notice(os_name,src,OS_RPL_GLOBAL_USAGE);
