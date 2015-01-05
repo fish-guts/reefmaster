@@ -21,6 +21,15 @@
 
 #include "main.h"
 
+int file_exists(const char *file) {
+	FILE *fp;
+	fp = fopen(file, "r");
+		if (fp == NULL)
+			return 0;
+	fclose(fp);
+	return 1;
+}
+
 /**
  * ns_help handle the Nickserv HELP commands
  * Displays the usage of the specified Nickserv command
@@ -44,13 +53,4 @@ void help_message(const char *service,char *src, const char *helpfile) {
 	fclose(fp);
 	if (line)
 		free(line);
-}
-
-int file_exists(const char *file) {
-	FILE *fp;
-	fp = fopen(file, "r");
-		if (fp == NULL)
-			return 0;
-	fclose(fp);
-	return 1;
 }

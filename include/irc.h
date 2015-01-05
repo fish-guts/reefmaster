@@ -2,7 +2,6 @@
 #define IRC_H_
 
 void addserverban(char *src,char type,char *user,char *host,char *reason,int timestamp);
-void remove_serverban(char *src,char type, char *username,char *hostname);
 void ban(char *src,const char *target,char *chan);
 void chatops(char *src,char *msg,...);
 void chghost(char *src,char *target,char *host);
@@ -24,28 +23,29 @@ void hop(char *src,char *target,char *chan);
 void invite(char *src,char *target,char *chan);
 void kick(char *src,const char *target,char *chan,char *reason);
 void kline(char *src,char *user,char *host,char *reason,int timestamp);
-void rkline(char *src,char *username,char *hostname);
 void locops(char *src,char *msg,...);
 void mode(const char *src,const char *target,char *modes,char *chan);
 void notice(const char *src,char *dest,char *msg, ...);
 void pong(void);
 void privmsg(const char *src,char *dest,char *msg, ...);
-void sqline(char *src,char *hold,char *nickname,char *reason,int timestamp);
-void rsqline(char *src,char *hold,char *nickname);
 void qline(char *src,char *nick,char *reason);
-void unqline(char *src, char *nick);
 void quit(char *nick);
+void remove_serverban(char *src,char type, char *username,char *hostname);
 void rgline(char *src,char *username,char *hostname);
+void rkline(char *src,char *username,char *hostname);
+void rsqline(char *src,char *hold,char *nickname);
+void rzline(char *src,char *user, char *host);
+
+
+void sqline(char *src,char *hold,char *nickname,char *reason,int timestamp);
 void s_kill(const char *src,char *dest,char *reason);
 void s_send(char *cmd, ...);
 void svs2mode(const char *src,char *target,char *modes,char *chan);
 void svsmode(const char *src,char *target,char *modes,char *chan);
 void svsnick(char *src,char *newnick,time_t t);
 void topic(char *src, char *chan,char *nick,time_t timestamp,char *topic);
+void unqline(char *src, char *nick);
 void voice(char *src,char *target,char *chan);
 void wallops(char *src,char *msg,...);
 void zline(char *src,char *mask, char *reason, int timestamp);
-void rzline(char *src,char *user, char *host);
-
-
 #endif /*IRC_H_*/

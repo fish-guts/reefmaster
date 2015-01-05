@@ -45,6 +45,152 @@ unsigned long get_duration(char *dur) {
 	return 0;
 }
 
+int _stricmp(const char *str1, const char *str2) {
+	register signed char __res;
+	while (1) {
+		if ((__res = toupper(*str1) - toupper(*str2++)) != 0 || !*str1++)
+			break;
+	}
+	return __res;
+}
+const char *_stristr(const char *str1, const char *str2) {
+	if (!*str2)
+		return str1;
+	for (; *str1; ++str1) {
+		if (toupper(*str1) == toupper(*str2)) {
+			const char *h, *n;
+			for (h = str1, n = str2; *h && *n; ++h, ++n) {
+				if (toupper(*h) != toupper(*n))
+					break;
+			}
+			if (!*n)
+				return str1;
+		}
+	}
+	return 0;
+}
+
+timer *add_timeout(int delay, void (*code)(timer *), int repeat) {
+	timer *t = smalloc(sizeof(timer));
+	t->settime = time(NULL);
+	t->timeout = t->settime + delay;
+	t->code = code;
+	t->repeat = repeat;
+	t->next = timeouts;
+	t->prev = NULL;
+	if (timeouts)
+		timeouts->prev = t;
+	timeouts = t;
+	return t;
+}
+void check_akills(void) {
+	akill *a = akills;
+	while(a) {
+		user *u = userlist;
+		while(u) {
+			char mask[256];
+			char final_reason[1024];
+			sprintf(mask,"%s@%s",u->username,u->hostname);
+			if(ifmatch(a->mask,mask,0)) {
+				if(a->expires==0) {
+					sprintf(final_reason,"You are banned from this Network. %s",a->reason);
+					do_akill(s_name,u->nick,final_reason);
+				} else {
+					sprintf(final_reason,"You are temporarily banned from this Network. %s",a->reason);
+					do_akill(s_name,u->nick,final_reason);
+				}
+			}
+			u = u->next;
+		}
+		a = a->next;
+	}
+}
+void check_bots() {
+	bot *b = botlist;
+	while(b) {
+		botchan *bc = b->chanlist;
+		while(bc) {
+			if(!is_bot_on_chan(b->name,bc->chan)) {
+				do_join(b->name,bc->chan);
+				do_owner(b->name,b->name,bc->chan);
+				add_bot(bc->chan,b->name);
+			}
+			bc = bc->next;
+		}
+		b = b->next;
+	}
+}
+void check_services(void) {
+	if(!ns_status) {
+		ns_connect(mainsock);
+		ns_status = 1;
+	} else if(!cs_status) {
+		cs_connect(mainsock);
+		cs_status = 1;
+	} else if(!bs_status) {
+		bs_connect(mainsock);
+		bs_status = 1;
+	} else if(!os_status) {
+		os_connect(mainsock);
+		os_status = 1;
+	} else if(!as_status) {
+		as_connect(mainsock);
+		as_status = 1;
+	}
+}
+void check_connections(void) {
+	check_services();
+	check_bots();
+}
+void check_save(void) {
+	time_t now = time(NULL);
+	if(now >= next_save) {
+		save_database();
+		next_save = now + (save_interval);
+	}
+}
+void check_timeouts(void) {
+	timer *t1, *t2;
+	time_t t = time(NULL);
+	t1 = timeouts;
+	while (t1) {
+		if (t < t1->timeout) {
+			t1 = t1->next;
+			continue;
+		}
+		t1->code(t1);
+		if (t1->repeat) {
+			t1 = t1->next;
+			continue;
+		}
+		t2 = t1->next;
+		if (t1->next)
+			t1->next->prev = t1->prev;
+		if (t1->prev)
+			t1->prev->next = t1->next;
+		else
+			timeouts = t1->next;
+		free(t1);
+		t1 = t2;
+	}
+}
+void del_timeout(timer *t) {
+	timer *ptr;
+	for (ptr = timeouts; ptr; ptr = ptr->next) {
+		if (ptr == t)
+			break;
+	}
+	if (!ptr)
+		return;
+	if (t->prev)
+		t->prev->next = t->next;
+	else
+		timeouts = t->next;
+	if (t->next)
+		t->next->prev = t->prev;
+	free(t);
+}
+
 int hasaccess(user *u, char *nick) {
 	char *mask = (char*) malloc(sizeof(char*) * 256);
 	sprintf(mask, "%s@%s", u->username, u->hostname);
@@ -58,13 +204,143 @@ int hasaccess(user *u, char *nick) {
 		return -1;
 }
 
-int _stricmp(const char *str1, const char *str2) {
-	register signed char __res;
-	while (1) {
-		if ((__res = toupper(*str1) - toupper(*str2++)) != 0 || !*str1++)
+static int ifmatch(const char *pattern, const char *str, int mode) {
+	char c;
+	const char *ptr;
+	for (;;) {
+		switch (c = *pattern++) {
+		case 0:
+			if (!*str)
+				return 1;
+			return 0;
+		case '?':
+			if (!*str)
+				return 0;
+			str++;
 			break;
+		case '*':
+			if (!*pattern)
+				return 1; /* trailing '*' matches everything else */
+			ptr = str;
+			while (*ptr) {
+				if ((mode ?
+						(*ptr == *pattern) :
+						(tolower(*ptr) == tolower(*pattern)))
+						&& ifmatch(pattern, ptr, mode))
+					return 1;
+				ptr++;
+			}
+			break;
+		default:
+			if (mode ? (*str++ != c) : (tolower(*str++) != tolower(c)))
+				return 0;
+			break;
+		} /* switch */
+	} /* for */
+	return -1;
+}
+int ifmatch_1(const char *pattern, const char *str) {
+	return ifmatch(pattern, str, 1);
+}
+
+int ifmatch_0(const char *pattern, const char *str) {
+	return ifmatch(pattern, str, 0);
+}
+char *internal_strrep(const char *str, const char *find, const char *rep,
+		size_t newsize, size_t index) {
+	size_t replen = strlen(rep), findlen = strlen(find);
+	char *nextpos, *newstring;
+
+	if (findlen && (nextpos = strstr(str, find))) {
+		size_t delta = nextpos - str;
+		newsize += replen - findlen;
+		newstring = internal_strrep(nextpos + findlen, find, rep, newsize,
+				index + delta + replen);
+		if (!newstring)
+			return NULL;
+		memcpy(newstring + index + delta, rep, replen);
+		memcpy(newstring + index, str, delta);
+	} else {
+		size_t len = strlen(str), newindex;
+		newstring = malloc(newsize + 1);
+		if (!newstring)
+			return NULL;
+		newindex = newsize - len;
+		strcpy(newstring + newindex, str);
 	}
-	return __res;
+	return newstring;
+}
+
+int isbool(int value) {
+	if ((value < 0) || (value > 1))
+		return 0;
+	else
+		return 1;
+}
+int ismatch(user *u, char *mask) {
+	if (!isreg(u->nick))
+		return 0;
+	if (isidentified(u, u->nick)) {
+		return 2;
+	}
+	NickInfo *n = findnick(u->nick);
+	myacc *a = n->accesslist;
+	while (a) {
+		if (ifmatch(a->mask, mask, 0)) {
+			return 1;
+		}
+		a = a->next;
+	}
+	return 0;
+}
+int isnum(char *value) {
+	char *ptr;
+	for (ptr = value; *ptr; ptr++) {
+		if (!isdigit(*ptr))
+			return 0;
+	}
+	return 1;
+}
+int isoper(user *u) {
+	if (u->oper > 0)
+		return 1;
+	else
+		return 0;
+}
+/* returns the registration level for a nickname (0 = not registered, 1 or above = registered) */
+int isreg(const char *src) {
+	NickInfo *n;
+	n = findnick(src);
+	if (n) {
+		return n->protect;
+	}
+	return 0;
+}
+int isregbot(const char *src) {
+	bot *b;
+	b = findbot(src);
+	if (b) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+int isregcs(const char *chan) {
+	ChanInfo *c = findchan(chan);
+	if (c) {
+		return 1;
+	}
+	return 0;
+}
+int isservice(char *src) {
+	if((stricmp(src,ns_name)==0) ||
+	   (stricmp(src,cs_name)==0) ||
+	   (stricmp(src,bs_name)==0) ||
+	   (stricmp(src,os_name)==0) ||
+	   (stricmp(src,as_name)==0)) {
+		return 1;
+	}
+	return 0;
 }
 char *mask(char *src, char *host) {
 	user *u1 = finduser(src);
@@ -108,94 +384,6 @@ char *mask(char *src, char *host) {
 	}
 	return tmphost;
 }
-static int ifmatch(const char *pattern, const char *str, int mode) {
-	char c;
-	const char *ptr;
-	for (;;) {
-		switch (c = *pattern++) {
-		case 0:
-			if (!*str)
-				return 1;
-			return 0;
-		case '?':
-			if (!*str)
-				return 0;
-			str++;
-			break;
-		case '*':
-			if (!*pattern)
-				return 1; /* trailing '*' matches everything else */
-			ptr = str;
-			while (*ptr) {
-				if ((mode ?
-						(*ptr == *pattern) :
-						(tolower(*ptr) == tolower(*pattern)))
-						&& ifmatch(pattern, ptr, mode))
-					return 1;
-				ptr++;
-			}
-			break;
-		default:
-			if (mode ? (*str++ != c) : (tolower(*str++) != tolower(c)))
-				return 0;
-			break;
-		} /* switch */
-	} /* for */
-	return -1;
-}
-int ifmatch_1(const char *pattern, const char *str) {
-	return ifmatch(pattern, str, 1);
-}
-
-int ifmatch_0(const char *pattern, const char *str) {
-	return ifmatch(pattern, str, 0);
-}
-int ismatch(user *u, char *mask) {
-	if (!isreg(u->nick))
-		return 0;
-	if (isidentified(u, u->nick)) {
-		return 2;
-	}
-	NickInfo *n = findnick(u->nick);
-	myacc *a = n->accesslist;
-	while (a) {
-		if (ifmatch(a->mask, mask, 0)) {
-			return 1;
-		}
-		a = a->next;
-	}
-	return 0;
-}
-int isnum(char *value) {
-	char *ptr;
-	for (ptr = value; *ptr; ptr++) {
-		if (!isdigit(*ptr))
-			return 0;
-	}
-	return 1;
-}
-int isbool(int value) {
-	if ((value < 0) || (value > 1))
-		return 0;
-	else
-		return 1;
-}
-int isoper(user *u) {
-	if (u->oper > 0)
-		return 1;
-	else
-		return 0;
-}
-int isservice(char *src) {
-	if((stricmp(src,ns_name)==0) ||
-	   (stricmp(src,cs_name)==0) ||
-	   (stricmp(src,bs_name)==0) ||
-	   (stricmp(src,os_name)==0) ||
-	   (stricmp(src,as_name)==0)) {
-		return 1;
-	}
-	return 0;
-}
 void set_service_status(char *service,int status) {
 	if(stricmp(ns_name,service)==0) {
 		ns_status = status;
@@ -209,46 +397,21 @@ void set_service_status(char *service,int status) {
 		as_status = status;
 	}
 }
-char *strscpy(char *d, const char *s, size_t len) {
-	char *d_orig = d;
-	if (!len)
-		return d;
-	while (--len && (*d++ = *s++))
-		;
-	*d = 0;
-	return d_orig;
-}
-const char *_stristr(const char *str1, const char *str2) {
-	if (!*str2)
-		return str1;
-	for (; *str1; ++str1) {
-		if (toupper(*str1) == toupper(*str2)) {
-			const char *h, *n;
-			for (h = str1, n = str2; *h && *n; ++h, ++n) {
-				if (toupper(*h) != toupper(*n))
-					break;
-			}
-			if (!*n)
-				return str1;
-		}
-	}
-	return 0;
-}
-void *smalloc(long size) {
-	void *buf;
-	if (!size)
-		size = 1;
-	buf = malloc(size);
-	if (!buf)
-		raise(SIGUSR1);
-	return buf;
-}
 void *scalloc(long size, long l) {
 	void *buf;
 	if ((!size) || (!l)) {
 		size = l = 1;
 	}
 	buf = calloc(size, l);
+	if (!buf)
+		raise(SIGUSR1);
+	return buf;
+}
+void *smalloc(long size) {
+	void *buf;
+	if (!size)
+		size = 1;
+	buf = malloc(size);
 	if (!buf)
 		raise(SIGUSR1);
 	return buf;
@@ -285,200 +448,42 @@ char *strrep(const char* str, const char *find, const char *x) {
 	}
 	return r;
 }
+char *strscpy(char *d, const char *s, size_t len) {
+	char *d_orig = d;
+	if (!len)
+		return d;
+	while (--len && (*d++ = *s++))
+		;
+	*d = 0;
+	return d_orig;
+}
 
 char *str_replace (const char *string, const char *substr, const char *replacement) {
-  char *tok = NULL;
-  char *newstr = NULL;
-  char *oldstr = NULL;
-  /* if either substr or replacement is NULL, duplicate string a let caller handle it */
-  if ( substr == NULL || replacement == NULL ) return strdup (string);
-  newstr = strdup (string);
-  while ( (tok = strstr ( newstr, substr ))){
-    oldstr = newstr;
-    newstr = malloc ( strlen ( oldstr ) - strlen ( substr ) + strlen ( replacement ) + 1 );
-    /*failed to alloc mem, free old string and return NULL */
-    if ( newstr == NULL ){
-      free (oldstr);
-      return NULL;
-    }
-    memcpy ( newstr, oldstr, tok - oldstr );
-    memcpy ( newstr + (tok - oldstr), replacement, strlen ( replacement ) );
-    memcpy ( newstr + (tok - oldstr) + strlen( replacement ), tok + strlen ( substr ), strlen ( oldstr ) - strlen ( substr ) - ( tok - oldstr ) );
-    memset ( newstr + strlen ( oldstr ) - strlen ( substr ) + strlen ( replacement ) , 0, 1 );
-    free (oldstr);
-  }
-  return newstr;
+	char *tok = NULL;
+	char *newstr = NULL;
+	char *oldstr = NULL;
+	/* if either substr or replacement is NULL, duplicate string a let caller handle it */
+	if ( substr == NULL || replacement == NULL ) {
+		return strdup (string);
+	}
+	newstr = strdup (string);
+	while ((tok = strstr (newstr, substr))) {
+		oldstr = newstr;
+		newstr = malloc (strlen(oldstr) - strlen (substr) + strlen (replacement) + 1);
+		/*failed to alloc mem, free old string and return NULL */
+		if ( newstr == NULL ) {
+			free (oldstr);
+			return NULL;
+		}
+		memcpy ( newstr, oldstr, tok - oldstr );
+		memcpy ( newstr + (tok - oldstr), replacement, strlen ( replacement ) );
+		memcpy ( newstr + (tok - oldstr) + strlen( replacement ), tok + strlen ( substr ), strlen ( oldstr ) - strlen ( substr ) - ( tok - oldstr ) );
+		memset ( newstr + strlen ( oldstr ) - strlen ( substr ) + strlen ( replacement ) , 0, 1 );
+		free (oldstr);
+	}
+	return newstr;
 }
 
-char *internal_strrep(const char *str, const char *find, const char *rep,
-		size_t newsize, size_t index) {
-	size_t replen = strlen(rep), findlen = strlen(find);
-	char *nextpos, *newstring;
-
-	if (findlen && (nextpos = strstr(str, find))) {
-		size_t delta = nextpos - str;
-		newsize += replen - findlen;
-		newstring = internal_strrep(nextpos + findlen, find, rep, newsize,
-				index + delta + replen);
-		if (!newstring)
-			return NULL;
-		memcpy(newstring + index + delta, rep, replen);
-		memcpy(newstring + index, str, delta);
-	} else {
-		size_t len = strlen(str), newindex;
-		newstring = malloc(newsize + 1);
-		if (!newstring)
-			return NULL;
-		newindex = newsize - len;
-		strcpy(newstring + newindex, str);
-	}
-	return newstring;
-}
-/* returns the registration level for a nickname (0 = not registered, 1 or above = registered) */
-int isreg(const char *src) {
-	NickInfo *n;
-	n = findnick(src);
-	if (n) {
-		return n->protect;
-	}
-	return 0;
-}
-int isregcs(const char *chan) {
-	ChanInfo *c = findchan(chan);
-	if (c) {
-		return 1;
-	}
-	return 0;
-}
-int isregbot(const char *src) {
-	bot *b;
-	b = findbot(src);
-	if (b) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
-void check_bots() {
-	bot *b = botlist;
-	while(b) {
-		botchan *bc = b->chanlist;
-		while(bc) {
-			if(!is_bot_on_chan(b->name,bc->chan)) {
-				do_join(b->name,bc->chan);
-				do_owner(b->name,b->name,bc->chan);
-				add_bot(bc->chan,b->name);
-			}
-			bc = bc->next;
-		}
-		b = b->next;
-	}
-}
-void check_services(void) {
-	if(!ns_status) {
-		ns_connect(mainsock);
-		ns_status = 1;
-	} else if(!cs_status) {
-		cs_connect(mainsock);
-		cs_status = 1;
-	} else if(!bs_status) {
-		bs_connect(mainsock);
-		bs_status = 1;
-	} else if(!os_status) {
-		os_connect(mainsock);
-		os_status = 1;
-	} else if(!as_status) {
-		as_connect(mainsock);
-		as_status = 1;
-	}
-}
-void check_connections(void) {
-	check_services();
-	check_bots();
-}
-void check_akills(void) {
-	akill *a = akills;
-	while(a) {
-		user *u = userlist;
-		while(u) {
-			char mask[256];
-			char final_reason[1024];
-			sprintf(mask,"%s@%s",u->username,u->hostname);
-			if(ifmatch(a->mask,mask,0)) {
-				if(a->expires==0) {
-					sprintf(final_reason,"You are banned from this Network. %s",a->reason);
-					do_akill(s_name,u->nick,final_reason);
-				} else {
-					sprintf(final_reason,"You are temporarily banned from this Network. %s",a->reason);
-					do_akill(s_name,u->nick,final_reason);
-				}
-			}
-			u = u->next;
-		}
-		a = a->next;
-	}
-}
-void check_save(void) {
-	time_t now = time(NULL);
-	if(now >= next_save) {
-		save_database();
-		next_save = now + (save_interval);
-	}
-}
-void check_timeouts(void) {
-	timer *t1, *t2;
-	time_t t = time(NULL);
-	t1 = timeouts;
-	while (t1) {
-		if (t < t1->timeout) {
-			t1 = t1->next;
-			continue;
-		}
-		t1->code(t1);
-		if (t1->repeat) {
-			t1 = t1->next;
-			continue;
-		}
-		t2 = t1->next;
-		if (t1->next)
-			t1->next->prev = t1->prev;
-		if (t1->prev)
-			t1->prev->next = t1->next;
-		else
-			timeouts = t1->next;
-		free(t1);
-		t1 = t2;
-	}
-}
-timer *add_timeout(int delay, void (*code)(timer *), int repeat) {
-	timer *t = smalloc(sizeof(timer));
-	t->settime = time(NULL);
-	t->timeout = t->settime + delay;
-	t->code = code;
-	t->repeat = repeat;
-	t->next = timeouts;
-	t->prev = NULL;
-	if (timeouts)
-		timeouts->prev = t;
-	timeouts = t;
-	return t;
-}
-void del_timeout(timer *t) {
-	timer *ptr;
-	for (ptr = timeouts; ptr; ptr = ptr->next) {
-		if (ptr == t)
-			break;
-	}
-	if (!ptr)
-		return;
-	if (t->prev)
-		t->prev->next = t->next;
-	else
-		timeouts = t->next;
-	if (t->next)
-		t->next->prev = t->prev;
-	free(t);
-}
 void set_timer(time_t period_in_secs) {
 
 	struct itimerval timer_val;
@@ -513,6 +518,7 @@ int match(char *str, char *pattern) {
     }
     return 1;
 }
+
 
 char *strlower(char *str) {
 	int i = 0;
