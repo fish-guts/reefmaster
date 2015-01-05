@@ -22,14 +22,9 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
- * cs_acc Handle the Nickserv ACC Command
- * Displayes why a user has access to a nickname
- * Possible return values are:
- * 		0 - no access - User hasn't identified and doesn't have a matching entry in its access list
- * 		1 - Matches an entry in the access list - User hasn't identified for this nickname
- * 			but his usermask (user@host) matches an entry in the nickname's access list
- * 		2 - User has identified for this nickname using its password.
+ * Handle the Nickserv ACC Command
  */
 void ns_acc(char *src, int ac, char **av) {
 	if (ac < 2) {

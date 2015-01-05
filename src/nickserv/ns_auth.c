@@ -20,6 +20,7 @@
  */
 #include "main.h"
 
+/********************************************************************/
 /**
  * accept an auth request.param can never be null
  */
@@ -33,6 +34,7 @@ void accept_auth(char *src, auth *a,int i) {
 	notice(ns_name,src,NS_RPL_ATH_ACCEPTED,i);
 }
 
+/********************************************************************/
 /**
  * accept an add request for a channel access list. params can never be null
  */
@@ -40,6 +42,8 @@ void accept_auth_chan(char *src,auth *a) {
 	add_to_list(src,a->target, a->type, a->sender, a->acclevel);
 	return;
 }
+
+/********************************************************************/
 /**
  * accept a notify list request. params can never be null
  */
@@ -47,12 +51,17 @@ void accept_auth_notify(char *src,auth *a) {
 	add_notify(a->sender,src);
 	return;
 }
+/********************************************************************/
+/** check whether a nick has open requests
+ *
+ */
 int has_open_auth(NickInfo *n) {
 	if(n->authlist)
 		return 1;
 	return 0;
 }
 
+/********************************************************************/
 /**
  * ns_auth Handle the Nickserv NS AUTH command.
  * Possible subcommands are:
@@ -82,8 +91,11 @@ void ns_auth(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
 /*
- * Handles the NS AUTH ACCEPT command. Purpose is to accept a request that authorization is required for.
+ * Handles the NS AUTH ACCEPT command. Purpose is to accept a request
+ * that authorization is required for.
  */
 void ns_auth_accept(char *src, int ac, char **av) {
 	static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
@@ -131,6 +143,10 @@ void ns_auth_accept(char *src, int ac, char **av) {
 		return;
 	}
 }
+/********************************************************************/
+/**
+ * decline an auth request
+ */
 void ns_auth_decline(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac < 3) {
@@ -175,6 +191,8 @@ void ns_auth_decline(char *src, int ac, char **av) {
 	notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
 	return;
 }
+
+/********************************************************************/
 /**
  * list all open auth requests.
  */
@@ -208,6 +226,11 @@ void ns_auth_list(char *src, int ac, char **av) {
 	}
 	return;
 }
+
+/********************************************************************/
+/**
+ * read an auth request
+ */
 void ns_auth_read(char *src, int ac, char **av) {
 	static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
 	/* AUTH types are:
@@ -271,6 +294,10 @@ void ns_auth_read(char *src, int ac, char **av) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * remove an auth request
+ */
 void remove_auth(char *src, auth *a) {
 	NickInfo *n = findnick(src);
 	if (a->prev)

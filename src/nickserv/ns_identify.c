@@ -21,11 +21,11 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
  * ns_identify Handle the Nickserv IDENTIFY command
  * Identify for a registered nickname.
  */
-
 void ns_identify(char *src, int ac, char **av) {
 	user *u;
 	int rc;

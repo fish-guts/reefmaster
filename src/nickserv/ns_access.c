@@ -123,6 +123,10 @@ void ns_access_add(char *src, char *nick, char *mask) {
 	return;
 }
 
+/********************************************************************/
+/**
+ * add an access mask to a nickname
+ */
 void ns_access_add_mask(NickInfo *n, char *mask) {
 	myacc *a = scalloc(sizeof(myacc), 1);
 	a->next = n->accesslist;
@@ -132,6 +136,7 @@ void ns_access_add_mask(NickInfo *n, char *mask) {
 	a->mask = sstrdup(mask);
 }
 
+/********************************************************************/
 /**
  * remove an entry from the nickname's access list
  */
@@ -173,6 +178,10 @@ void ns_access_del(char *src, char *nick, char *mask) {
 		return;
 	}
 }
+/********************************************************************/
+/**
+ * find an existing access mask in a nickname
+ */
 static myacc *find_mask(NickInfo *n,char *mask) {
 	myacc *a;
 	for (a = n->accesslist; a->mask-1; a++) {
@@ -182,6 +191,8 @@ static myacc *find_mask(NickInfo *n,char *mask) {
 	}
 	return NULL;
 }
+
+/********************************************************************/
 /**
  * List all the nickname's access entries
  */
@@ -227,6 +238,7 @@ void ns_access_list(char *src, char *nick) {
 	}
 }
 
+/********************************************************************/
 /**
  * remove all entries from the nickname's access list.
  */

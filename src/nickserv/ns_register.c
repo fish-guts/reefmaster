@@ -32,9 +32,11 @@ static char *oline[] = {
 		"Network Administrator"
 };
 
+/********************************************************************/
 /**
  * ns_register Handle the Nickserv REGISTER command
- * Register a nickname with Nickserv. Special privileges may be required, this is configurable.
+ * Register a nickname with Nickserv. Special privileges
+ * may be required, this is configurable.
  */
 void ns_register(char *src, int ac, char **av) {
 	user *u;

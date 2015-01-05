@@ -20,6 +20,8 @@
  */
 #include "main.h"
 
+
+/********************************************************************/
 /**
  * ns_listchans Handle the Nickserv LISTCHANS command
  * Lists all channel access entries the specified nickname has access to

@@ -22,9 +22,11 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
  * ns_release Handle the Nickserv RELEASE command.
- * Release a nick from custody after it has been taken over by service due to lack of access.
+ * Release a nick from custody after it has been taken over by
+ * service due to lack of access.
  */
 void ns_release(char *src, int ac, char **av) {
 	user *u = finduser(src);

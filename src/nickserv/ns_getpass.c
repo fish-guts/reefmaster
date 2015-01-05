@@ -21,9 +21,11 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
  * ns_getpass Handle the Nickserv GETPASS commands
- * Retrieve the specified nickname's password. The required privileges are configurable in the config.
+ * Retrieve the specified nickname's password. The
+ * required privileges are configurable in the config.
  */
 void ns_getpass(char *src, int ac, char **av) {
 	user *u = finduser(src);

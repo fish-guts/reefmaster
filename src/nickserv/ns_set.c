@@ -67,7 +67,7 @@ void ns_set(char *src, int ac, char **av) {
 }
 /********************************************************************/
 /**
- * ns_set_authorize - handle the Nickserv SET AUTHORIZE command
+ * handle the Nickserv SET AUTHORIZE command
  * Usage: set [CHAN|NOTIFY] [on|off]
  */
 void ns_set_authorize(char *src, int ac, char **av) {
@@ -128,7 +128,7 @@ void ns_set_authorize(char *src, int ac, char **av) {
 }
 /********************************************************************/
 /**
- * ns_set_email - handle the Nickserv SET EMAIL command
+ * handle the Nickserv SET EMAIL command
  */
 void ns_set_email(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -155,8 +155,9 @@ void ns_set_email(char *src, int ac, char **av) {
 	notice(ns_name, src, NS_RPL_SET_EMAILSUCCESS, av[2]);
 	return;
 }
+/********************************************************************/
 /**
- * ns_set_hidemail - handle the Nickserv HIDEEMAIL command
+ * handle the Nickserv HIDEEMAIL command
  */
 void ns_set_hideemail(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -190,8 +191,10 @@ void ns_set_hideemail(char *src, int ac, char **av) {
 	}
 	return;
 }
+
+/********************************************************************/
 /**
- * ns_set_mforward - handle the Nickserv SET MFORWARD command
+ * handle the Nickserv SET MFORWARD command
  */
 void ns_set_mforward(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -236,8 +239,10 @@ void ns_set_mforward(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
 /**
- * ns_set_mlock - handle the Nickserv SET MLOCK command
+ * handle the Nickserv SET MLOCK command
  */
 void ns_set_mlock(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -260,8 +265,10 @@ void ns_set_mlock(char *src, int ac, char **av) {
 	notice(ns_name, src, NS_RPL_SET_MLOCKSUCCESS, av[2]);
 	return;
 }
+
+/********************************************************************/
 /**
- * ns_set_mnotify - handle the Nickserv SET MNOTIFY command
+ * handle the Nickserv SET MNOTIFY command
  */
 void ns_set_mnotify(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -294,9 +301,10 @@ void ns_set_mnotify(char *src, int ac, char **av) {
 		return;
 	}
 }
+
 /********************************************************************/
 /**
- * ns SET - handle the Nickserv SET NOMEMO command
+ * handle the Nickserv SET NOMEMO command
  */
 void ns_set_nomemo(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -329,8 +337,10 @@ void ns_set_nomemo(char *src, int ac, char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
 /**
- * ns_set_noop - handle the Nickserv SET NOOP command
+ * handle the Nickserv SET NOOP command
  */
 void ns_set_noop(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -372,9 +382,10 @@ void ns_set_noop(char *src, int ac, char **av) {
 	}
 	return;
 }
+
 /********************************************************************/
 /**
- * ns_set_password - handle the Nickserv SET PASSWORD command
+ * handle the Nickserv SET PASSWORD command
  */
 void ns_set_password(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -406,8 +417,10 @@ void ns_set_password(char *src, int ac, char **av) {
 	notice(ns_name, src, NS_RPL_SET_PASS_SUCCESS, av[2]);
 	return;
 }
+
+/********************************************************************/
 /**
- * ns_set_protect - handle the Nickserv SET PROTECT command
+ * handle the Nickserv SET PROTECT command
  */
 void ns_set_protect(char *src, int ac, char **av) {
 	user *u = finduser(src);
@@ -457,8 +470,10 @@ void ns_set_protect(char *src, int ac, char **av) {
 	}
 	return;
 }
+
+/********************************************************************/
 /**
- * ns_set_url - handle the Nickserv SET URL command
+ * handle the Nickserv SET URL command
  */
 void ns_set_url(char *src, int ac, char **av) {
 	user *u = finduser(src);

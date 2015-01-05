@@ -69,9 +69,10 @@ ns_cmd ns_cmds[] = {
 	{ "SETPASS", ns_setpass },
 };
 
+
 /********************************************************************/
 /**
- * add_ns_timeout: starts a timer, depending on the type
+ * starts a timer, depending on the type
  */
 static void add_ns_timeout(user *u, int type, time_t delay) {
 	timer *to;
@@ -97,7 +98,7 @@ static void add_ns_timeout(user *u, int type, time_t delay) {
 }
 /********************************************************************/
 /**
- * cancel_user: remove any timer if a user quits
+ * remove any timer if a user quits
  */
 void cancel_user(user *u) {
 	del_ns_timeout(u, TO_COLLIDE);
@@ -147,10 +148,8 @@ static void del_ns_timeout(user *u, int type) {
 	}
 }
 /********************************************************************/
-/* delete_nick():
- * 		Description	: 	Deletes a nickname when being dropped
- * 		Parameters	: 	n 	= NickInfo structure
- * 		Return Value: 	none
+/**
+ * delete a nickname from the list.
  */
 void delete_nick(NickInfo *n) {
 	if (n->prev)
@@ -214,8 +213,11 @@ NickInfo *findnick(const char *src) {
 	}
 	return n;
 }
+/********************************************************************/
+/**
+ * find a nickname using the specified id
+ */
 NickInfo *find_nick_by_id(int id) {
-	notice(as_name,"fish-guts","nick by id: %i",id);
 	NickInfo *n = nicklist;
 	while(n) {
 		if(n->id == id) {
@@ -227,7 +229,8 @@ NickInfo *find_nick_by_id(int id) {
 }
 /********************************************************************/
 /**
- * checks whether a user has successfully identified with a registered nickname
+ * checks whether a user has successfully identified with a
+ * registered nickname
  */
 int isidentified(user *u, char *nick) {
 	if(u->oper>=ns_admin)
@@ -266,7 +269,10 @@ void nickserv(char *src, char *av) {
 		notice(ns_name,src,NS_RPL_HLP_MAIN,ns_name);
 		return;
 	}
-}
+}/********************************************************************/
+/**
+ * connect nickserv to server
+ */
 extern int ns_connect(int sock) {
 	char *nick = (char*) malloc(sizeof(char) * 1024);
 	sprintf(nick, SNICK, ns_name, s_user,
@@ -314,9 +320,9 @@ void ns_checknotify(user *u, int mode) {
 		n2 = n2->next;
 	}
 }
+/********************************************************************/
 /**
- * ns_check_auth Check wether there are authorization requests pending for the specified nickname
- *
+ * check for existing auth requests
  */
 void ns_check_auth(user *u) {
 	NickInfo *n = findnick(u->nick);
@@ -447,8 +453,10 @@ static void timeout_release(timer *t) {
 	release(u, 1);
 }
 
-
-
+/********************************************************************/
+/**
+ * add a nick identification (password or access to a user)
+ */
 void add_nick_with_access(user *u, NickInfo *n, int type) {
 	usernick *un = scalloc(sizeof(usernick), 1);
 	un->next = u->usernicks;
@@ -507,6 +515,10 @@ void validate_user(user *u) {
 	}
 	return;
 }
+/********************************************************************/
+/**
+ * delete a running timer
+ */
 void remove_timeout(user *u, int type) {
 	del_ns_timeout(u, type);
 }

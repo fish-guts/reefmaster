@@ -22,6 +22,7 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
  *  ns DROP Handle the Nickserv DROP command
  *  Deletes the specified Nickname

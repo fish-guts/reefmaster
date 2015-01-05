@@ -21,6 +21,7 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
  * ns_help handle the Nickserv HELP commands
  * Displays the usage of the specified Nickserv command

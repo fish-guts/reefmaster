@@ -22,6 +22,7 @@
 
 #include "main.h"
 
+/********************************************************************/
 /**
  * add a nickname to another nickname's notify list
  * @param src the sending nickname. Never null
@@ -40,6 +41,7 @@ void add_notify(char *src,char *nick) {
 	return;
 }
 
+/********************************************************************/
 /**
  * add an entry to a nickname's auth list for for notify list
  */
@@ -63,6 +65,7 @@ void add_notify_auth_entry(char *src,char *nick) {
 	}
 	return;
 }
+
 /********************************************************************/
 /**
  * look for an entry in the target's notify list
@@ -78,8 +81,10 @@ notify *find_notify(char *src, char *dest) {
 	}
 	return NULL;
 }
+
+/********************************************************************/
 /**
- * ns_notify Handle the Nickserv NS_NOTIFY command.
+ * Handle the Nickserv NS_NOTIFY command.
  * Possible subcommands are:
  * ADD - Add a Nickname to the notify list
  * DEL - Delete a Nickname from the notify list
@@ -107,6 +112,10 @@ void ns_notify(char *src, int ac, char **av) {
 	}
 	return;
 }
+/********************************************************************/
+/**
+ * add a notify entry
+ */
 void ns_notify_add(char *src,int ac,char **av) {
 	if (!isreg(src)) {
 		notice(ns_name, src, NS_ERR_NOTREG, src);
@@ -155,6 +164,11 @@ void ns_notify_add(char *src,int ac,char **av) {
 		}
 	}
 }
+
+/********************************************************************/
+/**
+ * delete a notify entry
+ */
 void ns_notify_del(char *src,int ac, char **av) {
 	if (ac < 3) {
 		notice(ns_name, src, NS_ERR_NFY_USAGE);
@@ -198,6 +212,11 @@ void ns_notify_del(char *src,int ac, char **av) {
 	}
 	return;
 }
+
+/********************************************************************/
+/**
+ * list all notify entries for the specified nick
+ */
 void ns_notify_list(char *src,int ac,char **av) {
 	char *nick;
 	if (ac >= 3)
@@ -233,6 +252,11 @@ void ns_notify_list(char *src,int ac,char **av) {
 		return;
 	}
 }
+
+/********************************************************************/
+/**
+ * remove all notify entries for the specified nick
+ */
 void ns_notify_wipe(char *src,int ac,char **av) {
 	char *nick;
 	if (ac >= 3)
