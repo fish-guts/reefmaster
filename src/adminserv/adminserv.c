@@ -23,16 +23,6 @@
 
 static as_cmd *find_as(const char *name);
 
-static char *acc[] = {
-		"Help Operator",
-		"IRC Operator",
-		"Co Administrator",
-		"Server Administrator",
-		"Services Administrator",
-		"Network Administrator"
-};
-
-
 as_cmd as_cmds[] = {
 		{ "SAVEDATA",	as_savedata },
 		{ "SQUIT",	NULL },

@@ -1,7 +1,7 @@
 /*
- *      adminserv.c - severin
+ *      as_savedata.c - severin
  *      
- *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
+ *      Copyright (c) 2015 Severin Mueller <severin.mueller@reefmaster.org>
  *      
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -21,10 +21,7 @@
 
 #include "main.h"
 
-static as_cmd *find_as(const char *name);
-
 static char *acc[] = {
-		"",
 		"",
 		"Help Operator",
 		"IRC Operator",
