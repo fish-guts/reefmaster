@@ -24,6 +24,8 @@
 static as_cmd *find_as(const char *name);
 
 static char *acc[] = {
+		"",
+		"",
 		"Help Operator",
 		"IRC Operator",
 		"Co Administrator",
@@ -33,54 +35,15 @@ static char *acc[] = {
 };
 
 
-as_cmd as_cmds[] = {
-		{ "SAVEDATA",	as_savedata },
-		{ "SQUIT",	NULL },
-		{ "CHANNEL" , NULL }
-
-};
-
-
-extern int as_connect(int sock)
-{
-	int rc;
-	char *nick = (char*)malloc(sizeof(char)*256);
-	sprintf(nick,SNICK,as_name,s_user,s__host,s_name,as_realname);
-	rc = send(sock,nick,(int)strlen(nick),0);
-	free(nick);
-	return rc;
-}
-
-void adminserv(char *src, char *av) {
-	int i = 0;
-	char **uv = (char**) malloc(sizeof(char) * 1024);
-	char *pch = strtok(av, " ");
-	as_cmd *as;
+/**
+ * forces the data to be saved on disk
+ */
+void as_savedata(char *src,int ac,char **av) {
 	user *u = finduser(src);
-	while (pch != NULL) {
-		uv[i] = sstrdup(pch);
-		i++;
-		pch = strtok(NULL, " ");
+	if(u->oper<as_access_flag) {
+		notice(as_name,src,AS_ERR_ACCESS_DENIED,as_name,acc[as_access_flag]);
+		return;
 	}
-	if ((as = find_as(uv[0]))) {
-		if (as->func) {
-			as->func(src, i, uv);
-		}
-		if (strcmp(uv[0], "PING") != 0) {
-			addlog(1, LOG_DBG_NS, as_name, src, u->username, u->hostname, av);
-		}
-	} else {
-		addlog(2, LOG_DBG_NS_UNKNOWN, as_name, src, u->username, u->hostname,
-				av);
-	}
+	save_database();
+	notice(as_name,src,"Data successfully saved");
 }
-
-static as_cmd *find_as(const char *name) {
-	as_cmd *cmd;
-	for (cmd = as_cmds; cmd->name; cmd++) {
-		if (stricmp(name, cmd->name) == 0)
-			return cmd;
-	}
-	return NULL;
-}
-
