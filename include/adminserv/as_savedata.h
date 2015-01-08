@@ -1,6 +1,6 @@
-#ifndef AS_SAVEDATA_H_
-#define AS_SAVEDATA_H_
+#ifndef AS_SQUIT_H_
+#define AS_SQUIT_H_
 
-void as_savedata(char *src,int ac,char **av);
+void as_squit(char *src,int ac,char **av);
 
-#endif /*AS_SAVEDATA_H_*/
+#endif /*AS_SQUIT_H_*/

@@ -60,6 +60,8 @@
 #define APP_ERR_LOADINGFAILED 		"*** Error: Loading Application failed (%i)\n" 
 #define APP_DBG_WAITINGFORSRV		"*** Waiting for server response...\n"
 
+#define S_QUIT						"Service are shutting down.... See you soon"
+
 /* Configuration messages
  ******************************************************************************************************************************************
  */

@@ -25,11 +25,9 @@ static as_cmd *find_as(const char *name);
 
 as_cmd as_cmds[] = {
 		{ "SAVEDATA",	as_savedata },
-		{ "SQUIT",	NULL },
+		{ "SQUIT",	as_squit },
 		{ "CHANNEL" , NULL }
-
 };
-
 
 extern int as_connect(int sock)
 {
