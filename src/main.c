@@ -29,6 +29,10 @@ int check_ping = 0;
 static void daemonize(void);
 
 
+/****************************************************************************************/
+/**
+ * daemonize the process
+ */
 static void daemonize(void)
 {
 
@@ -70,6 +74,10 @@ static void daemonize(void)
 
 }
 
+/****************************************************************************************/
+/**
+ * load the program
+ */
 int load_app(void) {
 	int rc;
 	print_welcome_msg();
@@ -79,6 +87,8 @@ int load_app(void) {
 	}
 	return rc;
 }
+
+/****************************************************************************************/
 /**
  * the application's main method
  */
@@ -100,6 +110,11 @@ int main(int argc,char **argv)
 	}
 	return -1;
 }
+
+/****************************************************************************************/
+/**
+ * start the app and print some error on failure
+ */
 void start_app(void) {
 	int s;
 	char buf[100000];
@@ -140,7 +155,10 @@ void start_app(void) {
 	}
 }
 
-/* formatted message */
+/****************************************************************************************/
+/**
+ * print a formatted message
+ */
 void print_msg(char *msg, ...)
 {
 	va_list	va;
@@ -151,7 +169,10 @@ void print_msg(char *msg, ...)
 	printf("*** %s",buf);
 }
 
-/* the application's startup message */
+/****************************************************************************************/
+/**
+ * the application's startup message
+ */
 void print_welcome_msg(void)
 {
 	printf("###################################################################\n");

@@ -179,6 +179,10 @@ void s_nick(const char *src, int ac, char **av)
     validate_user(u);
 }
 
+/****************************************************************************************/
+/**
+ * add a bot a user has identified for
+ */
 void user_add_bot(user *u,bot *b) {
 	botaccess *ba = scalloc(sizeof(botaccess),1);
 	ba->next = u->bots;

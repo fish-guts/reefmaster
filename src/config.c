@@ -20,6 +20,24 @@
  */
 #include "main.h"
 
+/**
+ * all functions validate the configuration, we will not comment
+ * on each funtion individually
+ */
+
+/****************************************************************************************/
+int config_as_access_flag(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	*(const char **) result = (const char *) value;
+	as_access_flag = val;
+	return 0;
+}
+
+/****************************************************************************************/
 int config_bool(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -29,15 +47,8 @@ int config_bool(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	}
 	return 0;
 }
-int config_os_access(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
-	int val = atoi(value);
-	if ((val < 2) || (val > 6)) {
-		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 2, 6);
-		return -1;
-	}
-	os_access_flag = val;
-	return 0;
-}
+
+/****************************************************************************************/
 int config_bool_as(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -48,6 +59,8 @@ int config_bool_as(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	as_enabled = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bool_bs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -58,6 +71,8 @@ int config_bool_bs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	bs_enabled = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bool_cs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -68,6 +83,8 @@ int config_bool_cs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	cs_enabled = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bool_ns(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -78,6 +95,8 @@ int config_bool_ns(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	ns_enabled = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bool_os(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -88,6 +107,8 @@ int config_bool_os(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) 
 	os_enabled = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bs_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -97,6 +118,8 @@ int config_bs_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	bs_access_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bs_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -106,6 +129,8 @@ int config_bs_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	bs_access_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bs_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -115,6 +140,8 @@ int config_bs_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	bs_access_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bs_set(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -124,6 +151,8 @@ int config_bs_set(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	bs_access_set = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bs_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -133,6 +162,8 @@ int config_bs_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	bs_access_setpass = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_bs_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -142,6 +173,8 @@ int config_bs_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	bs_access_getpass = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_akick_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -152,6 +185,8 @@ int config_cs_akick_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_akick_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_akick_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -162,6 +197,8 @@ int config_cs_akick_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_akick_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_akick_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -172,6 +209,8 @@ int config_cs_akick_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_akick_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_akick_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -183,6 +222,7 @@ int config_cs_akick_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	return 0;
 }
 
+/****************************************************************************************/
 int config_cs_aop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -198,6 +238,8 @@ int config_cs_aop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_aop_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_aop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -213,6 +255,8 @@ int config_cs_aop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_aop_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_aop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -228,6 +272,8 @@ int config_cs_aop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_aop_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_aop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -240,6 +286,8 @@ int config_cs_aop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_aops_max = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_aop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -255,6 +303,8 @@ int config_cs_aop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_aop_wipe = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_autovop(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -266,6 +316,8 @@ int config_cs_autovop(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_autovop = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (val < 0) {
@@ -278,6 +330,8 @@ int config_cs_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	cs_delay = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -290,6 +344,8 @@ int config_cs_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_gpass = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_hop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -310,6 +366,8 @@ int config_cs_hop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_hop_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_hop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -330,6 +388,8 @@ int config_cs_hop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_hop_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_hop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -350,6 +410,8 @@ int config_cs_hop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_hop_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_hop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -362,6 +424,8 @@ int config_cs_hop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_hops_max = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_hop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -377,6 +441,8 @@ int config_cs_hop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_hop_wipe = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -388,6 +454,8 @@ int config_cs_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_keeptopic = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -399,6 +467,8 @@ int config_cs_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_leaveops = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_maxlist(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -412,6 +482,8 @@ int config_cs_maxlist(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_maxlist = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -422,6 +494,8 @@ int config_cs_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_memolevel = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_operonly(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -433,6 +507,8 @@ int config_cs_operonly(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_operonly = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -444,8 +520,9 @@ int config_cs_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_opwatch = val;
 	return 0;
 }
-int config_cs_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+
+/****************************************************************************************/
+int config_cs_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,	void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
 		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
@@ -454,8 +531,9 @@ int config_cs_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_regaccess = val;
 	return 0;
 }
-int config_cs_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value,
-		void *result) {
+
+/****************************************************************************************/
+int config_cs_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
 		cfg_error(cfg, CONF_ERR_MUSTBEBOOL, CONFIG_FILE, cfg->line, opt->name);
@@ -465,6 +543,8 @@ int config_cs_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_restricted = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -475,6 +555,8 @@ int config_cs_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_spass = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_mdeop(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 1) || (val > 8)) {
@@ -484,6 +566,8 @@ int config_cs_mdeop(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	cs_mdeop_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 1) || (val > 8)) {
@@ -493,6 +577,8 @@ int config_cs_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	cs_mkick_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -503,6 +589,8 @@ int config_cs_set_opwatch(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_opwatch_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -513,6 +601,8 @@ int config_cs_set_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_leaveops_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -523,6 +613,8 @@ int config_cs_set_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_keeptopic_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_topiclock(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -533,6 +625,8 @@ int config_cs_set_topiclock(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_topiclock_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -543,6 +637,8 @@ int config_cs_set_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_memolevel_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -553,6 +649,8 @@ int config_cs_set_restricted(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_restricted_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_desc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -563,6 +661,8 @@ int config_cs_set_desc(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_desc_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_password(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -573,6 +673,8 @@ int config_cs_set_password(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_password_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_successor(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -583,6 +685,8 @@ int config_cs_set_successor(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_successor_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_founder(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -593,6 +697,8 @@ int config_cs_set_founder(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_set_opwatch_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_bot(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -603,6 +709,8 @@ int config_cs_set_bot(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		cs_set_bot_access = val;
 		return 0;
 }
+
+/****************************************************************************************/
 int config_cs_set_mlock(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -613,6 +721,8 @@ int config_cs_set_mlock(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		cs_set_mlock_access = val;
 		return 0;
 }
+
+/****************************************************************************************/
 int config_cs_sop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -623,6 +733,8 @@ int config_cs_sop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_sop_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_sop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -633,6 +745,8 @@ int config_cs_sop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_sop_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_sop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -643,6 +757,8 @@ int config_cs_sop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_sop_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_sop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -655,6 +771,8 @@ int config_cs_sop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_sops_max = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_sop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -666,6 +784,7 @@ int config_cs_sop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	return 0;
 }
 
+/****************************************************************************************/
 int config_cs_vop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -691,6 +810,8 @@ int config_cs_vop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_vop_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_vop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -716,6 +837,8 @@ int config_cs_vop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_vop_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_vop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -741,6 +864,8 @@ int config_cs_vop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_vop_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_vop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -753,6 +878,8 @@ int config_cs_vop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_vops_max = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_vop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -779,6 +906,7 @@ int config_cs_vop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	return 0;
 }
 
+/****************************************************************************************/
 int config_cs_uop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -809,6 +937,8 @@ int config_cs_uop_add(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_uop_add = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_uop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -839,6 +969,8 @@ int config_cs_uop_del(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_uop_del = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_uop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -869,6 +1001,8 @@ int config_cs_uop_list(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_uop_list = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_uop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -881,6 +1015,8 @@ int config_cs_uop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_uops_max = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_akick_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -893,6 +1029,8 @@ int config_cs_akick_max(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	cs_akicks_max = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_uop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 		void *result) {
 	int val = atoi(value);
@@ -924,6 +1062,7 @@ int config_cs_uop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value,
 	return 0;
 }
 
+/****************************************************************************************/
 /* this is the configuration file parser, using libconfuse 2.6 by martin hedenfalk */
 /* The Config is failsafe against NULL values. When an entry is missing, a default value is being set. */
 int config_load(const char *file) {
@@ -1429,6 +1568,8 @@ int config_load(const char *file) {
 	}
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1438,6 +1579,8 @@ int config_cs_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	cs_admin_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_cmd_kick(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
@@ -1447,6 +1590,8 @@ int config_cs_cmd_kick(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *resul
 	cs_cmd_kick = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_cmd_ban(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
@@ -1456,6 +1601,8 @@ int config_cs_cmd_ban(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	cs_cmd_ban = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_cmd_op(cfg_t *cfg, cfg_opt_t *opt, const char *value,	void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
@@ -1465,6 +1612,8 @@ int config_cs_cmd_op(cfg_t *cfg, cfg_opt_t *opt, const char *value,	void *result
 	cs_cmd_op = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_cmd_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
@@ -1474,6 +1623,8 @@ int config_cs_cmd_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *resu
 	cs_cmd_mkick = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_cmd_invite(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 13)) {
@@ -1483,6 +1634,8 @@ int config_cs_cmd_invite(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *res
 	cs_cmd_invite = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1492,6 +1645,8 @@ int config_ns_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	ns_admin = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_authchan(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1502,6 +1657,8 @@ int config_ns_authchan(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *resul
 	ns_auth_channel = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_authnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1512,6 +1669,8 @@ int config_ns_authnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *res
 	ns_auth_notify = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_autoacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1522,6 +1681,8 @@ int config_ns_autoacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	ns_autoaccess = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (val < 0) {
@@ -1534,6 +1695,8 @@ int config_ns_delay(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	ns_delay = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1543,6 +1706,8 @@ int config_ns_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	ns_gpass = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_hidemail(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1553,6 +1718,8 @@ int config_ns_hidemail(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *resul
 	ns_hide_email = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_mnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1563,6 +1730,8 @@ int config_ns_mnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	ns_mnotify = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_nomemo(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -1573,6 +1742,8 @@ int config_ns_nomemo(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result)
 	ns_no_memo = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 2)) {
@@ -1582,6 +1753,8 @@ int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	ns_high_protect = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1591,6 +1764,8 @@ int config_ns_regacc(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result)
 	ns_usage_access = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_ns_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1600,6 +1775,8 @@ int config_ns_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	ns_spass = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_oper(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1609,16 +1786,19 @@ int config_oper(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	*(const char **) result = (const char *) value;
 	return 0;
 }
-int config_as_access_flag(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+
+/****************************************************************************************/
+int config_os_access(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
-	if ((val < 0) || (val > 6)) {
-		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+	if ((val < 2) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 2, 6);
 		return -1;
 	}
-	*(const char **) result = (const char *) value;
-	as_access_flag = val;
+	os_access_flag = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_passAction(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 4)) {
@@ -1628,6 +1808,8 @@ int config_passAction(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 	s_PassAction = val;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_port(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 1) || (val > 65535)) {
@@ -1641,6 +1823,7 @@ int config_port(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	return 0;
 }
 
+/****************************************************************************************/
 int config_s_passlimit(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int var = atoi(value);
 	if (var < 0) {
@@ -1653,69 +1836,71 @@ int config_s_passlimit(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *resul
 	s_PassLimit = var;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_str32(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	const char *var = value;
-	if ((var == NULL )|| (strcmp(var,"")==0)){
-	addlog(2,CONF_LOG_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
-	cfg_error(cfg,CONF_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
-	return -1;
-}
+	if ((var == NULL )|| (strcmp(var,"")==0)) {
+		addlog(2,CONF_LOG_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
+		cfg_error(cfg,CONF_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
+		return -1;
+	}
 	if (strlen(value) > 33) {
-		addlog(2, CONF_LOG_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,
-				STRMAX);
-		cfg_error(cfg, CONF_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,
-				STRMAX);
+		addlog(2, CONF_LOG_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,	STRMAX);
+		cfg_error(cfg, CONF_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,STRMAX);
 		return -1;
 	}
 	*(const char**) result = (const char*) value;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_str64(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	const char *var = value;
 	if ((var == NULL )|| (strcmp(var,"")==0)){
-	addlog(2,CONF_LOG_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
-	cfg_error(cfg,CONF_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
-	return -1;
-}
+		addlog(2,CONF_LOG_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
+		cfg_error(cfg,CONF_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
+		return -1;
+	}
 	if (strlen(value) > STRMAX2) {
-		addlog(2, CONF_LOG_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,
-				STRMAX2);
-		cfg_error(cfg, CONF_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,
-				STRMAX2);
+		addlog(2, CONF_LOG_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,	STRMAX2);
+		cfg_error(cfg, CONF_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,STRMAX2);
 		return -1;
 	}
 	*(const char**) result = (const char*) value;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_str128(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	const char *var = value;
-	if ((var == NULL )|| (strcmp(var,"")==0)){
-	addlog(2,CONF_LOG_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
-	cfg_error(cfg,CONF_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
-	return -1;
-}
+	if ((var == NULL )|| (strcmp(var,"")==0)) {
+		addlog(2,CONF_LOG_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
+		cfg_error(cfg,CONF_ERR_MISSINGOPT,CONFIG_FILE,cfg->line,opt->name);
+		return -1;
+	}
 	if (strlen(value) > STRMAX3) {
-		addlog(2, CONF_LOG_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,
-				STRMAX3);
-		cfg_error(cfg, CONF_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,
-				STRMAX3);
+		addlog(2, CONF_LOG_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name,	STRMAX3);
+		cfg_error(cfg, CONF_ERR_TOOMANYCHARS, CONFIG_FILE, cfg->line, opt->name, STRMAX3);
 		return -1;
 	}
 	*(const char**) result = (const char*) value;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_uint32(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int var = atoi(value);
 	if (var < 0) {
-		addlog(2, CONF_LOG_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,
-				opt->name);
-		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,
-				opt->name);
+		addlog(2, CONF_LOG_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,opt->name);
+		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,opt->name);
 		return -1;
 	}
 	*(const char **) result = (const char *) value;
 	return 0;
 }
+
+/****************************************************************************************/
 int config_cs_tlock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int var = atoi(value);
 	if ((var < 0) || (var > 4)) {

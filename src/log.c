@@ -21,9 +21,14 @@
  
  #include "main.h"
  
- void addlog(short type,char *msg,...)
- {
- 	FILE *pFile;
+
+/****************************************************************************************/
+/**
+ * add a message to the log
+ * types are 1 for Debug and 2 for error
+ */
+void addlog(short type,char *msg,...)  {
+	FILE *pFile;
  	char *buf = (char*)malloc(sizeof(char*)*2048);
  	char buff[2048];
  	char *logfile = s_log;
@@ -54,18 +59,4 @@
  		fclose(pFile);
  		return;
  	}
- }
- 
-char *logline(char **av,int ac)
-{	
- 	char line[128]= "";
- 	char *buf;
- 	int x;
-	for(x = 0;x<ac;x++)
-	{
-		strcat(line,av[x]);
-		strcat(line," ");
-	}
-	buf = line;
-	return buf;
 }

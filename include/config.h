@@ -74,8 +74,8 @@ int config_cs_set_successor(cfg_t *cfg, cfg_opt_t *opt, const char *value, void 
 int config_cs_set_founder(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_bot(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_set_mlock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
-
 int config_oper(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
+int config_os_access(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
 int config_passAction(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_port(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_ns_admin(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);

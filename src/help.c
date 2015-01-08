@@ -30,6 +30,7 @@ int file_exists(const char *file) {
 	return 1;
 }
 
+/****************************************************************************************/
 /**
  * ns_help handle the Nickserv HELP commands
  * Displays the usage of the specified Nickserv command

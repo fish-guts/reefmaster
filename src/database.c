@@ -55,6 +55,11 @@ static void update_bot_ids(void);
 static void update_chan_ids(void);
 static void update_nick_ids(void);
 
+
+/****************************************************************************************/
+/**
+ * query for adding an akick entry
+ */
 static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -69,6 +74,11 @@ static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a) {
 	return 1;
 
 }
+
+/****************************************************************************************/
+/**
+ * query for adding an access entry
+ */
 static int db_add_access(sqlite3 *db, NickInfo *n, myacc *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -80,6 +90,11 @@ static int db_add_access(sqlite3 *db, NickInfo *n, myacc *a) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * query for adding an auth entry
+ */
 static int db_add_auth(sqlite3 *db, NickInfo *n, auth *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -98,6 +113,11 @@ static int db_add_auth(sqlite3 *db, NickInfo *n, auth *a) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * query for adding a bot
+ */
 static int db_add_bot(sqlite3 *db,bot *b) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -110,6 +130,11 @@ static int db_add_bot(sqlite3 *db,bot *b) {
 	return 1;
 
 }
+
+/****************************************************************************************/
+/**
+ * query for adding a channel
+ */
 static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 	char sql[4096];
 	char *sqlite_err = 0;
@@ -139,6 +164,11 @@ static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * query for adding a nickname
+ */
 static int db_add_nick(sqlite3 *db, NickInfo *n) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -154,6 +184,11 @@ static int db_add_nick(sqlite3 *db, NickInfo *n) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * query for adding a notify entry
+ */
 static int db_add_notify(sqlite3 *db, NickInfo *n, notify *no) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -166,6 +201,11 @@ static int db_add_notify(sqlite3 *db, NickInfo *n, notify *no) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * query for adding a global op list entry
+ */
 static int db_add_op(sqlite3 *db,op *o) {
 	char sql[2048];
 	char *sqlite_err = 0;
@@ -179,6 +219,13 @@ static int db_add_op(sqlite3 *db,op *o) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * query for saving the akicks
+ * inserting queries in other function
+ * will be commited in the end
+ */
 static void db_save_akicks(void) {
 	sqlite3 *db;
 	int query_result = 0;
@@ -208,6 +255,13 @@ static void db_save_akicks(void) {
 	sqlite3_close(db);
 	return;
 }
+
+/****************************************************************************************/
+/**
+ * query for saving the auth entries
+ * inserting queries in other function
+ * will be commited in the end
+ */
 static void db_save_auth(void) {
 	addlog(1, LOG_DBG_ENTRY, "db_save_auth");
 	sqlite3 *db;
@@ -238,6 +292,13 @@ static void db_save_auth(void) {
 	sqlite3_close(db);
 	return;
 }
+
+/****************************************************************************************/
+/**
+ * query for saving the access entries
+ * inserting queries in other function
+ * will be commited in the end
+ */
 static void db_save_access(void) {
 	addlog(1, LOG_DBG_ENTRY, "db_save_access");
 	sqlite3 *db;
@@ -268,6 +329,13 @@ static void db_save_access(void) {
 	sqlite3_close(db);
 	return;
 }
+
+/****************************************************************************************/
+/**
+ * query for saving the bots
+ * inserting queries in other function
+ * will be commited in the end
+ */
 void db_save_bots(void) {
 	sqlite3 *db;
 	int query_result = 0;
@@ -294,6 +362,12 @@ void db_save_bots(void) {
 	return;
 }
 
+/****************************************************************************************/
+/**
+ * query for saving the chans
+ * inserting queries in other function
+ * will be commited in the end
+ */
 void db_save_chans(void) {
 	addlog(1, LOG_DBG_ENTRY, "db_save_chans");
 	sqlite3 *db;
@@ -319,6 +393,13 @@ void db_save_chans(void) {
 	sqlite3_close(db);
 	return;
 }
+
+/****************************************************************************************/
+/**
+ * query for saving the nicks
+ * inserting queries in other function
+ * will be commited in the end
+ */
 void db_save_nicks(void) {
 	sqlite3 *db;
 	int query_result = 0;
@@ -345,6 +426,13 @@ void db_save_nicks(void) {
 	return;
 }
 
+
+/****************************************************************************************/
+/**
+ * query for saving the notify entries
+ * inserting queries in other function
+ * will be commited in the end
+ */
 static void db_save_notify(void) {
 
 	sqlite3 *db;
@@ -376,6 +464,13 @@ static void db_save_notify(void) {
 	return;
 }
 
+
+/****************************************************************************************/
+/**
+ * query for saving the global operator list
+ * inserting queries in other function
+ * will be commited in the end
+ */
 void db_save_ops(void) {
 	sqlite3 *db;
 	int query_result = 0;
@@ -399,7 +494,10 @@ void db_save_ops(void) {
 	return;
 }
 
-
+/****************************************************************************************/
+/**
+ * find a bot entry in the database using the specified nickname
+ */
 static bot *find_bot_by_name(char *nick) {
 	char sql[256];
 	sqlite3 *db;
@@ -429,6 +527,11 @@ static bot *find_bot_by_name(char *nick) {
 	return b;
 
 }
+
+/****************************************************************************************/
+/**
+ * find a Channel entry in the database using the specified nickname
+ */
 static ChanInfo *find_chan_by_name(char *chan) {
 	char sql[256];
 	sqlite3 *db;
@@ -454,6 +557,10 @@ static ChanInfo *find_chan_by_name(char *chan) {
 
 }
 
+/****************************************************************************************/
+/**
+ * find a nickname in the database using the specified nickname
+ */
 static NickInfo *find_nick_by_name(char *nick) {
 	char sql[256];
 	sqlite3 *db;
@@ -502,6 +609,11 @@ static NickInfo *find_nick_by_name(char *nick) {
 	sqlite3_close(db);
 	return n;
 }
+
+/****************************************************************************************/
+/**
+ * load the access table into the memory
+ */
 static void load_access(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
@@ -528,6 +640,10 @@ static void load_access(void) {
 	sqlite3_close(db);
 }
 
+/****************************************************************************************/
+/**
+ * load the akick table into the memory
+ */
 static void load_akick(void) {
 	addlog(DEBUG, LOG_DBG_ENTRY, "load_akick");
 	sqlite3 *db;
@@ -561,6 +677,11 @@ static void load_akick(void) {
 	addlog(DEBUG, LOG_DBG_EXIT, "load_akick");
 	sqlite3_close(db);
 }
+
+/****************************************************************************************/
+/**
+ * load the auth table into the memory
+ */
 static void load_auth(void) {
 	addlog(1, LOG_DBG_ENTRY, "load_auth");
 	sqlite3 *db;
@@ -591,6 +712,11 @@ static void load_auth(void) {
 	}
 	sqlite3_close(db);
 }
+
+/****************************************************************************************/
+/**
+ * load the botserv table into the memory
+ */
 void load_botserv(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
@@ -618,6 +744,11 @@ void load_botserv(void) {
 	}
 	sqlite3_close(db);
 }
+
+/****************************************************************************************/
+/**
+ * load the chans table into the memory
+ */
 void load_chans(void) {
 	addlog(DEBUG, LOG_DBG_ENTRY, "load_chans");
 	sqlite3 *db;
@@ -689,12 +820,21 @@ void load_chans(void) {
 	sqlite3_close(db);
 	addlog(DEBUG, LOG_DBG_EXIT, "load_chans");
 }
+
+/****************************************************************************************/
+/**
+ * load the chanserv tables
+ */
 void load_chanserv(void) {
 	load_chans();
 	load_akick();
 	load_ops();
 }
 
+/****************************************************************************************/
+/**
+ * load the module tables
+ */
 void load_database(void) {
 	addlog(1, LOG_DBG_ENTRY, "load_database");
 	if (bs_enabled) {
@@ -709,6 +849,10 @@ void load_database(void) {
 	addlog(1, LOG_DBG_EXIT, "load_database");
 }
 
+/****************************************************************************************/
+/**
+ * load nickserv tables
+ */
 static void load_nicks(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
@@ -759,12 +903,21 @@ static void load_nicks(void) {
 	sqlite3_close(db);
 }
 
+/****************************************************************************************/
+/**
+ * load the rest of the nickserv tables
+ */
 static void load_nickserv(void) {
 	load_nicks();
 	load_access();
 	load_auth();
 	load_notify();
 }
+
+/****************************************************************************************/
+/**
+ * load the notify table into the memory
+ */
 static void load_notify(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
@@ -789,6 +942,11 @@ static void load_notify(void) {
 	}
 	sqlite3_close(db);
 }
+
+/****************************************************************************************/
+/**
+ * load the global ops table into the memory
+ */
 static void load_ops(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
@@ -832,10 +990,19 @@ static void load_ops(void) {
 	sqlite3_close(db);
 }
 
+/****************************************************************************************/
+/**
+ * save the botserv tables
+ */
 static void save_botserv_db(void) {
 	db_save_bots();
 	update_bot_ids();
 }
+
+/****************************************************************************************/
+/**
+ * save the chanserv tables
+ */
 static void save_chanserv_db(void) {
 	db_save_chans();
 	update_chan_ids();
@@ -843,6 +1010,11 @@ static void save_chanserv_db(void) {
 	db_save_ops();
 	db_save_auth();
 }
+
+/****************************************************************************************/
+/**
+ * save the nickserv tables
+ */
 static void save_nickserv_db(void) {
 	db_save_nicks();
 	update_nick_ids();
@@ -850,6 +1022,10 @@ static void save_nickserv_db(void) {
 	db_save_access();
 }
 
+/****************************************************************************************/
+/**
+ * update the nickname ids after saving
+ */
 static void update_nick_ids(void) {
 	NickInfo *n = nicklist;
 	int id = 0;
@@ -860,6 +1036,10 @@ static void update_nick_ids(void) {
 	}
 }
 
+/****************************************************************************************/
+/**
+ * update the channel ids after saving
+ */
 static void update_chan_ids(void) {
 	ChanInfo *c = chans;
 	int id = 0;
@@ -869,6 +1049,11 @@ static void update_chan_ids(void) {
 		c = c->next;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * update the bot ids after saving
+ */
 static void update_bot_ids(void) {
 	bot *b = botlist;
 	int id = 0;
@@ -879,6 +1064,11 @@ static void update_bot_ids(void) {
 	}
 }
 
+/****************************************************************************************/
+/**
+ * save the database (this is for the external call,
+ * e.g. from adminserv)
+ */
 void save_database(void) {
 	struct timeval stop, start;
 	gettimeofday(&start, NULL);

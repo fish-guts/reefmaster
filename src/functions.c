@@ -28,6 +28,17 @@ static int ifmatch(const char *pattern, const char *str, int mode);
 static void check_expiry(void);
 static void check_ns_expiry(void);
 
+/****************************************************************************************/
+/**
+ * Converts a timestamp to the epoch time.
+ * Accepted values are time values like
+ * 1w for 1 week
+ * 4m for 4 monts
+ * 10y for 10 years
+ * 5d for 5 days
+ *
+ * this function will then calculate the "end" time in epoch time
+ */
 unsigned long get_duration(char *dur) {
 
 	if(isnum(dur)) {
@@ -47,6 +58,10 @@ unsigned long get_duration(char *dur) {
 	return 0;
 }
 
+/****************************************************************************************/
+/**
+ * case in-sensitive version if strcmp
+ */
 int _stricmp(const char *str1, const char *str2) {
 	register signed char __res;
 	while (1) {
@@ -55,6 +70,11 @@ int _stricmp(const char *str1, const char *str2) {
 	}
 	return __res;
 }
+
+/****************************************************************************************/
+/**
+ * case insensitive version of strstr
+ */
 const char *_stristr(const char *str1, const char *str2) {
 	if (!*str2)
 		return str1;
@@ -72,6 +92,10 @@ const char *_stristr(const char *str1, const char *str2) {
 	return 0;
 }
 
+/****************************************************************************************/
+/**
+ * add a timeout into the global timeout list.
+ */
 timer *add_timeout(int delay, void (*code)(timer *), int repeat) {
 	timer *t = smalloc(sizeof(timer));
 	t->settime = time(NULL);
@@ -85,6 +109,12 @@ timer *add_timeout(int delay, void (*code)(timer *), int repeat) {
 	timeouts = t;
 	return t;
 }
+
+/****************************************************************************************/
+/**
+ * check whether a connected user mask matches entry in the akill list and perform
+ * the AKILL if so. will be periodically called.
+ */
 void check_akills(void) {
 	akill *a = akills;
 	while(a) {
@@ -107,6 +137,12 @@ void check_akills(void) {
 		a = a->next;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * checks whether one or more bots is not correctly on its channels and forces the bot
+ * to join the channel managed by it. will be called periodically
+ */
 void check_bots() {
 	bot *b = botlist;
 	while(b) {
@@ -122,6 +158,12 @@ void check_bots() {
 		b = b->next;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * checks whether a service went offline and brings is back online if so.
+ * will be called periodically
+ */
 void check_services(void) {
 	if(!ns_status) {
 		ns_connect(mainsock);
@@ -140,14 +182,28 @@ void check_services(void) {
 		as_status = 1;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * periodic connection checks. see the called functions fo more details.
+ */
 void check_connections(void) {
 	check_services();
 	check_bots();
 }
+/****************************************************************************************/
+/**
+ * calls the funtion that check for expired nicknames.
+ */
 static void check_expiry(void) {
 	check_ns_expiry();
 }
 
+/****************************************************************************************/
+/**
+ * checks whether a nickname has expired and drops it if so.
+ * will be called periodically
+ */
 static void check_ns_expiry(void) {
 	long expiration = time(NULL) - (ns_expiry * 86400);
 	NickInfo *n = nicklist;
@@ -159,6 +215,12 @@ static void check_ns_expiry(void) {
 		n = n->next;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * saves the database
+ * will be called periodically
+ */
 void check_save(void) {
 	time_t now = time(NULL);
 	if(now >= next_save) {
@@ -166,6 +228,11 @@ void check_save(void) {
 		next_save = now + (save_interval);
 	}
 }
+
+/****************************************************************************************/
+/**
+ * checks for timeout than can be removed.
+ */
 void check_timeouts(void) {
 	timer *t1, *t2;
 	time_t t = time(NULL);
@@ -191,6 +258,10 @@ void check_timeouts(void) {
 		t1 = t2;
 	}
 }
+/****************************************************************************************/
+/**
+ * remove a timeout from the global timeout list.
+ */
 void del_timeout(timer *t) {
 	timer *ptr;
 	for (ptr = timeouts; ptr; ptr = ptr->next) {
@@ -208,6 +279,10 @@ void del_timeout(timer *t) {
 	free(t);
 }
 
+/****************************************************************************************/
+/**
+ * checks whether a user has access to a registered nickname
+ */
 int hasaccess(user *u, char *nick) {
 	char *mask = (char*) malloc(sizeof(char*) * 256);
 	sprintf(mask, "%s@%s", u->username, u->hostname);
@@ -221,6 +296,12 @@ int hasaccess(user *u, char *nick) {
 		return -1;
 }
 
+/****************************************************************************************/
+/**
+ * matches a string against the specified pattern.
+ * to join the channel managed by it. will be called periodically
+ * This command is based on Anope Services
+ */
 static int ifmatch(const char *pattern, const char *str, int mode) {
 	char c;
 	const char *ptr;
@@ -256,13 +337,14 @@ static int ifmatch(const char *pattern, const char *str, int mode) {
 	} /* for */
 	return -1;
 }
-int ifmatch_1(const char *pattern, const char *str) {
-	return ifmatch(pattern, str, 1);
-}
-
 int ifmatch_0(const char *pattern, const char *str) {
 	return ifmatch(pattern, str, 0);
 }
+
+/****************************************************************************************/
+/**
+ * replace a string within a nick
+ */
 char *internal_strrep(const char *str, const char *find, const char *rep,
 		size_t newsize, size_t index) {
 	size_t replen = strlen(rep), findlen = strlen(find);
@@ -288,12 +370,21 @@ char *internal_strrep(const char *str, const char *find, const char *rep,
 	return newstring;
 }
 
+/****************************************************************************************/
+/**
+ * checks for 0 or 1
+ */
 int isbool(int value) {
 	if ((value < 0) || (value > 1))
 		return 0;
 	else
 		return 1;
 }
+
+/****************************************************************************************/
+/**
+ * checks whether a user matches the specified mask
+ */
 int ismatch(user *u, char *mask) {
 	if (!isreg(u->nick))
 		return 0;
@@ -310,6 +401,11 @@ int ismatch(user *u, char *mask) {
 	}
 	return 0;
 }
+
+/****************************************************************************************/
+/**
+ * checks whether the specified value is a number
+ */
 int isnum(char *value) {
 	char *ptr;
 	for (ptr = value; *ptr; ptr++) {
@@ -318,13 +414,22 @@ int isnum(char *value) {
 	}
 	return 1;
 }
+
+/****************************************************************************************/
+/**
+ * checks whether a has operator access
+ */
 int isoper(user *u) {
 	if (u->oper > 0)
 		return 1;
 	else
 		return 0;
 }
-/* returns the registration level for a nickname (0 = not registered, 1 or above = registered) */
+
+/****************************************************************************************/
+/**
+ * returns the registration level for a nickname (0 = not registered, 1 or above = registered)
+ */
 int isreg(const char *src) {
 	NickInfo *n;
 	n = findnick(src);
@@ -333,6 +438,10 @@ int isreg(const char *src) {
 	}
 	return 0;
 }
+/****************************************************************************************/
+/**
+ * checks whether a bot with the speicifed name exists
+ */
 int isregbot(const char *src) {
 	bot *b;
 	b = findbot(src);
@@ -342,6 +451,11 @@ int isregbot(const char *src) {
 		return 0;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * checks whether a channel with the specified name exists.
+ */
 int isregcs(const char *chan) {
 	ChanInfo *c = findchan(chan);
 	if (c) {
@@ -349,6 +463,10 @@ int isregcs(const char *chan) {
 	}
 	return 0;
 }
+/****************************************************************************************/
+/**
+ * checks whether the specified  name is a service
+ */
 int isservice(char *src) {
 	if((stricmp(src,ns_name)==0) ||
 	   (stricmp(src,cs_name)==0) ||
@@ -359,6 +477,12 @@ int isservice(char *src) {
 	}
 	return 0;
 }
+
+/****************************************************************************************/
+/**
+ * replaces the details parts of a hostmask with a star to display to unauthorized users
+ * Can be used e.g. in ns INFO
+ */
 char *mask(char *src, char *host) {
 	user *u1 = finduser(src);
 	if (isoper(u1))
@@ -401,6 +525,11 @@ char *mask(char *src, char *host) {
 	}
 	return tmphost;
 }
+
+/****************************************************************************************/
+/**
+ * set the service status flag. needed to check the online status
+ */
 void set_service_status(char *service,int status) {
 	if(stricmp(ns_name,service)==0) {
 		ns_status = status;
@@ -414,6 +543,11 @@ void set_service_status(char *service,int status) {
 		as_status = status;
 	}
 }
+
+/****************************************************************************************/
+/**
+ * safe version of calloc
+ */
 void *scalloc(long size, long l) {
 	void *buf;
 	if ((!size) || (!l)) {
@@ -424,6 +558,11 @@ void *scalloc(long size, long l) {
 		raise(SIGUSR1);
 	return buf;
 }
+
+/****************************************************************************************/
+/**
+ * safe version of malloc
+ */
 void *smalloc(long size) {
 	void *buf;
 	if (!size)
@@ -433,10 +572,14 @@ void *smalloc(long size) {
 		raise(SIGUSR1);
 	return buf;
 }
+
+/****************************************************************************************/
+/**
+ * safe version of srealloc
+ */
 void *srealloc(void *oldptr, long newsize) {
 	void *buf;
 	if (!newsize) {
-		//log("srealloc: Illegal attempt to allocate 0 bytes");
 		newsize = 1;
 	}
 	buf = realloc(oldptr, newsize);
@@ -444,12 +587,22 @@ void *srealloc(void *oldptr, long newsize) {
 		raise(SIGUSR1);
 	return buf;
 }
+
+/****************************************************************************************/
+/**
+ * safe version of strdup
+ */
 char *sstrdup(const char *s) {
 	char *t = strdup(s);
 	if (!t)
 		raise(SIGUSR1);
 	return t;
 }
+
+/****************************************************************************************/
+/**
+ * replace string within a string
+ */
 char *strrep(const char* str, const char *find, const char *x) {
 	const char *c = strstr(str, find);
 	char *r;
@@ -465,6 +618,11 @@ char *strrep(const char* str, const char *find, const char *x) {
 	}
 	return r;
 }
+
+/****************************************************************************************/
+/**
+ * copy 'len' characted of s to d
+ */
 char *strscpy(char *d, const char *s, size_t len) {
 	char *d_orig = d;
 	if (!len)
@@ -475,6 +633,10 @@ char *strscpy(char *d, const char *s, size_t len) {
 	return d_orig;
 }
 
+/****************************************************************************************/
+/**
+ * replace ALL occurrences of a string in a string
+ */
 char *str_replace (const char *string, const char *substr, const char *replacement) {
 	char *tok = NULL;
 	char *newstr = NULL;
@@ -501,6 +663,10 @@ char *str_replace (const char *string, const char *substr, const char *replaceme
 	return newstr;
 }
 
+/****************************************************************************************/
+/**
+ * set the timer for the signal handler
+ */
 void set_timer(time_t period_in_secs) {
 
 	struct itimerval timer_val;
@@ -511,6 +677,11 @@ void set_timer(time_t period_in_secs) {
 		perror("Error in setitimer()");
 
 }
+
+/****************************************************************************************/
+/**
+ * the timer event handler. will be called every 2 seconds.
+ */
 void timer_event_handler(int sigid) {
 	if (sigid == SIGALRM) {
 		check_timeouts();
@@ -521,6 +692,10 @@ void timer_event_handler(int sigid) {
 	}
 }
 
+/****************************************************************************************/
+/**
+ * match a regular expression
+ */
 int match(char *str, char *pattern) {
 	int status;
     regex_t re;
@@ -537,7 +712,10 @@ int match(char *str, char *pattern) {
     return 1;
 }
 
-
+/****************************************************************************************/
+/**
+ * converts a string to all lowercase letter
+ */
 char *strlower(char *str) {
 	int i = 0;
 	for(i = 0; str[i]; i++){
@@ -545,6 +723,11 @@ char *strlower(char *str) {
 	}
 	return str;
 }
+
+/****************************************************************************************/
+/**
+ * remove all duplicated characters within a string
+ */
 char *remove_dup(char *input)
 {
 	static int chars[127];

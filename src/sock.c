@@ -23,6 +23,10 @@
 
 char ircbuf[IRCBUF_SIZE];
 
+/****************************************************************************************/
+/**
+ * load the services
+ */
 void load_modules(int sock) {
 	if (ns_enabled) {
 		printf(APP_DBG_CONNECTINGCLIENT, ns_name);
@@ -81,6 +85,11 @@ void load_modules(int sock) {
 	}
 }
 
+
+/****************************************************************************************/
+/**
+ * process a line from the server and put the argument in an array
+ */
 void parse(void) {
 	char source[1024];
 	char cmd[1024];
@@ -124,6 +133,11 @@ void parse(void) {
 	free(av);
 }
 
+
+/****************************************************************************************/
+/**
+ * create the socket and establish the connection
+ */
 int sock_connect(void) {
 	int sock, port;
 	char serverip[20];
