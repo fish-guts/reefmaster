@@ -1,6 +1,6 @@
-#ifndef AS_SQUIT_H_
-#define AS_SQUIT_H_
+#ifndef AS_CHANNEL_H_
+#define AS_CHANNEL_H_
 
-void as_squit(char *src,int ac,char **av);
+void as_channel(char *src,int ac,char **av);
 
-#endif /*AS_SQUIT_H_*/
+#endif /*AS_CHANNEL_H_*/
