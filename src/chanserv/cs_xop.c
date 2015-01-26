@@ -54,7 +54,7 @@ void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
 		notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_END,nick);
 		user *u = finduser(nick);
 		if (u) {
-			notice(ns_name, nick, NS_RPL_ATH_TEXT_NOTIFY, src);
+			notice(ns_name, nick, NS_RPL_ATH_TEXT_CHAN, src,acclist[list],chan);
 		}
 		return;
 	}

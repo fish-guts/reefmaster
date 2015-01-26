@@ -10,6 +10,7 @@ extern int config_load(const char *file);
 
 int config_as_access_flag(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_bool(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
+int config_ns_expiry(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
 int config_bool_as(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_bs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_bool_cs(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);

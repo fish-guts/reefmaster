@@ -196,6 +196,7 @@ void check_connections(void) {
  * calls the funtion that check for expired nicknames.
  */
 static void check_expiry(void) {
+	printf("Expiry: %i\n",ns_expiry);
 	check_ns_expiry();
 }
 
@@ -206,6 +207,8 @@ static void check_expiry(void) {
  */
 static void check_ns_expiry(void) {
 	long expiration = time(NULL) - (ns_expiry * 86400);
+	printf("Expiry: %i\n",ns_expiry);
+	printf("Expiration: %ld\n",expiration);
 	NickInfo *n = nicklist;
 	while(n) {
 		if(n->last_seen < expiration) {

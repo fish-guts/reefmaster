@@ -53,7 +53,7 @@ void bs_msg(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
 		return;
 	}
-	char message[256];
+	char *message = (char*) malloc(sizeof(char*) * 1024);
 	int i = 3;
 	for(i=3;i<ac;i++) {
 		strcat(message,av[i]);
@@ -62,6 +62,7 @@ void bs_msg(char *src,int ac,char **av) {
 		}
 	}
 	privmsg(b->name,chan,message);
+	free(message);
 
 	return;
 

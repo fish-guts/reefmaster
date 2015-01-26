@@ -183,7 +183,7 @@
 #define NS_ERR_ATH_LISTCOMPLETE2	"Listing complete - \2%i\2 matches found"
 #define NS_ERR_ATH_USAGE			"Usage: \2AUTH <ACCEPT|DECLINE|READ|LIST> [#]."
 #define NS_RPL_ATH_TEXT_NOTIFY		"\2%s\2 wants to add you to his/her notify list."
-#define NS_RPL_ATH_TEXT_CHAN		"\2%s\2 wants to add you to the \2%S\2 list of \2%s\2"
+#define NS_RPL_ATH_TEXT_CHAN		"\2%s\2 wants to add you to the \2%s\2 list of \2%s\2"
 #define NS_RPL_ATH_XOP_READ			"Authorization request no \2%s\2 - \2%s\2 wants to add you to the \2%s\2 list of \2%s\2"
 #define NS_RPL_ATH_TEXT7			"\2%s\2 wants you to be the \2Successor\2 of %s"
 #define NS_RPL_ATH_TEXT8			"\2%s\2 wants you to be the \2Founder\2 of %s"

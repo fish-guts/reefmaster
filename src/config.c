@@ -1107,13 +1107,14 @@ int config_load(const char *file) {
 			CFG_SEC("general",main_general_opts,CFGF_NONE),
 			CFG_SEC("files",main_files_opts,CFGF_NONE),
 			CFG_SEC("password",main_password_opts,CFGF_NONE),
-			CFG_SEC("registration",main_reg_opts,CFGF_NONE), CFG_END()
+			CFG_SEC("registration",main_reg_opts,CFGF_NONE),
+			CFG_END()
 	};
 	static cfg_opt_t ns_general_opts[] = {
 			CFG_INT_CB("enabled",1,CFGF_NONE,(void*)&config_bool_ns),
 			CFG_STR_CB("name","Nickserv",CFGF_NONE,(void*)&config_str32),
 			CFG_STR_CB("realname","Nickname Services",CFGF_NONE,(void*)&config_str32),
-			CFG_INT_CB("expiry",90,CFGF_NONE,(void*)&config_uint32),
+			CFG_INT_CB("expiry",90,CFGF_NONE,(void*)&config_ns_expiry),
 			CFG_INT_CB("admin",6,CFGF_NONE,(void*)&config_ns_admin),
 			CFG_END()
 	};
@@ -1121,7 +1122,6 @@ int config_load(const char *file) {
 			CFG_INT_CB("delay",0,CFGF_NONE,(void*)&config_ns_delay),
 			CFG_INT_CB("access",0,CFGF_NONE,(void*)&config_ns_regacc),
 			CFG_INT_CB("autoaccess",1,CFGF_NONE,(void*)&config_ns_autoacc),
-			CFG_INT_CB("sendmemo",1,CFGF_NONE,(void*)&config_bool), CFG_END()
 	};
 	static cfg_opt_t ns_list_opts[] = {
 			CFG_INT_CB("maxlist",100,CFGF_NONE,(void*)&config_uint32),
@@ -1434,6 +1434,7 @@ int config_load(const char *file) {
 		ns_maxlist = cfg_getint(ns_list, "maxlist");
 		ns_operonly = cfg_getint(ns_list, "operonly");
 		ns_access_max = cfg_getint(ns_list, "access_max");
+		printf("ns_expiry: %i\n",(int)cfg_getint(ns_list, "access_max"));
 
 		/* section password */
 		ns_password = cfg_getsec(nickserv, "password");
@@ -1443,6 +1444,8 @@ int config_load(const char *file) {
 		/* section default */
 		ns_default = cfg_getsec(nickserv, "default");
 		ns_mlock = cfg_getstr(ns_default, "mlock");
+
+		printf("ns_expiry: %ld\n",cfg_getint(ns_general, "expiry"));
 
 		/* end of section nickserv */
 		/* section chanserv ***********************************************************************************************/
@@ -1777,6 +1780,17 @@ int config_ns_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 }
 
 /****************************************************************************************/
+int config_ns_expiry(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 360)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 360);
+		return -1;
+	}
+	ns_expiry = val;
+	return 0;
+}
+
+/****************************************************************************************/
 int config_oper(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 6)) {
@@ -1896,7 +1910,6 @@ int config_uint32(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 		cfg_error(cfg, CONF_ERR_NEGVALUEFOUND, CONFIG_FILE, cfg->line,opt->name);
 		return -1;
 	}
-	*(const char **) result = (const char *) value;
 	return 0;
 }
 
