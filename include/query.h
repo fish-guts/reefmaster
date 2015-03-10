@@ -331,5 +331,9 @@ const char *cs_update_op_query = "INSERT INTO 'OP_LIST' ( "
 		"%i,"
 		"'%ld');";
 
+const char *os_load_ops_query = "SELECT * FROM OPERS";
+
+const char *os_load_akicks_query = "SELECT * FROM AKILL";
+
 
 #endif /* QUERY_H_ */

@@ -849,6 +849,7 @@ void load_database(void) {
 	}
 	if (os_enabled) {
 		load_opers();
+		load_akills();
 	}
 	addlog(1, LOG_DBG_EXIT, "load_database");
 }
