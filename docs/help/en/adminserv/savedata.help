@@ -1,0 +1,13 @@
+AS <b>SAVEDATA</b>
+-
+Usage: /msg Adminserv <b>SAVEDATA</b>
+Usage: /as <b>SAVEDATA</b>
+-
+-
+With <b>SAVEDATA</b>, you can invoke a save operation on the database.  
+-
+- Example
+- 
+- AS <b>SAVEDATA</b> 
+-
+- <b>SAVEDATA</b> - End of help

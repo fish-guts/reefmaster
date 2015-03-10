@@ -1,0 +1,13 @@
+AS <b>SQUIT</b>
+-
+Usage: /msg Adminserv <b>SQUIT</b>
+Usage: /as <b>SQUIT</b>
+-
+-
+With <b>SQUIT</b>, you can force service to disconnect form the server and exit.   
+-
+- Example
+- 
+- AS <b>SQUIT</b> 
+-
+- <b>SQUIT</b> - End of help

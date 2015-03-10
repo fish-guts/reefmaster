@@ -1,0 +1,14 @@
+<b>ADMINSERV</b>
+Adminserv allows Server Administrators to invoke commands that concern services.   
+-
+-
+The following commands are available:
+-
+<b>SAVEDATA</b> - Force a save operation on the database. 
+<b>SQUIT</b> - Force Services to disconnect from the server and quit. 
+-
+For help on a specific topic, type /msg Adminserv <b>HELP</b> <Command> 
+-
+-
+- <b>ADMINSERV</b> - End of help
+
