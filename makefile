@@ -9,9 +9,13 @@ USER_OBJS := lib/libconfuse.a lib/libsqlite3.so.0
 
 CC = gcc
 CFLAGS = -Wall -O2 -g -c
+CD = @cd
+DBDIR = db
+FIXTURE_FILE = db/fixture.sql
+DATABASE = db/services.db
 
 # All Target
-all: services
+all: db.loadFixture services 
 
 # Tool invocations
 services: $(OBJS) 
@@ -64,3 +68,12 @@ clean:
 
 .PHONY: all clean dependents
 .SECONDARY:
+
+
+# build fixture database
+db.loadFixture:	
+	@echo "Loading Database..."
+	@echo "Removing old schema"
+	@rm -f $(DATABASE)
+	@sqlite3 -init $(FIXTURE_FILE) $(DATABASE) &
+	@echo "Build successful!"
