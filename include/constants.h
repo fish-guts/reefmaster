@@ -197,31 +197,31 @@
 /* ACC
  ******************************************************************************************************************************************
  */
-#define NS_ERR_CACC_USAGE			"Usage: \2ACC\2 <Nickname>"
+#define NS_ERR_ACC_USAGE			"Usage: \2ACC\2 <Nickname>"
 
 /* DROP
  ******************************************************************************************************************************************
  */
-#define NS_RPL_DRP_SUCCESS			"The nickname \2%s\2 has been dropped."
-#define NS_ERR_DRP_USAGE			"Usage: \2DROP\2 <nickname>"
+#define NS_DROP_RPL_SUCCESS			"The nickname \2%s\2 has been dropped."
+#define NS_DROP_ERR_USAGE			"Usage: \2DROP\2 <nickname>"
 
 /* GETPASS
  ******************************************************************************************************************************************
  */
 
-#define NS_LOG_GETPASS_USED			"%s: GETPASS command used by: %s for the nickname %s"
-#define NS_CTP_GETPASS_USED			"GETPASS command used by: \2%s\2 for the nickname \2%s\2"
-#define NS_RPL_GPASS_LOGGED			"This command has been logged."
-#define NS_RPL_GPASS_SUCCESS		"The Password for the Nickname \2%s\2 is: %s."
-#define NS_ERR_GPASS_USAGE			"Usage: \2GETPASS\2 <nickname>."
+#define NS_GETPASS_USED_LOG			"%s: GETPASS command used by: %s for the nickname %s"
+#define NS_GETPASS_USED_GLOBAL		"GETPASS command used by: \2%s\2 for the nickname \2%s\2"
+#define NS_GETPASS_MSG_LOGGED		"This command has been logged."
+#define NS_GETPASS_RPL_SUCCESS		"The Password for the Nickname \2%s\2 is: %s."
+#define NS_GETPASS_ERR_USAGE		"Usage: \2GETPASS\2 <nickname>."
 
 /* GHOST
  ******************************************************************************************************************************************
  */
-#define NS_RPL_GHT_GHOSTDISCONN		"You ghost has been disconnected."
-#define NS_RPL_GHT_NEEDRELEASE		"To release this nickname, please use /msg %s \2RELEASE\2."
-#define NS_ERR_GHT_NICKISHELD		"The nickname \2%s\2 is currently being held by services."
-#define NS_ERR_GHT_USAGE			"Usage: \2GHOST\2 <Nickname> [Password]"
+#define NS_GHOST_RPL_GHOSTDISCONNECT "You ghost has been disconnected."
+#define NS_GHOST_RPL_NEEDRELEASE	 "To release this nickname, please use /msg %s \2RELEASE\2."
+#define NS_GHOST_RPL_NICKISHELD		 "The nickname \2%s\2 is currently being held by services."
+#define NS_GHOST_ERR_USAGE			 "Usage: \2GHOST\2 <Nickname> [Password]"
 
 /* HELP
  ******************************************************************************************************************************************
