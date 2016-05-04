@@ -61,7 +61,7 @@ void add_notify_auth_entry(char *src,char *nick) {
 		n2->authlist->prev = a;
 	n2->authlist = a;
 	if ((u1 = finduser(nick)) != NULL) {
-		notice(ns_name, nick, NS_RPL_ATH_TEXT_NOTIFY, src);
+		notice(ns_name, nick, NS_AUTH_RPL_TEXT_NOTIFY, src);
 	}
 	return;
 }
@@ -151,7 +151,7 @@ void ns_notify_add(char *src,int ac,char **av) {
 		 */
 		if (n2->auth_notify) {
 			if (findauth_notify(src, nick)) {
-				notice(as_name, src, NS_RPL_ATH_ALREADYINLIST, nick);
+				notice(as_name, src, NS_AUTH_RPL_ALREADYINLIST, nick);
 				return;
 			}
 			add_notify_auth_entry(src,nick);

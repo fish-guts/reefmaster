@@ -29,7 +29,7 @@ static struct timeout {
 	user *u;
 	timer *to;
 	int type;
-}*my_timeouts;
+} *my_timeouts;
 
 /* list containing a the registered nicknames */
 NickInfo *nicklist = NULL;
@@ -52,7 +52,7 @@ static void timeout_release(timer *t);
 /* all the nickserv commands */
 ns_cmd ns_cmds[] = {
 	{ "ACC", ns_acc },
-	{ "ACCESS", ns_access },
+	{ "ACCESS", ns_access_cmd },
 	{ "AUTH", ns_auth },
 	{ "DROP", ns_drop },
 	{ "INFO", ns_info },
@@ -66,7 +66,7 @@ ns_cmd ns_cmds[] = {
 	{ "REGISTER", ns_register },
 	{ "RELEASE", ns_release },
 	{ "SET", ns_set },
-	{ "SETPASS", ns_setpass },
+	{ "SETPASS", ns_setpass }
 };
 
 
@@ -113,13 +113,18 @@ static void force_identify(user *u, int from_timeout) {
 	double x = RAND_MAX + 1.0;
 	char *nick = u->nick;
 	int y;
-	y = 1 + rand() * (99999 / x);
-	buf = y;
+	/* create a random guest name */
+	buf = 1 + rand() * (99999 / x);
 	snprintf(newnick, sizeof(newnick), "Guest%ld", buf);
-	if (!from_timeout)
+
+	if (!from_timeout) {
 		del_ns_timeout(u, TO_COLLIDE);
-	if (from_timeout > 0)
+	}
+
+	if (from_timeout > 0) {
 		notice(ns_name, u->nick, NS_RPL_PLZ_NOTIMELEFT);
+	}
+	/* change the nick */
 	svsnick(u->nick, newnick, time(NULL));
 	ns_enforce(nick);
 	add_ns_timeout(u, TO_RELEASE, ns_release_time);
@@ -134,17 +139,20 @@ static void del_ns_timeout(user *u, int type) {
 	while (t) {
 		if ((t->u == u) && (t->type == type)) {
 			t2 = t->next;
-			if (t->next)
+			if (t->next) {
 				t->next->prev = t->prev;
-			if (t->prev)
+			}
+			if (t->prev) {
 				t->prev->next = t->next;
-			else
+			} else {
 				my_timeouts = t->next;
+			}
 			del_timeout(t->to);
 			free(t);
 			t = t2;
-		} else
+		} else {
 			t = t->next;
+		}
 	}
 }
 /********************************************************************/
@@ -152,12 +160,16 @@ static void del_ns_timeout(user *u, int type) {
  * delete a nickname from the list.
  */
 void delete_nick(NickInfo *n) {
-	if (n->prev)
+	if (n->prev) {
 		n->prev->next = n->next;
-	else
+	} else {
 		nicklist = n->next;
-	if (n->next)
+	}
+
+	if (n->next) {
 		n->next->prev = n->prev;
+	}
+
 	free(n);
 }
 /********************************************************************/
@@ -167,7 +179,6 @@ void delete_nick(NickInfo *n) {
 static ns_cmd *find_ns(const char *name) {
 	ns_cmd *cmd;
 	for (cmd = ns_cmds; cmd->name-1; cmd++) {
-
 		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
 		}
@@ -238,13 +249,13 @@ int isidentified(user *u, char *nick) {
 	usernick *un;
 	un = u->usernicks;
 	while(un) {
-		if ((stricmp(un->n->nick,nick)==0) && (un->level==NICK_IDENTIFIED))
+		if ((stricmp(un->n->nick,nick)==0) && (un->level==NICK_IDENTIFIED)) {
 			return 1;
+		}
 		un = un->next;
 	}
 	return 0;
 }
-
 
 /********************************************************************/
 /**
@@ -327,7 +338,7 @@ void ns_checknotify(user *u, int mode) {
 void ns_check_auth(user *u) {
 	NickInfo *n = findnick(u->nick);
 	if(has_open_auth(n)) {
-		notice(ns_name,u->nick,NS_RPL_ATH_OPEN);
+		notice(ns_name,u->nick,NS_AUTH_RPL_OPEN);
 	}
 	return;
 }
@@ -349,8 +360,7 @@ int ns_checkpass(char *src, char *pass) {
  */
 void ns_enforce(char *src) {
 	char buf[1024];
-	sprintf(buf, "NICK %s %lu 1 %s %s %s :%s Nickname Enforcement\r\n", src,
-			time(NULL), ns_enforcer, s__host, s_name, ns_name);
+	sprintf(buf, "NICK %s %lu 1 %s %s %s :%s Nickname Enforcement\r\n", src,time(NULL), ns_enforcer, s__host, s_name, ns_name);
 	addlog(1, ns_name, LOG_DBG_ENFORCING, src);
 	NickInfo *n = findnick(src);
 	n->enforced = 1;
@@ -392,8 +402,9 @@ void ns_passlimit(user *u) {
  * remove the timers if a service-held nickname was released
  */
 static void release(user *u, int from_timeout) {
-	if (!from_timeout)
+	if (!from_timeout) {
 		del_ns_timeout(u, TO_COLLIDE);
+	}
 	del_ns_timeout(u, TO_COLLIDE_TL);
 	del_ns_timeout(u, TO_RELEASE);
 	quit(u->nick);
@@ -409,16 +420,20 @@ static void rem_ns_timeout(user *u, int type) {
 	while (t) {
 		if (t->u == u && t->type == type) {
 			t2 = t->next;
-			if (t->next)
+			if (t->next) {
 				t->next->prev = t->prev;
-			if (t->prev)
+			}
+
+			if (t->prev) {
 				t->prev->next = t->next;
-			else
+			} else {
 				my_timeouts = t->next;
+			}
 			free(t);
 			t = t2;
-		} else
+		} else {
 			t = t->next;
+		}
 	}
 }
 /********************************************************************/
@@ -460,8 +475,9 @@ static void timeout_release(timer *t) {
 void add_nick_with_access(user *u, NickInfo *n, int type) {
 	usernick *un = scalloc(sizeof(usernick), 1);
 	un->next = u->usernicks;
-	if (u->usernicks)
+	if (u->usernicks) {
 		u->usernicks->prev = un;
+	}
 	u->usernicks = un;
 	un->n = n;
 	un->level = type;
@@ -532,8 +548,9 @@ NickInfo *register_nick(const char *src, const char *password,char *email) {
 	char *usermask = (char*) malloc(sizeof(char*) * 1024);
 	sprintf(usermask, "%s@%s", u->username,u->hostname);
 	n = scalloc(sizeof(NickInfo), 1);
-	if (!src)
+	if (!src) {
 		src = "";
+	}
 	strscpy(n->nick, src, NICKMAX);
 	strscpy(n->pass, password, PASSMAX);
 	n->email = sstrdup(email);
@@ -564,8 +581,9 @@ NickInfo *register_nick(const char *src, const char *password,char *email) {
 void add_identified(user *u, char *nick) {
 	usernick *un = scalloc(sizeof(usernick), 1);
 	un->next = u->usernicks;
-	if (u->usernicks)
+	if (u->usernicks) {
 		u->usernicks->prev = un;
+	}
 	u->usernicks = un;
 	un->n = findnick(nick);
 	un->level = NICK_IDENTIFIED;

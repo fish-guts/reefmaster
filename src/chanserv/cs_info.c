@@ -33,7 +33,7 @@ void cs_info(char *src,int ac, char **av) {
 	time_t cur = time(NULL);
 	char str_now[256], str_reg[80];
 	if(ac<2) {
-		notice(cs_name,src,CS_ERR_INF_USAGE);
+		notice(cs_name,src,CS_INFO_RPL_USAGE);
 		notice(cs_name,src,CS_RPL_HLP,"INFO");
 		return;
 	}
@@ -74,17 +74,17 @@ void cs_info(char *src,int ac, char **av) {
 			strcat(options,", ");
 		strcat(options,topiclock);
 	}
-	notice(cs_name,src,CS_RPL_INF_ENTRY1,c->name,c->description);
-	notice(cs_name,src,CS_RPL_INF_ENTRY2,c->founder->nick);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY1,c->name,c->description);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY2,c->founder->nick);
 	if((c->successor!=NULL) && (stricmp(c->successor->nick,"(null)")!=0))
-		notice(cs_name,src,CS_RPL_INF_ENTRY3,c->successor->nick);
+		notice(cs_name,src,CS_INFO_RPL_ENTRY3,c->successor->nick);
 	if((c->topic!=NULL) && (stricmp(c->topic,"")!=0))
-		notice(cs_name,src,CS_RPL_INF_ENTRY4,c->topic);
-	notice(cs_name,src,CS_RPL_INF_ENTRY5,str_reg);
-	notice(cs_name,src,CS_RPL_INF_ENTRY6,str_now);
-	notice(cs_name,src,CS_RPL_INF_ENTRY7,c->mlock);
-	notice(cs_name,src,CS_RPL_INF_ENTRY8,options);
-	notice(cs_name,src,CS_RPL_INF_ENTRY9,get_opacc(c->memolevel));
+		notice(cs_name,src,CS_INFO_RPL_ENTRY4,c->topic);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY5,str_reg);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY6,str_now);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY7,c->mlock);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY8,options);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY9,get_opacc(c->memolevel));
 	free(options);
 	return;
 

@@ -82,7 +82,7 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	if ((addacc = cs_xop_get_level(u, c)) < cs_akick_add) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(cs_akick_add));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_akick_add));
 		return;
 	}
 	if ((!strchr(mask, '!')) && (!strchr(mask, '@'))) {
@@ -118,7 +118,7 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 		if(reason)
 			ak->reason = sstrdup(reason);
 		notice(as_name,src,"%s added by %s (%i) on %ld (%s)",ak->mask,ak->added_by,ak->added_by_acc,ak->added_on,ak->reason);
-		notice(cs_name, src, CS_RPL_XOP_ADDED, finalmask, "Akick", c->name);
+		notice(cs_name, src, CS_XOP_RPL_ADDED, finalmask, "Akick", c->name);
 		return;
 	}
 
@@ -145,7 +145,7 @@ void cs_akick_delmask(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	if ((addacc = cs_xop_get_level(u, c)) < cs_akick_del) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(cs_akick_del));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_akick_del));
 		return;
 	}
 	if ((!strchr(mask, '!')) && (!strchr(mask, '@'))) {
@@ -155,7 +155,7 @@ void cs_akick_delmask(char *src, int ac, char **av) {
 	}
 	if (!cs_isonakicklist(finalmask, chan)) {
 
-		notice(cs_name, src, CS_ERR_XOP_NOTONLIST, finalmask, "Akick", chan);
+		notice(cs_name, src, CS_XOP_ERR_NOTONLIST, finalmask, "Akick", chan);
 		return;
 	}
 	akick *ak = c->akicklist;
@@ -168,7 +168,7 @@ void cs_akick_delmask(char *src, int ac, char **av) {
 			if (ak->next)
 				ak->next->prev = ak->prev;
 			free(ak);
-			notice(cs_name, src, CS_RPL_XOP_DELETED, finalmask, "Akick",
+			notice(cs_name, src, CS_XOP_RPL_DELETED, finalmask, "Akick",
 					chan);
 			return;
 		}
@@ -191,13 +191,13 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	if ((listacc = cs_xop_get_level(u, c)) < cs_akick_list) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(cs_akick_list));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_akick_list));
 		return;
 	}
 	int i = 0;
 	char str[128];
 	akick *ak = c->akicklist;
-	notice(cs_name, src, CS_RPL_XOP_LIST_BEGIN, "Akick", chan);
+	notice(cs_name, src, CS_XOP_RPL_LIST_BEGIN, "Akick", chan);
 	while (ak) {
 		i++;
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&ak->added_on));
@@ -208,9 +208,9 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 		ak = ak->next;
 	}
 	if ((i > 1) || (i == 0)) {
-		notice(cs_name, src, CS_RPL_XOP_LIST_COMPLETE1, i);
+		notice(cs_name, src, CS_XOP_RPL_LIST_COMPLETE1, i);
 	} else {
-		notice(cs_name, src, CS_RPL_XOP_LIST_COMPLETE2);
+		notice(cs_name, src, CS_XOP_RPL_LIST_COMPLETE2);
 	}
 }
 akick *cs_akick_match(user *u,ChanInfo *c) {
@@ -239,7 +239,7 @@ void cs_akick_wipeall(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	if ((wipeacc = cs_xop_get_level(u, c)) < cs_akick_wipe) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(cs_akick_wipe));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_akick_wipe));
 		return;
 	}
 	int i = 0;
@@ -257,8 +257,8 @@ void cs_akick_wipeall(char *src, int ac, char **av) {
 		ak = ak->next;
 	}
 	if (i == 1)
-		notice(cs_name, src, CS_RPL_XOP_WIPED1, "Akick", chan);
+		notice(cs_name, src, CS_XOP_RPL_WIPED1, "Akick", chan);
 	else
-		notice(cs_name, src, CS_RPL_XOP_WIPED2, "Akick", chan, i);
+		notice(cs_name, src, CS_XOP_RPL_WIPED2, "Akick", chan, i);
 	return;
 }

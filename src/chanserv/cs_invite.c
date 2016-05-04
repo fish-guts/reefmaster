@@ -46,7 +46,7 @@ void cs_invite(char *src,int ac, char **av) {
 	c = findchan(chan);
 	int lvl = cs_xop_get_level(u,c);
 	if(lvl<cs_cmd_invite) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,(cs_cmd_invite));
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,(cs_cmd_invite));
 		return;
 	}
 	if(!findchannel(chan)) {

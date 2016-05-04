@@ -35,7 +35,7 @@ void cs_getpass(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 1) {
-		notice(cs_name, src, CS_ERR_GPASS_USAGE);
+		notice(cs_name, src, CS_GETPASS_RPL_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name,"GETPASS");
 		return;
 	}
@@ -44,9 +44,9 @@ void cs_getpass(char *src, int ac, char **av) {
 		return;
 	} else {
 		ChanInfo *c = findchan(av[1]);
-		notice(cs_name, src, CS_RPL_GPASS_SUCCESS,c->name,c->pass);
-		notice(cs_name, src, NS_RPL_GPASS_LOGGED);
-		chatops(cs_name,CS_CTP_GETPASS_USED,src,c->name);
+		notice(cs_name, src, CS_GETPASS_RPL_SUCCESS,c->name,c->pass);
+		notice(cs_name, src, NS_GETPASS_MSG_LOGGED);
+		globops(cs_name,CS_GLOBOPS_GETPASS_USED,src,c->name);
 		addlog(1,CS_LOG_GETPASS_USED,cs_name,src);
 	}
 }

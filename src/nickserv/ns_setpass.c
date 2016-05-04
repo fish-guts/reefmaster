@@ -54,20 +54,20 @@ void ns_setpass(char *src, int ac, char **av) {
 	NickInfo *n = findnick(nick);
 	/* the new password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
-		notice(ns_name, src, NS_ERR_REG_PASSTOOSHORT);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSTOOSHORT);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SETPASS");
 		return;
 	}
 	/* the password must not be the same as the nickname */
 	else if (stricmp(nick, pass) == 0) {
-		notice(ns_name, src, NS_ERR_REG_PASSSAMEASNICK);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSSAMEASNICK);
 		return;
 	} else {
 		strscpy(n->pass, pass, PASSMAX);
 		notice(ns_name, src, NS_RPL_SPASS_SUCCESS, nick, pass);
-		notice(ns_name,src,NS_RPL_GPASS_LOGGED);
+		notice(ns_name,src,NS_LOG_SETPASS_USED);
 		addlog(1,NS_LOG_SETPASS_USED,ns_name,src,nick);
-		chatops(ns_name,NS_CTP_SETPASS_USED,src,nick);
+		globops(ns_name,NS_GLOBAL_SETPASS_USED,src,nick);
 		return;
 	}
 }

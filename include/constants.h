@@ -177,27 +177,27 @@
 #define NS_AUTH_ERR_LISTCOMPLETE1	"Listing complete -\2 1 \2match found"
 #define NS_AUTH_ERR_LISTCOMPLETE2	"Listing complete - \2%i\2 matches found"
 #define NS_AUTH_ERR_USAGE			"Usage: \2AUTH <ACCEPT|DECLINE|READ|LIST> [#]."
-#define NS_AUTH_ERR_ACCEPTED		"You have accepted the authorization request No \2%i\2."
-#define NS_AUTH RPL_ALREADYINLIST	"You already sent such a request to \2%s\2."
-#define NS_AUTH RPL_DECLINED		"You have declined the authorization request No \2%i\2."
-#define NS_AUTH RPL_HASACCEPTED_NFY	"\2%s\2 has accepted your request to add them to your notify list"
-#define NS_AUTH RPL_HASACCEPTED_CHN	"\2%s\2 has accepted your request to add them to the \2%s\2 list of \2%s\2"
-#define NS_AUTH RPL_PENDING			"You have the following pending requests:"
-#define NS_AUTH RPL_NOENTRIES		"You have no pending requests."
-#define NS_AUTH RPL_OPEN			"You have pending authorization requests"
-#define NS_AUTH RPL_READCHAN		"Authorization Request No. \2%i %s  \2%s\2"
-#define NS_AUTH RPL_READNOTIFY		"Authorization Request No. \2%i\2 - \2%s\2"
-#define NS_AUTH RPL_TEXT_NOTIFY		"\2%s\2 wants to add you to his/her notify list."
-#define NS_AUTH RPL_TEXT_CHAN		"\2%s\2 wants to add you to the \2%s\2 list of \2%s\2"
-#define NS_AUTH RPL_XOP_READ		"Authorization request no \2%s\2 - \2%s\2 wants to add you to the \2%s\2 list of \2%s\2"
-#define NS_AUTH RPL_TEXT7			"\2%s\2 wants you to be the \2Successor\2 of %s"
-#define NS_AUTH RPL_TEXT8			"\2%s\2 wants you to be the \2Founder\2 of %s"
-#define NS_AUTH RPL_REQUESTLIST		"\2%i\2 - Request from \2%s\2"
+#define NS_AUTH_RPL_ACCEPTED		"You have accepted the authorization request No \2%i\2."
+#define NS_AUTH_RPL_ALREADYINLIST	"You already sent such a request to \2%s\2."
+#define NS_AUTH_RPL_DECLINED		"You have declined the authorization request No \2%i\2."
+#define NS_AUTH_RPL_HASACCEPTED_NFY	"\2%s\2 has accepted your request to add them to your notify list"
+#define NS_AUTH_RPL_HASACCEPTED_CHN	"\2%s\2 has accepted your request to add them to the \2%s\2 list of \2%s\2"
+#define NS_AUTH_RPL_PENDING			"You have the following pending requests:"
+#define NS_AUTH_RPL_NOENTRIES		"You have no pending requests."
+#define NS_AUTH_RPL_OPEN			"You have pending authorization requests"
+#define NS_AUTH_RPL_READCHAN		"Authorization Request No. \2%i %s  \2%s\2"
+#define NS_AUTH_RPL_READNOTIFY		"Authorization Request No. \2%i\2 - \2%s\2"
+#define NS_AUTH_RPL_TEXT_NOTIFY		"\2%s\2 wants to add you to his/her notify list."
+#define NS_AUTH_RPL_TEXT_CHAN		"\2%s\2 wants to add you to the \2%s\2 list of \2%s\2"
+#define NS_AUTH_RPL_XOP_READ		"Authorization request no \2%s\2 - \2%s\2 wants to add you to the \2%s\2 list of \2%s\2"
+#define NS_AUTH_RPL_TEXT7			"\2%s\2 wants you to be the \2Successor\2 of %s"
+#define NS_AUTH_RPL_TEXT8			"\2%s\2 wants you to be the \2Founder\2 of %s"
+#define NS_AUTH_RPL_REQUESTLIST		"\2%i\2 - Request from \2%s\2"
 
 /* ACC
  ******************************************************************************************************************************************
  */
-#define NS_ERR_ACC_USAGE			"Usage: \2ACC\2 <Nickname>"
+#define NS_ACC_USAGE			"Usage: \2ACC\2 <Nickname>"
 
 /* DROP
  ******************************************************************************************************************************************
@@ -218,43 +218,43 @@
 /* GHOST
  ******************************************************************************************************************************************
  */
-#define NS_GHOST_RPL_GHOSTDISCONNECT "You ghost has been disconnected."
-#define NS_GHOST_RPL_NEEDRELEASE	 "To release this nickname, please use /msg %s \2RELEASE\2."
-#define NS_GHOST_RPL_NICKISHELD		 "The nickname \2%s\2 is currently being held by services."
-#define NS_GHOST_ERR_USAGE			 "Usage: \2GHOST\2 <Nickname> [Password]"
+#define NS_GHOST_RPL_GHOSTDISCONNECT 	"You ghost has been disconnected."
+#define NS_GHOST_RPL_NEEDRELEASE	 	"To release this nickname, please use /msg %s \2RELEASE\2."
+#define NS_GHOST_RPL_NICKISHELD		 	"The nickname \2%s\2 is currently being held by services."
+#define NS_GHOST_ERR_USAGE				"Usage: \2GHOST\2 <Nickname> [Password]"
 
 /* HELP
  ******************************************************************************************************************************************
  */
 
-#define NS_HELP_PATH			"docs/help/en/nickserv"
+#define NS_HELP_PATH				 	"docs/help/en/nickserv"
 
 
 /* IDENTIFY
  ******************************************************************************************************************************************
  */
-#define NS_RPL_IDF_ALREADYIDF		"You have already identified for the nickname \2%s\2."
-#define NS_RPL_IDF_PASSACCEPTED		"Password accepted - You are now identified"
-#define NS_RPL_IDF_USAGE 			"Usage: \2IDENTIFY\2 <Password>"
-#define NS_ERR_IDF_WRONGPASS		"Incorrect password for the Nickname \2%s\2"
+#define NS_IDENTIFY_RPL_ALREADYIDF		"You have already identified for the nickname \2%s\2."
+#define NS_IDENTIFY_RPL_PASSACCEPTED	"Password accepted - You are now identified"
+#define NS_IDENTIFY_RPL_USAGE 			"Usage: \2IDENTIFY\2 <Password>"
+#define NS_IDENTIFY_RPL_WRONGPASS		"Incorrect password for the Nickname \2%s\2"
 /* INFO
  ******************************************************************************************************************************************
  */
-#define NS_RPL_INF_AUTHCHAN			"Authorization is required before adding this user to channel access lists."
-#define NS_RPL_INF_AUTHNOTIFY		"Authorization is required before adding this user to notify lists."
-#define NS_RPL_INF_EMAIL			"E-Mail Address		: %s."
-#define NS_RPL_INF_HEAD1			"\2%s\2 (currently online) is \2%s\2."
-#define NS_RPL_INF_HEAD2			"\2%s\2 is \2%s\2."
-#define NS_RPL_INF_LASTADDR			"Last seen address	: %s"
-#define NS_RPL_INF_LASTSEEN			"Last seen time		: %s"
-#define NS_RPL_INF_MFORWARD			"Memos to this user are forwarded to \2%s\2."
-#define NS_RPL_INF_NOMEMO			"This user is not accepting memos."
-#define NS_RPL_INF_NOOP				"This user will not automatically opped by %s."
-#define NS_RPL_INF_PROTECT1			"This user has 'normal' protection enabled."
-#define NS_RPL_INF_PROTECT2			"This user has 'agressive' protection enabled."
-#define NS_RPL_INF_TIMEREG			"Time registered	: %s."
-#define NS_RPL_INF_TIMENOW			"Time now			: %s."
-#define NS_ERR_INF_USAGE			"USAGE: \2INFO\2 <Nickname>"
+#define NS_INFO_RPL_AUTHCHAN			"Authorization is required before adding this user to channel access lists."
+#define NS_INFO_RPL_AUTHNOTIFY		"Authorization is required before adding this user to notify lists."
+#define NS_INFO_RPL_EMAIL			"E-Mail Address		: %s."
+#define NS_INFO_RPL_HEAD1			"\2%s\2 (currently online) is \2%s\2."
+#define NS_INFO_RPL_HEAD2			"\2%s\2 is \2%s\2."
+#define NS_INFO_RPL_LASTADDR			"Last seen address	: %s"
+#define NS_INFO_RPL_LASTSEEN			"Last seen time		: %s"
+#define NS_INFO_RPL_MFORWARD			"Memos to this user are forwarded to \2%s\2."
+#define NS_INFO_RPL_NOMEMO			"This user is not accepting memos."
+#define NS_INFO_RPL_NOOP				"This user will not automatically opped by %s."
+#define NS_INFO_RPL_PROTECT1			"This user has 'normal' protection enabled."
+#define NS_INFO_RPL_PROTECT2			"This user has 'agressive' protection enabled."
+#define NS_INFO_RPL_TIMEREG			"Time registered	: %s."
+#define NS_INFO_RPL_TIMENOW			"Time now			: %s."
+#define NS_INFO_RPL_USAGE			"USAGE: \2INFO\2 <Nickname>"
 
 /* LIST
  ******************************************************************************************************************************************
@@ -303,74 +303,80 @@
 /* REGISTER
  ******************************************************************************************************************************************
  */
-#define NS_ERR_REG_ALREADYREG		"The nickname \2%s\2 is already registered"
-#define NS_ERR_REG_DELAY			"Please wait another %i seconds before registering another nickname."
-#define NS_ERR_REG_GENERALERROR		"Sorry, an unknown error occured. Please try again later."
-#define NS_ERR_REG_INVALDEMAIL		"Invalid E-Mail Address"
-#define NS_ERR_REG_PASSSAMEASNICK	"The password must not be the same as your nickname. Please use a more obscure password"
-#define NS_ERR_REG_PASSTOOSHORT		"Password too short. Your password should be at least 5 characters long"
-#define NS_ERR_REG_PRIVS			"Permission denied. You need to be \2%s\2 to register a Nickname" 
-#define NS_RPL_REG_SUCCESS1			"Your nickname \2%s\2 has been successfully registered to you."
-#define NS_RPL_REG_SUCCESS2			"Your password is \2%s\2. Remember it for further use."
-#define NS_RPL_REG_SUCCESS3			"The mask \2%s\2 has automatically been added to your access list."
-#define NS_RPL_REG_USAGE 			"Usage: \2REGISTER\2 <Password> <E-Mail Address>"
-#define NS_RPL_REL_NICKRELEASED		"The nickname \2%s\2 has been released from custody."
-#define NS_ERR_REL_USAGE			"Usage: \2RELEASE\2 <Nickname> [Password]."
-#define NS_ERR_REL_NICKNOTHELD		"The Nickname \2%s\2 is not being held by services"
+#define NS_REGISTER_ERR_ALREADYREG		"The nickname \2%s\2 is already registered"
+#define NS_REGISTER_ERR_DELAY			"Please wait another %i seconds before registering another nickname."
+#define NS_REGISTER_ERR_GENERALERROR	"Sorry, an unknown error occured. Please try again later."
+#define NS_REGISTER_ERR_INVALDEMAIL		"Invalid E-Mail Address"
+#define NS_REGISTER_ERR_PASSSAMEASNICK	"The password must not be the same as your nickname. Please use a more obscure password"
+#define NS_REGISTER_ERR_PASSTOOSHORT	"Password too short. Your password should be at least 5 characters long"
+#define NS_REGISTER_ERR_PRIVS			"Permission denied. You need to be \2%s\2 to register a Nickname"
+#define NS_REGISTER_RPL_SUCCESS1		"Your nickname \2%s\2 has been successfully registered to you."
+#define NS_REGISTER_RPL_SUCCESS2		"Your password is \2%s\2. Remember it for further use."
+#define NS_REGISTER_RPL_SUCCESS3		"The mask \2%s\2 has automatically been added to your access list."
+#define NS_REGISTER_RPL_USAGE 			"Usage: \2REGISTER\2 <Password> <E-Mail Address>"
+
+
+/* RELEASE
+ ******************************************************************************************************************************************
+ */
+
+#define NS_RELEASE_RPL_NICKRELEASED	"The nickname \2%s\2 has been released from custody."
+#define NS_RELEASE_RPL_USAGE		"Usage: \2RELEASE\2 <Nickname> [Password]."
+#define NS_RELEASE_RPL_NICKNOTHELD	"The Nickname \2%s\2 is not being held by services"
 
 /* SET
  ******************************************************************************************************************************************
  */
-#define NS_RPL_SET_AUTH_SUCCESS1	"Success - Authorization is now required before anyone can add you to channel access lists."
-#define NS_RPL_SET_AUTH_SUCCESS2	"Success - Authorization was already required before anyone can add you to channel access lists."
-#define NS_RPL_SET_AUTH_SUCCESS3	"Success - Authorization is no longer required before anyone can add you to channel access lists."
-#define NS_RPL_SET_AUTH_SUCCESS4	"Success - Channel Authorization was already turned off."
-#define NS_RPL_SET_AUTH_SUCCESS5	"Success - Authorization is now required before anyone can add you to notify lists."
-#define NS_RPL_SET_AUTH_SUCCESS6	"Success - Authorization was already required before anyone can add you to notify lists."
-#define NS_RPL_SET_AUTH_SUCCESS7	"Success - Authorization is no longer required before anyone can add you to notify lists."
-#define NS_RPL_SET_AUTH_SUCCESS8	"Success - Notify Authorization was already turned off."
-#define NS_ERR_SET_AUTH_USAGE		"Usage: \2SET AUTHORIZE\2 <chan|notify> <on|off>"
-#define NS_ERR_SET_USAGE			"Usage: \2SET\2 <Command> <Parameters>."
-#define NS_ERR_SET_EMAIL_USAGE		"Usage: \2SET EMAIL\2 <E-Mail Address>."
-#define NS_RPL_SET_EMAILSUCCESS		"Success - \2%s\2 has been set as your e-mail address."
-#define NS_ERR_SET_HIDEEMAIL_USAGE	"Usage: \2SET HIDEEMAIL <on|off>\2"
-#define NS_RPL_SET_HMAIL_SUCCESS1 	"Success - Your e-mail address will be hidden."
-#define NS_RPL_SET_HMAIL_SUCCESS2 	"Success - Your e-mail address will now be unhidden." 
-#define NS_RPL_SET_MFWD_ON			"Success - All your memos will be forwarded to the nickname \2%s\2."
-#define NS_RPL_SET_MFWD_OFF			"Success - Memos are not  being forwarded anymore." 
-#define NS_ERR_SET_MFWD_USAGE		"Usage: \2SET MFORWARD\2 <[Nickname]|OFF>."
-#define NS_ERR_SET_MFWD_SELF		"Error - You cannot set memo forwarding to yourself."
-#define NS_RPL_SET_MFY_SUCCESS		"Success - You will no longer be notified about new memos on logon."
-#define NS_RPL_SET_MFY_SUCCESS2		"Success - You will be notified about new memos on logon." 
-#define NS_ERR_SET_MFY_USAGE		"Usage: \2SET MNOTIFY\2 <on|off>."
-#define NS_RPL_SET_MLOCKSUCCESS		"Success - Modes are locked to \2%s\2."
-#define NS_ERR_SET_MLOCK_USAGE		"Usage: \2SET MLOCK\2 <+|-> [modes]."
-#define NS_RPL_SET_NOMEMO_SUCCESS	"Success - Your memos will be delivered to you."
-#define NS_RPL_SET_NOMEMO_SUCCESS2	"Success - You will no longer receive memos."
-#define NS_ERR_SET_NOMEMO_USAGE		"Usage: \2SET NOMEMO\2 <on|off>."
-#define NS_RPL_SET_NOMEMO_HLP		"For more help, type /msg %s \2HELP SET NOMEMO\2." 
-#define NS_RPL_SET_NOOP_SUCCESS		"Success - Automatic opping has been disabled." 
-#define NS_RPL_SET_NOOP_SUCCESS2	"Success - Automatic opping was already disabled."
-#define NS_RPL_SET_NOOP_SUCCESS3	"Success - Automatic opping has been enabled."
-#define NS_RPL_SET_NOOP_SUCCESS4	"Success - Automatic opping was already enabled."	
-#define NS_ERR_SET_NOOP_USAGE		"Usage: \2SET NOOP\2 <on|off>"
-#define NS_ERR_SET_PASS_USAGE		"Usage: \2SET PASSWORD\2 <New Password>."
-#define NS_RPL_SET_PASS_SUCCESS		"Success - Your new password is \2%s\2 - remember it for further use."
-#define NS_RPL_SET_PROTECT_SUCCESS	"Success - Nickname Protection disabled" 
-#define NS_RPL_SET_PROTECT_SUCCESS2	"Success - Nickname Protection was already disabled."
-#define NS_RPL_SET_PROTECT_SUCCESS3	"Success - Normal Nickname Protection enabled."
-#define NS_RPL_SET_PROTECT_SUCCESS4	"Success - Normal Nickname Protection was already enabled."
-#define NS_RPL_SET_PROTECT_SUCCESS5	"Success - Agressive Nickname Protection enabled."
-#define NS_RPL_SET_PROTECT_SUCCESS6	"Success - Agressive Nickname Protection was already enabled."
-#define NS_ERR_SET_PROTECT_USAGE	"Usage: \2SET PROTECT\2 <OFF|NORMAL|HIGH>"
-#define NS_RPL_SET_URL_SUCCESS		"Success - Your URL has been set to \2%s\2."
-#define NS_ERR_SET_URL_USAGE		"Usage: \2SET URL\2 <url>."
+#define NS_SET_AUTH_RPL_SUCCESS1	"Success - Authorization is now required before anyone can add you to channel access lists."
+#define NS_SET_AUTH_RPL_SUCCESS2	"Success - Authorization was already required before anyone can add you to channel access lists."
+#define NS_SET_AUTH_RPL_SUCCESS3	"Success - Authorization is no longer required before anyone can add you to channel access lists."
+#define NS_SET_AUTH_RPL_SUCCESS4	"Success - Channel Authorization was already turned off."
+#define NS_SET_AUTH_RPL_SUCCESS5	"Success - Authorization is now required before anyone can add you to notify lists."
+#define NS_SET_AUTH_RPL_SUCCESS6	"Success - Authorization was already required before anyone can add you to notify lists."
+#define NS_SET_AUTH_RPL_SUCCESS7	"Success - Authorization is no longer required before anyone can add you to notify lists."
+#define NS_SET_AUTH_RPL_SUCCESS8	"Success - Notify Authorization was already turned off."
+#define NS_SET_AUTH_RPL_USAGE		"Usage: \2SET AUTHORIZE\2 <chan|notify> <on|off>"
+#define NS_SET_RPL_USAGE			"Usage: \2SET\2 <Command> <Parameters>."
+#define NS_SET_EMAIL_RPL_USAGE		"Usage: \2SET EMAIL\2 <E-Mail Address>."
+#define NS_SET_EMAIL_RPL_SUCCESS	"Success - \2%s\2 has been set as your e-mail address."
+#define NS_SET_HIDEEMAIL_RPL_USAGE	"Usage: \2SET HIDEEMAIL <on|off>\2"
+#define NS_SET_HIDEEMAIL_RPL_SUCC1 	"Success - Your e-mail address will be hidden."
+#define NS_SET_HIDEEMAIL_RPL_SUCC2 	"Success - Your e-mail address will now be unhidden."
+#define NS_SET_MFORWARD_RPL_ON		"Success - All your memos will be forwarded to the nickname \2%s\2."
+#define NS_SET_MFORWARD_RPL_OFF		"Success - Memos are not  being forwarded anymore."
+#define NS_SET_MFORWARD_ERR_USAGE	"Usage: \2SET MFORWARD\2 <[Nickname]|OFF>."
+#define NS_SET_MFORWARD_ERR_SELF	"Error - You cannot set memo forwarding to yourself."
+#define NS_SET_MNOTIFY_RPL_SUCCESS	"Success - You will no longer be notified about new memos on logon."
+#define NS_SET_MNOTIFY_RPL_SUCCESS2	"Success - You will be notified about new memos on logon."
+#define NS_SET_MNOTIFY_RPL_USAGE	"Usage: \2SET MNOTIFY\2 <on|off>."
+#define NS_SET_MLOCK_RPL_SUCCESS	"Success - Modes are locked to \2%s\2."
+#define NS_SET_MLOCK_RPL_USAGE		"Usage: \2SET MLOCK\2 <+|-> [modes]."
+#define NS_SET_NOMEMO_RPL_SUCCESS	"Success - Your memos will be delivered to you."
+#define NS_SET_NOMEMO_RPL_SUCCESS2	"Success - You will no longer receive memos."
+#define NS_SET_NOMEMO_RPL_USAGE		"Usage: \2SET NOMEMO\2 <on|off>."
+#define NS_SET_NOMEMO_RPL_HLP		"For more help, type /msg %s \2HELP SET NOMEMO\2."
+#define NS_SET_NOOP_RPL_SUCCESS		"Success - Automatic opping has been disabled."
+#define NS_SET_NOOP_RPL_SUCCESS2	"Success - Automatic opping was already disabled."
+#define NS_SET_NOOP_RPL_SUCCESS3	"Success - Automatic opping has been enabled."
+#define NS_SET_NOOP_RPL_SUCCESS4	"Success - Automatic opping was already enabled."
+#define NS_SET_NOOP_RPL_USAGE		"Usage: \2SET NOOP\2 <on|off>"
+#define NS_SET_PASS_RPL_USAGE		"Usage: \2SET PASSWORD\2 <New Password>."
+#define NS_SET_PASS_RPL_SUCCESS		"Success - Your new password is \2%s\2 - remember it for further use."
+#define NS_SET_PROTECT_RPL_SUCCESS	"Success - Nickname Protection disabled"
+#define NS_SET_PROTECT_RPL_SUCCESS2	"Success - Nickname Protection was already disabled."
+#define NS_SET_PROTECT_RPL_SUCCESS3	"Success - Normal Nickname Protection enabled."
+#define NS_SET_PROTECT_RPL_SUCCESS4	"Success - Normal Nickname Protection was already enabled."
+#define NS_SET_PROTECT_RPL_SUCCESS5	"Success - Agressive Nickname Protection enabled."
+#define NS_SET_PROTECT_RPL_SUCCESS6	"Success - Agressive Nickname Protection was already enabled."
+#define NS_SET_PROTECT_ERR_USAGE	"Usage: \2SET PROTECT\2 <OFF|NORMAL|HIGH>"
+#define NS_SET_URL_RPL_SUCCESS		"Success - Your URL has been set to \2%s\2."
+#define NS_SET_URL_RPL_USAGE		"Usage: \2SET URL\2 <url>."
 
 /* SETPASS
  ******************************************************************************************************************************************
  */
 #define NS_LOG_SETPASS_USED			"%s: SETPASS command used by: %s for the nickname %s"
-#define NS_CTP_SETPASS_USED			"SETPASS command used by: \2%s\2 for the nickname \2%s\2"
+#define NS_GLOBAL_SETPASS_USED		"SETPASS command used by: \2%s\2 for the nickname \2%s\2"
 #define NS_RPL_SPASS_SUCCESS		"Success - The Password for the nickname \2%s\2 has been changed to \2%s\2."
 #define NS_ERR_SPASS_USAGE			"Usage: \2SETPASS\2 <nickname> <password>"
 
@@ -392,17 +398,15 @@
 /* ACC
  ******************************************************************************************************************************************
  */
-#define CS_ERR_ACC_USAGE			"Usage: \2ACC\2 <#channel> <nickname>"
-#define CS_RPL_ACC_HLP				"For more help, type /msg %s \2HELP ACC\2"
-#define CS_RPL_ACC_NOACC			"The user \2%s\2 has no access to channel \2%s\2"
-#define CS_RPL_ACC_IRCOP			"%s: This is an \2%s\2 and thus has full access to the channel \2%s\2"
-#define CS_RPL_ACC_XOP				"%s: has identified or matches an access entry for the nickname \2%s\2 who has \2%s\2 access to \2%s\2"
-#define CS_RPL_ACC_IDENTIFIED		"%s: has full founder access because they identified for the channel \2%s\2"
-#define CS_RPL_ACC_SUCCFND_ACC		"%s: has restricted founder access because they match an entry in the access list of \2%s\2 who is the \2%s\2 of \2%s\2"
-#define CS_RPL_ACC_SUCCFND			"%s: has identified for the nickname \2%s\2 who is the \2%s\2 of \2%s\2"
-#define CS_RPL_ACC_NOACCESS			"\2%s\2 has no access to \2%s\2."
-#define CS_ERR_ACCCMD_USAGE			"Usage: \2%s\2 ACC [#channel] \2[nickname]\2"
-#define CS_ERR_ALREADYREG			"The Channel \2%s\2 is already registered."
+#define CS_ACC_RPL_USAGE			"Usage: \2ACC\2 <#channel> <nickname>"
+#define CS_ACC_RPL_HLP				"For more help, type /msg %s \2HELP ACC\2"
+#define CS_ACC_RPL_NOACC			"The user \2%s\2 has no access to channel \2%s\2"
+#define CS_ACC_RPL_IRCOP			"%s: This is an \2%s\2 and thus has full access to the channel \2%s\2"
+#define CS_ACC_RPL_XOP				"%s: has identified or matches an access entry for the nickname \2%s\2 who has \2%s\2 access to \2%s\2"
+#define CS_ACC_RPL_IDENTIFIED		"%s: has full founder access because they identified for the channel \2%s\2"
+#define CS_ACC_RPL_SUCCFND_ACC		"%s: has restricted founder access because they match an entry in the access list of \2%s\2 who is the \2%s\2 of \2%s\2"
+#define CS_ACC_RPL_SUCCFND			"%s: has identified for the nickname \2%s\2 who is the \2%s\2 of \2%s\2"
+#define CS_ACC_RPL_NOACCESS			"\2%s\2 has no access to \2%s\2."
 
 /* AKICK
  ******************************************************************************************************************************************
@@ -420,14 +424,15 @@
  ******************************************************************************************************************************************
  */
 #define CS_RPL_DRP_SUCCESS			"The Channel \2%s\2 has been dropped"
+#define CS_DROP_RPL_USAGE			"Usage: \2DROP\2 <channel>"
 
 /* GETPASS
  ******************************************************************************************************************************************
  */
 #define CS_LOG_GETPASS_USED			"%s: GETPASS command used by: %s for the channel %s"
-#define CS_CTP_GETPASS_USED			"GETPASS command used by: \2%s\2 for the channel \2%s\2"
-#define CS_RPL_GPASS_SUCCESS		"The Password for the channel \2%s\2 is: %s."
-#define CS_ERR_GPASS_USAGE			"Usage: \2GETPASS\2 <channel>."
+#define CS_GLOBOPS_GETPASS_USED		"GETPASS command used by: \2%s\2 for the channel \2%s\2"
+#define CS_GETPASS_RPL_SUCCESS		"The Password for the channel \2%s\2 is: %s."
+#define CS_GETPASS_RPL_USAGE		"Usage: \2GETPASS\2 <channel>."
 
 
 /* INFO
@@ -439,16 +444,16 @@
  ******************************************************************************************************************************************
  */
 
-#define CS_ERR_INF_USAGE			"Usage: \2INFO\2 <channel>"
-#define CS_RPL_INF_ENTRY1			"\2%s\2 is \2%s\2"
-#define CS_RPL_INF_ENTRY2			"Founder: \2%s\2"
-#define CS_RPL_INF_ENTRY3			"Successor: \2%s\2"
-#define CS_RPL_INF_ENTRY4			"Last Topic is: %s"
-#define CS_RPL_INF_ENTRY5			"Time registered: %s"
-#define CS_RPL_INF_ENTRY6			"Time now		: %s"
-#define CS_RPL_INF_ENTRY7			"ModeLock: %s"
-#define CS_RPL_INF_ENTRY8			"Options: %s"
-#define CS_RPL_INF_ENTRY9			"MemoLevel: %s"
+#define CS_INFO_RPL_USAGE			"Usage: \2INFO\2 <channel>"
+#define CS_INFO_RPL_ENTRY1			"\2%s\2 is \2%s\2"
+#define CS_INFO_RPL_ENTRY2			"Founder: \2%s\2"
+#define CS_INFO_RPL_ENTRY3			"Successor: \2%s\2"
+#define CS_INFO_RPL_ENTRY4			"Last Topic is: %s"
+#define CS_INFO_RPL_ENTRY5			"Time registered: %s"
+#define CS_INFO_RPL_ENTRY6			"Time now		: %s"
+#define CS_INFO_RPL_ENTRY7			"ModeLock: %s"
+#define CS_INFO_RPL_ENTRY8			"Options: %s"
+#define CS_INFO_RPL_ENTRY9			"MemoLevel: %s"
 
 /* INVITE
  ******************************************************************************************************************************************
@@ -493,6 +498,11 @@
  */
 #define CS_ERR_OP_USAGE				"Usage: \2OP\2 [#channel] \2[nickname]\2"
 
+/* REGISTER
+ ******************************************************************************************************************************************
+ */
+#define CS_REGISTER_ERR_ALREADYREG	"The Channel \2%s\2 is already registered."
+
 /* SET
  ******************************************************************************************************************************************
  */
@@ -536,7 +546,7 @@
  ******************************************************************************************************************************************
  */
 #define CS_LOG_SETPASS_USED			"%s: SETPASS command used by: %s for the channel %s"
-#define CS_CTP_SETPASS_USED			"SETPASS command used by: \2%s\2 for the channel \2%s\2"
+#define CS_O_SETPASS_USED			"SETPASS command used by: \2%s\2 for the channel \2%s\2"
 #define CS_RPL_SPASS_SUCCESS		"Success - The Password for the Channel \2%s\2 has been changed to \2%s\2."
 #define CS_ERR_SPASS_USAGE			"Usage: \2SETPASS\2 <Channel> <password>"
 
@@ -551,29 +561,29 @@
 /* XOP
  ******************************************************************************************************************************************
  */
-#define CS_RPL_XOP_AUTH_REQUIRED	"\2%s\2 has authorization enabled for channel access list. "
-#define CS_RPL_XOP_AUTH_SENT_XOP	"\2%s\2 will receive a notification about your request to add them to the \2%s\2 list of \2%s\2."
-#define CS_RPL_XOP_AUTH_SENT_SF		"\2%s\2 will receive a notification about your request to set them as the \2%s\2 of \2%s\2."
-#define CS_RPL_XOP_AUTH_SENT_END	"Once the request has been approved, \2%s\2 will be automatically entered."
+#define CS_XOP_RPL_AUTH_REQUIRED	"\2%s\2 has authorization enabled for channel access list. "
+#define CS_XOP_RPL_AUTH_SENT_XOP	"\2%s\2 will receive a notification about your request to add them to the \2%s\2 list of \2%s\2."
+#define CS_XOP_RPL_AUTH_SENT_SF		"\2%s\2 will receive a notification about your request to set them as the \2%s\2 of \2%s\2."
+#define CS_XOP_RPL_AUTH_SENT_END	"Once the request has been approved, \2%s\2 will be automatically entered."
 #define CS_RPL_ATH_ALREADYSENT		"As request like this has already been sent to \2%s\2"
-#define CS_RPL_XOP_ADDED			"\2%s\2 has been added the \2%s\2 List of \2%s\2"
-#define CS_RPL_XOP_MOVED			"\2%s\2 has been moved from the \2%s\2 to the \2%s\2 list of \2%s\2."
-#define CS_ERR_XOP_ALREADYONLIST	"\2%s\2 is already on the \2%s\2 list of \2%s\2"
-#define CS_ERR_XOP_ALREADYONHIGHER	"\2%s\2 already has a higher access to \2%s\2"
-#define CS_ERR_XOP_NICKISFOUNDER	"\2%s\2 is already the founder of the channel \2%s\2"
-#define CS_ERR_XOP_FOUNDERCANNOTADD "\2%s\2 is the founder of the channel \2%s\2 and cannot be added to its \2%s\2 list"
-#define CS_ERR_XOP_SUCCCANNOTADD 	"\2%s\2 is the successor of the channel \2%s\2 and cannot be added to its \2%s\2 list"
-#define CS_ERR_XOP_NICKISSUCCESSOR	"\2%s\2 is already the successor of the channel \2%s\2"
-#define CS_RPL_XOP_DISABLED			"The \2%s\2 list of \2%s\2 is currently disabled."
-#define CS_RPL_XOP_LIST_BEGIN		"This is the \2%s\2 list of \2%s\2"
-#define CS_RPL_XOP_LIST				"\2%i\2 - \2%s\2 (Added by %s:%s on %s)"
-#define CS_RPL_XOP_LIST_COMPLETE1	"Listing complete - \2%i\2 matches found"
-#define CS_RPL_XOP_LIST_COMPLETE2	"Listing complete - 1 match found"
-#define CS_RPL_XOP_DELETED			"\2%s\2 has been removed from the \2%s\2 list of \2%s\2"
-#define CS_RPL_XOP_WIPED1			"The \2%s\2 list of \2%s\2 has been wiped - 1 entry removed."
-#define CS_RPL_XOP_WIPED2			"The \2%s\2 list of \2%s\2 has been wiped - %i entries removed."
-#define CS_ERR_XOP_NOTONLIST		"\2%s\2 is not on the \2%s\2 list of \2%s\2"
-#define CS_ERR_XOP_USAGE			"Usage: \2%s\2 <Channel> [ADD|DEL|LIST|WIPE|ENABLE|DISABLE]"
+#define CS_XOP_RPL_ADDED			"\2%s\2 has been added the \2%s\2 List of \2%s\2"
+#define CS_XOP_RPL_MOVED			"\2%s\2 has been moved from the \2%s\2 to the \2%s\2 list of \2%s\2."
+#define CS_XOP_ERR_ALREADYONLIST	"\2%s\2 is already on the \2%s\2 list of \2%s\2"
+#define CS_XOP_ERR_ALREADYONHIGHER	"\2%s\2 already has a higher access to \2%s\2"
+#define CS_XOP_ERR_NICKISFOUNDER	"\2%s\2 is already the founder of the channel \2%s\2"
+#define CS_XOP_ERR_FOUNDERCANNOTADD "\2%s\2 is the founder of the channel \2%s\2 and cannot be added to its \2%s\2 list"
+#define CS_XOP_ERR_SUCCCANNOTADD 	"\2%s\2 is the successor of the channel \2%s\2 and cannot be added to its \2%s\2 list"
+#define CS_XOP_ERR_NICKISSUCCESSOR	"\2%s\2 is already the successor of the channel \2%s\2"
+#define CS_XOP_RPL_DISABLED			"The \2%s\2 list of \2%s\2 is currently disabled."
+#define CS_XOP_RPL_LIST_BEGIN		"This is the \2%s\2 list of \2%s\2"
+#define CS_XOP_RPL_LIST				"\2%i\2 - \2%s\2 (Added by %s:%s on %s)"
+#define CS_XOP_RPL_LIST_COMPLETE1	"Listing complete - \2%i\2 matches found"
+#define CS_XOP_RPL_LIST_COMPLETE2	"Listing complete - 1 match found"
+#define CS_XOP_RPL_DELETED			"\2%s\2 has been removed from the \2%s\2 list of \2%s\2"
+#define CS_XOP_RPL_WIPED1			"The \2%s\2 list of \2%s\2 has been wiped - 1 entry removed."
+#define CS_XOP_RPL_WIPED2			"The \2%s\2 list of \2%s\2 has been wiped - %i entries removed."
+#define CS_XOP_ERR_NOTONLIST		"\2%s\2 is not on the \2%s\2 list of \2%s\2"
+#define CS_XOP_ERR_USAGE			"Usage: \2%s\2 <Channel> [ADD|DEL|LIST|WIPE|ENABLE|DISABLE]"
 
 /* REGISTER
  ******************************************************************************************************************************************
@@ -582,7 +592,7 @@
 #define CS_ERR_AOP_GENERALERROR		"Sorry, a general error has occured. Please try again later."
 #define CS_ERR_REG_GENERALERROR		"A general error has occured. Please try again later."
 #define CS_RPL_REG_HLP				"For more help, type /msg %s \2HELP REGISTER\2"
-#define CS_ERR_XOP_LIMIT			"The Limit of \2%i\2 entries in the \2%s\2 list of \2%s\2 has already been reached."
+#define CS_XOP_ERR_LIMIT			"The Limit of \2%i\2 entries in the \2%s\2 list of \2%s\2 has already been reached."
 #define CS_ERR_REG_NEEDTOBEONCHAN	"You must be on the channel \2%s\2 to register it."
 #define CS_ERR_REG_NEEDTOBEOP		"You must be an Operator (+o) on \2%s\2 to register a channel."
 #define CS_ERR_REG_PASSSAMEASCHAN	"The password must not be the same as the channel name."
@@ -592,13 +602,14 @@
 #define CS_RPL_REG_SUCCESS2			"The password is \2%s\2 - Remember it for further use."
 #define CS_RPL_REG_SUCCESS3			"The mask \2%s\2 was automatically added to the channel access list."
 #define CS_RPL_REG_USAGE			"Usage: \2REGISTER\2 <Password> <Channel Description>"
-#define CS_RPL_XOP_USAGE			"Usage: \2%s\2 %s"
-#define CS_ERR_XOP_HIGHERACCESS		"Permission denied. You need \2%s\2 Access or higher."
-#define CS_ERR_XOP_HIGHERACCESS2	"Sorry, \2%s\2 does not have the required privileges."
-#define CS_RPL_XOP_REQUESTSENT1		"The nickname \2%s\2 has authorization for channel lists enabled."
-#define CS_RPL_XOP_REQUESTSENT2		"Your request to add \2%s\2 has been sent."
-#define CS_RPL_XOP_REQUESTSENT3		"Once \2%s\2 approved your request, they will be added to the \2%s\2 list of \2%s\2."
-#define CS_RPL_XOP_REQUESTSENT4		"Once \2%s\2 approved your request, they will be set as the \2%s\2 of \2%s\2."
+#define CS_XOP_RPL_USAGE			"Usage: \2%s\2 %s"
+#define CS_XOP_RPL_USAGE_CHAN		"Usage: \2%s\2 <#channel> <nick>"
+#define CS_XOP_ERR_HIGHERACCESS		"Permission denied. You need \2%s\2 Access or higher."
+#define CS_XOP_ERR_HIGHERACCESS2	"Sorry, \2%s\2 does not have the required privileges."
+#define CS_XOP_RPL_REQUESTSENT1		"The nickname \2%s\2 has authorization for channel lists enabled."
+#define CS_XOP_RPL_REQUESTSENT2		"Your request to add \2%s\2 has been sent."
+#define CS_XOP_RPL_REQUESTSENT3		"Once \2%s\2 approved your request, they will be added to the \2%s\2 list of \2%s\2."
+#define CS_XOP_RPL_REQUESTSENT4		"Once \2%s\2 approved your request, they will be set as the \2%s\2 of \2%s\2."
 
 
 /* Botserv Messages
@@ -618,9 +629,9 @@
 #define BS_ERR_PASSSAMEASNICK		"Your bot password must be the same as your bot name - Please use a more obscure password"
 #define BS_ERR_DEL_USAGE			"Usage: \2DEL\2 <Botname>"
 #define BS_ERR_INFO_USAGE			"Usage: \2INFO\2 <Botname>"
-#define BS_RPL_INF_HEAD				"\2%s\2 is \2%s\2."
-#define BS_RPL_INF_CHANS			"\2%s\2 is on the following Channels: %s"
-#define BS_RPL_INF_END				"End of Bot Info"
+#define BS_INFO_RPL_HEAD				"\2%s\2 is \2%s\2."
+#define BS_INFO_RPL_CHANS			"\2%s\2 is on the following Channels: %s"
+#define BS_INFO_RPL_END				"End of Bot Info"
 
 #define BS_ERR_KICK_BOT				"You cannot kick \2%s\2 because this is a bot."
 #define BS_ERR_LIST_USAGE			"Usage: \2LIST\2"

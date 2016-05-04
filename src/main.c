@@ -35,40 +35,50 @@ static void daemonize(void);
  */
 static void daemonize(void)
 {
-
 	mainsock = -1;
 
 	pid_t pid, sid;
-	if (getppid()==1)
+	if (getppid()==1) {
     	return;
+
+	}
     pid = fork();
-    if(pid<0)
-        exit(EXIT_FAILURE);
-    if(pid>0)
+
+    if(pid<0) {
+    	exit(EXIT_FAILURE);
+    }
+
+    if(pid>0) {
         exit(EXIT_SUCCESS);
+    }
+
     umask(0);
     sid = setsid();
-    if(sid<0)
+
+    if(sid<0) {
         exit(EXIT_FAILURE);
+    }
 
-	int rc;
-	if((rc=load_app())!=0)
+    /* load the application */
+    int rc;
+	if((rc = load_app()) != LOAD_OK)
 	{
-		if(rc!=LOAD_OK)
-			print_msg(APP_ERR_LOADINGFAILED,rc);
+		print_msg(APP_ERR_LOADINGFAILED,rc);
 		exit(EXIT_FAILURE);
-	}
-	else
-	{
+	} else {
 
-		if((chdir("/"))<0)
+		if((chdir("/"))<0) {
 			exit(EXIT_FAILURE);
+		}
+
 		if(!freopen("/dev/null", "r", stdin)) {
 			exit(EXIT_FAILURE);
 		}
+
 		if(!freopen("/dev/null", "w", stdout)) {
 			exit(EXIT_FAILURE);
 		}
+
 		if(!freopen("/dev/null", "w", stderr)) {
 			exit(EXIT_FAILURE);
 		}
@@ -131,23 +141,24 @@ void start_app(void) {
 	addlog(1,"Services successfully started");
 	// start the socket
 	mainsock = sock_connect();
+
 	if(mainsock<0) {
 		printf("Error message: %s\n", strerror(errno));
 	}
+
 	load_modules(mainsock);
 	connect_bots();
 	/* this is the main loop */
-	while(!quitting)
-	{
+	while(!quitting) {
 		s = recv(mainsock,buf, sizeof(ircbuf),0);
-		if(s)
-		{
+
+		if(s) {
 			buf[s] = 0;
+			/* use CRLF as separator */
 			char *pch = strtok(buf,"\r\n");
-			while(pch!=NULL)
-			{
+			while(pch!=NULL) {
 				strcpy(ircbuf,pch);
-				parse();
+				process();
 				ircbuf[s]=0;
 				pch = strtok(NULL,"\r\n");
 				addlog(1,ircbuf);

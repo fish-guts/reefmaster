@@ -52,7 +52,7 @@ void cs_setpass(char *src, int ac, char **av) {
 	ChanInfo *c = findchan(chan);
 	/* the new password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
-		notice(cs_name, src, NS_ERR_REG_PASSTOOSHORT);
+		notice(cs_name, src, NS_REGISTER_ERR_PASSTOOSHORT);
 		notice(cs_name, src, CS_RPL_HLP, ns_name,"SETPASS");
 		return;
 	}
@@ -63,9 +63,9 @@ void cs_setpass(char *src, int ac, char **av) {
 	} else {
 		strscpy(c->pass, pass, PASSMAX);
 		notice(cs_name, src, CS_RPL_SPASS_SUCCESS, chan, pass);
-		notice(cs_name,src,NS_RPL_GPASS_LOGGED);
+		notice(cs_name,src,NS_GETPASS_MSG_LOGGED);
 		addlog(1,NS_LOG_SETPASS_USED,cs_name,src);
-		chatops(cs_name,CS_CTP_SETPASS_USED,src,c->name);
+		chatops(cs_name,NS_GLOBAL_SETPASS_USED,src,c->name);
 		return;
 	}
 }

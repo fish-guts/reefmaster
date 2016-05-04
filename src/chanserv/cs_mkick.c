@@ -40,7 +40,7 @@ void cs_mkick(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	if ((addacc = cs_xop_get_level(u, c)) < cs_mkick_access) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(cs_mkick_access));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_mkick_access));
 		return;
 	}
 	channel *channel = findchannel(chan);

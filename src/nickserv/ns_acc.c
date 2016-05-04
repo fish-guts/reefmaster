@@ -28,7 +28,7 @@
  */
 void ns_acc(char *src, int ac, char **av) {
 	if (ac < 2) {
-		notice(ns_name, src, NS_ERR_CACC_USAGE, ns_name);
+		notice(ns_name, src, NS_ACC_USAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"ACC");
 		return;
 	}
@@ -44,13 +44,13 @@ void ns_acc(char *src, int ac, char **av) {
 		return;
 	}
 	if (isidentified(u, u->nick)) {
-		notice(ns_name, src, NS_RPL_ACC_LEVEL2, av[1]);
+		notice(ns_name, src, NS_ACCESS_RPL_LEVEL2, av[1]);
 		return;
 	} else if (ismatch(u, mask) == 1) {
-		notice(ns_name, src, NS_RPL_ACC_LEVEL1, av[1]);
+		notice(ns_name, src, NS_ACCESS_RPL_LEVEL1, av[1]);
 		return;
 	} else {
-		notice(ns_name, src, NS_RPL_ACC_LEVEL0, av[1]);
+		notice(ns_name, src, NS_ACCESS_RPL_LEVEL0, av[1]);
 		return;
 	}
 }

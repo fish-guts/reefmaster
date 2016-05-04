@@ -35,7 +35,7 @@ void ns_identify(char *src, int ac, char **av) {
 	if (!u)
 		return;
 	if (ac <= 1) {
-		notice(ns_name, src, NS_RPL_IDF_USAGE, ns_name);
+		notice(ns_name, src, NS_IDENTIFY_RPL_USAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"IDENTIFY");
 		return;
 	}
@@ -51,12 +51,12 @@ void ns_identify(char *src, int ac, char **av) {
 		return;
 	}
 	if (isidentified(u, nick) > 0) {
-		notice(ns_name, src, NS_RPL_IDF_ALREADYIDF, nick);
+		notice(ns_name, src, NS_IDENTIFY_RPL_ALREADYIDF, nick);
 		return;
 	} else {
 		if ((rc = ns_checkpass(nick, pass)) == 0) {
 			add_identified(u, nick);
-			notice(ns_name, src, NS_RPL_IDF_PASSACCEPTED);
+			notice(ns_name, src, NS_IDENTIFY_RPL_PASSACCEPTED);
 			NickInfo *n = findnick(nick);
 			cur = time(NULL);
 			char msk[128];
@@ -82,7 +82,7 @@ void ns_identify(char *src, int ac, char **av) {
 			if (++u->pw_cnt == s_PassLimit)
 				ns_passlimit(u);
 			else {
-				notice(ns_name, src, NS_ERR_IDF_WRONGPASS, nick);
+				notice(ns_name, src, NS_IDENTIFY_RPL_WRONGPASS, nick);
 				return;
 			}
 		}

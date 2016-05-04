@@ -90,7 +90,7 @@ void load_modules(int sock) {
 /**
  * process a line from the server and put the argument in an array
  */
-void parse(void) {
+void process(void) {
 	char source[1024];
 	char cmd[1024];
 	char buf[1024];

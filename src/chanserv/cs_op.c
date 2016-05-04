@@ -31,7 +31,7 @@ void cs_deop(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_ACCCMD_USAGE,"DEOP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEOP");
 		notice(cs_name,src,CS_RPL_HLP,"DEOP");
 		return;
 	}
@@ -51,15 +51,15 @@ void cs_deop(char *src, int ac, char **av) {
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
 	if(level_src<AOP_LIST) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Aop");
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
 		return;
 	}
 	if(level_target<AOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Aop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
 			return;
 		} else {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS2,nick);
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
@@ -97,15 +97,15 @@ void cs_op(char *src, int ac, char **av) {
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
 	if(level_src<AOP_LIST) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Aop");
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
 		return;
 	}
 	if(level_target<AOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Aop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
 			return;
 		} else {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS2,nick);
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}

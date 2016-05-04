@@ -41,7 +41,7 @@
  */
 void ns_set(char *src, int ac, char **av) {
 	if (ac <= 1) {
-		notice(ns_name, src, NS_ERR_SET_USAGE);
+		notice(ns_name, src, NS_SET_RPL_USAGE);
 		return;
 	}
 	if (stricmp(av[1], "AUTHORIZE") == 0)
@@ -82,7 +82,7 @@ void ns_set_authorize(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 3) {
-		notice(ns_name, src, NS_ERR_SET_AUTH_USAGE);
+		notice(ns_name, src, NS_SET_AUTH_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET AUTHORIZE");
 		return;
 	}
@@ -90,17 +90,17 @@ void ns_set_authorize(char *src, int ac, char **av) {
 	if (stricmp(av[2], "CHAN") == 0) {
 		if (stricmp(av[3], "ON") == 0) {
 			if (n->auth_chan == 0) {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS1);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS1);
 			} else {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS2);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS2);
 			}
 			n->auth_chan = 1;
 			return;
 		} else if (stricmp(av[3], "OFF") == 0) {
 			if (n->auth_chan == 1) {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS3);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS3);
 			} else {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS4);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS4);
 			}
 			n->auth_chan = 0;
 			return;
@@ -108,17 +108,17 @@ void ns_set_authorize(char *src, int ac, char **av) {
 	} else if (stricmp(av[2], "NOTIFY") == 0) {
 		if (stricmp(av[3], "ON") == 0) {
 			if (n->auth_notify == 0) {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS5);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS5);
 			} else {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS6);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS6);
 			}
 			n->auth_notify = 1;
 			return;
 		} else if (stricmp(av[3], "OFF") == 0) {
 			if (n->auth_notify == 1) {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS7);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS7);
 			} else {
-				notice(ns_name, src, NS_RPL_SET_AUTH_SUCCESS8);
+				notice(ns_name, src, NS_SET_AUTH_RPL_SUCCESS8);
 			}
 			n->auth_notify = 0;
 			return;
@@ -143,16 +143,16 @@ void ns_set_email(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_EMAIL_USAGE);
+		notice(ns_name, src, NS_SET_EMAIL_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET EMAIL");
 		return;
 	}
 	if (!strchr(av[2], '@')) {
-		notice(ns_name, src, NS_ERR_REG_INVALDEMAIL);
+		notice(ns_name, src, NS_REGISTER_ERR_INVALDEMAIL);
 		return;
 	}
 	n->email = sstrdup(av[2]);
-	notice(ns_name, src, NS_RPL_SET_EMAILSUCCESS, av[2]);
+	notice(ns_name, src, NS_SET_EMAIL_RPL_SUCCESS, av[2]);
 	return;
 }
 /********************************************************************/
@@ -166,7 +166,7 @@ void ns_set_hideemail(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_HIDEEMAIL_USAGE);
+		notice(ns_name, src, NS_SET_HIDEEMAIL_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET HIDEEMAIL");
 		return;
 	}
@@ -178,14 +178,14 @@ void ns_set_hideemail(char *src, int ac, char **av) {
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "ON") == 0) {
 		n->hidemail = 1;
-		notice(ns_name, src, NS_RPL_SET_HMAIL_SUCCESS1);
+		notice(ns_name, src, NS_SET_HIDEEMAIL_RPL_SUCC1);
 		return;
 	} else if (stricmp(av[2], "OFF") == 0) {
 		n->hidemail = 0;
-		notice(ns_name, src, NS_RPL_SET_HMAIL_SUCCESS2);
+		notice(ns_name, src, NS_SET_HIDEEMAIL_RPL_SUCC2);
 		return;
 	} else {
-		notice(ns_name, src, NS_ERR_SET_HIDEEMAIL_USAGE);
+		notice(ns_name, src, NS_SET_HIDEEMAIL_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET HIDEEMAIL");
 		return;
 	}
@@ -204,7 +204,7 @@ void ns_set_mforward(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_MFWD_USAGE);
+		notice(ns_name, src, NS_SET_MFORWARD_ERR_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MFORWARD");
 		return;
 	}
@@ -214,14 +214,14 @@ void ns_set_mforward(char *src, int ac, char **av) {
 		return;
 	}
 	if (stricmp(src, nick) == 0) {
-		notice(ns_name, src, NS_ERR_SET_MFWD_SELF);
+		notice(ns_name, src, NS_SET_MFORWARD_ERR_SELF);
 		return;
 	}
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "OFF") == 0) {
 		n->mforward = 0;
 		free(n->mforward_to);
-		notice(ns_name, src, NS_RPL_SET_MFWD_OFF);
+		notice(ns_name, src, NS_SET_MFORWARD_RPL_OFF);
 		return;
 	} else {
 		if (!isreg(nick)) {
@@ -233,7 +233,7 @@ void ns_set_mforward(char *src, int ac, char **av) {
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, av[2]);
 			return;
 		}
-		notice(ns_name, src, NS_RPL_SET_MFWD_ON, av[2]);
+		notice(ns_name, src, NS_SET_MFORWARD_RPL_ON, av[2]);
 		n->mforward = 1;
 		n->mforward_to = sstrdup(nick);
 		return;
@@ -256,13 +256,13 @@ void ns_set_mlock(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_MLOCK_USAGE);
+		notice(ns_name, src, NS_SET_MLOCK_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MLOCK");
 		return;
 	}
 	NickInfo *n = findnick(src);
 	n->mlock = sstrdup(av[2]);
-	notice(ns_name, src, NS_RPL_SET_MLOCKSUCCESS, av[2]);
+	notice(ns_name, src, NS_SET_MLOCK_RPL_SUCCESS, av[2]);
 	return;
 }
 
@@ -277,7 +277,7 @@ void ns_set_mnotify(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_MFY_USAGE);
+		notice(ns_name, src, NS_SET_MNOTIFY_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MNOTIFY");
 		return;
 	}
@@ -289,14 +289,14 @@ void ns_set_mnotify(char *src, int ac, char **av) {
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "ON") == 0) {
 		n->mnotify = 1;
-		notice(ns_name, src, NS_RPL_SET_MFY_SUCCESS2);
+		notice(ns_name, src, NS_SET_MNOTIFY_RPL_SUCCESS2);
 		return;
 	} else if (stricmp(av[2], "OFF") == 0) {
 		n->mnotify = 0;
-		notice(ns_name, src, NS_RPL_SET_MFY_SUCCESS);
+		notice(ns_name, src, NS_SET_MNOTIFY_RPL_SUCCESS);
 		return;
 	} else {
-		notice(ns_name, src, NS_ERR_SET_MFY_USAGE);
+		notice(ns_name, src, NS_SET_MNOTIFY_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MNOTIFY");
 		return;
 	}
@@ -313,8 +313,8 @@ void ns_set_nomemo(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_NOMEMO_USAGE);
-		notice(ns_name, src, NS_RPL_SET_NOMEMO_HLP, ns_name);
+		notice(ns_name, src, NS_SET_NOMEMO_RPL_USAGE);
+		notice(ns_name, src, NS_SET_NOMEMO_RPL_HLP, ns_name);
 		return;
 	}
 	if (hasaccess(u, src) < 0) {
@@ -325,15 +325,15 @@ void ns_set_nomemo(char *src, int ac, char **av) {
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "ON") == 0) {
 		n->nomemo = 1;
-		notice(ns_name, src, NS_RPL_SET_NOMEMO_SUCCESS2);
+		notice(ns_name, src, NS_SET_NOMEMO_RPL_SUCCESS2);
 		return;
 	} else if (stricmp(av[2], "OFF") == 0) {
 		n->nomemo = 0;
-		notice(ns_name, src, NS_RPL_SET_NOMEMO_SUCCESS);
+		notice(ns_name, src, NS_SET_NOMEMO_RPL_SUCCESS);
 		return;
 	} else {
-		notice(ns_name, src, NS_ERR_SET_NOMEMO_USAGE);
-		notice(ns_name, src, NS_RPL_SET_NOMEMO_HLP, ns_name);
+		notice(ns_name, src, NS_SET_NOMEMO_RPL_USAGE);
+		notice(ns_name, src, NS_SET_NOMEMO_RPL_HLP, ns_name);
 		return;
 	}
 }
@@ -349,7 +349,7 @@ void ns_set_noop(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_NOOP_USAGE);
+		notice(ns_name, src, NS_SET_NOOP_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET NOOP");
 		return;
 	}
@@ -361,22 +361,22 @@ void ns_set_noop(char *src, int ac, char **av) {
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "ON") == 0) {
 		if (n->noop == 1)
-			notice(ns_name, src, NS_RPL_SET_NOOP_SUCCESS2);
+			notice(ns_name, src, NS_SET_NOOP_RPL_SUCCESS2);
 		else {
-			notice(ns_name, src, NS_RPL_SET_NOOP_SUCCESS);
+			notice(ns_name, src, NS_SET_NOOP_RPL_SUCCESS);
 		}
 		n->noop = 1;
 		return;
 	} else if (stricmp(av[2], "OFF") == 0) {
 		if (n->noop == 0)
-			notice(ns_name, src, NS_RPL_SET_NOOP_SUCCESS4);
+			notice(ns_name, src, NS_SET_NOOP_RPL_SUCCESS4);
 		else {
-			notice(ns_name, src, NS_RPL_SET_NOOP_SUCCESS3);
+			notice(ns_name, src, NS_SET_NOOP_RPL_SUCCESS3);
 		}
 		n->noop = 0;
 		return;
 	} else {
-		notice(ns_name, src, NS_ERR_SET_NOOP_USAGE);
+		notice(ns_name, src, NS_SET_NOOP_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET NOOP");
 		return;
 	}
@@ -390,7 +390,7 @@ void ns_set_noop(char *src, int ac, char **av) {
 void ns_set_password(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_PASS_USAGE);
+		notice(ns_name, src, NS_SET_PASS_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET PASSWORD");
 		return;
 	}
@@ -405,16 +405,16 @@ void ns_set_password(char *src, int ac, char **av) {
 		return;
 	}
 	if (strlen(pass) < 5) {
-		notice(ns_name, src, NS_ERR_REG_PASSTOOSHORT);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSTOOSHORT);
 		return;
 	}
 	if (stricmp(pass, src) == 0) {
-		notice(ns_name, src, NS_ERR_REG_PASSSAMEASNICK);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSSAMEASNICK);
 		return;
 	}
 	NickInfo *n = findnick(src);
 	strscpy(n->pass, pass, PASSMAX);
-	notice(ns_name, src, NS_RPL_SET_PASS_SUCCESS, av[2]);
+	notice(ns_name, src, NS_SET_PASS_RPL_SUCCESS, av[2]);
 	return;
 }
 
@@ -425,7 +425,7 @@ void ns_set_password(char *src, int ac, char **av) {
 void ns_set_protect(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_PROTECT_USAGE);
+		notice(ns_name, src, NS_SET_PROTECT_ERR_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET PROTECT");
 		return;
 	}
@@ -441,30 +441,30 @@ void ns_set_protect(char *src, int ac, char **av) {
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "OFF") == 0) {
 		if (n->protect == 1)
-			notice(ns_name, src, NS_RPL_SET_PROTECT_SUCCESS2);
+			notice(ns_name, src, NS_SET_PROTECT_RPL_SUCCESS2);
 		else {
-			notice(ns_name, src, NS_RPL_SET_PROTECT_SUCCESS);
+			notice(ns_name, src, NS_SET_PROTECT_RPL_SUCCESS);
 		}
 		n->protect = 1;
 		return;
 	} else if (stricmp(av[2], "NORMAL") == 0) {
 		if (n->protect == 2)
-			notice(ns_name, src, NS_RPL_SET_PROTECT_SUCCESS4);
+			notice(ns_name, src, NS_SET_PROTECT_RPL_SUCCESS4);
 		else {
-			notice(ns_name, src, NS_RPL_SET_PROTECT_SUCCESS3);
+			notice(ns_name, src, NS_SET_PROTECT_RPL_SUCCESS3);
 		}
 		n->protect = 2;
 		return;
 	} else if (stricmp(av[2], "HIGH") == 0) {
 		if (n->protect == 3)
-			notice(ns_name, src, NS_RPL_SET_PROTECT_SUCCESS6);
+			notice(ns_name, src, NS_SET_PROTECT_RPL_SUCCESS6);
 		else {
-			notice(ns_name, src, NS_RPL_SET_PROTECT_SUCCESS5);
+			notice(ns_name, src, NS_SET_PROTECT_RPL_SUCCESS5);
 		}
 		n->protect = 3;
 		return;
 	} else {
-		notice(ns_name, src, NS_ERR_SET_PROTECT_USAGE);
+		notice(ns_name, src, NS_SET_PROTECT_ERR_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET PROTECT");
 		return;
 	}
@@ -487,16 +487,16 @@ void ns_set_url(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(ns_name, src, NS_ERR_SET_URL_USAGE);
+		notice(ns_name, src, NS_SET_URL_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET URL");
 		return;
 	}
 	if (!strchr(av[2], '@')) {
-		notice(ns_name, src, NS_ERR_REG_INVALDEMAIL);
+		notice(ns_name, src, NS_REGISTER_ERR_INVALDEMAIL);
 		return;
 	}
 	NickInfo *n = findnick(src);
 	n->url = sstrdup(av[2]);
-	notice(ns_name, src, NS_RPL_SET_URL_SUCCESS, av[2]);
+	notice(ns_name, src, NS_SET_URL_RPL_SUCCESS, av[2]);
 	return;
 }

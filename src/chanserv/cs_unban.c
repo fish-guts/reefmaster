@@ -56,7 +56,7 @@ void cs_unban(char *src, int ac, char **av) {
 	}
 	ChanInfo *c = findchan(chan);
 	if (cs_xop_get_level(finduser(src),c) < ACCESS_UOP) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, "Uop");
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, "Uop");
 		return;
 	}
 	sprintf(finalmask,"%s!%s@%s",u->nick,u->username,u->hostname);

@@ -46,7 +46,7 @@ void ns_register(char *src, int ac, char **av) {
 	time_t cur = time(NULL);
 	time_t now = time(NULL);
 	if(ac<3) {
-		notice(ns_name, src, NS_RPL_REG_USAGE);
+		notice(ns_name, src, NS_REGISTER_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"REGISTER");
 		return;
 	}
@@ -57,52 +57,52 @@ void ns_register(char *src, int ac, char **av) {
 	strcpy(dest, src);
 	/* Check for proper access */
 	if ((u->oper + 1) < ns_usage_access) {
-		notice(ns_name, src, NS_ERR_REG_PRIVS, oline[ns_usage_access]);
+		notice(ns_name, src, NS_REGISTER_ERR_PRIVS, oline[ns_usage_access]);
 		return;
 	}
 	/* checks whether the nickname is already registered */
 	if (isreg(src)) {
-		notice(ns_name, src, NS_ERR_REG_ALREADYREG, src);
+		notice(ns_name, src, NS_REGISTER_ERR_ALREADYREG, src);
 		return;
 	}
 	/* check, whether the user has registered too many nickname within (ns_delay) seconds */
 	if ((del) && (del < ns_delay)) {
-		notice(ns_name, src, NS_ERR_REG_DELAY, del);
+		notice(ns_name, src, NS_REGISTER_ERR_DELAY, del);
 		return;
 	}
 	/* check for the correct parameters */
 	if ((!email || !strcmp(email, "")) || (!pass || !strcmp(pass, ""))) {
-		notice(ns_name, src, NS_RPL_REG_USAGE);
+		notice(ns_name, src, NS_REGISTER_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"REGISTER");
 		return;
 	}
 	/* the email address should contain a '@' */
 	if (!strchr(email, '@')) {
-		notice(ns_name, src, NS_ERR_REG_INVALDEMAIL);
+		notice(ns_name, src, NS_REGISTER_ERR_INVALDEMAIL);
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"REGISTER");
 		return;
 	}
 	/* the password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
-		notice(ns_name, src, NS_ERR_REG_PASSTOOSHORT);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSTOOSHORT);
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"REGISTER");
 		return;
 	}
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(pass, dest) == 0) {
-		notice(ns_name, src, NS_ERR_REG_PASSSAMEASNICK);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSSAMEASNICK);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"REGISTER");
 		return;
 	} else {
 		char *usermask = (char*) malloc(sizeof(char*) * 256);
 		sprintf(usermask, "%s@%s", u->username, mask(src, u->hostname));
 		register_nick(src, pass, email);
-		notice(ns_name, dest, NS_RPL_REG_SUCCESS1, src);
-		notice(ns_name, dest, NS_RPL_REG_SUCCESS2, pass);
+		notice(ns_name, dest, NS_REGISTER_RPL_SUCCESS1, src);
+		notice(ns_name, dest, NS_REGISTER_RPL_SUCCESS2, pass);
 		// mark the timestamp of registration
 		u->lastnickreg = time(&cur);
 		if (ns_autoaccess == 1)
-			notice(ns_name, dest, NS_RPL_REG_SUCCESS3, usermask);
+			notice(ns_name, dest, NS_REGISTER_RPL_SUCCESS3, usermask);
 		/* set identified */
 		add_identified(u, dest);
 		cur = time(NULL);

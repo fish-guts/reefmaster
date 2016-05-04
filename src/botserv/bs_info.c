@@ -54,8 +54,8 @@ void bs_info(char *src,int ac,char **av) {
 	if(strlen(channellist)>2) {
 		channellist[strlen(channellist)-2] = 0;
 	}
-	notice(bs_name,src,BS_RPL_INF_HEAD,b->name,b->realname);
-	notice(bs_name,src,BS_RPL_INF_CHANS,b->name,channellist);
-	notice(bs_name,src,BS_RPL_INF_END);
+	notice(bs_name,src,BS_INFO_RPL_HEAD,b->name,b->realname);
+	notice(bs_name,src,BS_INFO_RPL_CHANS,b->name,channellist);
+	notice(bs_name,src,BS_INFO_RPL_END);
 	return;
 }

@@ -36,7 +36,7 @@
 #include "help.h"
 #include "irc.h"
 #include "log.h"
-#include "messages.h"
+#include "constants.h"
 #include "nickserv/nickserv.h"
 #include "operserv/operserv.h"
 #include "sock.h"

@@ -31,7 +31,7 @@ void cs_devoice(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_ACCCMD_USAGE,"DEVOICE");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEVOICE");
 		notice(cs_name,src,CS_RPL_HLP,"DEVOICE");
 		return;
 	}
@@ -51,15 +51,15 @@ void cs_devoice(char *src, int ac, char **av) {
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
 	if(level_src<VOP_LIST) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Vop");
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Vop");
 		return;
 	}
 	if(level_target<VOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Vop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Vop");
 			return;
 		} else {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS2,nick);
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
@@ -77,7 +77,7 @@ void cs_voice(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_ACCCMD_USAGE,"VOICE");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"VOICE");
 		notice(cs_name,src,CS_RPL_HLP,"VOICE");
 		return;
 	}
@@ -97,15 +97,15 @@ void cs_voice(char *src, int ac, char **av) {
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
 	if(level_src<VOP_LIST) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Vop");
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Vop");
 		return;
 	}
 	if(level_target<VOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Vop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Vop");
 			return;
 		} else {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS2,nick);
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}

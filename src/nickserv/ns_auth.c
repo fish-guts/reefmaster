@@ -31,7 +31,7 @@ void accept_auth(char *src, auth *a,int i) {
 		accept_auth_chan(src,a);
 	}
 	remove_auth(src,a);
-	notice(ns_name,src,NS_RPL_ATH_ACCEPTED,i);
+	notice(ns_name,src,NS_AUTH_RPL_ACCEPTED,i);
 }
 
 /********************************************************************/
@@ -73,7 +73,7 @@ int has_open_auth(NickInfo *n) {
 void ns_auth(char *src, int ac, char **av) {
 	char *cmd = av[1];
 	if (ac < 2) {
-		notice(ns_name, src, NS_ERR_ATH_USAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_USAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH");
 		return;
 	}
@@ -101,7 +101,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 	static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
 	user *u = finduser(src);
 	if (ac < 3) {
-		notice(ns_name, src, NS_ERR_ATH_ACCEPTUSAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_ACCEPTUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH ACCEPT");
 		notice(as_name,src,xop[4]);
 		return;
@@ -120,13 +120,13 @@ void ns_auth_accept(char *src, int ac, char **av) {
 	}
 	/* if the supplied value is not a number */
 	if (!isnum(av[2])) {
-		notice(ns_name, src, NS_ERR_ATH_ISNONUM);
-		notice(ns_name, src, NS_ERR_ATH_ACCEPTUSAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_ISNONUM);
+		notice(ns_name, src, NS_AUTH_ERR_ACCEPTUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name, "AUTH", "ACCEPT");
 		return;
 	}
 	if (atoi(av[2]) == 0) {
-		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+		notice(ns_name, src, NS_AUTH_ERR_NUMTOOBIG, atoi(av[2]));
 		return;
 	} else {
 		int i = 0;
@@ -139,7 +139,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 			}
 			a = a->next;
 		}
-		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+		notice(ns_name, src, NS_AUTH_ERR_NUMTOOBIG, atoi(av[2]));
 		return;
 	}
 }
@@ -150,7 +150,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 void ns_auth_decline(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac < 3) {
-		notice(ns_name, src, NS_ERR_ATH_DECLINEUSAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_DECLINEUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH DECLINE");
 		return;
 	}
@@ -168,27 +168,27 @@ void ns_auth_decline(char *src, int ac, char **av) {
 	}
 	/* if the supplied value is not a number */
 	if (!isnum(av[2])) {
-		notice(ns_name, src, NS_ERR_ATH_ISNONUM);
-		notice(ns_name, src, NS_ERR_ATH_DECLINEUSAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_ISNONUM);
+		notice(ns_name, src, NS_AUTH_ERR_DECLINEUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name, "AUTH", "DECLINE");
 		return;
 	}
 	/* if 0 is passed */
 	if (atoi(av[2]) ==0) {
-		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+		notice(ns_name, src, NS_AUTH_ERR_NUMTOOBIG, atoi(av[2]));
 		return;
 	}	int i = 0;
 	auth *a = n->authlist;
 	while(a) {
 		i++;
 		if (i == atoi(av[2])) {
-			notice(cs_name,src,NS_RPL_ATH_DECLINED,i);
+			notice(cs_name,src,NS_AUTH_RPL_DECLINED,i);
 			remove_auth(src,a);
 			return;
 		}
 		a = a->next;
 	}
-	notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+	notice(ns_name, src, NS_AUTH_ERR_NUMTOOBIG, atoi(av[2]));
 	return;
 }
 
@@ -211,18 +211,18 @@ void ns_auth_list(char *src, int ac, char **av) {
 
 	int i = 0;
 	auth *a = n->authlist;
-	notice(ns_name, src, NS_RPL_ATH_PENDING);
+	notice(ns_name, src, NS_AUTH_RPL_PENDING);
 	while(a) {
 		i++;
-		notice(ns_name, src, NS_RPL_ATH_REQUESTLIST,i, a->sender);
+		notice(ns_name, src, NS_AUTH_RPL_REQUESTLIST,i, a->sender);
 		a = a->next;
 	}
 	if (i == 0) {
-		notice(ns_name,src,NS_RPL_ATH_NOENTRIES);
+		notice(ns_name,src,NS_AUTH_RPL_NOENTRIES);
 	} else if (i == 1) {
-		notice(ns_name, src, NS_ERR_ATH_LISTCOMPLETE1);
+		notice(ns_name, src, NS_AUTH_ERR_LISTCOMPLETE1);
 	} else {
-		notice(ns_name, src, NS_ERR_ATH_LISTCOMPLETE2, i);
+		notice(ns_name, src, NS_AUTH_ERR_LISTCOMPLETE2, i);
 	}
 	return;
 }
@@ -244,7 +244,7 @@ void ns_auth_read(char *src, int ac, char **av) {
 	 * 7 = founder for a channel
 	 */
 	if (ac < 3) {
-		notice(ns_name, src, NS_ERR_ATH_READUSAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_READUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH READ");
 		return;
 	}
@@ -263,14 +263,14 @@ void ns_auth_read(char *src, int ac, char **av) {
 	}
 	/* if the supplied value is not a number, trigger an error */
 	if (!isnum(av[2])) {
-		notice(ns_name, src, NS_ERR_ATH_ISNONUM);
-		notice(ns_name, src, NS_ERR_ATH_READUSAGE, ns_name);
+		notice(ns_name, src, NS_AUTH_ERR_ISNONUM);
+		notice(ns_name, src, NS_AUTH_ERR_READUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH READ");
 		return;
 	}
 	/* if the value if greater than the number of actual requests, trigger an error */
 	if (atoi(av[2]) == 0) {
-		notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+		notice(ns_name, src, NS_AUTH_ERR_NUMTOOBIG, atoi(av[2]));
 		return;
 	}
 	int i = 0;
@@ -279,18 +279,18 @@ void ns_auth_read(char *src, int ac, char **av) {
 		++i;
 		if (i == atoi(av[2])) {
 			if (a->type == AUTH_NOTIFY) {
-				notice(ns_name, src, NS_RPL_ATH_READNOTIFY, (atoi(av[2])),
+				notice(ns_name, src, NS_AUTH_RPL_READNOTIFY, (atoi(av[2])),
 						a->sender);
-				notice(ns_name, src, NS_RPL_ATH_TEXT_NOTIFY, a->sender);
+				notice(ns_name, src, NS_AUTH_RPL_TEXT_NOTIFY, a->sender);
 			} else {
-				notice(ns_name, src, NS_RPL_ATH_XOP_READ, av[2], a->sender,
+				notice(ns_name, src, NS_AUTH_RPL_XOP_READ, av[2], a->sender,
 						xop[a->type], a->target);
 				return;
 			}
 		}
 		a = a->next;
 	}
-	notice(ns_name, src, NS_ERR_ATH_NUMTOOBIG, atoi(av[2]));
+	notice(ns_name, src, NS_AUTH_ERR_NUMTOOBIG, atoi(av[2]));
 	return;
 }
 

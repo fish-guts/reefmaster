@@ -38,7 +38,7 @@ void ns_getpass(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 1) {
-		notice(ns_name, src, NS_ERR_GPASS_USAGE);
+		notice(ns_name, src, NS_GETPASS_ERR_USAGE);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"GETPASS");
 		return;
 	}
@@ -47,9 +47,9 @@ void ns_getpass(char *src, int ac, char **av) {
 		return;
 	} else {
 		NickInfo *n = findnick(av[1]);
-		notice(ns_name, src, NS_RPL_GPASS_SUCCESS,n->nick,n->pass);
-		notice(ns_name, src, NS_RPL_GPASS_LOGGED);
-		chatops(ns_name,NS_CTP_GETPASS_USED,src,n->nick);
-		addlog(1,NS_LOG_GETPASS_USED,cs_name,src);
+		notice(ns_name, src, NS_GETPASS_RPL_SUCCESS,n->nick,n->pass);
+		notice(ns_name, src, NS_GETPASS_MSG_LOGGED);
+		globops(ns_name,NS_GETPASS_USED_GLOBAL,src,n->nick);
+		addlog(1,NS_GETPASS_USED_LOG,cs_name,src);
 	}
 }

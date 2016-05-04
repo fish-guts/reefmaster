@@ -45,16 +45,16 @@ void add_auth_entry(char *nick,char *chan,int list,char *src,int listacc) {
 		a->date = time(NULL);
 		a->status = 0;
 		a->acclevel = listacc;
-		notice(cs_name,src,CS_RPL_XOP_AUTH_REQUIRED,nick);
+		notice(cs_name,src,CS_XOP_RPL_AUTH_REQUIRED,nick);
 		if(list<AUTH_SUCC) {
-			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_XOP,nick,acclist[list],chan);
+			notice(cs_name,src,CS_XOP_RPL_AUTH_SENT_XOP,nick,acclist[list],chan);
 		} else {
-			notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_SF,nick,acclist[list],chan);
+			notice(cs_name,src,CS_XOP_RPL_AUTH_SENT_SF,nick,acclist[list],chan);
 		}
-		notice(cs_name,src,CS_RPL_XOP_AUTH_SENT_END,nick);
+		notice(cs_name,src,CS_XOP_RPL_AUTH_SENT_END,nick);
 		user *u = finduser(nick);
 		if (u) {
-			notice(ns_name, nick, NS_RPL_ATH_TEXT_CHAN, src,acclist[list],chan);
+			notice(ns_name, nick, NS_AUTH_RPL_TEXT_CHAN, src,acclist[list],chan);
 		}
 		return;
 	}
@@ -87,14 +87,14 @@ void cs_aop(char *src, int ac, char **av) {
 	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"AOP <Channel> ADD <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP ADD");
 			return;
 		}
 		chan = av[1];
 		nick = av[3];
 		if(findchan(chan)->aop_count>=cs_aops_max) {
-			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Aop",cs_aops_max,chan);
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Aop",cs_aops_max,chan);
 			return;
 
 		}
@@ -102,7 +102,7 @@ void cs_aop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"AOP <Channel> DEL <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP DEL");
 			return;
 		}
@@ -112,7 +112,7 @@ void cs_aop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"AOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP LIST");
 			return;
 		}
@@ -121,7 +121,7 @@ void cs_aop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"AOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"AOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP LIST");
 			return;
 		}
@@ -130,7 +130,7 @@ void cs_aop(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
-		notice(cs_name,src,CS_ERR_XOP_USAGE,"AOP");
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"AOP");
 		notice(cs_name,src,CS_RPL_HLP,cs_name,"AOP");
 		return;
 	}
@@ -145,21 +145,21 @@ void cs_hop(char *src, int ac, char **av) {
 	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"HOP <Channel> ADD <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP ADD");
 			return;
 		}
 		chan = av[1];
 		nick = av[3];
 		if(findchan(chan)->aop_count>=cs_hops_max) {
-			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Hop",cs_aops_max,chan);
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Hop",cs_aops_max,chan);
 			return;
 		}
 		cs_xop_add(src, chan, HOP_LIST, nick);
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"HOP <Channel> DEL <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP DEL");
 			return;
 		}
@@ -169,7 +169,7 @@ void cs_hop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"HOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP LIST");
 			return;
 		}
@@ -178,7 +178,7 @@ void cs_hop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"HOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"HOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP LIST");
 			return;
 		}
@@ -187,7 +187,7 @@ void cs_hop(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
-		notice(cs_name,src,CS_ERR_XOP_USAGE,"HOP");
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"HOP");
 		notice(cs_name,src,CS_RPL_HLP,cs_name,"HOP");
 		return;
 	}
@@ -202,14 +202,14 @@ void cs_sop(char *src, int ac, char **av) {
 	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"SOP <Channel> ADD <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP ADD");
 			return;
 		}
 		chan = av[1];
 		nick = av[3];
 		if(findchan(chan)->aop_count>=cs_sops_max) {
-			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Sop",cs_aops_max,chan);
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Sop",cs_aops_max,chan);
 			return;
 
 		}
@@ -217,7 +217,7 @@ void cs_sop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"SOP <Channel> DEL <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP DEL");
 			return;
 		}
@@ -227,7 +227,7 @@ void cs_sop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"SOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP LIST");
 			return;
 		}
@@ -236,7 +236,7 @@ void cs_sop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"SOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"SOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP LIST");
 			return;
 		}
@@ -245,7 +245,7 @@ void cs_sop(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
-		notice(cs_name,src,CS_ERR_XOP_USAGE,"SOP");
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"SOP");
 		notice(cs_name,src,CS_RPL_HLP,cs_name,"SOP");
 		return;
 	}
@@ -260,14 +260,14 @@ void cs_uop(char *src, int ac, char **av) {
 	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"UOP <Channel> ADD <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP ADD");
 			return;
 		}
 		chan = av[1];
 		nick = av[3];
 		if(findchan(chan)->uop_count>=cs_aops_max) {
-			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Uop",cs_aops_max,chan);
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Uop",cs_aops_max,chan);
 			return;
 
 		}
@@ -275,7 +275,7 @@ void cs_uop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"UOP <Channel> DEL <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP DEL");
 			return;
 		}
@@ -285,7 +285,7 @@ void cs_uop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"UOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP LIST");
 			return;
 		}
@@ -294,7 +294,7 @@ void cs_uop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"UOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"UOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP LIST");
 			return;
 		}
@@ -303,7 +303,7 @@ void cs_uop(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
-		notice(cs_name,src,CS_ERR_XOP_USAGE,"UOP");
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"UOP");
 		notice(cs_name,src,CS_RPL_HLP,cs_name,"UOP");
 		return;
 	}
@@ -319,14 +319,14 @@ void cs_vop(char *src, int ac, char **av) {
 	char *nick;
 	if (stricmp(av[2], "ADD") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"VOP <Channel> ADD <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP ADD");
 			return;
 		}
 		chan = av[1];
 		nick = av[3];
 		if(findchan(chan)->aop_count>=cs_vops_max) {
-			notice(cs_name,src,CS_ERR_XOP_LIMIT,"Vop",cs_aops_max,chan);
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Vop",cs_aops_max,chan);
 			return;
 
 		}
@@ -334,7 +334,7 @@ void cs_vop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
 		if(ac<4) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"VOP <Channel> DEL <Nickname>");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP DEL");
 			return;
 		}
@@ -344,7 +344,7 @@ void cs_vop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "LIST") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"VOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP LIST");
 			return;
 		}
@@ -353,7 +353,7 @@ void cs_vop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_RPL_XOP_USAGE,"VOP <Channel> LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"VOP <Channel> LIST");
 			notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP LIST");
 			return;
 		}
@@ -362,7 +362,7 @@ void cs_vop(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
-		notice(cs_name,src,CS_ERR_XOP_USAGE,"VOP");
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"VOP");
 		notice(cs_name,src,CS_RPL_HLP,cs_name,"VOP");
 		return;
 	}
@@ -387,19 +387,19 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 	int listacc = 0;
 	ChanInfo *c = findchan(chan);
 	if ((listacc = cs_xop_get_level(finduser(src),c)) < alist[list]) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(alist[list]));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(alist[list]));
 		return;
 	}
 	int existing_level = cs_isonlist(nick,chan,list,1);
 	NickInfo *n = findnick(nick);
 	if(existing_level==0) {
-		notice(cs_name,src,CS_ERR_XOP_ALREADYONLIST,nick,acclist[list],chan);
+		notice(cs_name,src,CS_XOP_ERR_ALREADYONLIST,nick,acclist[list],chan);
 		return;
 	} else if(cs_isfounder(nick,chan)) {
-		notice(cs_name,src,CS_ERR_XOP_FOUNDERCANNOTADD,nick,chan,acclist[list]);
+		notice(cs_name,src,CS_XOP_ERR_FOUNDERCANNOTADD,nick,chan,acclist[list]);
 		return;
 	} else if(cs_issuccessor(nick,chan)) {
-		notice(cs_name,src,CS_ERR_XOP_FOUNDERCANNOTADD,nick,chan,acclist[list]);
+		notice(cs_name,src,CS_XOP_ERR_FOUNDERCANNOTADD,nick,chan,acclist[list]);
 		return;
 	} else if(existing_level>0) {
 		if((n->auth_chan) && (list>existing_level)) {
@@ -407,14 +407,14 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 			return;
 		}
 		move_in_list(nick,chan,list,existing_level,src,listacc);
-		notice(cs_name,src,CS_RPL_XOP_MOVED,nick,acclist[existing_level], acclist[list],chan);
+		notice(cs_name,src,CS_XOP_RPL_MOVED,nick,acclist[existing_level], acclist[list],chan);
 		return;
 	} else {
 		if((n->auth_chan) && (list>existing_level)) {
 			add_auth_entry(nick,chan,list,src,listacc);
 			return;
 		}
-		notice(cs_name,src,CS_RPL_XOP_ADDED,nick,acclist[list],chan);
+		notice(cs_name,src,CS_XOP_RPL_ADDED,nick,acclist[list],chan);
 		add_to_list(nick,chan,list,src,listacc);
 	}
 }
@@ -439,17 +439,17 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 		return;
 	}
 	if ((addacc = cs_xop_get_level(u, c)) < add[list]) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(add[list]));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(add[list]));
 		return;
 	}
 	int existing_level = cs_isonlist(nick, chan, list,0);
 	if (existing_level < 0) {
-		notice(cs_name, src, CS_ERR_XOP_NOTONLIST, nick, get_opacc(list), chan);
+		notice(cs_name, src, CS_XOP_ERR_NOTONLIST, nick, get_opacc(list), chan);
 		return;
 	}
 	op *o = find_list_entry(nick,chan,list);
 	remove_from_list(o);
-	notice(cs_name,src,CS_RPL_XOP_DELETED,nick,get_opacc(list),chan);
+	notice(cs_name,src,CS_XOP_RPL_DELETED,nick,get_opacc(list),chan);
 	return;
 }
 /********************************************************************/
@@ -497,18 +497,18 @@ void cs_xop_list(char *src, char *chan, int list) {
 	ChanInfo *c = findchan(chan);
 
 	if ((listacc = cs_xop_get_level(u, c)) < alist[list]) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(alist[list]));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(alist[list]));
 		return;
 	}
 	op *o = global_op_list;
 	int i = 0;
 	char str[128];
-	notice(cs_name, src, CS_RPL_XOP_LIST_BEGIN, get_opacc(list), chan);
+	notice(cs_name, src, CS_XOP_RPL_LIST_BEGIN, get_opacc(list), chan);
 	while (o) {
 		if (stricmp(chan, o->chan->name) == 0) {
 			if (o->level == list) {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
-				notice(cs_name, src, CS_RPL_XOP_LIST, i + 1, o->nick->nick,
+				notice(cs_name, src, CS_XOP_RPL_LIST, i + 1, o->nick->nick,
 						addedby_lvl[o->addedbyacc], o->addedby, str);
 				i++;
 			}
@@ -516,9 +516,9 @@ void cs_xop_list(char *src, char *chan, int list) {
 		o = o->next;
 	}
 	if ((i > 1) || (i == 0)) {
-		notice(cs_name, src, CS_RPL_XOP_LIST_COMPLETE1, i);
+		notice(cs_name, src, CS_XOP_RPL_LIST_COMPLETE1, i);
 	} else {
-		notice(cs_name, src, CS_RPL_XOP_LIST_COMPLETE2);
+		notice(cs_name, src, CS_XOP_RPL_LIST_COMPLETE2);
 	}
 }
 /********************************************************************/
@@ -536,7 +536,7 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 	}
 	ChanInfo *c = findchan(chan);
 	if ((wipeacc = cs_xop_get_level(u, c)) < wipe[list]) {
-		notice(cs_name, src, CS_ERR_XOP_HIGHERACCESS, get_opacc(wipe[list]));
+		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(wipe[list]));
 		return;
 	}
 	int i = 0;
@@ -552,9 +552,9 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 	}
 
 	if (i == 1)
-		notice(cs_name, src, CS_RPL_XOP_WIPED1, get_opacc(list), chan);
+		notice(cs_name, src, CS_XOP_RPL_WIPED1, get_opacc(list), chan);
 	else
-		notice(cs_name, src, CS_RPL_XOP_WIPED2, get_opacc(list), chan, i);
+		notice(cs_name, src, CS_XOP_RPL_WIPED2, get_opacc(list), chan, i);
 	return;
 }
 

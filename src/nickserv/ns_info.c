@@ -31,7 +31,7 @@ void ns_info(char *src, int ac, char **av) {
 	char *nick = av[1];
 	user *usrc = finduser(src);
 	if(ac<2) {
-		notice(ns_name, src,NS_ERR_INF_USAGE);
+		notice(ns_name, src,NS_INFO_RPL_USAGE);
 		return;
 	}
 	if (!isreg(nick)) {
@@ -63,29 +63,29 @@ void ns_info(char *src, int ac, char **av) {
 	strftime(str_reg, 100, "%d/%m/%Y %T %Z", localtime(&n->time_reg));
 	if (u) {
 		if (isidentified(u, src) > 0)
-			notice(ns_name, src, NS_RPL_INF_HEAD1, nick, n->last_realname);
+			notice(ns_name, src, NS_INFO_RPL_HEAD1, nick, n->last_realname);
 		else
-			notice(ns_name, src, NS_RPL_INF_HEAD2, nick, n->last_realname);
+			notice(ns_name, src, NS_INFO_RPL_HEAD2, nick, n->last_realname);
 	} else
-		notice(ns_name, src, NS_RPL_INF_HEAD2, nick, n->last_realname);
+		notice(ns_name, src, NS_INFO_RPL_HEAD2, nick, n->last_realname);
 	if (!n->hidemail)
-		notice(ns_name, src, NS_RPL_INF_EMAIL, n->email);
-	notice(ns_name, src, NS_RPL_INF_LASTADDR, buf);
-	notice(ns_name, src, NS_RPL_INF_TIMEREG, str_reg);
-	notice(ns_name, src, NS_RPL_INF_LASTSEEN, str_last);
-	notice(ns_name, src, NS_RPL_INF_TIMENOW, str_now);
+		notice(ns_name, src, NS_INFO_RPL_EMAIL, n->email);
+	notice(ns_name, src, NS_INFO_RPL_LASTADDR, buf);
+	notice(ns_name, src, NS_INFO_RPL_TIMEREG, str_reg);
+	notice(ns_name, src, NS_INFO_RPL_LASTSEEN, str_last);
+	notice(ns_name, src, NS_INFO_RPL_TIMENOW, str_now);
 	if (n->noop)
-		notice(ns_name, src, NS_RPL_INF_NOOP, cs_name);
+		notice(ns_name, src, NS_INFO_RPL_NOOP, cs_name);
 	if (n->auth_chan)
-		notice(ns_name, src, NS_RPL_INF_AUTHCHAN);
+		notice(ns_name, src, NS_INFO_RPL_AUTHCHAN);
 	if (n->auth_notify)
-		notice(ns_name, src, NS_RPL_INF_AUTHNOTIFY);
+		notice(ns_name, src, NS_INFO_RPL_AUTHNOTIFY);
 	if (n->protect == 2)
-		notice(ns_name, src, NS_RPL_INF_PROTECT1);
+		notice(ns_name, src, NS_INFO_RPL_PROTECT1);
 	else if (n->protect == 3)
-		notice(ns_name, src, NS_RPL_INF_PROTECT2);
+		notice(ns_name, src, NS_INFO_RPL_PROTECT2);
 	if (n->mforward == 1)
-		notice(ns_name, src, NS_RPL_INF_MFORWARD, n->mforward_to);
+		notice(ns_name, src, NS_INFO_RPL_MFORWARD, n->mforward_to);
 	if (n->nomemo)
-		notice(ns_name, src, NS_RPL_INF_NOMEMO);
+		notice(ns_name, src, NS_INFO_RPL_NOMEMO);
 }

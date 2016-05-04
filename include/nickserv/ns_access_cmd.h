@@ -8,7 +8,8 @@
 #ifndef NS_ACCESS_H_
 #define NS_ACCESS_H_
 
-void ns_access(char *src,int ac,char **av);
+
+void ns_access_cmd(char *src,int ac,char **av);
 void ns_access_add(char *src,char *nick,char *mask);
 void ns_access_add_mask(NickInfo *n, char *mask);
 void ns_access_del(char *src,char *nick,char *mask);

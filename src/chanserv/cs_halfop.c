@@ -31,7 +31,7 @@ void cs_dehalfop(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_ACCCMD_USAGE,"DEHALFOP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEHALFOP");
 		notice(cs_name,src,CS_RPL_HLP,"DEHALFOP");
 		return;
 	}
@@ -51,15 +51,15 @@ void cs_dehalfop(char *src, int ac, char **av) {
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
 	if(level_src<HOP_LIST) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Hop");
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Hop");
 		return;
 	}
 	if(level_target<HOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Hop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Hop");
 			return;
 		} else {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS2,nick);
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
@@ -77,7 +77,7 @@ void cs_halfop(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_ACCCMD_USAGE,"HALFOP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"HALFOP");
 		notice(cs_name,src,CS_RPL_HLP,"HALFOP");
 		return;
 	}
@@ -97,15 +97,15 @@ void cs_halfop(char *src, int ac, char **av) {
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
 	if(level_src<HOP_LIST) {
-		notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Hop");
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Hop");
 		return;
 	}
 	if(level_target<HOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS,"Hop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Hop");
 			return;
 		} else {
-			notice(cs_name,src,CS_ERR_XOP_HIGHERACCESS2,nick);
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}

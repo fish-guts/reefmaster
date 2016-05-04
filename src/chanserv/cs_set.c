@@ -26,7 +26,7 @@
  */
 void cs_set(char *src, int ac, char **av) {
 	if (ac <= 1) {
-		notice(cs_name, src, NS_ERR_SET_USAGE);
+		notice(cs_name, src, NS_SET_RPL_USAGE);
 		return;
 	}
 	if (stricmp(av[2], "BOT") == 0)
@@ -520,7 +520,7 @@ void cs_set_password(char *src, int ac, char **av) {
 		return;
 	}
 	if (strlen(pass) < 5) {
-		notice(ns_name, src, NS_ERR_REG_PASSTOOSHORT);
+		notice(ns_name, src, NS_REGISTER_ERR_PASSTOOSHORT);
 		notice(ns_name, src, CS_RPL_HLP, cs_name, "SET PASSWORD");
 		return;
 	}

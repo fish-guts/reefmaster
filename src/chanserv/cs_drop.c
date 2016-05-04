@@ -29,7 +29,7 @@ void cs_drop(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	ChanInfo *c;
 	if (ac < 2) {
-		notice(cs_name, src, NS_ERR_DRP_USAGE);
+		notice(cs_name, src, CS_DROP_RPL_USAGE);
 		notice(cs_name, src, CS_RPL_HLP,ns_name,"DROP");
 		return;
 	}

@@ -43,7 +43,7 @@ void ns_ghost(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac < 2) {
-		notice(ns_name, src, NS_ERR_GHT_USAGE);
+		notice(ns_name, src, NS_GHOST_ERR_USAGE);
 		return;
 	}
 	if (!isreg(n->nick)) {
@@ -60,7 +60,7 @@ void ns_ghost(char *src, int ac, char **av) {
 	if (ac >= 3) {
 		if (ns_checkpass(av[1], av[2]) != 0) {
 			if (++u->pw_cnt < s_PassLimit) {
-				notice(ns_name, src, NS_ERR_IDF_WRONGPASS, av[1]);
+				notice(ns_name, src, NS_IDENTIFY_RPL_WRONGPASS, av[1]);
 				return;
 			} else if (u->pw_cnt++ >= s_PassLimit) {
 				ns_passlimit(u);
@@ -69,8 +69,8 @@ void ns_ghost(char *src, int ac, char **av) {
 		}
 	}
 	if (n->enforced == 1) {
-		notice(ns_name, src, NS_ERR_GHT_NICKISHELD, av[1]);
-		notice(ns_name, src, NS_RPL_GHT_NEEDRELEASE, ns_name);
+		notice(ns_name, src, NS_GHOST_RPL_NICKISHELD, av[1]);
+		notice(ns_name, src, NS_GHOST_RPL_NEEDRELEASE, ns_name);
 		return;
 	}
 	add_identified(u, n->nick);
@@ -89,6 +89,6 @@ void ns_ghost(char *src, int ac, char **av) {
 	remove_timeout(u1, TO_COLLIDE);
 	remove_timeout(u1, TO_COLLIDE_TL);
 	s_kill(ns_name, n->nick, killmsg);
-	notice(ns_name, src, NS_RPL_GHT_GHOSTDISCONN);
+	notice(ns_name, src, NS_GHOST_RPL_GHOSTDISCONNECT);
 	return;
 }

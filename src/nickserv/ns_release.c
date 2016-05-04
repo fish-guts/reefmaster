@@ -32,7 +32,7 @@ void ns_release(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	/* check for the correct argument count */
 	if (ac <= 1) {
-		notice(ns_name, src, NS_ERR_REL_USAGE);
+		notice(ns_name, src, NS_RELEASE_RPL_USAGE);
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"RELEASE");
 		return;
 	}
@@ -50,7 +50,7 @@ void ns_release(char *src, int ac, char **av) {
 		} else if (ac > 2) {
 			if (ns_checkpass(av[1], av[2]) < 0) {
 				if (++u->pw_cnt < s_PassLimit) {
-					notice(ns_name, src, NS_ERR_IDF_WRONGPASS, src);
+					notice(ns_name, src, NS_IDENTIFY_RPL_WRONGPASS, src);
 					return;
 				} else if (u->pw_cnt++ >= s_PassLimit) {
 					ns_passlimit(u);
@@ -60,7 +60,7 @@ void ns_release(char *src, int ac, char **av) {
 		}
 		NickInfo *n = findnick(av[1]);
 		if (n->enforced == 0) {
-			notice(ns_name, src, NS_ERR_REL_NICKNOTHELD, av[1]);
+			notice(ns_name, src, NS_RELEASE_RPL_NICKNOTHELD, av[1]);
 			return;
 		}
 		add_identified(u, n->nick);
@@ -75,7 +75,7 @@ void ns_release(char *src, int ac, char **av) {
 		remove_timeout(u, TO_COLLIDE);
 		remove_timeout(u, TO_COLLIDE_TL);
 		quit(av[1]);
-		notice(ns_name, src, NS_RPL_REL_NICKRELEASED, av[1]);
+		notice(ns_name, src, NS_RELEASE_RPL_NICKRELEASED, av[1]);
 	}
 	return;
 }

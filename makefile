@@ -15,7 +15,7 @@ FIXTURE_FILE = db/fixture.sql
 DATABASE = db/services.db
 
 # All Target
-all: db.loadFixture services 
+   all: db.loadSchema services 
 
 # Tool invocations
 services: $(OBJS) 
@@ -72,8 +72,19 @@ clean:
 
 # build fixture database
 db.loadFixture:	
+	@echo "Loading fixture Database..."
+	@echo "Removing old schema"
+	@rm -f $(DATABASE)
+	@echo "Initializing fixture data"
+	@sqlite3 -init $(FIXTURE_FILE) $(DATABASE) &
+	@echo ""
+	@echo "Build successful!"
+	
+# build default schema with no recrods
+db.loadSchema:
 	@echo "Loading Database..."
 	@echo "Removing old schema"
 	@rm -f $(DATABASE)
-	@sqlite3 -init $(FIXTURE_FILE) $(DATABASE) &
+	@echo "Initializing database schema"
+	@sqlite3 -init $(SCHEMA_FILE) $(DATABASE) &
 	@echo "Build successful!"

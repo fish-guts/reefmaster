@@ -22,7 +22,7 @@
 #ifndef NICKSERV_H_
 #define NICKSERV_H_
 
-#include "ns_access.h"
+#include "ns_access_cmd.h"
 #include "ns_acc.h"
 #include "ns_auth.h"
 #include "ns_drop.h"

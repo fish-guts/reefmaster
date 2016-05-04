@@ -61,7 +61,7 @@ void cs_register(char *src, int ac, char **av) {
 		return;
 	}
 	if (isregcs(chan)) {
-		notice(cs_name, dest, CS_ERR_ALREADYREG, chan);
+		notice(cs_name, dest, CS_REGISTER_ERR_ALREADYREG, chan);
 		return;
 	}
 	if (del <= cs_delay) {
@@ -75,7 +75,7 @@ void cs_register(char *src, int ac, char **av) {
 	}
 	/* the password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
-		notice(cs_name, dest, NS_ERR_REG_PASSTOOSHORT);
+		notice(cs_name, dest, NS_REGISTER_ERR_PASSTOOSHORT);
 		notice(cs_name, dest, CS_RPL_REG_HLP, cs_name);
 		return;
 	}

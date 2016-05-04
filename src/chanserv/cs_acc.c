@@ -27,8 +27,8 @@
  */
 void cs_acc(char *src, int ac, char **av) {
 	if (ac < 3) {
-		notice(cs_name, src, CS_ERR_ACC_USAGE, cs_name);
-		notice(cs_name, src, CS_RPL_ACC_HLP, cs_name);
+		notice(cs_name, src, CS_ACC_RPL_USAGE, cs_name);
+		notice(cs_name, src, CS_ACC_RPL_HLP, cs_name);
 		return;
 	}
 	char *chan = sstrdup(av[1]);
@@ -51,27 +51,27 @@ void cs_acc(char *src, int ac, char **av) {
 	char *why = cs_get_why(u, c);
 	switch (level) {
 	case 9:
-		notice(cs_name, src, CS_RPL_ACC_IRCOP, u->nick, get_oline(u->oper),	c->name);
+		notice(cs_name, src, CS_ACC_RPL_IRCOP, u->nick, get_oline(u->oper),	c->name);
 		return;
 	case 8:
-		notice(cs_name,src,CS_RPL_ACC_IDENTIFIED,u->nick,chan);
+		notice(cs_name,src,CS_ACC_RPL_IDENTIFIED,u->nick,chan);
 		return;
 	case 7:
-		notice(cs_name, src, CS_RPL_ACC_SUCCFND, u->nick, why, "Founder",c->name);
+		notice(cs_name, src, CS_ACC_RPL_SUCCFND, u->nick, why, "Founder",c->name);
 		return;
 	case 6:
-		notice(cs_name, src, CS_RPL_ACC_SUCCFND, u->nick, why, "Successor",c->name);
+		notice(cs_name, src, CS_ACC_RPL_SUCCFND, u->nick, why, "Successor",c->name);
 		return;
 	case 5:
 	case 4:
 	case 3:
 	case 2:
 	case 1:
-		notice(cs_name, src, CS_RPL_ACC_XOP, u->nick, why, get_opacc(level),
+		notice(cs_name, src, CS_ACC_RPL_XOP, u->nick, why, get_opacc(level),
 				c->name);
 		return;
 	case 0:
-		notice(cs_name, src, CS_RPL_ACC_NOACCESS, u->nick, c->name);
+		notice(cs_name, src, CS_ACC_RPL_NOACCESS, u->nick, c->name);
 		return;
 	}
 }

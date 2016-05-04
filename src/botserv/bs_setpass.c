@@ -47,8 +47,8 @@ void bs_setpass(char *src, int ac, char **av) {
 		bot *b = findbot(av[1]);
 		b->password = sstrdup(av[2]);
 		notice(bs_name, src, BS_RPL_SETPASS_SUCCESS,b->name,b->password);
-		notice(ns_name, src, NS_RPL_GPASS_LOGGED);
-		chatops(ns_name,NS_CTP_SETPASS_USED,src,b->name);
+		notice(ns_name, src, NS_GETPASS_MSG_LOGGED);
+		chatops(ns_name,NS_GLOBAL_SETPASS_USED,src,b->name);
 		addlog(1,NS_LOG_SETPASS_USED,bs_name,src);
 	}
 }
