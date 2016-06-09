@@ -37,7 +37,7 @@ static char *acc[] = {
  */
 void as_squit(char *src,int ac,char **av) {
 	user *u = finduser(src);
-	if(u->oper<as_access_flag) {
+	if (u->oper<as_access_flag) {
 		notice(as_name,src,AS_ERR_ACCESS_DENIED,as_name,acc[as_access_flag]);
 		return;
 	}

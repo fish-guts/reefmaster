@@ -27,16 +27,16 @@
  */
 void as_help(char *src, int ac, char **av) {
 	char help[64];
-	if(ac<2) {
+	if(ac < 2) {
 		sprintf(help,"%s/%s.help",NS_HELP_PATH,"adminserv");
 		help_message(as_name,src,help);
 		return;
-	} else if(ac==2) {
+	} else if (ac==2) {
 		sprintf(help,"%s/%s.help",NS_HELP_PATH,strlower(av[1]));
-	}  else if(ac==3) {
+	}  else if (ac==3) {
 		sprintf(help,"%s/%s_%s.help",NS_HELP_PATH,strlower(av[1]),strlower(av[2]));
 	}
-	if(file_exists(help)) {
+	if (file_exists(help)) {
 		help_message(as_name,src,help);
 	} else {
 		notice(as_name,src,"No Help on that Subject is available");

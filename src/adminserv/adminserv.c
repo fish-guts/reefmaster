@@ -65,9 +65,10 @@ void adminserv(char *src, char *av) {
 static as_cmd *find_as(const char *name) {
 	as_cmd *cmd;
 	for (cmd = as_cmds; cmd->name; cmd++) {
-		if (stricmp(name, cmd->name) == 0)
+		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
-	}
+		}
+	} /* for */
 	return NULL;
 }
 
