@@ -77,7 +77,7 @@ void cs_op(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_OP_USAGE);
+		notice(cs_name,src,CS_OP_ERR_USAGE);
 		notice(cs_name,src,CS_RPL_HLP,"OP");
 		return;
 	}

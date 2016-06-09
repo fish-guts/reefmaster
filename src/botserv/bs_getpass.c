@@ -36,7 +36,7 @@ void bs_getpass(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 1) {
-		notice(bs_name, src, BS_ERR_GETPASS_USAGE);
+		notice(bs_name, src, BS_GETPASS_ERR_USAGE);
 		notice(bs_name, src, BS_RPL_HLP, ns_name,"GETPASS");
 		return;
 	}
@@ -45,7 +45,7 @@ void bs_getpass(char *src, int ac, char **av) {
 		return;
 	} else {
 		bot *b = findbot(av[1]);
-		notice(bs_name, src, BS_RPL_GETPASS_SUCCESS,b->name,b->password);
+		notice(bs_name, src, BS_GETPASS_RPL_SUCCESS,b->name,b->password);
 		notice(bs_name, src, NS_GETPASS_MSG_LOGGED);
 		chatops(bs_name,NS_GETPASS_USED_GLOBAL,src,b->name);
 		addlog(1,NS_GETPASS_USED_LOG,bs_name,src);

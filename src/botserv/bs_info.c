@@ -30,7 +30,7 @@ void bs_info(char *src,int ac,char **av) {
 	char *botname;
 
 	if(ac<1) {
-		notice(bs_name,src,BS_ERR_INFO_USAGE);
+		notice(bs_name,src,BS_INFO_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"INFO");
 		return;
 	}

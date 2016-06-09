@@ -26,7 +26,7 @@
  */
 void cs_akick(char *src, int ac, char **av) {
 	if (ac < 3) {
-		notice(cs_name, src, CS_ERR_AKICK_USAGE);
+		notice(cs_name, src, CS_AKICK_ERR_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "AKICK");
 		return;
 	}
@@ -60,7 +60,7 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 	char *reason = (char*) malloc(sizeof(char*) * 1024);
 	user *u = finduser(src);
 	if (ac < 4) {
-		notice(cs_name, src, CS_ERR_AKICK_ADD_USAGE);
+		notice(cs_name, src, CS_AKICK_ERR_ADD_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "AKICK ADD");
 		return;
 	}
@@ -88,14 +88,14 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 	if ((!strchr(mask, '!')) && (!strchr(mask, '@'))) {
 		sprintf(finalmask, "%s!*@*", mask);
 	} else if (stricmp(mask, "*!*@*") == 0) {
-		notice(cs_name, src, CS_ERR_AKICK_ADD_NOSENSE, mask);
+		notice(cs_name, src, CS_AKICK_ERR_ADD_NOSENSE, mask);
 		return;
 	} else {
 		notice(as_name,src,"we're here again");
 		if (match(mask,
 				"([A-Z0-9a-z\\.\\_\\*\\-]+)!([A-Z0-9a-z\\.\\_\\*\\-]+)@([A-Z0-9a-z\\.\\_\\*\\-]+)")
 				!= 1) {
-			notice(cs_name, src, CS_ERR_AKICK_ADD_NOSENSE, mask);
+			notice(cs_name, src, CS_AKICK_ERR_ADD_NOSENSE, mask);
 			notice(cs_name, src, CS_RPL_HLP, cs_name, "AKICK ADD");
 			return;
 		} else {
@@ -103,7 +103,7 @@ void cs_akick_addmask(char *src, int ac, char **av) {
 		}
 	}
 	if (cs_isonakicklist(finalmask, chan)) {
-		notice(cs_name, src, CS_ERR_AKICK_ALREADYONLIST, finalmask, chan);
+		notice(cs_name, src, CS_AKICK_ERR_ALREADYONLIST, finalmask, chan);
 		return;
 	} else {
 		akick *ak = scalloc(sizeof(akick), 1);
@@ -132,7 +132,7 @@ void cs_akick_delmask(char *src, int ac, char **av) {
 	int addacc;
 	char *finalmask = (char*) malloc(sizeof(char*) * 256);
 	if (ac <= 3) {
-		notice(cs_name, src, CS_ERR_AKICK_DEL_USAGE);
+		notice(cs_name, src, CS_AKICK_ERR_DEL_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "AKICK DEL");
 		return;
 	}
@@ -202,9 +202,9 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 		i++;
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&ak->added_on));
 		if(ak->reason)
-			notice(cs_name, src, CS_RPL_AKICK_LIST,i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str,ak->reason);
+			notice(cs_name, src, CS_AKICK_RPL_LIST,i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str,ak->reason);
 		else
-			notice(cs_name, src, CS_RPL_AKICK_LIST2, i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str);
+			notice(cs_name, src, CS_AKICK_RPL_LIST2, i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str);
 		ak = ak->next;
 	}
 	if ((i > 1) || (i == 0)) {

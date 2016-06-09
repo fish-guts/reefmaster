@@ -31,7 +31,7 @@ void bs_identify(char *src,int ac,char **av) {
 	char *password;
 
 	if(ac<2) {
-		notice(bs_name,src,BS_ERR_IDENTIFY_USAGE);
+		notice(bs_name,src,BS_IDENTIFY_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"IDENTIFY");
 		return;
 	}
@@ -47,10 +47,10 @@ void bs_identify(char *src,int ac,char **av) {
 	}
 
 	if(stricmp(b->password,password)!=0) {
-		notice(bs_name,src,BS_ERR_IDENTIFY_WRONGPASS,b->name);
+		notice(bs_name,src,BS_IDENTIFY_ERR_WRONGPASS,b->name);
 		return;
 	} else {
-		notice(bs_name,src,BS_ERR_IDENTIFY_PASSACC,b->name);
+		notice(bs_name,src,BS_IDENTIFY_ERR_PASSACC,b->name);
 		user_add_bot(u,b);
 	}
 

@@ -40,13 +40,13 @@ void bs_set(char *src,int ac,char **av) {
 		return;
 	}
 	if(ac<2) {
-		notice(bs_name,src,BS_ERR_SET_USAGE);
+		notice(bs_name,src,BS_SET_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET");
 		return;
 	}
 	bot *b = findbot(av[1]);
 	if(!b) {
-		notice(bs_name,src,BS_ERR_KICK_BOT,av[1]);
+		notice(bs_name,src,BS_KICK_ERR_BOT,av[1]);
 		return;
 	}
 	if(!bot_identified(u,b)) {
@@ -54,7 +54,7 @@ void bs_set(char *src,int ac,char **av) {
 		return;
 	}
 	if(!is_bot_on_chan(av[1],av[2])) {
-		notice(bs_name,src,BS_ERR_OP_NOT_ON_CHAN,av[1],av[2]);
+		notice(bs_name,src,BS_OP_ERR_NOT_ON_CHAN,av[1],av[2]);
 		return;
 	}
 	if(stricmp(av[2],"NAME")==0) {
@@ -77,7 +77,7 @@ void bs_set(char *src,int ac,char **av) {
  */
 static void bs_set_name(char *src,int ac,char **av) {
 	if(ac<4) {
-		notice(bs_name,src,BS_ERR_SET_OPT_USAGE,"NAME");
+		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"NAME");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET NAME");
 		return;
 	}
@@ -97,7 +97,7 @@ static void bs_set_name(char *src,int ac,char **av) {
  */
 static void bs_set_password(char *src,int ac,char **av) {
 	if(ac<4) {
-		notice(bs_name,src,BS_ERR_SET_OPT_USAGE,"PASSWORD");
+		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"PASSWORD");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET PASSWORD");
 		return;
 	}
@@ -109,7 +109,7 @@ static void bs_set_password(char *src,int ac,char **av) {
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(av[3], av[1]) == 0) {
 		notice(bs_name, src, BS_ERR_PASSSAMEASNICK);
-		notice(bs_name, src, CS_RPL_REG_HLP, cs_name,"ADD");
+		notice(bs_name, src, CS_RPL_HLP, bs_name,"ADD");
 		return;
 	}
 	bot *b = findbot(av[1]);
@@ -124,7 +124,7 @@ static void bs_set_password(char *src,int ac,char **av) {
  */
 static void bs_set_realname(char *src,int ac,char **av) {
 	if(ac<4) {
-		notice(bs_name,src,BS_ERR_SET_OPT_USAGE,"REALNAME");
+		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"REALNAME");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET REALNAME");
 		return;
 	}
@@ -148,7 +148,7 @@ static void bs_set_realname(char *src,int ac,char **av) {
  */
 static void bs_set_username(char *src,int ac,char **av) {
 	if(ac<4) {
-		notice(bs_name,src,BS_ERR_SET_OPT_USAGE,"USERNAME");
+		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"USERNAME");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET USERNAME");
 		return;
 	}

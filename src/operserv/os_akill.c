@@ -97,7 +97,7 @@ void os_akill(char *src, int ac, char **av) {
 	} else if(stricmp(av[1],"LIST")==0) {
 		os_akill_list(src,ac,av);
 	} else {
-		notice(os_name,src,OS_ERR_AKILL_NOSUCHCMD,av[1]);
+		notice(os_name,src,OS_AKILL_ERR_NOSUCHCMD,av[1]);
 		return;
 	}
 }
@@ -109,7 +109,7 @@ void os_akill(char *src, int ac, char **av) {
 static void os_akill_add(char *src, int ac, char **av) {
 	int duration = 0;
 	if(ac<4) {
-		notice(os_name,src,OS_RPL_AKILL_ADD_USAGE);
+		notice(os_name,src,OS_AKILL_RPL_ADD_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"AKILL ADD");
 		return;
 	}
@@ -134,7 +134,7 @@ static void os_akill_add(char *src, int ac, char **av) {
 	}
 
 	if(findakill(av[2])) {
-		notice(os_name,src,OS_ERR_AKILL_EXISTS,av[2]);
+		notice(os_name,src,OS_AKILL_ERR_EXISTS,av[2]);
 		return;
 	}
 	char reason[1024] = "";
@@ -158,13 +158,13 @@ static void os_akill_add(char *src, int ac, char **av) {
 		char str[100];
 		time_t expiry = (time(NULL) + duration*60);
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&expiry));
-		globops(os_name,OS_RPL_AKILL_ADDED,src,av[2],reason,str);
+		globops(os_name,OS_AKILL_RPL_ADDED,src,av[2],reason,str);
 		new_akill(src,av[2],reason,duration);
 	} else {
-		globops(os_name,OS_RPL_AKILL_ADDED2,src,av[2],reason);
+		globops(os_name,OS_AKILL_RPL_ADDED2,src,av[2],reason);
 		new_akill(src,av[2],reason,0);
 	}
-	notice(os_name,src,OS_RPL_AKILL_ADD_SUCCESS,av[2]);
+	notice(os_name,src,OS_AKILL_RPL_ADD_SUCCESS,av[2]);
 	return;
 }
 
@@ -174,7 +174,7 @@ static void os_akill_add(char *src, int ac, char **av) {
  */
 static void os_akill_del(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_AKILL_DEL_USAGE);
+		notice(os_name,src,OS_AKILL_RPL_DEL_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"AKILL DEL");
 		return;
 	}
@@ -197,11 +197,11 @@ static void os_akill_del(char *src, int ac, char **av) {
 		}
 	}
 	if(!findakill(av[2])) {
-		notice(os_name,src,OS_RPL_AKILL_NOTFOUND,av[2]);
+		notice(os_name,src,OS_AKILL_RPL_NOTFOUND,av[2]);
 		return;
 	}
 	delete_akill(av[2]);
-	notice(os_name,src,OS_RPL_AKILL_DEL_SUCCESS,av[2]);
+	notice(os_name,src,OS_AKILL_RPL_DEL_SUCCESS,av[2]);
 	return;
 }
 
@@ -212,7 +212,7 @@ static void os_akill_del(char *src, int ac, char **av) {
  */
 static void os_akill_list(char *src, int ac, char **av) {
 	if(ac<2) {
-		notice(os_name,src,OS_RPL_OPER_LIST_USAGE);
+		notice(os_name,src,OS_AKILL_LIST_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"AKILL LIST");
 		return;
 	}
@@ -235,17 +235,17 @@ static void os_akill_list(char *src, int ac, char **av) {
 		}
 	}
 	int i = 0;
-	notice(os_name,src,OS_RPL_AKILL_LIST_BEGIN,os_name);
+	notice(os_name,src,OS_AKILL_RPL_LIST_BEGIN,os_name);
 	akill *a = akills;
-	while(a) {
+	while (a) {
 		++i;
-		notice(os_name,src,OS_RPL_AKILL_LIST_ENTRY,i,a->mask,a->added_by,a->reason,a->expires);
+		notice(os_name,src,OS_AKILL_LIST_RPL_ENTRY,i,a->mask,a->added_by,a->reason,a->expires);
 		a = a->next;
 	}
-	if(i==1) {
-		notice(os_name,src,OS_RPL_LIST_END1);
+	if (i==1) {
+		notice(os_name,src,OS_LIST_RPL_END1);
 	} else {
-		notice(os_name,src,OS_RPL_LIST_END2);
+		notice(os_name,src,OS_LIST_RPL_END2);
 	}
 }
 

@@ -37,7 +37,7 @@ static char *oline[] = {
  */
 void os_kill(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_KILL_USAGE);
+		notice(os_name,src,OS_KILL_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"KILL");
 		return;
 	}
@@ -73,6 +73,6 @@ void os_kill(char *src, int ac, char **av) {
 		}
 	}
 	s_kill(os_name,av[1],reason);
-	notice(os_name,src,OS_RPL_KILL_SUCCESS,av[1]);
+	notice(os_name,src,OS_KILL_RPL_SUCCESS,av[1]);
 	return;
 }

@@ -75,7 +75,7 @@ void os_oper(char *src, int ac, char **av) {
  */
 static void os_oper_add(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_OPER_ADD_USAGE);
+		notice(os_name,src,OS_OPER_ADD_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"OPER ADD");
 		return;
 	}
@@ -89,11 +89,11 @@ static void os_oper_add(char *src, int ac, char **av) {
 		return;
 	}
 	if(findoper(av[2])) {
-		notice(os_name,src,OS_ERR_OPER_EXISTS,av[2]);
+		notice(os_name,src,OS_OPER_ERR_EXISTS,av[2]);
 		return;
 	}
 	new_oper(av[2]);
-	notice(os_name,src,OS_RPL_OPER_ADD_SUCCESS,av[2]);
+	notice(os_name,src,OS_OPER_ADD_RPL_SUCCESS,av[2]);
 	return;
 }
 
@@ -127,7 +127,7 @@ static void new_oper(char *nick) {
  */
 static void os_oper_del(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_OPER_DEL_USAGE);
+		notice(os_name,src,OS_OPER_DEL_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"OPER DEL");
 		return;
 	}
@@ -137,11 +137,11 @@ static void os_oper_del(char *src, int ac, char **av) {
 		return;
 	}
 	if(!findoper(av[2])) {
-		notice(os_name,src,OS_RPL_OPER_NOTFOUND,av[2]);
+		notice(os_name,src,OS_OPER_ERR_NOTFOUND,av[2]);
 		return;
 	}
 	delete_oper(av[2]);
-	notice(os_name,src,OS_RPL_OPER_DEL_SUCCESS,av[2]);
+	notice(os_name,src,OS_OPER_DEL_RPL_SUCCESS,av[2]);
 	return;
 }
 
@@ -166,7 +166,7 @@ void delete_oper(char *nick) {
  */
 static void os_oper_list(char *src, int ac, char **av) {
 	if(ac<2) {
-		notice(os_name,src,OS_RPL_OPER_LIST_USAGE);
+		notice(os_name,src,OS_OPER_LIST_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"OPER LIST");
 		return;
 	}
@@ -176,17 +176,17 @@ static void os_oper_list(char *src, int ac, char **av) {
 		return;
 	}
 	int i = 0;
-	notice(os_name,src,OS_RPL_OPER_LIST_BEGIN,os_name);
+	notice(os_name,src,OS_OPER_LIST_RPL_BEGIN,os_name);
 	operuser *o = opers;
 	while(o) {
 		++i;
-		notice(os_name,src,OS_RPL_OPER_LIST_ENTRY,i,o->nick);
+		notice(os_name,src,OS_OPER_LIST_RPL_ENTRY,i,o->nick);
 		o = o->next;
 	}
 	if(i==1) {
-		notice(os_name,src,OS_RPL_LIST_END1);
+		notice(os_name,src,OS_LIST_RPL_END1);
 	} else {
-		notice(os_name,src,OS_RPL_LIST_END2);
+		notice(os_name,src,OS_LIST_RPL_END2);
 	}
 }
 
@@ -196,7 +196,7 @@ static void os_oper_list(char *src, int ac, char **av) {
  */
 static void os_oper_set(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_OPER_SET_USAGE);
+		notice(os_name,src,OS_OPER_SET_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"OPER SET");
 		return;
 	}
@@ -207,7 +207,7 @@ static void os_oper_set(char *src, int ac, char **av) {
 	}
 	operuser *o = findoper(av[2]);
 	if(!o) {
-		notice(os_name,src,OS_RPL_OPER_NOTFOUND,av[2]);
+		notice(os_name,src,OS_OPER_ERR_NOTFOUND,av[2]);
 		return;
 	}
 	if(stricmp(av[3],"AKILL")==0) {
@@ -249,7 +249,7 @@ static void os_oper_set_akill(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"AKILL");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"AKILL");
 		return;
 	}
 }
@@ -268,7 +268,7 @@ static void os_oper_set_chatops(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"CHATOPS");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"CHATOPS");
 		return;
 	}
 }
@@ -287,7 +287,7 @@ static void os_oper_set_chghost(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"CHGHOST");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"CHGHOST");
 		return;
 	}
 }
@@ -306,7 +306,7 @@ static void os_oper_set_global(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"GLOBAL");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"GLOBAL");
 		return;
 	}
 }
@@ -325,7 +325,7 @@ static void os_oper_set_kill(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"KILL");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"KILL");
 		return;
 	}
 }
@@ -345,7 +345,7 @@ static void os_oper_set_local(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"LOCAL");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"LOCAL");
 		return;
 	}
 }
@@ -364,7 +364,7 @@ static void os_oper_set_sgline(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"SGLINE");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"SGLINE");
 		return;
 	}
 }
@@ -384,7 +384,7 @@ static void os_oper_set_skline(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"SKLINE");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"SKLINE");
 		return;
 	}
 }
@@ -403,7 +403,7 @@ static void os_oper_set_sqline(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"SQLINE");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"SQLINE");
 		return;
 	}
 }
@@ -422,7 +422,7 @@ static void os_oper_set_szline(char *src,operuser *o,char *option) {
 		notice(os_name,src,"OS_RPL_SET_SUCCESS",o->nick);
 		return;
 	} else {
-		notice(os_name,src,OS_ERR_OPER_SET_OPT_USAGE,"SZLINE");
+		notice(os_name,src,OS_OPER_SET_OPT_ERR_USAGE,"SZLINE");
 		return;
 	}
 }

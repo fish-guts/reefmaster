@@ -46,7 +46,7 @@ void cs_register(char *src, int ac, char **av) {
 	del = (now - u->lastchanreg);
 	/* Check for proper access */
 	if ((u->oper + 1) < reglevel) {
-		notice(ns_name, dest, CS_ERR_REG_PRIVS, get_oline(reglevel));
+		notice(ns_name, dest, CS_REGISTER_ERR_PRIVS, get_oline(reglevel));
 		return;
 	}
 	/* checks whether the nickname is registered */
@@ -65,47 +65,47 @@ void cs_register(char *src, int ac, char **av) {
 		return;
 	}
 	if (del <= cs_delay) {
-		notice(cs_name, dest, CS_ERR_REG_DELAY, del);
+		notice(cs_name, dest, CS_REGISTER_ERR_DELAY, del);
 		return;
 	}
 	if ((!desc || !strcmp(desc, "")) || (!pass || !strcmp(pass, ""))) {
-		notice(cs_name, dest, CS_RPL_REG_USAGE);
-		notice(cs_name, dest, CS_RPL_REG_HLP, cs_name);
+		notice(cs_name, dest, CS_REGISTER_RPL_USAGE);
+		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
 		return;
 	}
 	/* the password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
 		notice(cs_name, dest, NS_REGISTER_ERR_PASSTOOSHORT);
-		notice(cs_name, dest, CS_RPL_REG_HLP, cs_name);
+		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
 		return;
 	}
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(pass, chan) == 0) {
-		notice(cs_name, dest, CS_ERR_REG_PASSSAMEASCHAN);
-		notice(cs_name, dest, CS_RPL_REG_HLP, cs_name);
+		notice(cs_name, dest, CS_REGISTER_ERR_PASSSAMEASCHAN);
+		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
 		return;
 	}
 	if (stricmp(pass, src) == 0) {
-		notice(cs_name, dest, CS_ERR_REG_PASSSAMEASFND);
-		notice(cs_name, dest, CS_RPL_REG_HLP, cs_name);
+		notice(cs_name, dest, CS_REGISTER_ERR_PASSSAMEASFND);
+		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
 		return;
 	}
 	/* the user must be on channel to register it, unless he's oper */
 	if ((!ison(c, u)) && (!u->oper)) {
-		notice(ns_name, src, CS_ERR_REG_NEEDTOBEONCHAN, chan);
+		notice(ns_name, src, CS_REGISTER_ERR_NEEDTOBEONCHAN, chan);
 		return;
 	}
 	/* the user must be on operator (+o) channel to register it, unless he's oper */
 	if ((!isop(c, u)) && (!u->oper)) {
-		notice(ns_name, src, CS_ERR_REG_NEEDTOBEOP, chan);
+		notice(ns_name, src, CS_REGISTER_ERR_NEEDTOBEOP, chan);
 		return;
 	}
 	char i_mode[128];
 	sprintf(i_mode, "%s", cs_mlock);
 	mode(s_name, chan, "+rtn", NULL);
 	mode(cs_name, chan, i_mode, NULL);
-	notice(cs_name, src, CS_RPL_REG_SUCCESS1, chan);
-	notice(cs_name, src, CS_RPL_REG_SUCCESS2, pass);
+	notice(cs_name, src, CS_REGISTER_RPL_SUCCESS1, chan);
+	notice(cs_name, src, CS_REGISTER_RPL_SUCCESS2, pass);
 	register_chan(src, chan, pass, desc);
 	add_to_list(src, chan, ACCESS_FND, src, ACCESS_SRA);
 }

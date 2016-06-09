@@ -37,7 +37,7 @@ static char *oline[] = {
  */
 void os_chghost(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_CHGHOST_USAGE);
+		notice(os_name,src,OS_CHGHOST_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"CHGHOST");
 		return;
 	}
@@ -66,6 +66,6 @@ void os_chghost(char *src, int ac, char **av) {
 		}
 	}
 	chghost(os_name,nick,host);
-	notice(os_name,src,OS_RPL_CHGHOST_SUCCESS,nick,host);
+	notice(os_name,src,OS_CHGHOST_RPL_SUCCESS,nick,host);
 	return;
 }

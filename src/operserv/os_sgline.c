@@ -59,7 +59,7 @@ void os_sgline(char *src, int ac, char **av) {
 static void os_sgline_add(char *src, int ac, char **av) {
 	long duration = 0;
 	if(ac<4) {
-		notice(os_name,src,OS_RPL_SGLINE_ADD_USAGE);
+		notice(os_name,src,OS_SGLINE_ADD_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"SGLINE ADD");
 		return;
 	}
@@ -134,13 +134,13 @@ static void os_sgline_add(char *src, int ac, char **av) {
 		char str[100];
 		time_t expiry = (time(NULL) + duration*60);
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&expiry));
-		globops(os_name,OS_RPL_SGLINE_ADDED,src,pubmask,reason,str);
+		globops(os_name,OS_SGLINE_RPL_ADDED,src,pubmask,reason,str);
 		gline(os_name,username,hostname,reason,duration);
 	} else {
-		globops(os_name,OS_RPL_SGLINE_ADDED2,src,pubmask,reason);
+		globops(os_name,OS_SGLINE_RPL_ADDED2,src,pubmask,reason);
 		gline(os_name,username,hostname,reason,0);
 	}
-	notice(os_name,src,OS_RPL_SGLINE_ADD_SUCCESS,av[2]);
+	notice(os_name,src,OS_SGLINE_ADD_RPL_SUCCESS,av[2]);
 	return;
 }
 
@@ -151,7 +151,7 @@ static void os_sgline_add(char *src, int ac, char **av) {
  */
 static void os_sgline_del(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_SGLINE_DEL_USAGE);
+		notice(os_name,src,OS_SGLINE_DEL_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"SGLINE DEL");
 		return;
 	}
@@ -204,7 +204,7 @@ static void os_sgline_del(char *src, int ac, char **av) {
 	char pubmask[128];
 	sprintf(pubmask,"%s@%s",username,hostname);
 	rgline(s_name,username,hostname);
-	notice(os_name,src,OS_RPL_SGLINE_DEL_SUCCESS,pubmask);
+	notice(os_name,src,OS_SGLINE_DEL_RPL_SUCCESS,pubmask);
 	return;
 }
 

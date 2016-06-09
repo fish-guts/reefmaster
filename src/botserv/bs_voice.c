@@ -32,7 +32,7 @@ void bs_voice(char *src,int ac,char **av) {
 	char *nick;
 
 	if(ac<3) {
-		notice(bs_name,src,BS_ERR_VOICE_USAGE);
+		notice(bs_name,src,BS_VOICE_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"VOICE");
 		return;
 	}
@@ -48,7 +48,7 @@ void bs_voice(char *src,int ac,char **av) {
 	}
 
 	if(!is_bot_on_chan(botname,chan)) {
-		notice(bs_name,src,BS_ERR_OP_NOT_ON_CHAN,botname,chan);
+		notice(bs_name,src,BS_OP_ERR_NOT_ON_CHAN,botname,chan);
 		return;
 	}
 	if(!bot_identified(u,b)) {

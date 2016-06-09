@@ -36,7 +36,7 @@ void bs_setpass(char *src, int ac, char **av) {
 		return;
 	}
 	if (ac <= 2) {
-		notice(bs_name, src, BS_ERR_SETPASS_USAGE);
+		notice(bs_name, src, BS_SETPASS_ERR_USAGE);
 		notice(bs_name, src, BS_RPL_HLP, ns_name,"SETPASS");
 		return;
 	}
@@ -46,7 +46,7 @@ void bs_setpass(char *src, int ac, char **av) {
 	} else {
 		bot *b = findbot(av[1]);
 		b->password = sstrdup(av[2]);
-		notice(bs_name, src, BS_RPL_SETPASS_SUCCESS,b->name,b->password);
+		notice(bs_name, src, BS_SETPASS_RPL_SUCCESS,b->name,b->password);
 		notice(ns_name, src, NS_GETPASS_MSG_LOGGED);
 		chatops(ns_name,NS_GLOBAL_SETPASS_USED,src,b->name);
 		addlog(1,NS_LOG_SETPASS_USED,bs_name,src);

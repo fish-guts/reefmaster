@@ -58,7 +58,7 @@ void cs_setpass(char *src, int ac, char **av) {
 	}
 	/* the password must not be the same as the nickname */
 	else if (stricmp(chan, pass) == 0) {
-		notice(cs_name, src, CS_ERR_REG_PASSSAMEASCHAN);
+		notice(cs_name, src, CS_REGISTER_ERR_PASSSAMEASCHAN);
 		return;
 	} else {
 		strscpy(c->pass, pass, PASSMAX);

@@ -277,28 +277,28 @@
 /* NOTIFY
  ******************************************************************************************************************************************
  */
-#define NS_RPL_NFY_1ENTRYREMOVED	"1 entry removed."
-#define NS_RPL_NFY_ALREADYINLIST	"The nickname \2%s\2 is already in your notify list."
-#define NS_RPL_NFY_ISNOWOFFLINE		"\2%s\2 has gone offline."
-#define NS_RPL_NFY_ISNOWONLINE		"\2%s\2 is now online!"
-#define NS_RPL_NFY_LIST				"Notify list of \2%s\2:"
-#define NS_RPL_NFY_LISTENTRIES		"\2%i\2 - \2%s\2"
-#define NS_RPL_NFY_LIST_COMPLETE_1	"Listing complete - \21\2 entry found"
-#define NS_RPL_NFY_LIST_COMPLETE	"Listing complete - \2%i\2 entries found"
-#define NS_ERR_NFY_MUSTBEREG		"You need to have a registered nickname to add someone to your notify list."
-#define NS_ERR_NFY_MUSTBEREG2		"You can only add registered nicknames to your notify list."
-#define NS_RPL_NFY_NENTRIESREMOVED	"%i entries removed."
-#define NS_RPL_NFY_NICKADDED		"The nickname \2%s\2 has been added to your notify list."
-#define NS_RPL_NFY_NICKDELETED		"The nickname \2%s\2 has been deleted from your notify list."
-#define NS_ERR_NFY_NICKNOTFOUND		"The nickname \2%s\2 was not found in your notify list."
-#define NS_RPL_NFY_NOENTRIES		"You don't have any notify entries"
-#define NS_RPL_NFY_NOENTRIES2		"The nickname \2%s\2 does not have any notify entries."
-#define NS_RPL_NFY_REQUESTSENT1		"The nickname \2%s\2 has authorization for notify lists enabled."
-#define NS_RPL_NFY_REQUESTSENT2		"Your request to add \2%s\2 has been sent."
-#define NS_RPL_NFY_REQUESTSENT3		"Once \2%s\2 approved your request, they will be on your notify list."
-#define NS_ERR_NFY_SAMEASSRC		"You cannot add yourself to the notify list."
-#define NS_ERR_NFY_USAGE			"Usage: \2NOTIFY ADD\2 <add|del|list|wipe> [nickname]."
-#define NS_RPL_NFY_WIPESUCCESS		"Your notify list has been wiped."
+#define NS_NOTIFY_RPL_1ENTRYREMOVED	"1 entry removed."
+#define NS_NOTIFY_RPL_ALREADYINLIST	"The nickname \2%s\2 is already in your notify list."
+#define NS_NOTIFY_RPL_ISNOWOFFLINE		"\2%s\2 has gone offline."
+#define NS_NOTIFY_RPL_ISNOWONLINE		"\2%s\2 is now online!"
+#define NS_NOTIFY_RPL_LIST				"Notify list of \2%s\2:"
+#define NS_NOTIFY_RPL_LISTENTRIES		"\2%i\2 - \2%s\2"
+#define NS_NOTIFY_RPL_LIST_COMPLETE_1	"Listing complete - \21\2 entry found"
+#define NS_NOTIFY_RPL_LIST_COMPLETE	"Listing complete - \2%i\2 entries found"
+#define NS_NOTIFY_ERR_MUSTBEREG		"You need to have a registered nickname to add someone to your notify list."
+#define NS_NOTIFY_ERR_MUSTBEREG2		"You can only add registered nicknames to your notify list."
+#define NS_NOTIFY_RPL_NENTRIESREMOVED	"%i entries removed."
+#define NS_NOTIFY_RPL_NICKADDED		"The nickname \2%s\2 has been added to your notify list."
+#define NS_NOTIFY_RPL_NICKDELETED		"The nickname \2%s\2 has been deleted from your notify list."
+#define NS_NOTIFY_ERR_NICKNOTFOUND		"The nickname \2%s\2 was not found in your notify list."
+#define NS_NOTIFY_RPL_NOENTRIES		"You don't have any notify entries"
+#define NS_NOTIFY_RPL_NOENTRIES2		"The nickname \2%s\2 does not have any notify entries."
+#define NS_NOTIFY_RPL_REQUESTSENT1		"The nickname \2%s\2 has authorization for notify lists enabled."
+#define NS_NOTIFY_RPL_REQUESTSENT2		"Your request to add \2%s\2 has been sent."
+#define NS_NOTIFY_RPL_REQUESTSENT3		"Once \2%s\2 approved your request, they will be on your notify list."
+#define NS_NOTIFY_ERR_SAMEASSRC		"You cannot add yourself to the notify list."
+#define NS_NOTIFY_ERR_USAGE			"Usage: \2NOTIFY ADD\2 <add|del|list|wipe> [nickname]."
+#define NS_NOTIFY_RPL_WIPESUCCESS		"Your notify list has been wiped."
 
 /* REGISTER
  ******************************************************************************************************************************************
@@ -394,7 +394,7 @@
 #define CS_ERR_NEEDREG				"You need a registered nickname to register a channel."
 #define CS_ERR_NOSUCHCHANNEL		"No such channel: %s."
 #define CS_ERR_NOTREG				"The Channel \2%s\2 is not registered."
-
+#define CS_RPL_HLP					"For more help, type /msg %s \2HELP %s %s\2."
 /* ACC
  ******************************************************************************************************************************************
  */
@@ -411,19 +411,19 @@
 /* AKICK
  ******************************************************************************************************************************************
  */
-#define CS_ERR_AKICK_ALREADYONLIST	"The mask \2%s\2 already is on the \2Akick\2 list of \2%s\2"
-#define CS_ERR_AKICK_USAGE			"Usage: \2AKICK\2 [#channel] \2<add|del|list|wipe> [reason]\2"
-#define CS_RPL_AKICK_KICKREASON		"Your mask has been added to the AKICK list (%s)"
-#define CS_ERR_AKICK_ADD_NOSENSE	"The mask \2%s\2 doesn't make any sense."
-#define CS_ERR_AKICK_ADD_USAGE		"Usage: \2AKICK\2 [#channel] \2ADD [mask] [reason]\2"
-#define CS_ERR_AKICK_DEL_USAGE		"Usage: \2AKICK\2 [#channel] \2DEL [mask]\2"
-#define CS_RPL_AKICK_LIST			"\2%i\2 - \2%s\2 (Added by %s:%s on %s) (%s)"
-#define CS_RPL_AKICK_LIST2			"\2%i\2 - \2%s\2 (Added by %s:%s on %s)"
+#define CS_AKICK_ERR_ALREADYONLIST	"The mask \2%s\2 already is on the \2Akick\2 list of \2%s\2"
+#define CS_AKICK_ERR_USAGE			"Usage: \2AKICK\2 [#channel] \2<add|del|list|wipe> [reason]\2"
+#define CS_AKICK_RPL_KICKREASON		"Your mask has been added to the AKICK list (%s)"
+#define CS_AKICK_ERR_ADD_NOSENSE	"The mask \2%s\2 doesn't make any sense."
+#define CS_AKICK_ERR_ADD_USAGE		"Usage: \2AKICK\2 [#channel] \2ADD [mask] [reason]\2"
+#define CS_AKICK_ERR_DEL_USAGE		"Usage: \2AKICK\2 [#channel] \2DEL [mask]\2"
+#define CS_AKICK_RPL_LIST			"\2%i\2 - \2%s\2 (Added by %s:%s on %s) (%s)"
+#define CS_AKICK_RPL_LIST2			"\2%i\2 - \2%s\2 (Added by %s:%s on %s)"
 
 /* DROP
  ******************************************************************************************************************************************
  */
-#define CS_RPL_DRP_SUCCESS			"The Channel \2%s\2 has been dropped"
+#define CS_DROP_RPL_SUCCESS			"The Channel \2%s\2 has been dropped"
 #define CS_DROP_RPL_USAGE			"Usage: \2DROP\2 <channel>"
 
 /* GETPASS
@@ -458,45 +458,45 @@
 /* INVITE
  ******************************************************************************************************************************************
  */
-#define CS_ERR_INV_USAGE			"Usage: \2INVITE\2 <channel> [Nickname]"
-#define CS_ERR_INV_ALREADYONCHAN	"\2%s\2 already is on channel \2%s\2"
-#define CS_ERR_INV_ALREADYONCHAN2	"You already are on channel \2%s\2"
-#define CS_RPL_HLP					"For more help, type /msg %s \2HELP %s\2"
+#define CS_INVITE_ERR_USAGE			 "Usage: \2INVITE\2 <channel> [Nickname]"
+#define CS_INVITE_ERR_ALREADYONCHAN	 "\2%s\2 already is on channel \2%s\2"
+#define CS_INVITE_ERR_ALREADYONCHAN2 "You already are on channel \2%s\2"
+
 
 /* IDENTIFY
  ******************************************************************************************************************************************
  */
-#define CS_RPL_IDF_ALREADYIDF		"You have already identified for the channel \2%s\2"
-#define CS_RPL_IDF_PASSACCEPTED		"Password accepted - You are now identified for channel \2%s\2"
-#define CS_ERR_IDF_USAGE			"Usage: \2IDENTIFY\2 [#channel] \2[password]\2"
-#define CS_ERR_IDF_WRONGPASS		"Password incorrect for channel \2%s\2"
+#define CS_IDENTIFY_RPL_ALREADYIDF	 "You have already identified for the channel \2%s\2"
+#define CS_IDENTIFY_RPL_PASSACCEPTED "Password accepted - You are now identified for channel \2%s\2"
+#define CS_IDENTIFY_ERR_USAGE		 "Usage: \2IDENTIFY\2 [#channel] \2[password]\2"
+#define CS_IDENTIFY_ERR_WRONGPASS	 "Password incorrect for channel \2%s\2"
 
 /* LIST
  ******************************************************************************************************************************************
  */
-#define CS_RPL_LIST_BEGIN			"Listing all registered channels matching the pattern  \2\"%s\"\2"
-#define CS_RPL_LIST_ENTRY			"\2%i\2 - \2%s\2 (Founder: %s)"
-#define CS_RPL_LIST_END1			"Listing complete - %i matches found"
-#define CS_RPL_LIST_END2			"Listing complete - 1 match found"
-#define CS_ERR_LIST_USAGE			"Usage: \2LIST\2 [Pattern]>."
+#define CS_LIST_RPL_BEGIN			"Listing all registered channels matching the pattern  \2\"%s\"\2"
+#define CS_LIST_RPL_ENTRY			"\2%i\2 - \2%s\2 (Founder: %s)"
+#define CS_LIST_RPL_END1			"Listing complete - %i matches found"
+#define CS_LIST_RPL_END2			"Listing complete - 1 match found"
+#define CS_LIST_ERR_USAGE			"Usage: \2LIST\2 [Pattern]>."
 
 /* MDEOP
  ******************************************************************************************************************************************
  */
-#define CS_ERR_MDEOP_USAGE			"Usage: \2MDEOP\2 [#channel]"
+#define CS_MDEOP_ERR_USAGE			"Usage: \2MDEOP\2 [#channel]"
 
 
 /* MKICK
  ******************************************************************************************************************************************
  */
-#define CS_ERR_MKICK_USAGE			"Usage: \2MKICK\2 [#channel] \2[reason]\2"
-#define CS_RPL_MKICK_NOUSERS		"There a no users on channel \2%s\2"
-#define CS_RPL_MKICK_USED_BY		"MKICK Command used by %s"
+#define CS_MKICK_ERR_USAGE			"Usage: \2MKICK\2 [#channel] \2[reason]\2"
+#define CS_MKICK_RPL_NOUSERS		"There a no users on channel \2%s\2"
+#define CS_MKICK_RPL_USED_BY		"MKICK Command used by %s"
 
 /* OP
  ******************************************************************************************************************************************
  */
-#define CS_ERR_OP_USAGE				"Usage: \2OP\2 [#channel] \2[nickname]\2"
+#define CS_OP_ERR_USAGE				"Usage: \2OP\2 [#channel] \2[nickname]\2"
 
 /* REGISTER
  ******************************************************************************************************************************************
@@ -506,41 +506,41 @@
 /* SET
  ******************************************************************************************************************************************
  */
-#define CS_ERR_SET_FOUNDER_REG		"Only a registiered Nickname can be founder of a channel"
-#define CS_ERR_SET_SUCC_REG			"Only a registiered Nickname can be successor of a channel"
-#define CS_RPL_SET_FOUNDER_SUCCESS	"The founder of \2%s\2 was changed to \2%s\2"
-#define CS_RPL_SET_SUCC_SUCCESS		"The successor of \2%s\2 was changed to \2%s\2"
-#define CS_RPL_SET_PASS_SUCCESS		"The password of \2%s\2 was changed to \2%s\2"
-#define CS_RPL_SET_TOPICLOCK_SUCCESS "Topiclock for \2%s\2 is now set to \2%s\2"
-#define CS_RPL_SET_TOPICLOCK_DISABLE "Topiclock for \2%s\2 is now disabled"
-#define CS_RPL_SET_MLOCK_SUCCESS 	"Modelock for \2%s\2 has been changed to \2%s\2"
-#define CS_RPL_SET_MEMOLEVEL_SUCCESS "Memolevel for \2%s\2 was changed to \2%s\2"
-#define CS_RPL_SET_BOT_SUCCESS		"Bot for \2%s\2 is now set to \2%s\2"
-#define CS_RPL_SET_OPWATCH_ENABLE	"Opwatch for \2%s\2 is now enabled"
-#define CS_RPL_SET_OPWATCH_DISABLE	"Opwatch for \2%s\2 is now disabled"
-#define CS_RPL_SET_LEAVEOPS_ENABLE	"Leaveops for \2%s\2 is now enabled"
-#define CS_RPL_SET_LEAVEOPS_DISABLE	"Leaveops for \2%s\2 is now disabled"
-#define CS_RPL_SET_KEEPTOPIC_ENABLE	"Keeptopic for \2%s\2 is now enabled"
-#define CS_RPL_SET_KEEPTOPIC_DISABLE "Keeptopic for \2%s\2 is now disabled"
-#define CS_RPL_SET_RESTRICTED_ENABLE "Access to \2%s\2 is now restricted"
-#define CS_RPL_SET_RESTRICTED_DISABLE "Access to \2%s\2 is no longer restricted"
-#define CS_ERR_SET_USAGE			"Usage: \2SET\2 [#channel] <command> <parameters>"
-#define CS_ERR_SET_RESTRICTED_USAGE "Usage: \2SET\2 [#channel] \2RESTRICTED\2 <on|off>"
-#define CS_ERR_SET_BOT_USAGE 		"Usage: \2SET\2 [#channel] \2BOT\2 <Botname>"
-#define CS_ERR_SET_OPWATCH_USAGE 	"Usage: \2SET\2 [#channel] \2OPWATCH\2 <on|off>"
-#define CS_ERR_SET_LEAVEOPS_USAGE 	"Usage: \2SET\2 [#channel] \2LEAVEOPS\2 <on|off>"
-#define CS_ERR_SET_KEEPTOPIC_USAGE 	"Usage: \2SET\2 [#channel] \2KEEPTOPIC\2 <on|off>"
-#define CS_ERR_SET_FOUNDER_USAGE 	"Usage: \2SET\2 [#channel] \2FOUNDER\2 <Nickname>"
-#define CS_ERR_SET_SUCCESSOR_USAGE 	"Usage: \2SET\2 [#channel] \2FOUNDER\2 <Nickname>"
-#define CS_ERR_SET_MLOCK_USAGE 		"Usage: \2SET\2 [#channel] \2MLOCK\2 <+|-> [Modes]"
-#define CS_ERR_SET_TOPICLOCK_USAGE 	"Usage: \2SET\2 [#channel] \2TOPICLOCK\2 [Level|Off]"
-#define CS_ERR_SET_MEMOLEVEL_USAGE 	"Usage: \2SET\2 [#channel] \2MEMOLEVEL\2 [Level]"
-#define CS_ERR_SET_PASSWORD_USAGE 	"Usage: \2SET\2 [#channel] \2PASSWORD\2 [Password]"
-#define CS_ERR_SET_BOT_NOSUCHBOT	"The bot \2%s\2 was not found"
-#define CS_RPL_SET_BOT_BOTADDED		"The bot \2%s\2 will now join channel \2%s\2"
-#define CS_ERR_SET_BOT_NOBOT		"There is no bot on channel \2%s\2"
-#define CS_RPL_SET_BOT_BOTREMOVED	"Success - Bot removed from Channel \2%s\2"
-#define CS_RPL_SET_BOT_ALREADY		"Bot \2%s\2 already is on channel \2%s\2"
+#define CS_SET_BOT_ERR_NOBOT		  "There is no bot on channel \2%s\2"
+#define CS_SET_BOT_ERR_NOSUCHBOT	  "The bot \2%s\2 was not found"
+#define CS_SET_BOT_ERR_USAGE 		  "Usage: \2SET\2 [#channel] \2BOT\2 <Botname>"
+#define CS_SET_BOT_RPL_ALREADY		  "Bot \2%s\2 already is on channel \2%s\2"
+#define CS_SET_BOT_RPL_BOTADDED		  "The bot \2%s\2 will now join channel \2%s\2"
+#define CS_SET_BOT_RPL_BOTREMOVED	  "Success - Bot removed from Channel \2%s\2"
+#define CS_SET_BOT_RPL_SUCCESS		  "Bot for \2%s\2 is now set to \2%s\2"
+#define CS_SET_ERR_USAGE			  "Usage: \2SET\2 [#channel] <command> <parameters>"
+#define CS_SET_FOUNDER_ERR_REG		  "Only a registiered Nickname can be founder of a channel"
+#define CS_SET_FOUNDER_ERR_USAGE      "Usage: \2SET\2 [#channel] \2FOUNDER\2 <Nickname>"
+#define CS_SET_FOUNDER_RPL_SUCCESS	  "The founder of \2%s\2 was changed to \2%s\2"
+#define CS_SET_KEEPTOPIC_ERR_USAGE    "Usage: \2SET\2 [#channel] \2KEEPTOPIC\2 <on|off>"
+#define CS_SET_KEEPTOPIC_RPL_DISABLE  "Keeptopic for \2%s\2 is now disabled"
+#define CS_SET_KEEPTOPIC_RPL_ENABLE	  "Keeptopic for \2%s\2 is now enabled"
+#define CS_SET_LEAVEOPS_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2LEAVEOPS\2 <on|off>"
+#define CS_SET_LEAVEOPS_RPL_DISABLE	  "Leaveops for \2%s\2 is now disabled"
+#define CS_SET_LEAVEOPS_RPL_ENABLE	  "Leaveops for \2%s\2 is now enabled"
+#define CS_SET_MEMOLEVEL_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2MEMOLEVEL\2 [Level]"
+#define CS_SET_MEMOLEVEL_RPL_SUCCESS  "Memolevel for \2%s\2 was changed to \2%s\2"
+#define CS_SET_MLOCK_ERR_USAGE 		  "Usage: \2SET\2 [#channel] \2MLOCK\2 <+|-> [Modes]"
+#define CS_SET_MLOCK_RPL_SUCCESS 	  "Modelock for \2%s\2 has been changed to \2%s\2"
+#define CS_SET_OPWATCH_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2OPWATCH\2 <on|off>"
+#define CS_SET_OPWATCH_RPL_DISABLE	  "Opwatch for \2%s\2 is now disabled"
+#define CS_SET_OPWATCH_RPL_ENABLE	  "Opwatch for \2%s\2 is now enabled"
+#define CS_SET_PASSWORD_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2PASSWORD\2 [Password]"
+#define CS_SET_PASSWORD_RPL_SUCCESS	  "The password of \2%s\2 was changed to \2%s\2"
+#define CS_SET_RESTRICTED_RPL_ENABLE  "Access to \2%s\2 is now restricted"
+#define CS_SET_RESTRICTED_RPL_DISABLE "Access to \2%s\2 is no longer restricted"
+#define CS_SET_RESTRICTED_ERR_USAGE   "Usage: \2SET\2 [#channel] \2RESTRICTED\2 <on|off>"
+#define CS_SET_SUCCESSOR_ERR_REG	  "Only a registiered Nickname can be successor of a channel"
+#define CS_SET_SUCCESSOR_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2FOUNDER\2 <Nickname>"
+#define CS_SET_SUCCESSOR_RPL_SUCCESS  "The successor of \2%s\2 was changed to \2%s\2"
+#define CS_SET_TOPICLOCK_RPL_SUCCESS  "Topiclock for \2%s\2 is now set to \2%s\2"
+#define CS_SET_TOPICLOCK_RPL_DISABLE  "Topiclock for \2%s\2 is now disabled"
+#define CS_SET_TOPICLOCK_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2TOPICLOCK\2 [Level|Off]"
 
 /* SETPASS
  ******************************************************************************************************************************************
@@ -584,24 +584,7 @@
 #define CS_XOP_RPL_WIPED2			"The \2%s\2 list of \2%s\2 has been wiped - %i entries removed."
 #define CS_XOP_ERR_NOTONLIST		"\2%s\2 is not on the \2%s\2 list of \2%s\2"
 #define CS_XOP_ERR_USAGE			"Usage: \2%s\2 <Channel> [ADD|DEL|LIST|WIPE|ENABLE|DISABLE]"
-
-/* REGISTER
- ******************************************************************************************************************************************
- */
-#define CS_ERR_REG_DELAY			"Please wait another %i seconds before registering another channel."
-#define CS_ERR_AOP_GENERALERROR		"Sorry, a general error has occured. Please try again later."
-#define CS_ERR_REG_GENERALERROR		"A general error has occured. Please try again later."
-#define CS_RPL_REG_HLP				"For more help, type /msg %s \2HELP REGISTER\2"
 #define CS_XOP_ERR_LIMIT			"The Limit of \2%i\2 entries in the \2%s\2 list of \2%s\2 has already been reached."
-#define CS_ERR_REG_NEEDTOBEONCHAN	"You must be on the channel \2%s\2 to register it."
-#define CS_ERR_REG_NEEDTOBEOP		"You must be an Operator (+o) on \2%s\2 to register a channel."
-#define CS_ERR_REG_PASSSAMEASCHAN	"The password must not be the same as the channel name."
-#define CS_ERR_REG_PASSSAMEASFND	"The password must not be the same as the founder's nickname."
-#define CS_ERR_REG_PRIVS			"Permission denied. You need to be \2%s\2 to register a Channel"
-#define CS_RPL_REG_SUCCESS1			"The channel \2%s\2 has been registered to you."
-#define CS_RPL_REG_SUCCESS2			"The password is \2%s\2 - Remember it for further use."
-#define CS_RPL_REG_SUCCESS3			"The mask \2%s\2 was automatically added to the channel access list."
-#define CS_RPL_REG_USAGE			"Usage: \2REGISTER\2 <Password> <Channel Description>"
 #define CS_XOP_RPL_USAGE			"Usage: \2%s\2 %s"
 #define CS_XOP_RPL_USAGE_CHAN		"Usage: \2%s\2 <#channel> <nick>"
 #define CS_XOP_ERR_HIGHERACCESS		"Permission denied. You need \2%s\2 Access or higher."
@@ -610,144 +593,260 @@
 #define CS_XOP_RPL_REQUESTSENT2		"Your request to add \2%s\2 has been sent."
 #define CS_XOP_RPL_REQUESTSENT3		"Once \2%s\2 approved your request, they will be added to the \2%s\2 list of \2%s\2."
 #define CS_XOP_RPL_REQUESTSENT4		"Once \2%s\2 approved your request, they will be set as the \2%s\2 of \2%s\2."
+#define CS_ERR_AOP_GENERALERROR		"Sorry, a general error has occured. Please try again later."
+
+/* REGISTER
+ ******************************************************************************************************************************************
+ */
+#define CS_REGISTER_ERR_DELAY			"Please wait another %i seconds before registering another channel."
+#define CS_REGISTER_ERR_GENERALERROR	"A general error has occured. Please try again later."
+#define CS_REGISTER_RPL_HLP				"For more help, type /msg %s \2HELP REGISTER\2"
+#define CS_REGISTER_ERR_NEEDTOBEONCHAN	"You must be on the channel \2%s\2 to register it."
+#define CS_REGISTER_ERR_NEEDTOBEOP		"You must be an Operator (+o) on \2%s\2 to register a channel."
+#define CS_REGISTER_ERR_PASSSAMEASCHAN	"The password must not be the same as the channel name."
+#define CS_REGISTER_ERR_PASSSAMEASFND	"The password must not be the same as the founder's nickname."
+#define CS_REGISTER_ERR_PRIVS			"Permission denied. You need to be \2%s\2 to register a Channel"
+#define CS_REGISTER_RPL_SUCCESS1		"The channel \2%s\2 has been registered to you."
+#define CS_REGISTER_RPL_SUCCESS2		"The password is \2%s\2 - Remember it for further use."
+#define CS_REGISTER_RPL_SUCCESS3		"The mask \2%s\2 was automatically added to the channel access list."
+#define CS_REGISTER_RPL_USAGE			"Usage: \2REGISTER\2 <Password> <Channel Description>"
 
 
 /* Botserv Messages
  ******************************************************************************************************************************************
  */
+#define BS_ERR_ACCESSDENIED			"Access denied for that function of bot \2%s\2. Please identify using /msg %s IDENTIFY <Botname> <Password>"
 #define BS_ERR_INVALIDNICKNAME		"%s: Invalid Nickname"
 #define BS_ERR_NEEDMOREPRIVS		"Access denied for that command for %s. You don't have the required privileges."
-#define BS_ERR_ADD_USAGE			"Usage: \2ADD\2 <Botname> [Password]"
-#define BS_ERR_ADD_EXISTS			"A bot with the name \2%s\2 already exists"
-#define BS_ERR_ADD_INVALIDCHARS		"Invalid characters - Please use Nickname-only characters"
-#define BS_RPL_ADD_SUCCESS1			"The bot \2%s\2 has been added."
-#define BS_RPL_ADD_SUCCESS2			"The password is \2%s\2 - remember it for further use."
-#define BS_RPL_ADD_SUCCESS3			"To customize your bot, please use the command \2SET USERNAME\2 or \2SET REALNAME\2"
+#define BS_ERR_NOSUCHCMD			"Unknown command: SET \2%s\2."
 #define BS_ERR_NOTFOUND				"The Bot \2%s\2 does not exist"
-#define BS_RPL_DEL_SUCCESS			"The Bot \2%s\2 has been deleted"
-#define BS_ERR_PASSTOOSHORT			"Please use at least 5 characters for your password"
 #define BS_ERR_PASSSAMEASNICK		"Your bot password must be the same as your bot name - Please use a more obscure password"
-#define BS_ERR_DEL_USAGE			"Usage: \2DEL\2 <Botname>"
-#define BS_ERR_INFO_USAGE			"Usage: \2INFO\2 <Botname>"
-#define BS_INFO_RPL_HEAD				"\2%s\2 is \2%s\2."
+#define BS_ERR_PASSTOOSHORT			"Please use at least 5 characters for your password"
+#define BS_KILL_NAMECHANGE			"Bot is reconnecting due to changed settings. "
+#define BS_PART_RPL_MSG				"Channel management by Bot discontinued"
+#define BS_RPL_HLP					"For more help, type /msg %s HELP \2%s\2"
+
+/* ADD
+ ******************************************************************************************************************************************
+ */
+#define BS_ADD_ERR_USAGE			"Usage: \2ADD\2 <Botname> [Password]"
+#define BS_ADD_ERR_EXISTS			"A bot with the name \2%s\2 already exists"
+#define BS_ADD_ERR_INVALIDCHARS		"Invalid characters - Please use Nickname-only characters"
+#define BS_ADD_RPL_SUCCESS1			"The bot \2%s\2 has been added."
+#define BS_ADD_RPL_SUCCESS2			"The password is \2%s\2 - remember it for further use."
+#define BS_ADD_RPL_SUCCESS3			"To customize your bot, please use the command \2SET USERNAME\2 or \2SET REALNAME\2"
+#define BS_DEL_RPL_SUCCESS			"The Bot \2%s\2 has been deleted"
+#define BS_DEL_ERR_USAGE			"Usage: \2DEL\2 <Botname>"
+
+/* CHAN
+ ******************************************************************************************************************************************
+ */
+#define BS_CHAN_ADD_ERR_USAGE		"Usage: \2CHAN\2 <Botname> \2ADD\2 <Channel>"
+#define BS_CHAN_DEL_ERR_USAGE		"Usage: \2CHAN\2 <Botname> \2DEL\2 <Channel>"
+#define BS_CHAN_LIST_ERR_USAGE		"Usage: \2CHAN\2 <Botname> \2LIST\2"
+
+
+/* GETPASS / SETPASS
+ ******************************************************************************************************************************************
+ */
+#define BS_GETPASS_ERR_USAGE		"Usage: \2GETPASS\2 <Bot>."
+#define BS_SETPASS_ERR_USAGE		"Usage: \2SETPASS\2 <Bot> <Password>"
+#define BS_SETPASS_RPL_SUCCESS		"The Password for the Bot \2%s\2 was changed to \2%s\2."
+#define BS_GETPASS_RPL_SUCCESS		"The Password for the Bot \2%s\2 is: %s."
+#define BS_GETPASS_RPL_LOGGED		"This command has been logged."
+
+/* IDENTIFY
+ ******************************************************************************************************************************************
+ */
+#define BS_IDENTIFY_ERR_USAGE		"Usage: IDENTIFY <Botname> \2%s\2 <Password>"
+#define BS_IDENTIFY_ERR_WRONGPASS	"Password incorrect for Bot \2%s\2"
+#define BS_IDENTIFY_ERR_PASSACC		"Password accepted for Bot \2%s\2"
+
+/* INFO
+ ******************************************************************************************************************************************
+ */
+#define BS_INFO_ERR_USAGE			"Usage: \2INFO\2 <Botname>"
+#define BS_INFO_RPL_HEAD			"\2%s\2 is \2%s\2."
 #define BS_INFO_RPL_CHANS			"\2%s\2 is on the following Channels: %s"
 #define BS_INFO_RPL_END				"End of Bot Info"
 
-#define BS_ERR_KICK_BOT				"You cannot kick \2%s\2 because this is a bot."
-#define BS_ERR_LIST_USAGE			"Usage: \2LIST\2"
-#define BS_RPL_LIST_BEGIN			"The following Bot are registered with Botserv"
-#define BS_RPL_LIST_ENTRY			"%i - \2%s\2 (%s@%s) (%s)"
-#define BS_RPL_LIST_COMPLETE1		"Listing complete - 1 match found"
-#define BS_RPL_LIST_COMPLETE2		"Listing complete - %i matches found"
-#define BS_ERR_CHAN_ADD_USAGE		"Usage: \2CHAN\2 <Botname> \2ADD\2 <Channel>"
-#define BS_ERR_CHAN_DEL_USAGE		"Usage: \2CHAN\2 <Botname> \2DEL\2 <Channel>"
-#define BS_ERR_CHAN_LIST_USAGE		"Usage: \2CHAN\2 <Botname> \2LIST\2"
-#define BS_ERR_DEOP_USAGE			"Usage: \2DEOP\2 <Botname> <Channel> <Nickname>"
-#define BS_ERR_HALFOP_USAGE			"Usage: \2HALFOP\2 <Botname> <Channel> <Nickname>"
-#define BS_ERR_DEHALFOP_USAGE		"Usage: \2DEHALFOP\2 <Botname> <Channel> <Nickname>"
-#define BS_ERR_DEVOICE_USAGE		"Usage: \2DEVOICE\2 <Botname> <Channel> <Nickname>"
-#define BS_ERR_VOICE_USAGE			"Usage: \2VOICE\2 <Botname> <Channel> <Nickname>"
-#define BS_ERR_OP_USAGE				"Usage: \2OP\2 <Botname> <Channel> <Nickname>"
-#define BS_ERR_KICK_USAGE			"Usage: \2KICK\2 <Botname> <Channel> <Nickname> <Reason>"
-#define BS_ERR_OP_NOT_ON_CHAN		"Bot \2%s\2 is not on channel \2%s\2"
-#define BS_ERR_ACCESSDENIED			"Access denied for that function of bot \2%s\2. Please identify using /msg %s IDENTIFY <Botname> <Password>"
-#define BS_ERR_SET_USAGE			"Usage: \2SET\2 <Botname> \2SET\2 [NAME|USERNAME|REALNAME|PASSWORD] <Argument>"
-#define BS_ERR_SET_OPT_USAGE		"Usage: SET <Botname> \2%s\2 <Arguments>"
-#define BS_ERR_IDENTIFY_USAGE		"Usage: IDENTIFY <Botname> \2%s\2 <Password>"
-#define BS_ERR_IDENTIFY_WRONGPASS	"Password incorrect for Bot \2%s\2"
-#define BS_ERR_IDENTIFY_PASSACC		"Password accepted for Bot \2%s\2"
+/* KICK
+ ******************************************************************************************************************************************
+ */
+#define BS_KICK_ERR_BOT				"You cannot kick \2%s\2 because this is a bot."
+#define BS_KICK_ERR_USAGE			"Usage: \2KICK\2 <Botname> <Channel> <Nickname> <Reason>"
 
+/* LIST
+ ******************************************************************************************************************************************
+ */
+#define BS_LIST_ERR_USAGE			"Usage: \2LIST\2"
+#define BS_LIST_RPL_BEGIN			"The following Bot are registered with Botserv"
+#define BS_LIST_RPL_ENTRY			"%i - \2%s\2 (%s@%s) (%s)"
+#define BS_LIST_RPL_COMPLETE1		"Listing complete - 1 match found"
+#define BS_LIST_RPL_COMPLETE2		"Listing complete - %i matches found"
+
+
+/* XOP
+ ******************************************************************************************************************************************
+ */
+#define BS_DEHALFOP_ERR_USAGE		"Usage: \2DEHALFOP\2 <Botname> <Channel> <Nickname>"
+#define BS_DEOP_ERR_USAGE			"Usage: \2DEOP\2 <Botname> <Channel> <Nickname>"
+#define BS_DEVOICE_ERR_USAGE		"Usage: \2DEVOICE\2 <Botname> <Channel> <Nickname>"
+#define BS_HALFOP_ERR_USAGE			"Usage: \2HALFOP\2 <Botname> <Channel> <Nickname>"
+#define BS_OP_ERR_USAGE				"Usage: \2OP\2 <Botname> <Channel> <Nickname>"
+#define BS_OP_ERR_NOT_ON_CHAN		"Bot \2%s\2 is not on channel \2%s\2"
+#define BS_VOICE_ERR_USAGE			"Usage: \2VOICE\2 <Botname> <Channel> <Nickname>"
+
+
+/* RENAME
+ ******************************************************************************************************************************************
+ */
+#define BS_RENAME_ERR_USAGE			"Usage: \2RENAME\2 <Botname> <New Botname>"
+
+/* SET
+ ******************************************************************************************************************************************
+ */
+#define BS_SET_ERR_USAGE			"Usage: \2SET\2 <Botname> \2SET\2 [NAME|USERNAME|REALNAME|PASSWORD] <Argument>"
+#define BS_SET_OPT_ERR_USAGE		"Usage: SET <Botname> \2%s\2 <Arguments>"
 #define BS_SET_NAME_SUCCESS			"The Name of bot \2%s\2 has been changed to \2%s\2"
 #define BS_SET_PASS_SUCCESS			"The Password of bot \2%s\2 has been changed to \2%s\2"
 #define BS_SET_USERNAME_SUCCESS		"The Username of bot \2%s\2 has been changed to \2%s\2"
 #define BS_SET_REALNAME_SUCCESS		"The Realname of bot \2%s\2 has been changed to \2%s\2"
-#define BS_KILL_NAMECHANGE			"Bot is reconnecting due to changed settings. "
-#define BS_ERR_SET_USERNAME_USAGE	"Usage: \2SET\2 <Botname> \2USERNAME\2 <Username>"
-#define BS_ERR_SET_REALNAME_USAGE	"Usage: \2SET\2 <Botname> \2REALNAME\2 <Realname>"
-#define BS_ERR_SET_PASSWORD_USAGE	"Usage: \2SET\2 <Botname> \2PASSWORD\2 <Password>"
-#define BS_ERR_RENAME_USAGE			"Usage: \2RENAME\2 <Botname> <New Botname>"
-#define BS_RPL_HLP					"For more help, type /msg %s HELP \2%s\2"
-#define BS_RPL_PART_MSG				"Channel management by Bot discontinued"
-#define BS_ERR_NOSUCHCMD			"Unknown command: SET \2%s\2."
-#define BS_ERR_GETPASS_USAGE		"Usage: \2GETPASS\2 <Bot>."
-#define BS_ERR_SETPASS_USAGE		"Usage: \2SETPASS\2 <Bot> <Password>"
-#define BS_RPL_SETPASS_SUCCESS		"The Password for the Bot \2%s\2 was changed to \2%s\2."
-#define BS_RPL_GETPASS_SUCCESS		"The Password for the Bot \2%s\2 is: %s."
-#define BS_RPL_GETPASS_LOGGED		"This command has been logged."
+#define BS_SET_ERR_USERNAME_USAGE	"Usage: \2SET\2 <Botname> \2USERNAME\2 <Username>"
+#define BS_SET_REALNAME_ERR_USAGE	"Usage: \2SET\2 <Botname> \2REALNAME\2 <Realname>"
+#define BS_SET_PASSWORD_ERR_USAGE	"Usage: \2SET\2 <Botname> \2PASSWORD\2 <Password>"
+
 
 #define BS_HELP_PATH				"docs/help/en/botserv"
 
+/* Operserv Messages
+ ******************************************************************************************************************************************
+ */
+
+#define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
 #define OS_RPL_ISNOWHELPOP			"\2%s\2 is now a Help Operator\2"
 #define OS_RPL_ISNOWIRCOP			"\2%s\2 is now an \2IRC Operator\2"
 #define OS_RPL_ISNOWCOADMIN			"\2%s\2 is now a \2Co Administrator\2"
 #define OS_RPL_ISNOWSA				"\2%s\2 is now a \2Services Administrator\2"
 #define OS_RPL_ISNOWADMIN			"\2%s\2 is now a \2Server Administrator \2"
 #define OS_RPL_ISNOWNETADMIN		"\2%s\2 is now a \2Network Administrator\2"
-
 #define OS_ERR_ACCESSDENIED			"Access denied for that function of %s. You need \2%s\2 or higher access"
 #define OS_ERR_ACCESSDENIED2		"Access denied for that function of %s. You don't have the required privileges"
-#define OS_RPL_AKILL_LIST_BEGIN		"The following mask are autokilled"
-#define OS_ERR_AKILL_EXISTS			"There is already an AKILL entry for %s"
-#define OS_RPL_AKILL_LIST_ENTRY		"\2%i\2 - \2%s\2 (Added by: %s (%s) - Expires %s)"
-#define OS_RPL_AKILL_LIST_ENTRY2	"\2%i\2 - \2%s\2 (Added by: %s (%s) (Permanent)"
-#define OS_RPL_AKILL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Duration> <Reason>"
-#define OS_RPL_AKILL_ADDED			"%s added a service Autokill for %s (%s) (Expiry: %s)"
-#define OS_RPL_AKILL_ADDED2			"%s added a permanent service Autokill for %s (%s)"
-#define OS_RPL_AKILL_DEL_USAGE		"Usage: OPER AKILL \2DEL\2 <Mask>"
-#define OS_RPL_AKILL_NOTFOUND		"The mask \2%s\2 was not found in the AKILL list."
-#define OS_RPL_AKILL_ADD_SUCCESS	"The mask \2%s\2 was added to the AKILL list."
-#define OS_RPL_AKILL_DEL_SUCCESS	"The mask \2%s\2 was removed from the AKILL list."
-#define OS_RPL_CHGHOST_USAGE		"Usage: CHGHOST <Nickname> <Host>"
-#define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
-#define OS_RPL_OPER_ADD_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
-#define OS_RPL_OPER_DEL_USAGE		"Usage: OPER \2DEL\2 <Nickname>"
-#define OS_RPL_GLOBAL_USAGE			"Usage: \2GLOBAL\2 <Message>"
-#define OS_RPL_CHATOPS_USAGE		"Usage: \2CHATOPS\2 <Message>"
-#define OS_RPL_LOCAL_USAGE			"Usage: \2LOCAL\2 <Message>"
-#define OS_RPL_GLOBAL_SENT			"Success - Message sent to opers"
-#define OS_RPL_OPER_LIST_USAGE		"Usage: OPER \2LIST\2"
-#define OS_RPL_OPER_ADD_SUCCESS		"The Nickname \2%s\2 has been granted Oper Access"
-#define OS_RPL_OPER_DEL_SUCCESS		"The Nickname \2%s\2 was removed from the Oper list."
-#define OS_ERR_OPER_EXISTS			"The Nickname \2%s\2 already has Oper access"
-#define OS_RPL_OPER_NOTFOUND		"The Nickname \2%s\2 was not found on the Oper list."
-#define OS_ERR_USERNOTFOUND			"User \2%s\2 is not online."
-#define OS_RPL_OPER_LIST_BEGIN		"The following Nicknames have been granted access to %s:"
-#define OS_RPL_OPER_LIST_ENTRY		"\2%i\2 - %s"
-#define	OS_RPL_LIST_END1			"Listing Complete - 1 entry found"
-#define	OS_RPL_LIST_END2			"Listing Complete - %i entries found"
-#define OS_ERR_AKILL_NOSUCHCMD		"Unknown command: AKILL \2%s\2."
 #define OS_ERR_NOSUCHCMD			"Unknown command: \2%s\2"
-#define OS_RPL_CHGHOST_SUCCESS		"The host of user \2%s\2 was changed to \2%s\2"
-#define OS_RPL_KILL_USAGE			"Usage: \2KILL\2 <Nick> <Reason>"
-#define OS_RPL_KILL_SUCCESS			"The user \2%s\2 has been killed"
-#define OS_RPL_SGLINE_ADD_USAGE		"Usage: SGLINE \2ADD\2 <Mask> <Duration> <Reason>"
-#define OS_RPL_SGLINE_DEL_USAGE		"Usage: SGLINE \2DEL\2 <Mask>"
-#define OS_RPL_SGLINE_ADDED			"%s added a service G:Line for %s (%s) (Expiry: %s)"
-#define OS_RPL_SGLINE_ADDED2		"%s added a permanent service G:Line for %s (%s)"
-#define OS_RPL_SGLINE_ADD_SUCCESS	"A G:Line for \2%s\2 was added"
-#define OS_RPL_SGLINE_DEL_SUCCESS	"A G:Line for \2%s\2 was removed"
-#define OS_RPL_SKLINE_ADD_USAGE		"Usage: SKLINE \2ADD\2 <Mask> <Duration> <Reason>"
-#define OS_RPL_SKLINE_DEL_USAGE		"Usage: SKLINE \2DEL\2 <Mask>"
-#define OS_RPL_SKLINE_ADDED			"%s added a service K:Line for %s (%s) (Expiry: %s)"
-#define OS_RPL_SKLINE_ADDED2		"%s added a permanent service K:Line for %s (%s)"
-#define OS_RPL_SKLINE_ADD_SUCCESS	"A K:Line for \2%s\2 was added"
-#define OS_RPL_SKLINE_DEL_SUCCESS	"A K:Line for \2%s\2 was removed"
-#define OS_RPL_SQLINE_ADD_USAGE		"Usage: SQLINE \2ADD\2 <Nickname> <Duration> <Reason>"
-#define OS_RPL_SQLINE_DEL_USAGE		"Usage: SQLINE \2DEL\2 <Nickname>"
-#define OS_RPL_SQLINE_ADDED			"%s added a service Q:Line for %s (%s) (Expiry: %s)"
-#define OS_RPL_SQLINE_ADDED2		"%s added a permanent service Q:Line for %s (%s)"
-#define OS_RPL_SQLINE_ADD_SUCCESS	"A Q:Line for \2%s\2 was added"
-#define OS_RPL_SQLINE_DEL_SUCCESS	"A Q:Line for \2%s\2 was removed"
-#define OS_RPL_SZLINE_ADD_USAGE		"Usage: SZLINE \2ADD\2 <IP Mask> <Duration> <Reason>"
-#define OS_RPL_SZLINE_DEL_USAGE		"Usage: SZLINE \2DEL\2 <IP Mask>"
-#define OS_RPL_SZLINE_ADDED			"%s added a service Z:Line for %s (%s) (Expiry: %s)"
-#define OS_RPL_SZLINE_ADDED2		"%s added a permanent service Z:Line for %s (%s)"
-#define OS_RPL_SZLINE_ADD_SUCCESS	"A Z:Line for \2%s\2 was added"
-#define OS_RPL_SZLINE_DEL_SUCCESS	"A Z:Line for \2%s\2 was removed"
-#define OS_RPL_OPER_SET_USAGE		"Usage: SET [Command] <Arguments>"
-#define OS_ERR_OPER_SET_OPT_USAGE	"Usage: SET \2%s\2 [On|Off]"
-#define OS_RPL_SET_SUCCESS			"Success - Setting for user \2%s\2 was changed."
+#define OS_ERR_USERNOTFOUND			"User \2%s\2 is not online."
 
+/* AKILL
+ ******************************************************************************************************************************************
+ */
+#define OS_AKILL_RPL_LIST_BEGIN		"The following mask are autokilled"
+#define OS_AKILL_ERR_EXISTS			"There is already an AKILL entry for %s"
+#define OS_AKILL_LIST_ERR_USAGE		"Usage: OPER AKILL \2LIST\2"
+#define OS_AKILL_LIST_RPL_ENTRY		"\2%i\2 - \2%s\2 (Added by: %s (%s) - Expires %s)"
+#define OS_AKILL_LIST_RPL_ENTRY2	"\2%i\2 - \2%s\2 (Added by: %s (%s) (Permanent)"
+#define OS_AKILL_RPL_ADD_USAGE		"Usage: OPER AKILL \2ADD\2 <Mask> <Duration> <Reason>"
+#define OS_AKILL_RPL_ADDED			"%s added a service Autokill for %s (%s) (Expiry: %s)"
+#define OS_AKILL_RPL_ADDED2			"%s added a permanent service Autokill for %s (%s)"
+#define OS_AKILL_RPL_DEL_USAGE		"Usage: OPER AKILL \2DEL\2 <Mask>"
+#define OS_AKILL_RPL_NOTFOUND		"The mask \2%s\2 was not found in the AKILL list."
+#define OS_AKILL_RPL_ADD_SUCCESS	"The mask \2%s\2 was added to the AKILL list."
+#define OS_AKILL_RPL_DEL_SUCCESS	"The mask \2%s\2 was removed from the AKILL list."
+#define OS_AKILL_ERR_NOSUCHCMD		"Unknown command: AKILL \2%s\2."
+
+/* CHATOPS
+ ******************************************************************************************************************************************
+ */
+#define OS_CHATOPS_ERR_USAGE		"Usage: \2CHATOPS\2 <Message>"
+
+/* CHGHOST
+ ******************************************************************************************************************************************
+ */
+#define OS_CHGHOST_ERR_USAGE		"Usage: CHGHOST <Nickname> <Host>"
+#define OS_CHGHOST_RPL_SUCCESS		"The host of user \2%s\2 was changed to \2%s\2"
+
+/* OPER
+ ******************************************************************************************************************************************
+ */
+#define OS_OPER_LIST_ERR_USAGE		"Usage: OPER \2LIST\2"
+#define OS_OPER_ADD_RPL_SUCCESS		"The Nickname \2%s\2 has been granted Oper Access"
+#define OS_OPER_DEL_RPL_SUCCESS		"The Nickname \2%s\2 was removed from the Oper list."
+#define OS_OPER_ERR_EXISTS			"The Nickname \2%s\2 already has Oper access"
+#define OS_OPER_ERR_NOTFOUND		"The Nickname \2%s\2 was not found on the Oper list."
+#define OS_OPER_ADD_ERR_USAGE		"Usage: OPER \2ADD\2 <Nickname>"
+#define OS_OPER_DEL_ERR_USAGE		"Usage: OPER \2DEL\2 <Nickname>"
+#define OS_OPER_LIST_RPL_BEGIN		"The following Nicknames have been granted access to %s:"
+#define OS_OPER_LIST_RPL_ENTRY		"\2%i\2 - %s"
+#define OS_OPER_SET_ERR_USAGE		"Usage: SET [Command] <Arguments>"
+#define OS_OPER_SET_OPT_ERR_USAGE	"Usage: SET \2%s\2 [On|Off]"
+
+/* GLOBAL
+ ******************************************************************************************************************************************
+ */
+#define OS_GLOBAL_ERR_USAGE			"Usage: \2GLOBAL\2 <Message>"
+#define OS_GLOBAL_RPL_SENT			"Success - Message sent to opers"
+
+
+
+/* KILL
+ ******************************************************************************************************************************************
+ */
+#define OS_KILL_ERR_USAGE			"Usage: \2KILL\2 <Nick> <Reason>"
+#define OS_KILL_RPL_SUCCESS			"The user \2%s\2 has been killed"
+
+/* LIST
+ ******************************************************************************************************************************************
+ */
+#define	OS_LIST_RPL_END1			"Listing Complete - 1 entry found"
+#define	OS_LIST_RPL_END2			"Listing Complete - %i entries found"
+
+/* LOCAL
+ ******************************************************************************************************************************************
+ */
+#define OS_LOCAL_ERR_USAGE			"Usage: \2LOCAL\2 <Message>"
+
+/* SET
+ ******************************************************************************************************************************************
+ */
+#define OS_SET_RPL_SUCCESS			"Success - Setting for user \2%s\2 was changed."
+
+/* SGLINE
+ ******************************************************************************************************************************************
+ */
+#define OS_SGLINE_ADD_ERR_USAGE		"Usage: SGLINE \2ADD\2 <Mask> <Duration> <Reason>"
+#define OS_SGLINE_DEL_ERR_USAGE		"Usage: SGLINE \2DEL\2 <Mask>"
+#define OS_SGLINE_RPL_ADDED			"%s added a service G:Line for %s (%s) (Expiry: %s)"
+#define OS_SGLINE_RPL_ADDED2		"%s added a permanent service G:Line for %s (%s)"
+#define OS_SGLINE_ADD_RPL_SUCCESS	"A G:Line for \2%s\2 was added"
+#define OS_SGLINE_DEL_RPL_SUCCESS	"A G:Line for \2%s\2 was removed"
+
+/* SKLINE
+ ******************************************************************************************************************************************
+ */
+#define OS_SKLINE_ADD_ERR_USAGE		"Usage: SKLINE \2ADD\2 <Mask> <Duration> <Reason>"
+#define OS_SKLINE_DEL_ERR_USAGE		"Usage: SKLINE \2DEL\2 <Mask>"
+#define OS_SKLINE_RPL_ADDED			"%s added a service K:Line for %s (%s) (Expiry: %s)"
+#define OS_SKLINE_RPL_ADDED2		"%s added a permanent service K:Line for %s (%s)"
+#define OS_SKLINE_ADD_RPL_SUCCESS	"A K:Line for \2%s\2 was added"
+#define OS_SKLINE_DEL_RPL_SUCCESS	"A K:Line for \2%s\2 was removed"
+
+/* SQLINE
+ ******************************************************************************************************************************************
+ */
+#define OS_SQLINE_ADD_ERR_USAGE		"Usage: SQLINE \2ADD\2 <Nickname> <Duration> <Reason>"
+#define OS_SQLINE_DEL_ERR_USAGE		"Usage: SQLINE \2DEL\2 <Nickname>"
+#define OS_SQLINE_RPL_ADDED			"%s added a service Q:Line for %s (%s) (Expiry: %s)"
+#define OS_SQLINE_RPL_ADDED2		"%s added a permanent service Q:Line for %s (%s)"
+#define OS_SQLINE_ADD_RPL_SUCCESS	"A Q:Line for \2%s\2 was added"
+#define OS_SQLINE_DEL_RPL_SUCCESS	"A Q:Line for \2%s\2 was removed"
+
+/* SZLINE
+ ******************************************************************************************************************************************
+ */
+#define OS_SZLINE_ADD_ERR_USAGE		"Usage: SZLINE \2ADD\2 <IP Mask> <Duration> <Reason>"
+#define OS_SZLINE_DEL_ERR_USAGE		"Usage: SZLINE \2DEL\2 <IP Mask>"
+#define OS_SZLINE_RPL_ADDED			"%s added a service Z:Line for %s (%s) (Expiry: %s)"
+#define OS_SZLINE_RPL_ADDED2		"%s added a permanent service Z:Line for %s (%s)"
+#define OS_SZLINE_ADD_RPL_SUCCESS	"A Z:Line for \2%s\2 was added"
+#define OS_SZLINE_DEL_RPL_SUCCESS	"A Z:Line for \2%s\2 was removed"
 
 
 #define AS_FUNCTIONDISABLED			"Sorry, This function has been disabled by the Administration."

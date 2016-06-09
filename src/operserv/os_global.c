@@ -37,7 +37,7 @@ static char *oline[] = {
  */
 void os_global(char *src, int ac, char **av) {
 	if(ac<3) {
-		notice(os_name,src,OS_RPL_GLOBAL_USAGE);
+		notice(os_name,src,OS_GLOBAL_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"GLOBAL");
 		return;
 	}
@@ -68,6 +68,6 @@ void os_global(char *src, int ac, char **av) {
 		}
 	}
 	globops(os_name,message);
-	notice(os_name,src,OS_RPL_GLOBAL_SENT);
+	notice(os_name,src,OS_GLOBAL_RPL_SENT);
 	return;
 }

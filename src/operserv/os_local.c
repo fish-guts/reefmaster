@@ -37,7 +37,7 @@ static char *oline[] = {
  */
 void os_local(char *src, int ac, char **av) {
 	if(ac<2) {
-		notice(os_name,src,OS_RPL_LOCAL_USAGE);
+		notice(os_name,src,OS_LOCAL_ERR_USAGE);
 		notice(os_name,src,OS_RPL_HELP,"LOCAL");
 		return;
 	}
@@ -68,6 +68,6 @@ void os_local(char *src, int ac, char **av) {
 		}
 	}
 	locops(os_name,message);
-	notice(os_name,src,OS_RPL_GLOBAL_SENT);
+	notice(os_name,src,OS_GLOBAL_RPL_SENT);
 	return;
 }

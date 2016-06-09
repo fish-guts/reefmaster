@@ -27,7 +27,7 @@
 void cs_mkick(char *src, int ac, char **av) {
 	int addacc;
 	if (ac < 2) {
-		notice(cs_name, src, CS_ERR_MKICK_USAGE);
+		notice(cs_name, src, CS_MKICK_ERR_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "MKICK");
 		return;
 	}
@@ -51,7 +51,7 @@ void cs_mkick(char *src, int ac, char **av) {
 		relevant_count = 0;
 	}
 		if(channel->ucnt<relevant_count) {
-		notice(cs_name,src,CS_RPL_MKICK_NOUSERS,chan);
+		notice(cs_name,src,CS_MKICK_RPL_NOUSERS,chan);
 		return;
 	}
 	char final_reason[256];

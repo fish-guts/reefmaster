@@ -34,7 +34,7 @@ void bs_del(char *src,int ac,char **av) {
 		return;
 	}
 	if(ac<2) {
-		notice(bs_name,src,BS_ERR_ADD_USAGE);
+		notice(bs_name,src,BS_DEL_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"DEL");
 		return;
 	}
@@ -49,5 +49,5 @@ void bs_del(char *src,int ac,char **av) {
 	}
 	disconnect_bot(botname);
 	delete_bot(botname);
-	notice(cs_name,src,BS_RPL_DEL_SUCCESS,botname);
+	notice(cs_name,src,BS_DEL_RPL_SUCCESS,botname);
 }

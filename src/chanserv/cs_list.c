@@ -34,8 +34,8 @@ void cs_list(char *src,int ac,char **av) {
 		return;
 	}
 	if(ac<2) {
-		notice(cs_name,src,CS_ERR_LIST_USAGE);
-		notice(cs_name,src,CS_RPL_HLP,"LIST");
+		notice(cs_name,src,CS_LIST_ERR_USAGE);
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"LIST");
 		return;
 	}
 	if(!strchr(av[1],'#')) {
@@ -44,19 +44,19 @@ void cs_list(char *src,int ac,char **av) {
 	} else {
 		pattern = sstrdup(av[1]);
 	}
-	notice(cs_name,src,CS_RPL_LIST_BEGIN,pattern);
+	notice(cs_name,src,CS_LIST_RPL_BEGIN,pattern);
 	while (c) {
 		if(ifmatch_0(pattern,c->name)) {
 			count++;
-			notice(cs_name,src,CS_RPL_LIST_ENTRY,count,c->name,c->founder);
+			notice(cs_name,src,CS_LIST_RPL_ENTRY,count,c->name,c->founder);
 		}
 		c = c->next;
 	}
 	if(count==1) {
-		notice(cs_name,src,CS_RPL_LIST_END2);
+		notice(cs_name,src,CS_LIST_RPL_END2);
 		return;
 	} else {
-		notice(cs_name,src,CS_RPL_LIST_END1,count);
+		notice(cs_name,src,CS_LIST_RPL_END1,count);
 		return;
 	}
 }

@@ -159,7 +159,7 @@ void check_status(channel *c, user *u) {
 		akick *ak = cs_akick_match(u, cs);
 		if (ak) {
 			char *reason = (char*) malloc(sizeof(char*) * 256);
-			sprintf(reason, CS_RPL_AKICK_KICKREASON, ak->reason);
+			sprintf(reason, CS_AKICK_RPL_KICKREASON, ak->reason);
 			kick(cs_name, u->nick, cs->name, reason);
 			ban(cs_name, ak->mask, cs->name);
 		}

@@ -27,7 +27,7 @@
 void cs_mdeop(char *src, int ac, char **av) {
 	int addacc;
 	if (ac < 1) {
-		notice(cs_name, src, CS_ERR_MDEOP_USAGE);
+		notice(cs_name, src, CS_MDEOP_ERR_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "MDEOP");
 		return;
 	}

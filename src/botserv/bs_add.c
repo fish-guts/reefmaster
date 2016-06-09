@@ -34,7 +34,7 @@ void bs_add(char *src,int ac,char **av) {
 		return;
 	}
 	if(ac<3) {
-		notice(bs_name,src,BS_ERR_ADD_USAGE);
+		notice(bs_name,src,BS_ADD_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"ADD");
 		return;
 	}
@@ -52,16 +52,16 @@ void bs_add(char *src,int ac,char **av) {
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(password, botname) == 0) {
 		notice(bs_name, src, BS_ERR_PASSSAMEASNICK);
-		notice(bs_name, src, CS_RPL_REG_HLP, cs_name,"ADD");
+		notice(bs_name, src, BS_RPL_HLP, cs_name,"ADD");
 		return;
 	}
 	if(isregbot(botname)) {
-		notice(bs_name,src,BS_ERR_ADD_EXISTS,botname);
+		notice(bs_name,src,BS_ADD_ERR_EXISTS,botname);
 		return;
 	}
-	notice(cs_name,src,BS_RPL_ADD_SUCCESS1,botname);
-	notice(cs_name,src,BS_RPL_ADD_SUCCESS2,password);
-	notice(cs_name,src,BS_RPL_ADD_SUCCESS3);
+	notice(cs_name,src,BS_ADD_RPL_SUCCESS1,botname);
+	notice(cs_name,src,BS_ADD_RPL_SUCCESS2,password);
+	notice(cs_name,src,BS_ADD_RPL_SUCCESS3);
 	if(register_bot(botname,password))
 		connect_bot(botname);
 

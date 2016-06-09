@@ -30,7 +30,7 @@ void cs_invite(char *src,int ac, char **av) {
 	char *nick;
 	user *u = finduser(src);
 	if(ac<2) {
-		notice(cs_name,src,CS_ERR_INV_USAGE);
+		notice(cs_name,src,CS_INVITE_ERR_USAGE);
 		notice(cs_name,src,CS_RPL_HLP,"INVITE",cs_name);
 		return;
 	}
@@ -55,9 +55,9 @@ void cs_invite(char *src,int ac, char **av) {
 	}
 	if(ison(findchannel(chan),u)) {
 		if(stricmp(src,nick)==0)
-			notice(cs_name,src,CS_ERR_INV_ALREADYONCHAN2,chan);
+			notice(cs_name,src,CS_INVITE_ERR_ALREADYONCHAN2,chan);
 		else
-			notice(cs_name,src,CS_ERR_INV_ALREADYONCHAN,nick,chan);
+			notice(cs_name,src,CS_INVITE_ERR_ALREADYONCHAN,nick,chan);
 		return;
 	}
 	invite(cs_name,nick,chan);

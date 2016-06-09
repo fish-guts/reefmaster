@@ -44,7 +44,7 @@ void cs_drop(char *src, int ac, char **av) {
 		notice(ns_name, src, CS_RPL_NEEDIDENTIFY, chan);
 		return;
 	}
-	notice(ns_name, src, CS_RPL_DRP_SUCCESS, chan);
+	notice(ns_name, src, CS_DROP_RPL_SUCCESS, chan);
 	delete_chan(c);
 	mode(s_name, chan, "-r", NULL);
 	return;

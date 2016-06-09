@@ -28,8 +28,8 @@
  */
 void cs_identify(char *src,int ac,char **av) {
 	if(ac<3) {
-		notice(cs_name,src,CS_ERR_IDF_USAGE);
-		notice(cs_name,src,CS_RPL_HLP,cs_name,"HELP IDENTIFY");
+		notice(cs_name,src,CS_IDENTIFY_ERR_USAGE);
+		notice(cs_name,src,NS_RPL_HLP,cs_name,"HELP IDENTIFY");
 		return;
 	}
 	char *chan = sstrdup(av[1]);
@@ -40,15 +40,15 @@ void cs_identify(char *src,int ac,char **av) {
 		return;
 	}
 	if (isidentified(u, chan) > 0) {
-		notice(ns_name, src, CS_RPL_IDF_ALREADYIDF, chan);
+		notice(ns_name, src, CS_IDENTIFY_RPL_ALREADYIDF, chan);
 		return;
 	}
 	ChanInfo *c = findchan(chan);
-	if(stricmp(pass,c->pass)!=0) {
-		notice(cs_name,src,CS_ERR_IDF_WRONGPASS,chan);
+	if (stricmp(pass,c->pass)!=0) {
+		notice(cs_name,src,CS_IDENTIFY_ERR_WRONGPASS,chan);
 		return;
 	} else {
-		notice(cs_name,src,CS_RPL_IDF_PASSACCEPTED,chan);
+		notice(cs_name,src,CS_IDENTIFY_RPL_PASSACCEPTED,chan);
 		add_identifiedcs(u,chan);
 	}
 	return;

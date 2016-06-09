@@ -32,7 +32,7 @@ void bs_kick(char *src,int ac,char **av) {
 	char *nick;
 
 	if(ac<4) {
-		notice(bs_name,src,BS_ERR_KICK_USAGE);
+		notice(bs_name,src,BS_KICK_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"KICK");
 		return;
 	}
@@ -48,7 +48,7 @@ void bs_kick(char *src,int ac,char **av) {
 	}
 
 	if(!is_bot_on_chan(botname,chan)) {
-		notice(bs_name,src,BS_ERR_OP_NOT_ON_CHAN,botname,chan);
+		notice(bs_name,src,BS_OP_ERR_NOT_ON_CHAN,botname,chan);
 		return;
 	}
 	if(!bot_identified(u,b)) {
@@ -56,7 +56,7 @@ void bs_kick(char *src,int ac,char **av) {
 		return;
 	}
 	if(findbot(nick)) {
-		notice(bs_name,src,BS_ERR_KICK_BOT,nick);
+		notice(bs_name,src,BS_KICK_ERR_BOT,nick);
 		return;
 	}
 	char reason[256];
