@@ -28,7 +28,6 @@
  */
 void ns_identify(char *src, int ac, char **av) {
 	user *u;
-	int rc;
 	char *nick, *pass;
 	time_t cur;
 	u = finduser(src);
@@ -54,7 +53,7 @@ void ns_identify(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_IDENTIFY_RPL_ALREADYIDF, nick);
 		return;
 	} else {
-		if ((rc = ns_checkpass(nick, pass)) == 0) {
+		if (ns_checkpass(nick, pass) == 0) {
 			add_identified(u, nick);
 			notice(ns_name, src, NS_IDENTIFY_RPL_PASSACCEPTED);
 			NickInfo *n = findnick(nick);

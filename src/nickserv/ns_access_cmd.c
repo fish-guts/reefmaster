@@ -33,46 +33,47 @@ static myacc *find_mask(NickInfo *n,char *mask);
  */
 void ns_access_cmd(char *src, int ac, char **av) {
 	char *cmd = av[1];
-	char *msk = av[2];
-	char *nick = (char*) malloc(sizeof(char) * 128);
+	char *mask = av[2];
 	if (ac < 2) {
 		notice(ns_name, src, NS_ACC_USAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"ACCESS");
 		return;
 	}
+	char *nick = (char*) malloc(sizeof(char) * 128);
 	if (stricmp(cmd, "ADD") == 0) {
-		if (ac >= 4)
+		if (ac >= 4) {
 			nick = av[3];
-		else
+		} else {
 			nick = src;
-		ns_access_add(src, nick, msk);
-		return;
+		}
+		ns_access_add(src, nick, mask);
 	}
-	if (stricmp(cmd, "DEL") == 0) {
-		if (ac >= 4)
+	else if (stricmp(cmd, "DEL") == 0) {
+		if (ac >= 4) {
 			nick = av[3];
-		else
+		} else {
 			nick = src;
-
-		ns_access_del(src, nick, msk);
-		return;
+		}
+		ns_access_del(src, nick, mask);
 	} else if (stricmp(cmd, "LIST") == 0) {
-		if (ac >= 3)
+		if (ac >= 3) {
 			nick = av[2];
-		else
+		} else {
 			nick = src;
+		}
 		ns_access_list(src, nick);
 	} else if (stricmp(cmd, "WIPE") == 0) {
-		if (ac >= 3)
+		if (ac >= 3) {
 			nick = av[2];
-		else
+		} else {
 			nick = src;
+		}
 		ns_access_wipe(src, nick);
 	} else {
 		notice(ns_name, src, NS_ERR_NOSUCHCMD, cmd);
 		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS", "WIPE");
-		return;
 	}
+	free(nick);
 }
 /**
  * add an entry to the nickname's access list
@@ -114,10 +115,11 @@ void ns_access_add(char *src, char *nick, char *mask) {
 
 			ns_access_add_mask(n,mask);
 
-			if (stricmp(src, nick) != 0)
+			if (stricmp(src, nick) != 0) {
 				notice(ns_name, src, NS_ACCESS_RPL_ADDSUCCESS2, mask, nick);
-			else
+			} else {
 				notice(ns_name, src, NS_ACCESS_RPL_ADDSUCCESS, mask);
+			}
 		}
 	}
 	return;
@@ -130,8 +132,9 @@ void ns_access_add(char *src, char *nick, char *mask) {
 void ns_access_add_mask(NickInfo *n, char *mask) {
 	myacc *a = scalloc(sizeof(myacc), 1);
 	a->next = n->accesslist;
-	if (n->accesslist)
+	if (n->accesslist) {
 		n->accesslist->prev = a;
+	}
 	n->accesslist = a;
 	a->mask = sstrdup(mask);
 }
@@ -156,25 +159,31 @@ void ns_access_del(char *src, char *nick, char *mask) {
 		return;
 	}
 	if (ns_checkmask(nick, mask) < 0) {
-		if (stricmp(src, nick) != 0)
+		if (stricmp(src, nick) != 0) {
 			notice(ns_name, src, NS_ACCESS_ERR_MASKNOTFOUND2, mask, nick);
-		else
+		} else {
 			notice(ns_name, src, NS_ACCESS_ERR_MASKNOTFOUND, mask);
+		}
 		return;
 	} else {
 		myacc *a = find_mask(n,mask);
 	    free(a->mask);
-	    if(a->prev)
+	    if (a->prev) {
 			a->prev->next = a->next;
-	    else
+	    } else {
 			n->accesslist = a->next;
-		if (a->next)
+	    }
+
+		if (a->next) {
 			a->next->prev = a->prev;
+		}
+
 		free(a);
-		if (stricmp(src, nick) != 0)
+		if (stricmp(src, nick) != 0) {
 			notice(ns_name, src, NS_ACCESS_RPL_DELSUCCESS2, mask, nick);
-		else
+		} else {
 			notice(ns_name, src, NS_ACCESS_RPL_DELSUCCESS, mask);
+		}
 		return;
 	}
 }
@@ -204,6 +213,7 @@ void ns_access_list(char *src, char *nick) {
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 		return;
 	}
+
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
 		return;
@@ -215,6 +225,7 @@ void ns_access_list(char *src, char *nick) {
 			return;
 		}
 		myacc *a = n->accesslist;
+
 		if(!a) {
 			if (stricmp(src, nick) != 0)
 				notice(ns_name, src, NS_ACCESS_RPL_NOENTRIES2, nick);
@@ -243,13 +254,12 @@ void ns_access_list(char *src, char *nick) {
  * remove all entries from the nickname's access list.
  */
 void ns_access_wipe(char *src, char *nick) {
-	NickInfo *n;
 	user *u1 = finduser(src);
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
 		return;
 	} else {
-		n = findnick(nick);
+		NickInfo *n = findnick(nick);
 		if (isidentified(u1, nick) < 1) {
 			notice(ns_name, src, NS_ERR_ACCESSDENIED, nick);
 			notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);

@@ -33,24 +33,23 @@ void ns_acc(char *src, int ac, char **av) {
 		return;
 	}
 	user *u = finduser(av[1]);
-	char *mask = (char*) malloc(sizeof(char*) * 128);
 	if (!u) {
 		notice(ns_name, src, NS_ERR_NOSUCHUSER, av[1]);
 		return;
 	}
-	sprintf(mask, "%s@%s", u->username, u->hostname);
 	if (!isreg(av[1])) {
 		notice(ns_name, src, NS_ERR_NOTREG, av[1]);
 		return;
 	}
+	char *mask = (char*) malloc(sizeof(char*) * 256);
+	sprintf(mask, "%s@%s", u->username, u->hostname);
 	if (isidentified(u, u->nick)) {
 		notice(ns_name, src, NS_ACCESS_RPL_LEVEL2, av[1]);
-		return;
 	} else if (ismatch(u, mask) == 1) {
 		notice(ns_name, src, NS_ACCESS_RPL_LEVEL1, av[1]);
-		return;
 	} else {
 		notice(ns_name, src, NS_ACCESS_RPL_LEVEL0, av[1]);
-		return;
 	}
+	free(mask);
+	return;
 }

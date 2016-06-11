@@ -98,9 +98,9 @@ void ns_auth(char *src, int ac, char **av) {
  * that authorization is required for.
  */
 void ns_auth_accept(char *src, int ac, char **av) {
-	static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
 	user *u = finduser(src);
 	if (ac < 3) {
+		static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
 		notice(ns_name, src, NS_AUTH_ERR_ACCEPTUSAGE, ns_name);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH ACCEPT");
 		notice(as_name,src,xop[4]);

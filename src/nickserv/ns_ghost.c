@@ -33,8 +33,6 @@
 void ns_ghost(char *src, int ac, char **av) {
 	user *u, *u1;
 	time_t cur;
-	char *killmsg = (char*) malloc(sizeof(char) * 128);
-	sprintf(killmsg, "Ghost command used by %s", src);
 	u = finduser(src);
 	u1 = finduser(av[1]);
 	NickInfo *n = findnick(av[1]);
@@ -88,6 +86,8 @@ void ns_ghost(char *src, int ac, char **av) {
 	remove_timeout(u, TO_COLLIDE_TL);
 	remove_timeout(u1, TO_COLLIDE);
 	remove_timeout(u1, TO_COLLIDE_TL);
+	char *killmsg = (char*) malloc(sizeof(char) * 128);
+	sprintf(killmsg, "Ghost command used by %s", src);
 	s_kill(ns_name, n->nick, killmsg);
 	notice(ns_name, src, NS_GHOST_RPL_GHOSTDISCONNECT);
 	return;

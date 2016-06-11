@@ -51,7 +51,6 @@ void add_notify_auth_entry(char *src,char *nick) {
 	notice(ns_name, src, NS_NOTIFY_RPL_REQUESTSENT2, nick);
 	notice(ns_name, src, NS_NOTIFY_RPL_REQUESTSENT3, nick);
 	auth *a = scalloc(sizeof(auth), 1);
-	user *u1;
 	a->sender = sstrdup(src);
 	a->target = sstrdup(nick);
 	a->type = AUTH_NOTIFY;
@@ -60,7 +59,7 @@ void add_notify_auth_entry(char *src,char *nick) {
 	if (n2->authlist)
 		n2->authlist->prev = a;
 	n2->authlist = a;
-	if ((u1 = finduser(nick)) != NULL) {
+	if (finduser(nick) != NULL) {
 		notice(ns_name, nick, NS_AUTH_RPL_TEXT_NOTIFY, src);
 	}
 	return;

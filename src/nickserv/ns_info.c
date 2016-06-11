@@ -74,18 +74,31 @@ void ns_info(char *src, int ac, char **av) {
 	notice(ns_name, src, NS_INFO_RPL_TIMEREG, str_reg);
 	notice(ns_name, src, NS_INFO_RPL_LASTSEEN, str_last);
 	notice(ns_name, src, NS_INFO_RPL_TIMENOW, str_now);
-	if (n->noop)
+	if (n->noop) {
 		notice(ns_name, src, NS_INFO_RPL_NOOP, cs_name);
-	if (n->auth_chan)
+	}
+
+	if (n->auth_chan) {
 		notice(ns_name, src, NS_INFO_RPL_AUTHCHAN);
-	if (n->auth_notify)
+	}
+
+	if (n->auth_notify) {
 		notice(ns_name, src, NS_INFO_RPL_AUTHNOTIFY);
-	if (n->protect == 2)
+	}
+
+	if (n->protect == 2) {
 		notice(ns_name, src, NS_INFO_RPL_PROTECT1);
-	else if (n->protect == 3)
+	} else if (n->protect == 3) {
 		notice(ns_name, src, NS_INFO_RPL_PROTECT2);
-	if (n->mforward == 1)
+	}
+
+	if (n->mforward == 1) {
 		notice(ns_name, src, NS_INFO_RPL_MFORWARD, n->mforward_to);
-	if (n->nomemo)
+	}
+
+	if (n->nomemo) {
 		notice(ns_name, src, NS_INFO_RPL_NOMEMO);
+	}
+	free(uv);
+	return;
 }

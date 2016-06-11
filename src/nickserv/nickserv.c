@@ -112,7 +112,6 @@ static void force_identify(user *u, int from_timeout) {
 	long int buf = 0;
 	double x = RAND_MAX + 1.0;
 	char *nick = u->nick;
-	int y;
 	/* create a random guest name */
 	buf = 1 + rand() * (99999 / x);
 	snprintf(newnick, sizeof(newnick), "Guest%ld", buf);

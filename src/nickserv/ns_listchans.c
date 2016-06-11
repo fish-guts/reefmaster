@@ -38,27 +38,33 @@ void ns_listchans(char *src, int ac, char **av) {
 			"Founder"
 	};
 	user *u = finduser(src);
-	char *nick = (char*) malloc(sizeof(char*) * 64);
-	if (ac == 2)
+	char *nick;
+	if (ac == 2) {
 		nick = sstrdup(av[1]);
-	else
+	} else {
 		nick = sstrdup(src);
+	}
 
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
 		return;
 	}
+
 	if (hasaccess(u, nick) < 0) {
 		notice(ns_name, src, NS_ERR_ACCESSDENIED, nick);
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 		return;
 	}
+
 	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8","\2ServiceRootAdmin\2" };
 	NickInfo *n = findnick(nick);
+
 	int i = 0;
 	char str[128];
+
 	notice(ns_name, src, NS_RPL_LISTCHANS_BEGIN, nick);
 	op *o = global_op_list;
+
 	while (o) {
 		if (n->id == o->nick->id) {
 			i++;
@@ -78,4 +84,5 @@ void ns_listchans(char *src, int ac, char **av) {
 	} else {
 		notice(ns_name, src, NS_RPL_LISTCHANS_END2, i);
 	}
+	return;
 }

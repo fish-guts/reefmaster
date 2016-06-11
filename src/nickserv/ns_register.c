@@ -42,7 +42,6 @@ void ns_register(char *src, int ac, char **av) {
 	user *u;
 	u = finduser(src);
 	time_t del = 0;
-	char *dest = (char*) malloc(sizeof(char*) * NICKMAX);
 	time_t cur = time(NULL);
 	time_t now = time(NULL);
 	if(ac<3) {
@@ -54,7 +53,6 @@ void ns_register(char *src, int ac, char **av) {
 		del = (now - u->lastnickreg);
 	char *pass = sstrdup(av[1]);
 	char *email = sstrdup(av[2]);
-	strcpy(dest, src);
 	/* Check for proper access */
 	if ((u->oper + 1) < ns_usage_access) {
 		notice(ns_name, src, NS_REGISTER_ERR_PRIVS, oline[ns_usage_access]);
@@ -88,10 +86,15 @@ void ns_register(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"REGISTER");
 		return;
 	}
+
+	char *dest = (char*) malloc(sizeof(char*) * NICKMAX);
+	strcpy(dest, src);
+
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(pass, dest) == 0) {
 		notice(ns_name, src, NS_REGISTER_ERR_PASSSAMEASNICK);
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"REGISTER");
+		free(dest);
 		return;
 	} else {
 		char *usermask = (char*) malloc(sizeof(char*) * 256);
@@ -105,8 +108,8 @@ void ns_register(char *src, int ac, char **av) {
 			notice(ns_name, dest, NS_REGISTER_RPL_SUCCESS3, usermask);
 		/* set identified */
 		add_identified(u, dest);
-		cur = time(NULL);
 		svs2mode(s_name, dest, "+r 0", NULL); // give the nick the usermode +r
+		free(dest);
 		return;
 	}
 }
