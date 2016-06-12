@@ -29,42 +29,49 @@ void bs_add(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
 	char *password;
-	if(u->oper<bs_access_add) {
+	if (u->oper<bs_access_add) {
 		notice(bs_name,src,NS_ERR_NEEDMOREPRIVS);
 		return;
 	}
-	if(ac<3) {
+	if (ac<3) {
 		notice(bs_name,src,BS_ADD_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"ADD");
 		return;
 	}
+
 	botname = sstrdup(av[1]);
 	password = sstrdup(av[2]);
+
 	if (!check_valid_nickname(botname)) {
 		notice(bs_name,src,BS_ERR_INVALIDNICKNAME,botname);
 		return;
 	}
+
 	if (strlen(password) < 5) {
 		notice(bs_name, src, BS_ERR_PASSTOOSHORT);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"ADD");
 		return;
 	}
+
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(password, botname) == 0) {
 		notice(bs_name, src, BS_ERR_PASSSAMEASNICK);
 		notice(bs_name, src, BS_RPL_HLP, cs_name,"ADD");
 		return;
 	}
+
 	if(isregbot(botname)) {
 		notice(bs_name,src,BS_ADD_ERR_EXISTS,botname);
 		return;
 	}
+
 	notice(cs_name,src,BS_ADD_RPL_SUCCESS1,botname);
 	notice(cs_name,src,BS_ADD_RPL_SUCCESS2,password);
 	notice(cs_name,src,BS_ADD_RPL_SUCCESS3);
-	if(register_bot(botname,password))
+
+	if (register_bot(botname,password)) {
 		connect_bot(botname);
+	}
 
 	return;
-
 }

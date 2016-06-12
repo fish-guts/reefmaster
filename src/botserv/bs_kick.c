@@ -31,7 +31,7 @@ void bs_kick(char *src,int ac,char **av) {
 	char *chan;
 	char *nick;
 
-	if(ac<4) {
+	if (ac<4) {
 		notice(bs_name,src,BS_KICK_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"KICK");
 		return;
@@ -42,31 +42,36 @@ void bs_kick(char *src,int ac,char **av) {
 
 	bot *b = findbot(botname);
 
-	if(!b) {
+	if (!b) {
 		notice(bs_name,src,BS_ERR_NOTFOUND,botname);
 		return;
 	}
 
-	if(!is_bot_on_chan(botname,chan)) {
+	if (!is_bot_on_chan(botname,chan)) {
 		notice(bs_name,src,BS_OP_ERR_NOT_ON_CHAN,botname,chan);
 		return;
 	}
-	if(!bot_identified(u,b)) {
+
+	if (!bot_identified(u,b)) {
 		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
 		return;
 	}
-	if(findbot(nick)) {
+
+	if (findbot(nick)) {
 		notice(bs_name,src,BS_KICK_ERR_BOT,nick);
 		return;
 	}
+
 	char reason[256];
 	int i = 4;
-	for(i=4;i<ac;i++) {
+	strcpy(reason,"");
+	for (i=4;i<ac;i++) {
 		strcat(reason,av[i]);
-		if(i<ac) {
+		if (i<ac) {
 			strcat(reason," ");
 		}
 	}
+
 	kick(b->name,nick,chan,reason);
 	return;
 }

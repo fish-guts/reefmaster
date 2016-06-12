@@ -41,12 +41,12 @@ void bs_identify(char *src,int ac,char **av) {
 
 	bot *b = findbot(botname);
 
-	if(!b) {
+	if (!b) {
 		notice(bs_name,src,BS_ERR_NOTFOUND,botname);
 		return;
 	}
 
-	if(stricmp(b->password,password)!=0) {
+	if (stricmp(b->password,password)!=0) {
 		notice(bs_name,src,BS_IDENTIFY_ERR_WRONGPASS,b->name);
 		return;
 	} else {
@@ -60,8 +60,8 @@ void bs_identify(char *src,int ac,char **av) {
 
 int bot_identified(user *u, bot *b) {
 	botaccess *ba = u->bots;
-	while(ba) {
-		if(ba->b->id==b->id) {
+	while (ba) {
+		if (ba->b->id==b->id) {
 			return 1;
 		}
 		ba = ba->next;

@@ -29,11 +29,11 @@
 void bs_del(char *src,int ac,char **av) {
 	user *u = finduser(src);
 	char *botname;
-	if(u->oper<bs_access_del) {
+	if (u->oper<bs_access_del) {
 		notice(bs_name,src,NS_ERR_NEEDMOREPRIVS);
 		return;
 	}
-	if(ac<2) {
+	if (ac<2) {
 		notice(bs_name,src,BS_DEL_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"DEL");
 		return;
@@ -43,7 +43,7 @@ void bs_del(char *src,int ac,char **av) {
 		notice(bs_name,src,BS_ERR_INVALIDNICKNAME,botname);
 		return;
 	}
-	if(!isregbot(botname)) {
+	if (!isregbot(botname)) {
 		notice(bs_name,src,BS_ERR_NOTFOUND,botname);
 		return;
 	}

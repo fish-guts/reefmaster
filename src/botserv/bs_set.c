@@ -35,29 +35,32 @@ static void bs_set_username(char *src,int ac,char **av);
  */
 void bs_set(char *src,int ac,char **av) {
 	user *u = finduser(src);
-	if(u->oper<bs_access_set) {
+	if (u->oper<bs_access_set) {
 		notice(bs_name,src,BS_ERR_NEEDMOREPRIVS,bs_name);
 		return;
 	}
-	if(ac<2) {
+	if (ac<2) {
 		notice(bs_name,src,BS_SET_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET");
 		return;
 	}
+
 	bot *b = findbot(av[1]);
-	if(!b) {
+	if (!b) {
 		notice(bs_name,src,BS_KICK_ERR_BOT,av[1]);
 		return;
 	}
-	if(!bot_identified(u,b)) {
+	if (!bot_identified(u,b)) {
 		notice(bs_name,src,BS_ERR_ACCESSDENIED,b->name,bs_name);
 		return;
 	}
-	if(!is_bot_on_chan(av[1],av[2])) {
+
+	if (!is_bot_on_chan(av[1],av[2])) {
 		notice(bs_name,src,BS_OP_ERR_NOT_ON_CHAN,av[1],av[2]);
 		return;
 	}
-	if(stricmp(av[2],"NAME")==0) {
+
+	if (stricmp(av[2],"NAME")==0) {
 		bs_set_name(src,ac,av);
 	} else if(stricmp(av[2],"USERNAME")==0) {
 		bs_set_username(src,ac,av);
@@ -76,7 +79,7 @@ void bs_set(char *src,int ac,char **av) {
  * handle the Botserv SET NAME command
  */
 static void bs_set_name(char *src,int ac,char **av) {
-	if(ac<4) {
+	if (ac<4) {
 		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"NAME");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET NAME");
 		return;
@@ -96,11 +99,12 @@ static void bs_set_name(char *src,int ac,char **av) {
  * handle the Botserv SET PASSWORD command
  */
 static void bs_set_password(char *src,int ac,char **av) {
-	if(ac<4) {
+	if (ac<4) {
 		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"PASSWORD");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET PASSWORD");
 		return;
 	}
+
 	if (strlen(av[3]) < 5) {
 		notice(bs_name, src, BS_ERR_PASSTOOSHORT);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"ADD");
@@ -123,19 +127,22 @@ static void bs_set_password(char *src,int ac,char **av) {
  * handle the Botserv SET REALNAME command
  */
 static void bs_set_realname(char *src,int ac,char **av) {
-	if(ac<4) {
+	if (ac<4) {
 		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"REALNAME");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET REALNAME");
 		return;
 	}
+
 	char realname[256];
 	int i = 3;
-	for(i=3;i<ac;i++) {
+	strcpy(realname,"");
+	for (i=3;i<ac;i++) {
 		strcat(realname,av[i]);
-		if(i<ac) {
+		if (i<ac) {
 			strcat(realname," ");
 		}
 	}
+
 	s_kill(bs_name,av[1],BS_KILL_NAMECHANGE);
 	bot *b = findbot(av[1]);
 	b->realname = sstrdup(realname);
@@ -147,7 +154,7 @@ static void bs_set_realname(char *src,int ac,char **av) {
  * handle the Botserv SET USERNAME command
  */
 static void bs_set_username(char *src,int ac,char **av) {
-	if(ac<4) {
+	if (ac<4) {
 		notice(bs_name,src,BS_SET_OPT_ERR_USAGE,"USERNAME");
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"SET USERNAME");
 		return;

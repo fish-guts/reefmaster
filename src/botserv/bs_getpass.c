@@ -31,15 +31,18 @@ void bs_getpass(char *src, int ac, char **av) {
 		notice(bs_name, src, AS_FUNCTIONDISABLED);
 		return;
 	}
+
 	if (u->oper < bs_access_getpass) {
 		notice(bs_name, src, NS_ERR_NEEDMOREPRIVS);
 		return;
 	}
+
 	if (ac <= 1) {
 		notice(bs_name, src, BS_GETPASS_ERR_USAGE);
 		notice(bs_name, src, BS_RPL_HLP, ns_name,"GETPASS");
 		return;
 	}
+
 	if (!findbot(av[1])) {
 		notice(bs_name, src, BS_ERR_NOTFOUND, av[1]);
 		return;

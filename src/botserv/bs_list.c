@@ -27,24 +27,28 @@
  */
 void bs_list(char *src,int ac,char **av) {
 	user *u = finduser(src);
-	if(u->oper<bs_access_list) {
+	if (u->oper<bs_access_list) {
 		notice(bs_name,src,BS_ERR_NEEDMOREPRIVS,bs_name);
 		return;
 	}
-	if(ac<1) {
+
+	if (ac<1) {
 		notice(bs_name,src,BS_LIST_ERR_USAGE);
 		notice(bs_name,src,BS_RPL_HLP,bs_name,"LIST");
 		return;
 	}
+
 	int i = 0;
 	notice(bs_name,src,BS_LIST_RPL_BEGIN);
 	bot *b = botlist;
-	while(b) {
+
+	while (b) {
 		++i;
 		notice(bs_name,src,BS_LIST_RPL_ENTRY,i,b->name,b->username,s_name,b->realname);
 		b = b->next;
 	}
-	if(i==1) {
+
+	if (i==1) {
 		notice(bs_name,src,BS_LIST_RPL_COMPLETE1);
 	} else {
 		notice(bs_name,src,BS_LIST_RPL_COMPLETE2,i);

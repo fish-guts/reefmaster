@@ -24,9 +24,8 @@
 bot *botlist = NULL;
 
 
-static bs_cmd *find_bs(const char *name);
-
 static void chan_del_bot(bot *b,botchan *bc);
+static bs_cmd *find_bs(const char *name);
 
 static bs_cmd bs_cmds[] = {
 	{ "ADD", bs_add },
@@ -75,8 +74,9 @@ void botserv(char *src, char *av) {
 		pch = strtok(NULL, " ");
 	}
 	if ((bs = find_bs(uv[0]))) {
-		if (bs->func)
+		if (bs->func) {
 			bs->func(src, i, uv);
+		}
 	} else {
 		notice(cs_name,src,CS_ERR_NOSUCHCMD, uv[0]);
 		notice(cs_name,src,NS_RPL_HLP_MAIN,bs_name);
@@ -109,8 +109,9 @@ bot *register_bot(char *botname,char *password) {
 	b->realname = sstrdup(botname);
 	b->username = sstrdup(botname);
 	b->next = botlist;
-	if (botlist)
+	if (botlist) {
 		botlist->prev = b;
+	}
 	botlist = b;
 	return b;
 }
@@ -127,8 +128,9 @@ void load_bot(int id,char *botname, char *password, char *username, char *realna
 	b->realname = sstrdup(realname);
 	b->username = sstrdup(username);
 	b->next = botlist;
-	if (botlist)
+	if (botlist) {
 		botlist->prev = b;
+	}
 	botlist = b;
 }
 
@@ -161,12 +163,15 @@ void connect_bots(void) {
  */
 void delete_bot(char *botname) {
 	bot *b = findbot(botname);
-	if (b->prev)
+	if (b->prev) {
 		b->prev->next = b->next;
-	else
+	} else {
 		botlist = b->next;
-	if (b->next)
+	}
+
+	if (b->next) {
 		b->next->prev = b->prev;
+	}
 	free(b);
 }
 
@@ -186,8 +191,9 @@ void add_bot_to_chan(char *botname, char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = scalloc(sizeof(botchan),1);
 	bc->next = b->chanlist;
-	if(b->chanlist)
+	if (b->chanlist) {
 		b->chanlist->prev = bc;
+	}
 	b->chanlist = bc;
 	bc->chan = sstrdup(chan);
 }
@@ -199,8 +205,8 @@ void add_bot_to_chan(char *botname, char *chan) {
 void remove_bot_from_chan(char *botname, char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = b->chanlist;
-	while(bc) {
-		if(stricmp(bc->chan,chan)==0) {
+	while (bc) {
+		if (stricmp(bc->chan,chan)==0) {
 			chan_del_bot(b,bc);
 		}
 		bc = bc->next;
@@ -213,12 +219,16 @@ void remove_bot_from_chan(char *botname, char *chan) {
  */
 static void chan_del_bot(bot *b,botchan *bc) {
     free(bc->chan);
-    if(bc->prev)
+    if (bc->prev) {
 		bc->prev->next = bc->next;
-    else
+    } else {
 		b->chanlist = bc->next;
-	if (bc->next)
+    }
+
+	if (bc->next) {
 		bc->next->prev = bc->prev;
+	}
+
 	free(bc);
 }
 
@@ -247,8 +257,8 @@ bot *findbot(const char *botname) {
 bot *findbot_onchan(char *botname,char *chan) {
 	bot *b = findbot(botname);
 	botchan *bc = b->chanlist;
-	while(bc) {
-		if(stricmp(bc->chan,chan)==0) {
+	while (bc) {
+		if (stricmp(bc->chan,chan)==0) {
 			return b;
 		}
 		bc = bc->next;
@@ -261,8 +271,8 @@ bot *findbot_onchan(char *botname,char *chan) {
  */
 bot *find_bot_by_id(unsigned int id) {
 	bot *b = botlist;
-	while(b) {
-		if(b->id == id) {
+	while (b) {
+		if (b->id == id) {
 			return b;
 		}
 		b = b->next;
