@@ -30,6 +30,8 @@ void cs_register(char *src, int ac, char **av) {
 
 	char *desc = (char*) malloc(sizeof(char*) * DESCMAX);
 	int i;
+	// proper initialization
+	strcpy(desc,"");
 	for (i = 3; i < ac; i++) {
 		strcat(desc, av[i]);
 		if (i != (ac - 1)) {
@@ -47,57 +49,68 @@ void cs_register(char *src, int ac, char **av) {
 	/* Check for proper access */
 	if ((u->oper + 1) < reglevel) {
 		notice(ns_name, dest, CS_REGISTER_ERR_PRIVS, get_oline(reglevel));
+		free(desc);
 		return;
 	}
 	/* checks whether the nickname is registered */
 	if (!isreg(src)) {
 		notice(cs_name, dest, NS_ERR_NOTREG, src);
 		notice(cs_name, dest, CS_ERR_NEEDREG);
+		free(desc);
 		return;
 	}
 	/* the channel name must contain a '#' */
 	if (!strchr(chan, '#')) {
 		notice(cs_name, dest, CS_ERR_NOSUCHCHANNEL, chan);
+		free(desc);
 		return;
 	}
 	if (isregcs(chan)) {
 		notice(cs_name, dest, CS_REGISTER_ERR_ALREADYREG, chan);
+		free(desc);
 		return;
 	}
 	if (del <= cs_delay) {
 		notice(cs_name, dest, CS_REGISTER_ERR_DELAY, del);
+		free(desc);
 		return;
 	}
 	if ((!desc || !strcmp(desc, "")) || (!pass || !strcmp(pass, ""))) {
 		notice(cs_name, dest, CS_REGISTER_RPL_USAGE);
 		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
+		free(desc);
 		return;
 	}
 	/* the password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
 		notice(cs_name, dest, NS_REGISTER_ERR_PASSTOOSHORT);
 		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
+		free(desc);
 		return;
 	}
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(pass, chan) == 0) {
 		notice(cs_name, dest, CS_REGISTER_ERR_PASSSAMEASCHAN);
 		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
+		free(desc);
 		return;
 	}
 	if (stricmp(pass, src) == 0) {
 		notice(cs_name, dest, CS_REGISTER_ERR_PASSSAMEASFND);
 		notice(cs_name, dest, CS_REGISTER_RPL_HLP, cs_name);
+		free(desc);
 		return;
 	}
 	/* the user must be on channel to register it, unless he's oper */
 	if ((!ison(c, u)) && (!u->oper)) {
 		notice(ns_name, src, CS_REGISTER_ERR_NEEDTOBEONCHAN, chan);
+		free(desc);
 		return;
 	}
 	/* the user must be on operator (+o) channel to register it, unless he's oper */
 	if ((!isop(c, u)) && (!u->oper)) {
 		notice(ns_name, src, CS_REGISTER_ERR_NEEDTOBEOP, chan);
+		free(desc);
 		return;
 	}
 	char i_mode[128];
@@ -108,5 +121,6 @@ void cs_register(char *src, int ac, char **av) {
 	notice(cs_name, src, CS_REGISTER_RPL_SUCCESS2, pass);
 	register_chan(src, chan, pass, desc);
 	add_to_list(src, chan, ACCESS_FND, src, ACCESS_SRA);
+	free(desc);
 }
 

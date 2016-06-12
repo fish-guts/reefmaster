@@ -25,7 +25,6 @@
  * handle the MDEOP command
  */
 void cs_mdeop(char *src, int ac, char **av) {
-	int addacc;
 	if (ac < 1) {
 		notice(cs_name, src, CS_MDEOP_ERR_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "MDEOP");
@@ -33,26 +32,28 @@ void cs_mdeop(char *src, int ac, char **av) {
 	}
 	char *chan = sstrdup(av[1]);
 	user *u = finduser(src);
+
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
 		return;
 	}
+
 	ChanInfo *c = findchan(chan);
-	if ((addacc = cs_xop_get_level(u, c)) < cs_mkick_access) {
+
+	if (cs_xop_get_level(u, c) < cs_mkick_access) {
 		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_mkick_access));
 		return;
 	}
+
 	channel *channel = findchannel(chan);
-
 	do_mdeop(channel);
-
 	return;
 }
 
 void do_mdeop(channel *c) {
-	do_join(cs_name,c->name);
-	do_op(cs_name,cs_name,c->name);
-	if(c) {
+	if(c != NULL) {
+		do_join(cs_name,c->name);
+		do_op(cs_name,cs_name,c->name);
 		chanuser *cu = c->users;
 		while(cu) {
 			if(isop(c,cu->u)) {
@@ -60,7 +61,7 @@ void do_mdeop(channel *c) {
 			}
 			cu = cu->next;
 		}
+		do_part(cs_name,c->name,"Leaving");
 	}
-	do_part(cs_name,c->name,"Leaving");
 	return;
 }

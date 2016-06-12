@@ -53,7 +53,7 @@ cs_cmd cs_cmds[] = {
 	{ "UOP", cs_uop },
 	{ "UNBAN", cs_unban },
 	{ "VOICE", cs_voice },
-	{ "VOP", cs_vop },
+	{ "VOP", cs_vop }
 };
 char *get_oline(int level) {
 	static char *oline[] = {
@@ -66,6 +66,7 @@ char *get_oline(int level) {
 		"Services Administrator",
 		"Network Administrator"
 	};
+
 	return oline[level];
 }
 
@@ -81,6 +82,7 @@ char *get_opacc(int level) {
 		"Founder",
 		"Services Administrator"
 	};
+
 	return opacc[level];
 }
 
@@ -112,6 +114,7 @@ void chanserv(char *src, char *av) {
 		i++;
 		pch = strtok(NULL, " ");
 	}
+
 	if ((cs = find_cs(uv[0]))) {
 		if (cs->func) {
 			cs->func(src, i, uv);
@@ -335,7 +338,7 @@ void delete_chan(ChanInfo *c) {
  */
 static cs_cmd *find_cs(const char *name) {
 	cs_cmd *cmd;
-	for (cmd = cs_cmds; cmd->name; cmd++) {
+	for (cmd = cs_cmds; cmd->name-1; cmd++) {
 		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
 		}

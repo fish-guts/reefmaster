@@ -425,7 +425,6 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
  * from specified list of the specified channel
  */
 void cs_xop_del(char *src, char *chan, int list, char *nick) {
-	int addacc;
 	int add[] =
 			{ 0, cs_uop_del, cs_vop_del, cs_hop_del, cs_aop_del, cs_sop_del };
 	user *u = finduser(src);
@@ -434,15 +433,19 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 		return;
 	}
 	ChanInfo *c = findchan(chan);
+
 	if (!isreg(nick)) {
 		notice(cs_name, src, NS_ERR_NOTREG, nick);
 		return;
 	}
-	if ((addacc = cs_xop_get_level(u, c)) < add[list]) {
+
+	if (cs_xop_get_level(u, c) < add[list]) {
 		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(add[list]));
 		return;
 	}
+
 	int existing_level = cs_isonlist(nick, chan, list,0);
+
 	if (existing_level < 0) {
 		notice(cs_name, src, CS_XOP_ERR_NOTONLIST, nick, get_opacc(list), chan);
 		return;
@@ -486,7 +489,6 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
  *
  */
 void cs_xop_list(char *src, char *chan, int list) {
-	int listacc;
 	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
 	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list, cs_sop_list };
 	user *u = finduser(src);
@@ -496,7 +498,7 @@ void cs_xop_list(char *src, char *chan, int list) {
 	}
 	ChanInfo *c = findchan(chan);
 
-	if ((listacc = cs_xop_get_level(u, c)) < alist[list]) {
+	if (cs_xop_get_level(u, c) < alist[list]) {
 		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(alist[list]));
 		return;
 	}
@@ -527,7 +529,6 @@ void cs_xop_list(char *src, char *chan, int list) {
  * nicks from the specified list of the specified channel
  */
 void cs_xop_wipe(char *src, char *chan, int list) {
-	int wipeacc;
 	int wipe[] = { 0, cs_uop_wipe, cs_vop_wipe, cs_hop_wipe, cs_aop_wipe,cs_sop_wipe };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
@@ -535,7 +536,7 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		return;
 	}
 	ChanInfo *c = findchan(chan);
-	if ((wipeacc = cs_xop_get_level(u, c)) < wipe[list]) {
+	if (cs_xop_get_level(u, c) < wipe[list]) {
 		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(wipe[list]));
 		return;
 	}
@@ -551,10 +552,11 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		o = o->next;
 	}
 
-	if (i == 1)
+	if (i == 1) {
 		notice(cs_name, src, CS_XOP_RPL_WIPED1, get_opacc(list), chan);
-	else
+	} else {
 		notice(cs_name, src, CS_XOP_RPL_WIPED2, get_opacc(list), chan, i);
+	}
 	return;
 }
 

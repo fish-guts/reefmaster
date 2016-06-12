@@ -25,7 +25,6 @@
  * handle the MKICK command
  */
 void cs_mkick(char *src, int ac, char **av) {
-	int addacc;
 	if (ac < 2) {
 		notice(cs_name, src, CS_MKICK_ERR_USAGE);
 		notice(cs_name, src, CS_RPL_HLP, cs_name, "MKICK");
@@ -39,7 +38,7 @@ void cs_mkick(char *src, int ac, char **av) {
 		return;
 	}
 	ChanInfo *c = findchan(chan);
-	if ((addacc = cs_xop_get_level(u, c)) < cs_mkick_access) {
+	if (cs_xop_get_level(u, c) < cs_mkick_access) {
 		notice(cs_name, src, CS_XOP_ERR_HIGHERACCESS, get_opacc(cs_mkick_access));
 		return;
 	}
@@ -66,14 +65,14 @@ void cs_mkick(char *src, int ac, char **av) {
  * kick every user off the channel
  */
 void do_mkick(channel *c, char *reason) {
-	do_join(cs_name,c->name);
-	do_op(cs_name,cs_name,c->name);
-	if(c) {
+	if(c != NULL) {
+		do_join(cs_name,c->name);
+		do_op(cs_name,cs_name,c->name);
 		chanuser *cu = c->users;
 		while(cu) {
 			kick(cs_name,cu->u->nick,c->name,reason);
 			cu = cu->next;
 		}
+		do_part(cs_name,c->name,"Leaving");
 	}
-	do_part(cs_name,c->name,"Leaving");
 }

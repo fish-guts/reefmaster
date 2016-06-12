@@ -28,64 +28,80 @@
 void cs_info(char *src,int ac, char **av) {
 	ChanInfo *c;
 	char *chan;
-	char *options = (char*)malloc(sizeof(char*)*4096);
-	char *topiclock = (char*)malloc(sizeof(char*)*32);
 	time_t cur = time(NULL);
 	char str_now[256], str_reg[80];
-	if(ac<2) {
+	if (ac<2) {
 		notice(cs_name,src,CS_INFO_RPL_USAGE);
 		notice(cs_name,src,CS_RPL_HLP,"INFO");
 		return;
 	}
 	chan = sstrdup(av[1]);
-	if(!isregcs(chan)) {
+	if (!isregcs(chan)) {
 		notice(cs_name,src,CS_ERR_NOTREG,chan);
 		return;
 	}
 
 	c = findchan(chan);
+	char *topiclock = (char*) malloc(sizeof(char*)*32);
+	char *options = (char*) malloc(sizeof(char*)*4096);
 	strftime(str_reg, 100, "%d/%m/%Y %T %Z", localtime(&c->time_reg));
 	strftime(str_now, 100, "%d/%m/%Y %T %Z", localtime(&cur));
-	if(c->opwatch)
+	strcpy(options,"");
+	if (c->opwatch)
 		strcat(options,"OpWatch");
-	if(c->leaveops) {
-		if(strlen(options)>1)
+
+	if (c->leaveops) {
+		if(strlen(options)>1) {
 			strcat(options,", ");
-		strcat(options,"Leaveops");
+		}
+		strcat(options,"LeaveOps");
 	}
-	if(c->keeptopic) {
-		if(strlen(options)>1)
+
+	if (c->keeptopic) {
+		if(strlen(options)>1) {
 			strcat(options,", ");
+		}
 		strcat(options,"KeepTopic");
 	}
+
 	if(c->autovop) {
-		if(strlen(options)>1)
+		if(strlen(options)>1) {
 			strcat(options,", ");
+		}
 		strcat(options,"AutoVop");
 	}
+
 	if(c->restricted) {
-		if(strlen(options)>1)
+		if(strlen(options)>1) {
 			strcat(options,", ");
+		}
 		strcat(options,"Restricted");
 	}
+
 	if(c->topiclock) {
 		sprintf(topiclock,"\2%s\2 TopicLock",get_opacc(c->topiclock));
-		if(strlen(options)>1)
+		if(strlen(options)>1) {
 			strcat(options,", ");
+		}
 		strcat(options,topiclock);
 	}
 	notice(cs_name,src,CS_INFO_RPL_ENTRY1,c->name,c->description);
 	notice(cs_name,src,CS_INFO_RPL_ENTRY2,c->founder->nick);
-	if((c->successor!=NULL) && (stricmp(c->successor->nick,"(null)")!=0))
+
+	if((c->successor!=NULL) && (stricmp(c->successor->nick,"(null)")!=0)) {
 		notice(cs_name,src,CS_INFO_RPL_ENTRY3,c->successor->nick);
-	if((c->topic!=NULL) && (stricmp(c->topic,"")!=0))
+	}
+
+	if((c->topic!=NULL) && (stricmp(c->topic,"")!=0)) {
 		notice(cs_name,src,CS_INFO_RPL_ENTRY4,c->topic);
+	}
 	notice(cs_name,src,CS_INFO_RPL_ENTRY5,str_reg);
 	notice(cs_name,src,CS_INFO_RPL_ENTRY6,str_now);
 	notice(cs_name,src,CS_INFO_RPL_ENTRY7,c->mlock);
 	notice(cs_name,src,CS_INFO_RPL_ENTRY8,options);
 	notice(cs_name,src,CS_INFO_RPL_ENTRY9,get_opacc(c->memolevel));
 	free(options);
+	free(topiclock);
 	return;
 
 }
