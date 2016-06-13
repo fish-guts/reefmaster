@@ -119,13 +119,7 @@ void c_kill(char *src, int ac, char **av) {
  * Handles a Server's MODE message
  */
 void c_mode(char *src, int ac, char **av) {
-	int x = 0;
-	int t = 2;
-	int y = 2;
-	int z = 0;
-	channel *c;
 	user *u;
-	char *ptr;
 	if(stricmp(src,s_unreal)!=0) {
 		u = finduser(src);
 		if(!u)
@@ -136,7 +130,11 @@ void c_mode(char *src, int ac, char **av) {
 	/* if it's a channel mode */
 	if(strchr(av[0],'#'))
 	{
-		c = findchannel(av[0]);
+		int t = 2;
+		int y = 2;
+		int z = 0;
+		channel *c = findchannel(av[0]);
+		char *ptr;
 		for(ptr = av[1];*ptr;ptr++)
 		{
 
@@ -190,6 +188,7 @@ void c_mode(char *src, int ac, char **av) {
 	/* if it's a usermode */
 	else
 	{
+		int x = 0;
 		u = finduser(src);
 		if(strchr(av[1],'+'))
 			x = 1;
@@ -255,11 +254,11 @@ static void c_nick(char *src,int ac,char **av) {
  * 	handle the server's PRIVMSG message
  */
 void c_privmsg(char *src,int ac,char **av) {
-	char *pch,*dest;
+	char *dest;
 	/* strip the usermask (@host) if found */
 	if(strchr(av[0],'@'))
 	{
-		pch = strtok(av[0],"@");
+		char *pch = strtok(av[0],"@");
 		dest = sstrdup(pch);
 	}
 	else
@@ -352,14 +351,15 @@ void c_topic(char *src, int ac, char **av)
 		return;
 	}
 	channel *c = findchannel(av[0]);
-	char *oldtopic = (char*)malloc(sizeof(char*)*1024);
+	char *oldtopic;
 	if(c->topic) {
-		oldtopic = sstrdup(c->topic);
+		oldtopic = c->topic;
 	} else {
 		oldtopic = NULL;
 	}
 	c->topic = sstrdup(av[3]);
 	cs_check_topiclock(src,c,oldtopic);
+	free(oldtopic);
 }
 
 /********************************************************************/

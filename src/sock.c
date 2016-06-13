@@ -168,6 +168,7 @@ int sock_connect(void) {
 	addr.sin_family = AF_INET;
 	addr.sin_port = htons((unsigned short) port);
 	addr.sin_addr.s_addr = inet_addr(serverip);
+
 	if (connect(sock, (struct sockaddr *) &addr, sizeof(addr)) < 0) {
 		printf(FAIL);
 		printf(APP_ERR_CONNECTIONERROR, s_unreal);
