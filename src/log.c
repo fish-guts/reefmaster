@@ -41,8 +41,9 @@ void addlog(short type,char *msg,...)  {
 	cur = time(NULL);
 	ptr = localtime(&cur);
 	strftime(str,100,"[%d/%m/%y %T]",ptr); 	
- 	if((!logfile) || (logfile==NULL))
+ 	if(!logfile) {
  		logfile = "log/server.log";
+ 	}
  	pFile = fopen(logfile,"a+");
   	switch(type)
  	{

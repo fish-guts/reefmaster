@@ -121,9 +121,9 @@ void check_akills(void) {
 		user *u = userlist;
 		while(u) {
 			char mask[256];
-			char final_reason[1024];
 			sprintf(mask,"%s@%s",u->username,u->hostname);
 			if(ifmatch(a->mask,mask,0)) {
+				char final_reason[1024];
 				if(a->expires==0) {
 					sprintf(final_reason,"You are banned from this Network. %s",a->reason);
 					do_akill(s_name,u->nick,final_reason);
@@ -287,13 +287,18 @@ int hasaccess(user *u, char *nick) {
 	char *mask = (char*) malloc(sizeof(char*) * 256);
 	sprintf(mask, "%s@%s", u->username, u->hostname);
 	if (isidentified(u, nick)) {
+		free(mask);
 		return 2;
 	} else if (ismatch(u, mask) == 1) {
+		free(mask);
 		return 1;
-	} else if (u->oper >= ns_admin)
+	} else if (u->oper >= ns_admin) {
+		free(mask);
 		return 3;
-	else
+	} else {
+		free(mask);
 		return -1;
+	}
 }
 
 /****************************************************************************************/
@@ -303,9 +308,9 @@ int hasaccess(user *u, char *nick) {
  * This command is based on Anope Services
  */
 static int ifmatch(const char *pattern, const char *str, int mode) {
-	char c;
 	const char *ptr;
 	for (;;) {
+		char c;
 		switch (c = *pattern++) {
 		case 0:
 			if (!*str)
@@ -487,15 +492,15 @@ char *mask(char *src, char *host) {
 	user *u1 = finduser(src);
 	if (isoper(u1))
 		return host;
-	int ncnt = 0;
-	int acnt = 0;
-	int pcnt = 0;
-	char *ptr;
 	char *tmphost = (char*) malloc(sizeof(char*) * 256);
-	char *pch;
 	if (!strchr(host, '.')) {
 		strcpy(tmphost, "*");
 	} else {
+		int ncnt = 0;
+		int acnt = 0;
+		int pcnt = 0;
+		char *ptr;
+		char *pch;
 		for (ptr = host; *ptr; ptr++) {
 			if (isdigit(*ptr))
 				ncnt++;
@@ -640,14 +645,13 @@ char *strscpy(char *d, const char *s, size_t len) {
 char *str_replace (const char *string, const char *substr, const char *replacement) {
 	char *tok = NULL;
 	char *newstr = NULL;
-	char *oldstr = NULL;
 	/* if either substr or replacement is NULL, duplicate string a let caller handle it */
 	if ( substr == NULL || replacement == NULL ) {
 		return strdup (string);
 	}
 	newstr = strdup (string);
 	while ((tok = strstr (newstr, substr))) {
-		oldstr = newstr;
+		char *oldstr = newstr;
 		newstr = malloc (strlen(oldstr) - strlen (substr) + strlen (replacement) + 1);
 		/*failed to alloc mem, free old string and return NULL */
 		if ( newstr == NULL ) {

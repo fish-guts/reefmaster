@@ -40,13 +40,12 @@ void help_message(const char *service,char *src, const char *helpfile) {
 	FILE *fp;
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t read;
 	fp = fopen(helpfile, "r");
 	notice(as_name,src,"Help :%s",helpfile);
 	if (fp == NULL)
 		notice(service,src,"Error getting help");
 
-	while ((read = getline(&line, &len, fp)) != -1) {
+	while (getline(&line, &len, fp) != -1) {
 		char *fline = str_replace(line,"<b>","\2");
 		char *gline = str_replace(fline,"</b>","\2");
 		notice(service,src,"%s",gline);

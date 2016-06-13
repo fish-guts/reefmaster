@@ -127,7 +127,6 @@ int main(int argc,char **argv)
  * start the app and print some error on failure
  */
 void start_app(void) {
-	int s;
 	char buf[100000];
 	if(signal(SIGALRM, timer_event_handler)==SIG_ERR)
 	{
@@ -150,7 +149,7 @@ void start_app(void) {
 	connect_bots();
 	/* this is the main loop */
 	while(!quitting) {
-		s = recv(mainsock,buf, sizeof(ircbuf),0);
+		int s = recv(mainsock,buf, sizeof(ircbuf),0);
 
 		if(s) {
 			buf[s] = 0;
