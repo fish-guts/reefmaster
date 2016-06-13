@@ -1370,6 +1370,7 @@ int config_load(const char *file) {
 	};
 	cfg = cfg_init(opts, CFGF_NOCASE);
 	if (cfg_parse(cfg, file) == CFG_PARSE_ERROR) {
+		fclose(pFile);
 		return -1;
 	} else {
 		cfg_t *services;
@@ -1569,6 +1570,7 @@ int config_load(const char *file) {
 		as_name = cfg_getstr(as_general, "name");
 		as_realname = cfg_getstr(as_general, "realname");
 	}
+	fclose(pFile);
 	return 0;
 }
 
