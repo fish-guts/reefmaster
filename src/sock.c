@@ -149,15 +149,8 @@ int sock_connect(void) {
 	char *description = s_description;
 	/* server name in config file */
 	char *servername = s_name;
-	char *SRV = (char*) malloc(sizeof(char) * 128);
-	char *PASS = (char*) malloc(sizeof(char) * 64);
-	char *PROT = (char*) malloc(sizeof(char) * 64);
 	struct sockaddr_in addr; /* server address; */
 	struct hostent *dns;
-	server = s_address;
-	password = s_password;
-	description = s_description;
-	servername = s_name;
 	port = s_port; /* server port in config file */
 	dns = gethostbyname(server);
 	/* resolving host to an IP address; */
@@ -183,10 +176,12 @@ int sock_connect(void) {
 	}
 	printf(OK);
 	printf(APP_DBG_REGISTERINGSRV, s_unreal);
+	char *SRV = (char*) malloc(sizeof(char) * 128);
+	char *PASS = (char*) malloc(sizeof(char) * 64);
 	sprintf(PASS, "PASS %s\r\n", password);
 	sprintf(SRV, "SERVER %s 1 :[%s] %s\r\n", servername, servername,
 			description);
-	PROT = "PROTOCTL NICKv2\r\n";
+	char *PROT = "PROTOCTL NICKv2\r\n";
 	send(sock, PROT, (int) strlen(PROT), 0);
 	send(sock, PASS, (int) strlen(PASS), 0);
 	send(sock, SRV, (int) strlen(SRV), 0);
