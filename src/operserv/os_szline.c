@@ -147,7 +147,6 @@ static void os_szline_del(char *src, int ac, char **av) {
 		}
 	}
 	char *mask = sstrdup(av[2]);
-	char **res = NULL;
 	char *username;
 	char *hostname;
 	if(!strchr(mask,'@')) {
@@ -164,15 +163,27 @@ static void os_szline_del(char *src, int ac, char **av) {
 		char delimiter[] = "@";
 		char *ptr = strtok (mask, delimiter);
 		while (ptr) {
-		  res = realloc (res, sizeof (char*) * ++n_spaces);
-		  res[n_spaces-1] = ptr;
-		  ptr = strtok (NULL, delimiter);
+			char **res = NULL;
+			res = realloc (res, sizeof (char*) * ++n_spaces);
+			if(NULL == res) {
+				free(res);
+				return;
+			} else {
+				res[n_spaces-1] = ptr;
+				ptr = strtok (NULL, delimiter);
+			}
 		}
+		char **res = NULL;
 		/* realloc one extra element for the last NULL */
 		res = realloc (res, sizeof (char*) * (n_spaces+1));
-		res[n_spaces] = 0;
-		username = sstrdup(res[0]);
-		hostname = sstrdup(res[1]);
+		if(NULL == res) {
+			free(res);
+			return;
+		} else {
+			res[n_spaces] = 0;
+			username = sstrdup(res[0]);
+			hostname = sstrdup(res[1]);
+		}
 	}
 	char pubmask[128];
 	sprintf(pubmask,"%s@%s",username,hostname);
