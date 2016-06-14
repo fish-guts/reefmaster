@@ -23,6 +23,7 @@
 #include "query.h"
 
 #define SQL_OK 0
+#define SQL_ERROR 1
 
 static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a);
 static int db_add_auth(sqlite3 *db, NickInfo*c, auth *a);

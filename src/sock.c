@@ -117,19 +117,26 @@ void process(void) {
 	pch = strpbrk(buf, " ");
 	if (pch) {
 		*pch = 0;
-		while (isspace(*++pch))
+		 while (isspace(*++pch)) {
 			;
-	} else
+		 }
+	} else {
 		pch = buf + strlen(buf);
+	}
+
 	strscpy(cmd, buf, sizeof(cmd));
+
 	ac = tokenize(pch, &av);
 	if ((ic = find_cmd(cmd))) {
-		if (ic->func)
+		if (ic->func) {
 			ic->func(source, ac, av);
-		if (strcmp(buf, "PING") != 0)
+		}
+		if (strcmp(buf, "PING") != 0) {
 			addlog(1, LOG_DBG_SERVERMSG, s_unreal, ircbuf);
-	} else
+		}
+	} else {
 		addlog(2, APP_ERR_UNKNOWNMSG, ircbuf);
+	}
 	free(av);
 }
 
