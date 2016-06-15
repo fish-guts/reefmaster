@@ -9,6 +9,7 @@ extern int config_loadfile(char *filename);
 extern int config_load(const char *file);
 
 int config_as_access_flag(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
+int config_as_savedata(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_bool(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);
 int config_ns_expiry(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
 int config_bool_as(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -46,6 +47,8 @@ int config_cs_hop_max(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_cs_hop_wipe(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_keeptopic(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_leaveops(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
+int config_cs_log_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
+int config_cs_log_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result);
 int config_cs_maxlist(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_memolevel(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_cs_mkick(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
@@ -97,6 +100,8 @@ int config_ns_mnotify(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *resul
 int config_ns_mlock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_ns_autoacc(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_ns_hidemail(cfg_t *cfg,cfg_opt_t *opt, const char *value, void *result);
+int config_ns_log_getpass(cfg_t *cfg,cfg_opt_t *opt, const char *value, void *result);
+int config_ns_log_setpass(cfg_t *cfg,cfg_opt_t *opt, const char *value, void *result);
 int config_ns_nomemo(cfg_t *cfg,cfg_opt_t *opt, const char *value, void *result);
 int config_ns_protect(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result);
 int config_ns_regacc(cfg_t *cfg,cfg_opt_t *opt,const char *value,void *result);

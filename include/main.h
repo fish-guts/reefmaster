@@ -179,7 +179,9 @@ int   ns_maxlist;
 int   ns_operonly;
 int   ns_access_max;
 int   ns_spass;
+int   ns_log_setpass;
 int   ns_gpass; 
+int   ns_log_getpass;
 char *ns_enforcer;
 int   ns_release_time;
 int	  ns_noop;
@@ -205,6 +207,8 @@ int   cs_hop_add;
 int   cs_hop_del;
 int   cs_hop_list;
 int   cs_hop_wipe;
+int   cs_log_getpass;
+int   cs_log_setpass;
 int   cs_vop_add;
 int   cs_vop_del;
 int   cs_vop_list;
@@ -320,13 +324,16 @@ int   bs_access_list;
 int   bs_access_set;
 int   bs_access_getpass;
 int   bs_access_setpass;
+int   bs_log_setpass;
+int   bs_log_getpass;
 
 
 /* Block "adminserv" */
 int   as_enabled;
 char *as_name; 
 char *as_realname; 
-int   as_access_flag; 
+int   as_access_flag;
+int   as_savedata_access;
 
 
 

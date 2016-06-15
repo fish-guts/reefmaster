@@ -38,6 +38,17 @@ int config_as_access_flag(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *re
 }
 
 /****************************************************************************************/
+int config_as_savedata(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 6)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 6);
+		return -1;
+	}
+	as_savedata_access = val;
+	return 0;
+}
+
+/****************************************************************************************/
 int config_bool(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result) {
 	int val = atoi(value);
 	if (!isbool(val)) {
@@ -171,6 +182,28 @@ int config_bs_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 		return -1;
 	}
 	bs_access_getpass = val;
+	return 0;
+}
+
+/****************************************************************************************/
+int config_bs_log_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 1)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 1);
+		return -1;
+	}
+	bs_log_setpass = val;
+	return 0;
+}
+
+/****************************************************************************************/
+int config_bs_log_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 1)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 1);
+		return -1;
+	}
+	bs_log_getpass = val;
 	return 0;
 }
 
@@ -1481,6 +1514,8 @@ int config_load(const char *file) {
 	static cfg_opt_t ns_password_opts[] = {
 			CFG_INT_CB("setpass",4,CFGF_NONE,(void*)&config_ns_setpass),
 			CFG_INT_CB("getpass",4,CFGF_NONE,(void*)&config_ns_getpass),
+			CFG_INT_CB("log_getpass",1,CFGF_NONE,(void*)&config_ns_log_getpass),
+			CFG_INT_CB("log_setpass",1,CFGF_NONE,(void*)&config_ns_log_setpass),
 			CFG_STR_CB("enforcer","enforcer",CFGF_NONE,(void*)&config_str32),
 			CFG_INT_CB("release",60,CFGF_NONE,(void*)config_uint32), CFG_END()
 	};
@@ -1617,6 +1652,8 @@ int config_load(const char *file) {
 	static cfg_opt_t cs_password_opts[] = {
 			CFG_INT_CB("setpass",0,CFGF_NONE,(void*)&config_cs_setpass),
 			CFG_INT_CB("getpass",0,CFGF_NONE,(void*)&config_cs_getpass),
+			CFG_INT_CB("log_getpass",0,CFGF_NONE,(void*)&config_cs_getpass),
+			CFG_INT_CB("log_setpass",0,CFGF_NONE,(void*)&config_cs_setpass),
 			CFG_END()
 	};
 	static cfg_opt_t cs_reg_opts[] = {
@@ -1715,11 +1752,14 @@ int config_load(const char *file) {
 			CFG_INT_CB("set",3,CFGF_NONE,(void*)&config_bs_set),
 			CFG_INT_CB("setpass",3,CFGF_NONE,(void*)&config_bs_setpass),
 			CFG_INT_CB("getpass",3,CFGF_NONE,(void*)&config_bs_getpass),
+			CFG_INT_CB("log_setpass",1,CFGF_NONE,(void*)&config_bs_log_setpass),
+			CFG_INT_CB("log_getpass",1,CFGF_NONE,(void*)&config_bs_log_getpass),
 			CFG_END()
 	};
 	static cfg_opt_t botserv_opts[] = {
 			CFG_SEC("general",bs_general_opts,CFGF_NONE),
 			CFG_SEC("access",bs_access_opts,CFGF_NONE),
+			CFG_END()
 	};
 	static cfg_opt_t as_general_opts[] = {
 			CFG_INT_CB("enabled",0,CFGF_NONE,(void*)&config_bool_as),
@@ -1727,8 +1767,15 @@ int config_load(const char *file) {
 			CFG_STR_CB("realname","Administrator Service",CFGF_NONE,(void*)&config_str32),
 			CFG_END()
 	};
+
+	static cfg_opt_t as_access_opts[] = {
+			CFG_INT_CB("savedata",5,CFGF_NONE,(void*)&config_as_savedata),
+			CFG_END()
+	};
+
 	static cfg_opt_t adminserv_opts[] = {
 			CFG_SEC("general",as_general_opts,CFGF_NONE),
+			CFG_SEC("access",as_access_opts,CFGF_NONE),
 			CFG_END()
 	};
 	static cfg_opt_t opts[] = {
@@ -1931,6 +1978,8 @@ int config_load(const char *file) {
 		bs_access_set = cfg_getint(bs_access_conf,"set");
 		bs_access_getpass = cfg_getint(bs_access_conf,"getpass");
 		bs_access_setpass = cfg_getint(bs_access_conf,"setpass");
+		bs_log_getpass = cfg_getint(bs_access_conf,"log_getpass");
+		bs_log_setpass = cfg_getint(bs_access_conf,"log_setpass");
 
 		/* end of section botserv */
 
@@ -2112,6 +2161,28 @@ int config_ns_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result
 }
 
 /****************************************************************************************/
+int config_ns_log_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 1)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 1);
+		return -1;
+	}
+	ns_log_setpass = val;
+	return 0;
+}
+
+/****************************************************************************************/
+int config_ns_log_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 1)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 1);
+		return -1;
+	}
+	ns_log_getpass = val;
+	return 0;
+}
+
+/****************************************************************************************/
 int config_ns_expiry(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
 	int val = atoi(value);
 	if ((val < 0) || (val > 360)) {
@@ -2255,4 +2326,27 @@ int config_cs_tlock(cfg_t *cfg, cfg_opt_t *opt, const char *value, void *result)
 	*(const char **) result = (const char *) value;
 	return 0;
 }
+
+/****************************************************************************************/
+int config_cs_log_setpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 1)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 1);
+		return -1;
+	}
+	cs_log_setpass = val;
+	return 0;
+}
+
+/****************************************************************************************/
+int config_cs_log_getpass(cfg_t *cfg, cfg_opt_t *opt, const char *value,void *result) {
+	int val = atoi(value);
+	if ((val < 0) || (val > 1)) {
+		cfg_error(cfg, CONF_ERR_INT, CONFIG_FILE, cfg->line, opt->name, 0, 1);
+		return -1;
+	}
+	cs_log_getpass = val;
+	return 0;
+}
+
 /* EOF */
