@@ -20,6 +20,21 @@
  */
 #include "main.h"
 
+static char *chan_access_level[] = {
+		"0", // Disabled
+		"1", // Uop
+		"2", // Vop
+		"3", // Hop
+		"4", // Aop
+		"5", // Sop
+		"6", // Cop
+		"7", // Qop
+		"8", // Successor
+		"9", // Founder identified for nick
+		"10", // Full founder (identified for chan)
+		"\2ServiceRootAdmin\2" // SRA
+};
+
 
 /********************************************************************/
 /**
@@ -27,16 +42,7 @@
  * Lists all channel access entries the specified nickname has access to
  */
 void ns_listchans(char *src, int ac, char **av) {
-	static char *opacc[] = {
-			NULL,
-			"Uop",
-			"Vop",
-			"Hop",
-			"Aop",
-			"Sop",
-			"Successor",
-			"Founder"
-	};
+
 	user *u = finduser(src);
 	char *nick;
 	if (ac == 2) {
@@ -56,7 +62,6 @@ void ns_listchans(char *src, int ac, char **av) {
 		return;
 	}
 
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8","\2ServiceRootAdmin\2" };
 	NickInfo *n = findnick(nick);
 
 	int i = 0;
@@ -69,11 +74,11 @@ void ns_listchans(char *src, int ac, char **av) {
 		if (n->id == o->nick->id) {
 			i++;
 			if (o->level > 5) {
-				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,i, opacc[o->level],o->chan->name);
+				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,i, chan_access_level[o->level],o->chan->name);
 			} else {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
 				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY, i,
-					opacc[o->level], o->chan->name, addedby_lvl[o->addedbyacc],
+						chan_access_level[o->level], o->chan->name, chan_access_level[o->addedbyacc],
 					o->addedby, str);
 			}
 		}

@@ -327,6 +327,14 @@ void cs_set_memolevel(char *src, int ac, char **av) {
 		c->memolevel = SOP_LIST;
 		notice(cs_name, src, CS_SET_MEMOLEVEL_RPL_SUCCESS, chan, av[3]);
 		return;
+	} else if (stricmp(av[3], "Cop") == 0) {
+		c->memolevel = COP_LIST;
+		notice(cs_name, src, CS_SET_MEMOLEVEL_RPL_SUCCESS, chan, av[3]);
+		return;
+	} else if (stricmp(av[3], "Qop") == 0) {
+		c->memolevel = QOP_LIST;
+		notice(cs_name, src, CS_SET_MEMOLEVEL_RPL_SUCCESS, chan, av[3]);
+		return;
 	} else if (stricmp(av[3], "Successor") == 0) {
 		c->memolevel = SUCCESSOR_ACC;
 		notice(cs_name, src, CS_SET_MEMOLEVEL_RPL_SUCCESS, chan, av[3]);
@@ -653,6 +661,14 @@ void cs_set_topiclock(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[3], "Sop") == 0) {
 		c->topiclock = SOP_LIST;
+		notice(cs_name, src, CS_SET_TOPICLOCK_RPL_SUCCESS, chan, av[3]);
+		return;
+	} else if (stricmp(av[3], "Cop") == 0) {
+		c->topiclock = COP_LIST;
+		notice(cs_name, src, CS_SET_TOPICLOCK_RPL_SUCCESS, chan, av[3]);
+		return;
+	} else if (stricmp(av[3], "Qop") == 0) {
+		c->topiclock = QOP_LIST;
 		notice(cs_name, src, CS_SET_TOPICLOCK_RPL_SUCCESS, chan, av[3]);
 		return;
 	} else if (stricmp(av[3], "Successor") == 0) {

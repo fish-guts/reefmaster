@@ -29,9 +29,13 @@ op *global_op_list = NULL;
 
 cs_cmd cs_cmds[] = {
 	{ "ACC", cs_acc },
+	{ "ADMIN", cs_admin },
 	{ "AKICK", cs_akick },
 	{ "AOP", cs_aop },
+	{ "COP", cs_cop },
+	{ "DEADMIN", cs_deadmin },
 	{ "DEHALFOP", cs_dehalfop },
+	{ "DEOWN", cs_deown },
 	{ "DEVOICE", cs_devoice },
 	{ "DEOP", cs_deop },
 	{ "DROP", cs_drop },
@@ -46,6 +50,8 @@ cs_cmd cs_cmds[] = {
 	{ "MKICK", cs_mkick },
 	{ "MDEOP", cs_mdeop },
 	{ "OP", cs_op },
+	{ "OWN", cs_own },
+	{ "QOP", cs_qop },
 	{ "REGISTER", cs_register },
 	{ "SET", cs_set },
 	{ "SETPASS", cs_setpass },

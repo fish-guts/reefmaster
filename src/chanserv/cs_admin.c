@@ -1,5 +1,5 @@
 /*
- * cs_op.c
+ * cs_admin.c
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
  *
@@ -23,16 +23,16 @@
 
 /********************************************************************/
 /**
- * handle the DEOP command
+ * handle the ADMIN command
  */
-void cs_deop(char *src, int ac, char **av) {
+void cs_admin(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEOP");
-		notice(cs_name,src,CS_RPL_HLP,"DEOP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"ADMIN");
+		notice(cs_name,src,CS_RPL_HLP,"ADMIN");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -50,35 +50,35 @@ void cs_deop(char *src, int ac, char **av) {
 	c = findchan(chan);
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
-	if(level_src<AOP_LIST) {
-		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+	if(level_src<COP_LIST) {
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Cop");
 		return;
 	}
-	if(level_target<AOP_LIST) {
+	if(level_target<COP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Cop");
 			return;
 		} else {
 			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
-	deop(cs_name,nick,chan);
+	deadmin(cs_name,nick,chan);
 	return;
 }
 
 /********************************************************************/
 /**
- * handle the OP command
+ * handle the DEADMIN command
  */
-void cs_op(char *src, int ac, char **av) {
+void cs_deadmin(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_OP_ERR_USAGE);
-		notice(cs_name,src,CS_RPL_HLP,"OP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEADMIN");
+		notice(cs_name,src,CS_RPL_HLP,"DEADMIN");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -96,19 +96,19 @@ void cs_op(char *src, int ac, char **av) {
 	c = findchan(chan);
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
-	if(level_src<AOP_LIST) {
-		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+	if(level_src<COP_LIST) {
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Cop");
 		return;
 	}
-	if(level_target<AOP_LIST) {
+	if(level_target<COP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Cop");
 			return;
 		} else {
 			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
-	do_op(cs_name,nick,chan);
+	deadmin(cs_name,nick,chan);
 	return;
 }

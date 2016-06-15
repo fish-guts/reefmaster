@@ -20,6 +20,23 @@
  */
 #include "main.h"
 
+
+static char *chan_access_level[] = {
+		"0", // Disabled
+		"1", // Uop
+		"2", // Vop
+		"3", // Hop
+		"4", // Aop
+		"5", // Sop
+		"6", // Cop
+		"7", // Qop
+		"8", // Successor
+		"9", // Founder identified for nick
+		"10", // Full founder (identified for chan)
+		"\2ServiceRootAdmin\2" // SRA
+};
+
+
 /********************************************************************/
 /**
  * handle the AKICK command
@@ -197,7 +214,7 @@ void cs_akick_delmask(char *src, int ac, char **av) {
  * list all akick entries of the specified channel
  */
 void cs_akick_listentries(char *src, int ac, char **av) {
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7","8","\2ServiceRootAdmin\2" };
+
 	user *u = finduser(src);
 	char *chan = sstrdup(av[1]);
 	if (!isregcs(chan)) {
@@ -217,9 +234,9 @@ void cs_akick_listentries(char *src, int ac, char **av) {
 		i++;
 		strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&ak->added_on));
 		if(ak->reason)
-			notice(cs_name, src, CS_AKICK_RPL_LIST,i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str,ak->reason);
+			notice(cs_name, src, CS_AKICK_RPL_LIST,i,ak->mask,chan_access_level[ak->added_by_acc],ak->added_by, str,ak->reason);
 		else
-			notice(cs_name, src, CS_AKICK_RPL_LIST2, i,ak->mask,addedby_lvl[ak->added_by_acc],ak->added_by, str);
+			notice(cs_name, src, CS_AKICK_RPL_LIST2, i,ak->mask,chan_access_level[ak->added_by_acc],ak->added_by, str);
 		ak = ak->next;
 	}
 	if ((i > 1) || (i == 0)) {

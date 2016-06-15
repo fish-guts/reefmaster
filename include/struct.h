@@ -154,6 +154,8 @@ struct _chaninfo {
 	int sop_count;
 	int uop_count;
 	int vop_count;
+	int cop_count;
+	int qop_count;
 	akick *akicklist;
 };
 

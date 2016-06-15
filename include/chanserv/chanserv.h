@@ -30,11 +30,13 @@
 #define HOP_LIST 3
 #define AOP_LIST 4
 #define SOP_LIST 5
-#define SUCCESSOR_ACC 6
-#define SUCCESSOR 7
-#define FOUNDER_ACC 8
-#define FOUNDER  9
-#define FULLFOUNDER  10
+#define COP_LIST 6
+#define QOP_LIST 7
+#define SUCCESSOR_ACC 8
+#define SUCCESSOR 9
+#define FOUNDER_ACC 10
+#define FOUNDER  11
+#define FULLFOUNDER  12
 #define AKICK_LIST 999
 
 #define UOP_STR "Uop"
@@ -42,13 +44,14 @@
 #define HOP_STR "Hop"
 #define AOP_STR "Aop"
 #define SOP_STR "Sop"
-#define ADMIN_STR "Admin"
-#define OWNER_STR "Owner"
+#define COP_STR "Cop"
+#define QOP_STR "Qop"
 #define SUCCESSOR_STR "Successor"
 #define FOUNDER_STR "Founder"
 
 extern op *global_op_list;
 extern ChanInfo *chans;
+
 
 
 void add_identifiedcs(user *u, char *channel);
@@ -69,13 +72,10 @@ ChanInfo *findchan(const char *chan);
 ChanInfo *find_chan_by_id(unsigned int id);
 char *get_oline(int level);
 char *get_opacc(int level);
-void inc_list(ChanInfo *c,int list);
 int isidentifiedcs(user *u, ChanInfo *c);
 ChanInfo *register_chan(const char *src,char *name,char *pass,char *desc);
 void remove_from_chan_list(char *nick,ChanInfo *c,op *o);
 void update_xop_list(op *o);
-
-
 
 
 

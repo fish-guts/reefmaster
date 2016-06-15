@@ -217,12 +217,22 @@ int   cs_enabled;
 char *cs_name; 
 char *cs_realname;
 int   cs_delay; 
+int   cs_qops_max;
+int   cs_cops_max;
 int   cs_sops_max; 
 int   cs_aops_max;
 int   cs_hops_max; 
 int   cs_vops_max; 
 int   cs_uops_max; 
 int   cs_akicks_max;
+int   cs_qop_add;
+int   cs_qop_del;
+int   cs_qop_list;
+int   cs_qop_wipe;
+int   cs_cop_add;
+int   cs_cop_del;
+int   cs_cop_list;
+int   cs_cop_wipe;
 int   cs_sop_add;
 int   cs_sop_del;
 int   cs_sop_list;
@@ -317,5 +327,7 @@ int   as_enabled;
 char *as_name; 
 char *as_realname; 
 int   as_access_flag; 
+
+
 
 #endif /*MAIN_H_*/

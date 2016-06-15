@@ -22,6 +22,20 @@
 #include "main.h"
 
 static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop", "Successor", "Founder" };
+static char *chan_access_level[] = {
+		"0", // Disabled
+		"1", // Uop
+		"2", // Vop
+		"3", // Hop
+		"4", // Aop
+		"5", // Sop
+		"6", // Cop
+		"7", // Qop
+		"8", // Successor
+		"9", // Founder identified for nick
+		"10", // Full founder (identified for chan)
+		"\2ServiceRootAdmin\2" // SRA
+};
 
 /********************************************************************/
 /**
@@ -78,6 +92,7 @@ void add_to_list(char *nick, char *chan, int level, char *addnick, int addlevel)
 		global_op_list->prev = o;
 	global_op_list = o;
 }
+
 /********************************************************************/
 /**
  * cs AOP - handle the chanserv AOP command
@@ -99,6 +114,7 @@ void cs_aop(char *src, int ac, char **av) {
 
 		}
 		cs_xop_add(src, chan, AOP_LIST, nick);
+
 		return;
 	} else if (stricmp(av[2], "DEL") == 0) {
 		if(ac<4) {
@@ -136,6 +152,125 @@ void cs_aop(char *src, int ac, char **av) {
 	}
 	return;
 }
+
+/********************************************************************/
+/**
+ * cs COP - handle the chanserv COP command
+ */
+void cs_cop(char *src, int ac, char **av) {
+	char *chan;
+	char *nick;
+	if (stricmp(av[2], "ADD") == 0) {
+		if(ac<4) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"COP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"COP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
+		if(findchan(chan)->cop_count>=cs_cops_max) {
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Cop",cs_cops_max,chan);
+			return;
+
+		}
+		cs_xop_add(src, chan, COP_LIST, nick);
+		return;
+	} else if (stricmp(av[2], "DEL") == 0) {
+		if(ac<4) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"COP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"COP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
+		cs_xop_del(src, chan, COP_LIST, nick);
+		return;
+	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"COP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"COP LIST");
+			return;
+		}
+		chan = av[1];
+		cs_xop_list(src, chan, COP_LIST);
+		return;
+	} else if (stricmp(av[2], "WIPE") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"COP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"COP LIST");
+			return;
+		}
+		chan = av[1];
+		cs_xop_wipe(src, chan, COP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"COP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"COP");
+		return;
+	}
+	return;
+}
+
+/********************************************************************/
+/**
+ * cs QOP - handle the chanserv QOP command
+ */
+void cs_qop(char *src, int ac, char **av) {
+	char *chan;
+	char *nick;
+	if (stricmp(av[2], "ADD") == 0) {
+		if(ac<4) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"QOP <Channel> ADD <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"QOP ADD");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
+		if(findchan(chan)->qop_count>=cs_qops_max) {
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Qop",cs_qops_max,chan);
+			return;
+
+		}
+		cs_xop_add(src, chan, QOP_LIST, nick);
+		return;
+	} else if (stricmp(av[2], "DEL") == 0) {
+		if(ac<4) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"QOP <Channel> DEL <Nickname>");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"QOP DEL");
+			return;
+		}
+		chan = av[1];
+		nick = av[3];
+		cs_xop_del(src, chan, QOP_LIST, nick);
+		return;
+	} else if (stricmp(av[2], "LIST") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"QOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"QOP LIST");
+			return;
+		}
+		chan = av[1];
+		cs_xop_list(src, chan, QOP_LIST);
+		return;
+	} else if (stricmp(av[2], "WIPE") == 0) {
+		if(ac<3) {
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"QOP <Channel> LIST");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"QOP LIST");
+			return;
+		}
+		chan = av[1];
+		cs_xop_wipe(src, chan, QOP_LIST);
+		return;
+	} else {
+		notice(cs_name,src,CS_ERR_NOSUCHCMD,av[2]);
+		notice(cs_name,src,CS_XOP_ERR_USAGE,"QOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"QOP");
+		return;
+	}
+	return;
+}
+
 /********************************************************************/
 /**
  * cs HOP - handle the chanserv HOP command
@@ -151,7 +286,7 @@ void cs_hop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
-		if(findchan(chan)->aop_count>=cs_hops_max) {
+		if(findchan(chan)->hop_count>=cs_hops_max) {
 			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Hop",cs_aops_max,chan);
 			return;
 		}
@@ -208,8 +343,8 @@ void cs_sop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
-		if(findchan(chan)->aop_count>=cs_sops_max) {
-			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Sop",cs_aops_max,chan);
+		if(findchan(chan)->sop_count>=cs_sops_max) {
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Sop",cs_sops_max,chan);
 			return;
 
 		}
@@ -266,8 +401,8 @@ void cs_uop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
-		if(findchan(chan)->uop_count>=cs_aops_max) {
-			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Uop",cs_aops_max,chan);
+		if(findchan(chan)->uop_count>=cs_uops_max) {
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Uop",cs_uops_max,chan);
 			return;
 
 		}
@@ -325,8 +460,8 @@ void cs_vop(char *src, int ac, char **av) {
 		}
 		chan = av[1];
 		nick = av[3];
-		if(findchan(chan)->aop_count>=cs_vops_max) {
-			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Vop",cs_aops_max,chan);
+		if(findchan(chan)->vop_count>=cs_vops_max) {
+			notice(cs_name,src,CS_XOP_ERR_LIMIT,"Vop",cs_vops_max,chan);
 			return;
 
 		}
@@ -375,7 +510,7 @@ void cs_vop(char *src, int ac, char **av) {
  * specified list of the specified channel
  */
 void cs_xop_add(char *src, char *chan, int list, char *nick) {
-	int alist[] = { 0, cs_uop_add, cs_vop_add, cs_hop_add, cs_aop_add, cs_sop_add };
+	int alist[] = { 0, cs_uop_add, cs_vop_add, cs_hop_add, cs_aop_add, cs_sop_add, cs_cop_add, cs_qop_add };
 	if(!isregcs(chan)) {
 		notice(cs_name,src,CS_ERR_NOTREG,chan);
 		return;
@@ -426,7 +561,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
  */
 void cs_xop_del(char *src, char *chan, int list, char *nick) {
 	int add[] =
-			{ 0, cs_uop_del, cs_vop_del, cs_hop_del, cs_aop_del, cs_sop_del };
+			{ 0, cs_uop_del, cs_vop_del, cs_hop_del, cs_aop_del, cs_sop_del, cs_cop_del, cs_qop_del };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
@@ -452,6 +587,7 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 	}
 	op *o = find_list_entry(nick,chan,list);
 	remove_from_list(o);
+	dec_list(chan,list);
 	notice(cs_name,src,CS_XOP_RPL_DELETED,nick,get_opacc(list),chan);
 	return;
 }
@@ -489,8 +625,7 @@ int cs_xop_get_level(user *u, ChanInfo *c) {
  *
  */
 void cs_xop_list(char *src, char *chan, int list) {
-	static char *addedby_lvl[] = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "\2ServiceRootAdmin\2" };
-	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list, cs_sop_list };
+	int alist[] = { 0, cs_uop_list, cs_vop_list, cs_hop_list, cs_aop_list, cs_sop_list, cs_cop_list, cs_qop_list };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
@@ -511,7 +646,7 @@ void cs_xop_list(char *src, char *chan, int list) {
 			if (o->level == list) {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
 				notice(cs_name, src, CS_XOP_RPL_LIST, i + 1, o->nick->nick,
-						addedby_lvl[o->addedbyacc], o->addedby, str);
+						chan_access_level[o->addedbyacc], o->addedby, str);
 				i++;
 			}
 		}
@@ -529,7 +664,7 @@ void cs_xop_list(char *src, char *chan, int list) {
  * nicks from the specified list of the specified channel
  */
 void cs_xop_wipe(char *src, char *chan, int list) {
-	int wipe[] = { 0, cs_uop_wipe, cs_vop_wipe, cs_hop_wipe, cs_aop_wipe,cs_sop_wipe };
+	int wipe[] = { 0, cs_uop_wipe, cs_vop_wipe, cs_hop_wipe, cs_aop_wipe, cs_sop_wipe, cs_cop_wipe, cs_qop_wipe };
 	user *u = finduser(src);
 	if (!isregcs(chan)) {
 		notice(cs_name, src, CS_ERR_NOTREG, chan);
@@ -551,6 +686,7 @@ void cs_xop_wipe(char *src, char *chan, int list) {
 		}
 		o = o->next;
 	}
+	wipe_list(chan,list);
 
 	if (i == 1) {
 		notice(cs_name, src, CS_XOP_RPL_WIPED1, get_opacc(list), chan);
@@ -618,6 +754,108 @@ void move_in_list(char *nick, char *chan, int level, int existing_level, char *a
 	o->addedby = sstrdup(addnick);
 	o->addedbyacc = addlevel;
 	o->addedon = time(NULL);
+	dec_list(chan,existing_level);
+	inc_list(chan,level);
+
+}
+
+void inc_list(char *chan, int level) {
+	ChanInfo *c = findchan(chan);
+	if(!c) {
+		addlog(2,"Channel not found");
+	} else {
+		switch(level) {
+		case UOP_LIST:
+			c->uop_count++;
+			return;
+		case VOP_LIST:
+			c->vop_count++;
+			return;
+		case HOP_LIST:
+			c->hop_count++;
+			return;
+		case AOP_LIST:
+			c->aop_count++;
+			return;
+		case SOP_LIST:
+			c->sop_count++;
+			return;
+		case COP_LIST:
+			c->cop_count++;
+			return;
+		case QOP_LIST:
+			c->qop_count++;
+			return;
+		default:
+			return;
+		}
+	}
+}
+
+void wipe_list(char *chan, int level) {
+	ChanInfo *c = findchan(chan);
+	if(!c) {
+		addlog(2,"Channel not found");
+	} else {
+		switch(level) {
+		case UOP_LIST:
+			c->uop_count = 0;
+			return;
+		case VOP_LIST:
+			c->vop_count = 0;
+			return;
+		case HOP_LIST:
+			c->hop_count = 0;
+			return;
+		case AOP_LIST:
+			c->aop_count = 0;
+			return;
+		case SOP_LIST:
+			c->sop_count = 0;
+			return;
+		case COP_LIST:
+			c->cop_count = 0;
+			return;
+		case QOP_LIST:
+			c->qop_count = 0;
+			return;
+		default:
+			return;
+		}
+	}
+}
+
+void dec_list(char *chan, int level) {
+	ChanInfo *c = findchan(chan);
+	if(!c) {
+		addlog(2,"Channel not found");
+	} else {
+		switch(level) {
+		case UOP_LIST:
+			c->uop_count--;
+			return;
+		case VOP_LIST:
+			c->vop_count--;
+			return;
+		case HOP_LIST:
+			c->hop_count--;
+			return;
+		case AOP_LIST:
+			c->aop_count--;
+			return;
+		case SOP_LIST:
+			c->sop_count--;
+			return;
+		case COP_LIST:
+			c->cop_count--;
+			return;
+		case QOP_LIST:
+			c->qop_count--;
+			return;
+		default:
+			return;
+		}
+	}
 }
 
 /********************************************************************/

@@ -1008,7 +1008,7 @@ static void load_opers(void) {
 /**
  * load the akill table into the memory
  */
-static void load_akills(void) {
+void load_akills(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
 	const char *tail;

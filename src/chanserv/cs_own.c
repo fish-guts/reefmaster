@@ -1,7 +1,7 @@
 /*
- * cs_op.c
+ * cs_own.c
  *
- *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
+ *      Copyright (c) 2016 Severin Mueller <severin.mueller@reefmaster.org>
  *
  *      This program is free software; you can redistribute it and/or modify
  *      it under the terms of the GNU General Public License as published by
@@ -23,16 +23,16 @@
 
 /********************************************************************/
 /**
- * handle the DEOP command
+ * handle the ADMIN command
  */
-void cs_deop(char *src, int ac, char **av) {
+void cs_own(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEOP");
-		notice(cs_name,src,CS_RPL_HLP,"DEOP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"OWN");
+		notice(cs_name,src,CS_RPL_HLP,"OWN");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -50,35 +50,35 @@ void cs_deop(char *src, int ac, char **av) {
 	c = findchan(chan);
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
-	if(level_src<AOP_LIST) {
-		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+	if(level_src<QOP_LIST) {
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Qop");
 		return;
 	}
-	if(level_target<AOP_LIST) {
+	if(level_target<QOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Qop");
 			return;
 		} else {
 			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
-	deop(cs_name,nick,chan);
+	deadmin(cs_name,nick,chan);
 	return;
 }
 
 /********************************************************************/
 /**
- * handle the OP command
+ * handle the DEADMIN command
  */
-void cs_op(char *src, int ac, char **av) {
+void cs_deown(char *src, int ac, char **av) {
 	char *nick,*chan;
 	int level_src,level_target;
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_OP_ERR_USAGE);
-		notice(cs_name,src,CS_RPL_HLP,"OP");
+		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEOWN");
+		notice(cs_name,src,CS_RPL_HLP,"DEOWN");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -96,19 +96,19 @@ void cs_op(char *src, int ac, char **av) {
 	c = findchan(chan);
 	level_src = cs_xop_get_level(u,c);
 	level_target = cs_xop_get_level(u1,c);
-	if(level_src<AOP_LIST) {
-		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+	if(level_src<QOP_LIST) {
+		notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Qop");
 		return;
 	}
-	if(level_target<AOP_LIST) {
+	if(level_target<QOP_LIST) {
 		if(stricmp(src,nick)==0) {
-			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Aop");
+			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS,"Qop");
 			return;
 		} else {
 			notice(cs_name,src,CS_XOP_ERR_HIGHERACCESS2,nick);
 			return;
 		}
 	}
-	do_op(cs_name,nick,chan);
+	deadmin(cs_name,nick,chan);
 	return;
 }

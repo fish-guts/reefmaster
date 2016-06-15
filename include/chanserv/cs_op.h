@@ -8,6 +8,7 @@
 #ifndef CS_DEOP_H_
 #define CS_DEOP_H_
 
+void cs_op(char *src, int ac, char **av);
 void cs_deop(char *src, int ac, char **av);
 
 
