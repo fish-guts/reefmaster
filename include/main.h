@@ -3,7 +3,6 @@
 
 #include "sqlite.h"
 
-
 #include <arpa/inet.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
@@ -25,13 +24,12 @@
 #include <regex.h>
 
 
-
+#include "db/database.h"
 #include "serverprotocol.h"
 #include "channel.h"
 #include "chanserv/chanserv.h"
 #include "commands.h"
 #include "config.h"
-#include "database.h"
 #include "functions.h"
 #include "help.h"
 #include "irc.h"
@@ -57,6 +55,17 @@ void start_app(void);
 void print_welcome_msg(void);
 void create_files(void);
 
+/* database functions */
+void db_save_auth(void);
+void load_botserv(void);
+void load_chanserv(void);
+void load_nickserv(void);
+void load_opers(void);
+void save_botserv_db(void);
+void save_chanserv_db(void);
+void save_nickserv_db(void);
+
+
 /* Definitions */
 
 #define LOAD_OK 0
@@ -74,6 +83,10 @@ void create_files(void);
 #define STRMAX 33
 #define STRMAX2 64
 #define STRMAX3 128
+#define SQL_OK 0
+#define SQL_ERROR 1
+#define LOG_DEBUG 1
+#define LOG_ERROR 2
 
 #define UOP			0x0001
 #define OP			0x0002

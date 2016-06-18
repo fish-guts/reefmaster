@@ -159,49 +159,51 @@ INSERT INTO BOTS (NICKNAME,PASSWORD,USERNAME,REALNAME) VALUES ("Chanbot","hoppus
 INSERT INTO BOTS (NICKNAME,PASSWORD,USERNAME,REALNAME) VALUES ("Wulfbot","hoppus123","chanserv","Channel Bot");
 INSERT INTO BOTS (NICKNAME,PASSWORD,USERNAME,REALNAME) VALUES ("X","hoppus123","chanserv","Channel Bot");
 
-
-INSERT INTO NICKS VALUES(1, "Fish-Guts",	"hoppus123","fish-guts@reefmaster.ch",	"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(2,"FG",		"hoppus123","fish-guts@reefmaster.ch",	"FG",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(3,"Jamc",		"hoppus123","jamc@reefmaster.ch",	"Jamc",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(4,"ventura",		"hoppus123","ventura@reefmaster.ch",	"ventura",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(5,"CgIMaN",		"hoppus123","cgiman@reefmaster.ch",	"CgiMaN",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(6,"leota",		"hoppus123","leota@reefmaster.ch",	"leota",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(7,"Schwan",		"hoppus123","schwan@reefmaster.ch",	"schwan",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(8,"Delfin",		"hoppus123","delfin@reefmaster.ch",	"Delfin",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(9,"V",			"hoppus123","vi@reefmaster.ch",		"V",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(10,"pixel",		"hoppus123","pixel@reefmaster.ch",	"pixel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(11,"waterlily",	"hoppus123","waterlily@reefmaster.ch",	"waterlily",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(12,"dungeon_lady",	"hoppus123","dragonia@reefmaster.ch",	"dl",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(13,"Angel",		"hoppus123","angel@reefmaster.ch",	"Angel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(14,"FischerZH",	"hoppus123","fisher@reefmaster.ch",	"Kenny Fischer",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(15,"Gargo",		"hoppus123","gargo@reefmaster.ch",	"Gargo",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(16,"JiLe",		"hoppus123","juuls@reefmaster.ch",	"JuLchen",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(17,"Earthworm",	"hoppus123","ew@reefmaster.ch",		"Jonas",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(18,"Valentin",		"hoppus123","valentin@reefmaster.ch",	"Valentin",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(19,"Kane",		"hoppus123","dark_kane@reefmaster.ch",	"Kane",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(21,"lemon_w",		"hoppus123","limone@reefmaster.ch",	"lämän",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(22,"Audrey",		"hoppus123","audrey@reefmaster.ch",	"Audrey",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(23,"mk",		"hoppus123","mk@reefmaster.ch",		"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(24,"ake",		"hoppus123","ake@reefmaster.ch",	"ake",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(25,"Adler",		"hoppus123","adler@reefmaster.ch",	"Adler",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(26,"rockoli",		"hoppus123","rockoli@reefmaster.ch",	"rockoli",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(27,"Atlas",		"hoppus123","Atlas@reefmaster.ch",	"Atlas",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(28,"Carol",		"hoppus123","carol@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(29,"red-dog",		"hoppus123","red-dog@reefmaster.ch",	"fido-rosso",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(30,"moendli",		"hoppus123","moendli@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(31,"opso",		"hoppus123","opso@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(32,"S",		"snox123","snox@reefmaster.ch",		"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(33,"Carol",		"hoppus123","bucky@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(34,"Pazzolina",	"hoppus123","pazzolina@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(35,"liesel",		"hoppus123","liesel@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(36,"Xenon",		"hoppus123","xenon@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(37,"Sting",		"hoppus123","Sting@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(38,"SNoX",		"snox123","snox@reefmaster.ch",		"SnOX",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(39,"Topi",		"hoppus123","topi@reefmaster.ch",	"Topi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(40,"ChuckyB",		"hoppus123","chuckyb@reefmaster.ch",	"ChuckyB",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(41,"ErnIe",		"hoppus123","ernie@reefmaster.ch",	"Ernie",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(42,"ll4mat",		"hoppus123","ll4mat@reefmaster.ch",	"ll4mat",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(43,"SEV-Y",		"hoppus123","sevi@reefmaster.ch",	"Sevi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS 
+(NICK_ID, NICKNAME,  PASSWORD, MASK, REALNAME,LAST_SEEN,REGISTERED,HIDEMAIL, MEMOMAX,URL,EMAIL,MFORWARD_TO,MFORWARD,NOOP,NOMEMO,AUTH_CHAN,AUTH_NOTIFY,PROTECT,MLOCK,MNOTIFY) VALUES(
+(1, "Fish-Guts",	"hoppus123","fish-guts@reefmaster.ch",	"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(2,"FG",		"hoppus123","fish-guts@reefmaster.ch",	"FG",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(3,"Jamc",		"hoppus123","jamc@reefmaster.ch",	"Jamc",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(4,"ventura",		"hoppus123","ventura@reefmaster.ch",	"ventura",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(5,"CgIMaN",		"hoppus123","cgiman@reefmaster.ch",	"CgiMaN",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(6,"leota",		"hoppus123","leota@reefmaster.ch",	"leota",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(7,"Schwan",		"hoppus123","schwan@reefmaster.ch",	"schwan",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(8,"Delfin",		"hoppus123","delfin@reefmaster.ch",	"Delfin",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(9,"V",			"hoppus123","vi@reefmaster.ch",		"V",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(10,"pixel",		"hoppus123","pixel@reefmaster.ch",	"pixel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(11,"waterlily",	"hoppus123","waterlily@reefmaster.ch",	"waterlily",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(12,"dungeon_lady",	"hoppus123","dragonia@reefmaster.ch",	"dl",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(13,"Angel",		"hoppus123","angel@reefmaster.ch",	"Angel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(14,"FischerZH",	"hoppus123","fisher@reefmaster.ch",	"Kenny Fischer",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(15,"Gargo",		"hoppus123","gargo@reefmaster.ch",	"Gargo",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(16,"JiLe",		"hoppus123","juuls@reefmaster.ch",	"JuLchen",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(17,"Earthworm",	"hoppus123","ew@reefmaster.ch",		"Jonas",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(18,"Valentin",		"hoppus123","valentin@reefmaster.ch",	"Valentin",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(19,"Kane",		"hoppus123","dark_kane@reefmaster.ch",	"Kane",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(21,"lemon_w",		"hoppus123","limone@reefmaster.ch",	"lämän",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,0,1,2,"ntr",0),
+(22,"Audrey",		"hoppus123","audrey@reefmaster.ch",	"Audrey",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(23,"mk",		"hoppus123","mk@reefmaster.ch",		"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(24,"ake",		"hoppus123","ake@reefmaster.ch",	"ake",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(25,"Adler",		"hoppus123","adler@reefmaster.ch",	"Adler",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(26,"rockoli",		"hoppus123","rockoli@reefmaster.ch",	"rockoli",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(27,"Atlas",		"hoppus123","Atlas@reefmaster.ch",	"Atlas",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(28,"Carol",		"hoppus123","carol@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(29,"red-dog",		"hoppus123","red-dog@reefmaster.ch",	"fido-rosso",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(30,"moendli",		"hoppus123","moendli@reefmaster.ch",	"moendli",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(31,"opso",		"hoppus123","opso@reefmaster.ch",	"opso",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(32,"S",		"snox123",  "snox@reefmaster.ch",	"Snox",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(33,"Carol",		"hoppus123","bucky@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(34,"Pazzolina",	"hoppus123","pazzolina@reefmaster.ch",	"Pazzolina",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(35,"liesel",		"hoppus123","liesel@reefmaster.ch",	"liesel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(36,"Xenon",		"hoppus123","xenon@reefmaster.ch",	"Xenon",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(37,"Sting",		"hoppus123","Sting@reefmaster.ch",	"Sting",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(38,"SNoX",		"snox123",  "snox@reefmaster.ch",	"SnOX",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(39,"Topi",		"hoppus123","topi@reefmaster.ch",	"Topi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(40,"ChuckyB",		"hoppus123","chuckyb@reefmaster.ch",	"ChuckyB",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(41,"ErnIe",		"hoppus123","ernie@reefmaster.ch",	"Ernie",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(42,"ll4mat",		"hoppus123","ll4mat@reefmaster.ch",	"ll4mat",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(43,"SEV-Y",		"hoppus123","sevi@reefmaster.ch",	"Sevi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0),
+(44,"Indy",		"hoppus123","indy@reefmaster.ch",	"Indy",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",NULL,0,1,0,1,1,2,"ntr",0));
 
 
 

@@ -1,6 +1,6 @@
 RM := rm -rf
 INCLUDES = -Iinclude 
-SRCS := $(wildcard src/*.c src/nickserv/*.c src/chanserv/*.c src/botserv/*.c src/operserv/*.c src/adminserv/*.c)
+SRCS := $(wildcard src/*.c src/nickserv/*.c src/chanserv/*.c src/botserv/*.c src/operserv/*.c src/adminserv/*.c src/db/*.c)
 OBJS := $(addprefix obj/,$(notdir $(SRCS:.c=.o))) 
 OBJ_DIR := obj
 LFLAGS = -Llib
@@ -43,6 +43,7 @@ obj/%.o: src/botserv/%.c
 	@echo 'Compiling Botserv'
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
 	@echo 'done...'
+
 obj/%.o: src/operserv/%.c
 	@mkdir -p obj
 	@echo 'Compiling Operserv'
@@ -52,6 +53,13 @@ obj/%.o: src/operserv/%.c
 obj/%.o: src/adminserv/%.c
 	@mkdir -p obj
 	@echo 'Compiling Adminserv'
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
+
+	@echo 'done...'
+
+obj/%.o: src/db/%.c
+	@mkdir -p obj
+	@echo 'Compiling Database Files'
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ $<
 	@echo 'done...'
 

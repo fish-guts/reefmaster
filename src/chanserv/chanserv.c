@@ -399,11 +399,6 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	strscpy(c->pass, pass, PASSMAX);
 	strscpy(c->description, desc, DESCMAX);
 	c->founder = findnick(src);
-	c->aop_enabled = 1;
-	c->uop_enabled = 1;
-	c->vop_enabled = 1;
-	c->hop_enabled = 1;
-	c->sop_enabled = 1;
 	c->keeptopic = cs_keeptopic;
 	c->opwatch = cs_opwatch;
 	if(c->opwatch)
