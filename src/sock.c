@@ -101,8 +101,9 @@ void process(void) {
 	strscpy(buf, ircbuf, sizeof(buf));
 	if (*buf == ':') {
 		pch = strpbrk(buf, " ");
-		if (!pch)
+		if (!pch) {
 			return;
+		}
 		*pch = 0;
 		while (isspace(*++pch))
 			;
@@ -125,9 +126,8 @@ void process(void) {
 	}
 
 	strscpy(cmd, buf, sizeof(cmd));
-
 	ac = tokenize(pch, &av);
-	if ((ic = find_cmd(cmd))) {
+	if ((ic = find_cmd(cmd)) != NULL) {
 		if (ic->func) {
 			ic->func(source, ac, av);
 		}
@@ -137,7 +137,6 @@ void process(void) {
 	} else {
 		addlog(2, APP_ERR_UNKNOWNMSG, ircbuf);
 	}
-	free(av);
 }
 
 

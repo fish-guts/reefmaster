@@ -63,7 +63,7 @@ void create_files(void);
 #define ERRCODE_0 0x900A001
 #define ERRCODE_1 0x900A002
 #define CMD_ARR_SIZE 5
-#define IRCSERVER s_name;
+#define IRCSERVER s_name
 #define IRCBUF_SIZE 100000
 #define TO_COLLIDE	0
 #define TO_RELEASE	1

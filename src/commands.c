@@ -59,6 +59,7 @@ irc_cmd irc_cmds[] = {
 	{ "SERVER",	  NULL 		},
 	{ "SMO",	  NULL 		},
 	{ "TOPIC",    c_topic 	},
+	{ NULL,	 	 NULL	    },
 }; 
 
 /********************************************************************/
@@ -262,7 +263,7 @@ void c_privmsg(char *src,int ac,char **av) {
 		dest = sstrdup(pch);
 	}
 	else
-		dest = av[0];		
+		dest = av[0];
 	if(stricmp(dest,ns_name)==0)
 		nickserv(src,av[1]);
 	if(stricmp(dest,cs_name)==0) {
