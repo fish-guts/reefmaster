@@ -1854,7 +1854,6 @@ int config_load(const char *file) {
 		ns_maxlist = cfg_getint(ns_list, "maxlist");
 		ns_operonly = cfg_getint(ns_list, "operonly");
 		ns_access_max = cfg_getint(ns_list, "access_max");
-		printf("ns_expiry: %i\n",(int)cfg_getint(ns_list, "access_max"));
 
 		/* section password */
 		ns_password = cfg_getsec(nickserv, "password");
