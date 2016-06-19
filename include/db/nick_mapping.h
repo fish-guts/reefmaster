@@ -20,13 +20,12 @@
 #define NICK_URL			9
 #define NICK_EMAIL			10
 #define NICK_MFORWARD		11
-#define NICK_MFORWARD_TO	12
-#define NICK_NOOP			13
-#define NICK_NOMEMO			14
-#define NICK_AUTH_CHAN		15
-#define NICK_AUTH_NOTIFY	16
-#define NICK_PROTECT		17
-#define NICK_MLOCK			18
-#define NICK_MNOTIFY		19
+#define NICK_NOOP			12
+#define NICK_NOMEMO			13
+#define NICK_AUTH_CHAN		14
+#define NICK_AUTH_NOTIFY	15
+#define NICK_PROTECT		16
+#define NICK_MLOCK			17
+#define NICK_MNOTIFY		18
 
 #endif /* INCLUDE_DB_NICK_MAPPING_H_ */

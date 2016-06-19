@@ -92,8 +92,9 @@ void ns_info(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_INFO_RPL_PROTECT2);
 	}
 
-	if (n->mforward == 1) {
-		notice(ns_name, src, NS_INFO_RPL_MFORWARD, n->mforward_to);
+	if (n->mforward > 0) {
+		NickInfo *n2 = find_nick_by_id(n->mforward);
+		notice(ns_name, src, NS_INFO_RPL_MFORWARD, n2->nick);
 	}
 
 	if (n->nomemo) {

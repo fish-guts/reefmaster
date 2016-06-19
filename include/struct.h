@@ -214,7 +214,6 @@ struct _nickinfo {
     const char *last_usermask;
     unsigned short memomax;
     int mforward;
-    char *mforward_to;
     char *mlock;
     short mnotify;
     char nick[NICKMAX];

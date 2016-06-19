@@ -11,6 +11,7 @@
 
 const char *ns_update_nick_query =
 		"INSERT INTO 'NICKS' ("
+				"NICK_ID,"
 				"NICKNAME,"
 				"PASSWORD,"
 				"MASK,"
@@ -21,7 +22,6 @@ const char *ns_update_nick_query =
 				"MEMOMAX,"
 				"URL,"
 				"EMAIL,"
-				"MFORWARD_TO,"
 				"MFORWARD,"
 				"NOOP,"
 				"NOMEMO,"
@@ -30,7 +30,7 @@ const char *ns_update_nick_query =
 				"PROTECT,"
 				"MLOCK,"
 				"MNOTIFY) "
-				"VALUES('%s','%s','%s','%s','%ld','%ld','%i','%i','%i','%s','%i','%i','%i','%i','%i','%i','%i','%s','%i');";
+				"VALUES('%i','%s','%s','%s','%s','%ld','%ld','%i','%i','%s','%i','%i','%i','%i','%i','%i','%i','%s','%i');";
 
 const char *ns_update_auth_query = "INSERT INTO 'NS_AUTH' ("
 		"TARGET_TYPE,"
@@ -124,7 +124,6 @@ const char *ns_create_nicks_table = "CREATE TABLE 'NICKS'("
 		"MEMOMAX INT,"
 		"URL VARCHAR(128),"
 		"EMAIL VARCHAR(65),"
-		"MFORWARD_TO VARCHAR(33),"
 		"MFORWARD INT,"
 		"NOOP TINYINT,"
 		"NOMEMO TINYINT,"
@@ -135,6 +134,7 @@ const char *ns_create_nicks_table = "CREATE TABLE 'NICKS'("
 		"MNOTIFY TINYINT"
 		");";
 
+const char *ns_load_nicks = "SELECT  * FROM NICKS WHERE NICKS.NICKNAME='%s';";
 
 void db_save_auth(void);
 void load_nickserv(void);

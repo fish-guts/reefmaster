@@ -34,10 +34,10 @@ void load_database(void) {
 		load_nickserv();
 	}
 	if (cs_enabled) {
-		load_chanserv();
+		//load_chanserv();
 	}
 	if (os_enabled) {
-		load_opers();
+		//load_opers();
 	}
 	addlog(1, LOG_DBG_EXIT, "load_database");
 }
@@ -52,9 +52,9 @@ void save_database(void) {
 	struct timeval stop, start;
 	gettimeofday(&start, NULL);
 	double start_mill = (start.tv_sec) * 1000 + (start.tv_usec) / 1000;
-	save_botserv_db();
+	//save_botserv_db();
 	save_nickserv_db();
-	save_chanserv_db();
+	//save_chanserv_db();
 	gettimeofday(&stop, NULL);
 	double end_mill = (stop.tv_sec) * 1000 + (stop.tv_usec) / 1000;
 	double time = end_mill - start_mill;

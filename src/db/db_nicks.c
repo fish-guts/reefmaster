@@ -26,6 +26,7 @@ static int db_add_nick(sqlite3 *db, NickInfo *n) {
 	char *sqlite_err = 0;
 	sprintf(sql,
 			ns_update_nick_query,
+			n->id,
 			n->nick,
 			n->pass,
 			n->last_usermask,
@@ -36,7 +37,6 @@ static int db_add_nick(sqlite3 *db, NickInfo *n) {
 			n->memomax,
 			n->url,
 			n->email,
-			n->mforward_to,
 			n->mforward,
 			n->noop,
 			n->nomemo,
@@ -222,7 +222,7 @@ static NickInfo *find_nick_by_name(char *nick) {
 	NickInfo *n = scalloc(sizeof(NickInfo), 1);
 	if (sqlite3_open(DB, &db) == SQLITE_OK) {
 		char sql[256];
-		sprintf(sql, "SELECT * FROM NICKS WHERE NICKS.NICKNAME='%s';", nick);
+		sprintf(sql, ns_load_nicks, nick);
 		int error = sqlite3_prepare_v2(db, sql, 1000, &stmt, &tail);
 		if (error != SQLITE_OK) {
 			addlog(LOG_ERROR, LOG_ERR_SQLERROR, "in find_nick_by_name()");
@@ -230,30 +230,25 @@ static NickInfo *find_nick_by_name(char *nick) {
 			return NULL;
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			n->id = sqlite3_column_int(stmt, 0);
-			strscpy(n->nick, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
-			strscpy(n->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
-			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, 3));
-			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, 4));
-			n->last_seen = sqlite3_column_int(stmt, 5);
-			n->time_reg = sqlite3_column_int(stmt, 6);
-			n->hidemail = sqlite3_column_int(stmt, 7);
-			n->memomax = sqlite3_column_int(stmt, 8);
-			n->url = sstrdup((char*) sqlite3_column_text(stmt, 9));
-			n->email = sstrdup((char*) sqlite3_column_text(stmt, 10));
-			if ((char*) sqlite3_column_text(stmt, 11)) {
-				n->mforward_to = sstrdup((char*) sqlite3_column_text(stmt, 11));
-			} else {
-				n->mforward_to = NULL;
-			}
-			n->mforward = sqlite3_column_int(stmt, 12);
-			n->noop = sqlite3_column_int(stmt, 13);
-			n->nomemo = sqlite3_column_int(stmt, 14);
-			n->auth_chan = sqlite3_column_int(stmt, 15);
-			n->auth_notify = sqlite3_column_int(stmt, 16);
-			n->protect = sqlite3_column_int(stmt, 17);
-			n->mlock = (char*) sqlite3_column_text(stmt, 18);
-			n->mnotify = sqlite3_column_int(stmt, 19);
+			n->id = sqlite3_column_int(stmt, NICK_ID);
+			strscpy(n->nick, (char*) sqlite3_column_text(stmt, NICK_NICKNAME), NICKMAX);
+			strscpy(n->pass, (char*) sqlite3_column_text(stmt, NICK_PASSWORD), PASSMAX);
+			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, NICK_MASK));
+			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, NICK_REALNAME));
+			n->last_seen = sqlite3_column_int(stmt, NICK_LAST_SEEN);
+			n->time_reg = sqlite3_column_int(stmt, NICK_REGISTERED);
+			n->hidemail = sqlite3_column_int(stmt, NICK_HIDEMAIL);
+			n->memomax = sqlite3_column_int(stmt, NICK_MEMOMAX);
+			n->url = sstrdup((char*) sqlite3_column_text(stmt, NICK_URL));
+			n->email = sstrdup((char*) sqlite3_column_text(stmt, NICK_EMAIL));
+			n->mforward = sqlite3_column_int(stmt, NICK_MFORWARD);
+			n->noop = sqlite3_column_int(stmt, NICK_NOOP);
+			n->nomemo = sqlite3_column_int(stmt, NICK_NOMEMO);
+			n->auth_chan = sqlite3_column_int(stmt, NICK_AUTH_CHAN);
+			n->auth_notify = sqlite3_column_int(stmt, NICK_AUTH_CHAN);
+			n->protect = sqlite3_column_int(stmt, NICK_PROTECT);
+			n->mlock = (char*) sqlite3_column_text(stmt, NICK_MLOCK);
+			n->mnotify = sqlite3_column_int(stmt, NICK_MNOTIFY);
 			n->notifylist = NULL;
 			n->accesslist = NULL;
 		}
@@ -343,30 +338,26 @@ static void load_nicks(void) {
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			NickInfo *n = scalloc(sizeof(NickInfo), 1);
-			n->id = sqlite3_column_int(stmt, 0);
-			strscpy(n->nick, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
-			strscpy(n->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
-			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, 3));
-			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, 4));
-			n->last_seen = sqlite3_column_int(stmt, 5);
-			n->time_reg = sqlite3_column_int(stmt, 6);
-			n->hidemail = sqlite3_column_int(stmt, 7);
-			n->memomax = sqlite3_column_int(stmt, 8);
-			n->url = sstrdup((char*) sqlite3_column_text(stmt, 9));
-			n->email = sstrdup((char*) sqlite3_column_text(stmt, 10));
-			if ((char*) sqlite3_column_text(stmt, 11)) {
-				n->mforward_to = sstrdup((char*) sqlite3_column_text(stmt, 11));
-			} else {
-				n->mforward_to = NULL;
-			}
-			n->mforward = sqlite3_column_int(stmt, 12);
-			n->noop = sqlite3_column_int(stmt, 13);
-			n->nomemo = sqlite3_column_int(stmt, 14);
-			n->auth_chan = sqlite3_column_int(stmt, 15);
-			n->auth_notify = sqlite3_column_int(stmt, 16);
-			n->protect = sqlite3_column_int(stmt, 17);
-			n->mlock = sstrdup((char*) sqlite3_column_text(stmt, 18));
-			n->mnotify = sqlite3_column_int(stmt, 19);
+			n->id = sqlite3_column_int(stmt, NICK_ID);
+			printf("loading nickname %s\n",(char*) sqlite3_column_text(stmt, NICK_NICKNAME));
+			strscpy(n->nick, (char*) sqlite3_column_text(stmt, NICK_NICKNAME), NICKMAX);
+			strscpy(n->pass, (char*) sqlite3_column_text(stmt, NICK_PASSWORD), PASSMAX);
+			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, NICK_MASK));
+			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, NICK_REALNAME));
+			n->last_seen = sqlite3_column_int(stmt, NICK_LAST_SEEN);
+			n->time_reg = sqlite3_column_int(stmt, NICK_REGISTERED);
+			n->hidemail = sqlite3_column_int(stmt, NICK_HIDEMAIL);
+			n->memomax = sqlite3_column_int(stmt, NICK_MEMOMAX);
+			n->url = sstrdup((char*) sqlite3_column_text(stmt, NICK_URL));
+			n->email = sstrdup((char*) sqlite3_column_text(stmt, NICK_EMAIL));
+			n->mforward = sqlite3_column_int(stmt, NICK_MFORWARD);
+			n->noop = sqlite3_column_int(stmt, NICK_NOOP);
+			n->nomemo = sqlite3_column_int(stmt, NICK_NOMEMO);
+			n->auth_chan = sqlite3_column_int(stmt, NICK_AUTH_CHAN);
+			n->auth_notify = sqlite3_column_int(stmt, NICK_AUTH_NOTIFY);
+			n->protect = sqlite3_column_int(stmt, NICK_PROTECT);
+			n->mlock = sstrdup((char*) sqlite3_column_text(stmt, NICK_MLOCK));
+			n->mnotify = sqlite3_column_int(stmt, NICK_MNOTIFY);
 			n->notifylist = NULL;
 			n->accesslist = NULL;
 			n->next = nicklist;

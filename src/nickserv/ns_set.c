@@ -219,8 +219,7 @@ void ns_set_mforward(char *src, int ac, char **av) {
 	}
 	NickInfo *n = findnick(src);
 	if (stricmp(av[2], "OFF") == 0) {
-		n->mforward = 0;
-		free(n->mforward_to);
+		n->mforward = -1;
 		notice(ns_name, src, NS_SET_MFORWARD_RPL_OFF);
 		return;
 	} else {
@@ -234,8 +233,8 @@ void ns_set_mforward(char *src, int ac, char **av) {
 			return;
 		}
 		notice(ns_name, src, NS_SET_MFORWARD_RPL_ON, av[2]);
-		n->mforward = 1;
-		n->mforward_to = sstrdup(nick);
+		NickInfo *n2 = findnick(nick);
+		n->mforward = n2->id;
 		return;
 	}
 }
