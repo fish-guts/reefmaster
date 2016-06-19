@@ -30,7 +30,7 @@ const char *ns_update_nick_query =
 				"PROTECT,"
 				"MLOCK,"
 				"MNOTIFY) "
-				"VALUES('%i','%s','%s','%s','%s','%ld','%ld','%i','%i','%s','%i','%i','%i','%i','%i','%i','%i','%s','%i');";
+				"VALUES('%i','%s','%s','%s','%s','%ld','%ld','%i','%i','%s','%s','%i','%i','%i','%i','%i','%i','%s','%i');";
 
 const char *ns_update_auth_query = "INSERT INTO 'NS_AUTH' ("
 		"TARGET_TYPE,"

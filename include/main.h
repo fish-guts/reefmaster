@@ -143,6 +143,14 @@ void save_nickserv_db(void);
 #define CONFIG_FILE 	"services.conf"
 #define DB				"db/services.db"
 
+/* current max ids' */
+
+int max_ns_id;
+int max_cs_id;
+int max_bs_id;
+int max_os_id;
+
+
 /* service status flags */
 
 int ns_status;

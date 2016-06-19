@@ -45,13 +45,12 @@ static int db_add_nick(sqlite3 *db, NickInfo *n) {
 			n->protect,
 			n->mlock,
 			n->mnotify);
-
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(LOG_ERROR, "Error in Function db_add_nick");
 		addlog(LOG_ERROR, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		return 0;
+		return SQL_ERROR;
 	}
-	return 1;
+	return SQL_OK;
 }
 
 /****************************************************************************************/
@@ -61,13 +60,12 @@ static int db_add_nick(sqlite3 *db, NickInfo *n) {
 static int db_add_access(sqlite3 *db, NickInfo *n, myacc *a) {
 	char sql[2048];
 	char *sqlite_err = 0;
-	int nick = findnick(n->nick)->id;
-	sprintf(sql, ns_update_access_query, nick, a->mask);
+	sprintf(sql, ns_update_access_query, n->id, a->mask);
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(LOG_ERROR, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		return 0;
+		return SQL_ERROR;
 	}
-	return 1;
+	return SQL_OK;
 }
 
 /****************************************************************************************/
@@ -88,9 +86,9 @@ static int db_add_auth(sqlite3 *db, NickInfo *n, auth *a) {
 			a->status, a->acclevel);
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(LOG_ERROR, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		return 0;
+		return SQL_ERROR;
 	}
-	return 1;
+	return SQL_OK;
 }
 
 /****************************************************************************************/
@@ -100,14 +98,13 @@ static int db_add_auth(sqlite3 *db, NickInfo *n, auth *a) {
 static int db_add_notify(sqlite3 *db, NickInfo *n, notify *no) {
 	char sql[2048];
 	char *sqlite_err = 0;
-	int nick = findnick(n->nick)->id;
 	int notify_nick = findnick(no->nick->nick)->id;
-	sprintf(sql, ns_update_notify_query, nick, notify_nick);
+	sprintf(sql, ns_update_notify_query, n->id, notify_nick);
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(LOG_ERROR, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		return 0;
+		return SQL_ERROR;
 	}
-	return 1;
+	return SQL_OK;
 }
 
 /****************************************************************************************/
@@ -197,8 +194,9 @@ void db_save_nicks(void) {
 	sqlite3_exec(db, "DROP TABLE IF EXISTS NICKS", 0, 0, 0);
 	sqlite3_exec(db, ns_create_nicks_table, 0, 0, 0);
 	NickInfo *n = nicklist;
+	int rc;
 	while (n) {
-		if (db_add_nick(db, n) != SQL_OK) {
+		if ((rc = db_add_nick(db, n) != SQL_OK)) {
 			addlog(LOG_ERROR, "Error in db_add_nick, rolling back");
 			sqlite3_exec(db, "ROLLBACK", 0, 0, 0);
 			sqlite3_close(db);
@@ -330,7 +328,7 @@ static void load_nicks(void) {
 	const char *tail;
 
 	if (sqlite3_open(DB, &db) == SQLITE_OK) {
-		int error = sqlite3_prepare_v2(db, "select * from nicks", 1000, &stmt,
+		int error = sqlite3_prepare_v2(db, "select * from nicks ORDER BY NICK.NICK_ID ASC", 1000, &stmt,
 				&tail);
 		if (error != SQLITE_OK) {
 			addlog(LOG_ERROR, LOG_ERR_SQLERROR, "in load_nicks()");
@@ -339,7 +337,6 @@ static void load_nicks(void) {
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			NickInfo *n = scalloc(sizeof(NickInfo), 1);
 			n->id = sqlite3_column_int(stmt, NICK_ID);
-			printf("loading nickname %s\n",(char*) sqlite3_column_text(stmt, NICK_NICKNAME));
 			strscpy(n->nick, (char*) sqlite3_column_text(stmt, NICK_NICKNAME), NICKMAX);
 			strscpy(n->pass, (char*) sqlite3_column_text(stmt, NICK_PASSWORD), PASSMAX);
 			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, NICK_MASK));
@@ -361,9 +358,11 @@ static void load_nicks(void) {
 			n->notifylist = NULL;
 			n->accesslist = NULL;
 			n->next = nicklist;
-			if (nicklist)
+			if (nicklist) {
 				nicklist->prev = n;
+			}
 			nicklist = n;
+			max_ns_id = n->id;
 		}
 	}
 	sqlite3_close(db);
@@ -415,7 +414,6 @@ static void load_notify(void) {
  */
 void save_nickserv_db(void) {
 	db_save_nicks();
-	update_nick_ids();
 	db_save_notify();
 	db_save_access();
 }
