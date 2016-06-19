@@ -29,5 +29,4 @@
 #define	CHAN_URL		18
 #define	CHAN_TOPICLOCK	19
 
-
 #endif /* INCLUDE_DB_CHAN_MAPPING_H_ */

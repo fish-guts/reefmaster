@@ -86,59 +86,54 @@ void load_chans(void) {
 	sqlite3 *db;
 	sqlite3_stmt *stmt;
 	const char *tail;
+
 	if (sqlite3_open(DB, &db) == SQLITE_OK) {
 		int error = sqlite3_prepare_v2(db, load_cs_chans, 1000, &stmt, &tail);
+
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_chans()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
+
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
-			c->id = sqlite3_column_int(stmt, 0);
-			strscpy(c->name, (char*) sqlite3_column_text(stmt, 1), NICKMAX);
-			strscpy(c->pass, (char*) sqlite3_column_text(stmt, 2), PASSMAX);
-			strscpy(c->description, (char*) sqlite3_column_text(stmt, 24),DESCMAX);
-			c->time_reg = sqlite3_column_int(stmt, 3);
-			if (sqlite3_column_text(stmt, 9)) {
-				c->bot = sstrdup((char*) sqlite3_column_text(stmt, 9));
-				add_bot_to_chan(c->bot, c->name);
-				add_bot(c->name, c->name);
-			} else {
-				c->bot = NULL;
+			c->id = sqlite3_column_int(stmt, CHAN_ID);
+			strscpy(c->name, (char*) sqlite3_column_text(stmt, CHAN_NAME), NICKMAX);
+			strscpy(c->pass, (char*) sqlite3_column_text(stmt, CHAN_PASS), PASSMAX);
+			strscpy(c->description, (char*) sqlite3_column_text(stmt, CHAN_DESC),DESCMAX);
+			c->time_reg = sqlite3_column_int(stmt, CHAN_TIME_REG);
+			c->bot_id = sqlite3_column_int(stmt, CHAN_BOT);
+			c->founder = sqlite3_column_int(stmt, CHAN_FOUNDER);
+			c->successor = sqlite3_column_int(stmt, CHAN_SUCCESSOR);
+			c->mlock = sstrdup((char*) sqlite3_column_text(stmt, CHAN_MLOCK));
+			if (sqlite3_column_text(stmt, CHAN_TOPIC)) {
+				c->topic = sstrdup((char*) sqlite3_column_text(stmt, CHAN_TOPIC));
 			}
-			c->founder = findnick((char*) sqlite3_column_text(stmt, 10));
-			if (sqlite3_column_text(stmt, 11)) {
-				c->successor = findnick((char*) sqlite3_column_text(stmt, 11));
-			} else {
-				c->successor = NULL;
+			if (sqlite3_column_text(stmt, CHAN_TOPIC_USER)) {
+				c->topic_user = sstrdup((char*) sqlite3_column_text(stmt, CHAN_TOPIC_USER));
 			}
-			c->mlock = sstrdup((char*) sqlite3_column_text(stmt, 12));
-			if (sqlite3_column_text(stmt, 13)) {
-				c->topic = sstrdup((char*) sqlite3_column_text(stmt, 13));
+			if (sqlite3_column_int(stmt, CHAN_TOPIC_TIME)) {
+				c->topic_time = sqlite3_column_int(stmt, CHAN_TOPIC_TIME);
 			}
-			if (sqlite3_column_text(stmt, 14)) {
-				c->topic_user = sstrdup((char*) sqlite3_column_text(stmt, 14));
-			}
-			if (sqlite3_column_int(stmt, 15)) {
-				c->topic_time = sqlite3_column_int(stmt, 15);
-			}
-			c->restricted = sqlite3_column_int(stmt, 16);
-			c->keeptopic = sqlite3_column_int(stmt, 17);
-			c->autovop = sqlite3_column_int(stmt, 18);
-			c->memolevel = sqlite3_column_int(stmt, 19);
-			c->leaveops = sqlite3_column_int(stmt, 20);
-			c->opwatch = sqlite3_column_int(stmt, 21);
-			c->url = sstrdup((char*) sqlite3_column_text(stmt, 22));
-			c->topiclock = sqlite3_column_int(stmt, 23);
+			c->restricted = sqlite3_column_int(stmt, CHAN_RESTRICTED);
+			c->keeptopic = sqlite3_column_int(stmt,CHAN_KEEPTOPIC);
+			c->autovop = sqlite3_column_int(stmt, CHAN_AUTOVOP);
+			c->memolevel = sqlite3_column_int(stmt, CHAN_MEMOLEVEL);
+			c->leaveops = sqlite3_column_int(stmt, CHAN_LEAVEOPS);
+			c->opwatch = sqlite3_column_int(stmt, CHAN_OPWATCH);
+			c->url = sstrdup((char*) sqlite3_column_text(stmt, CHAN_URL));
+			c->topiclock = sqlite3_column_int(stmt, CHAN_TOPICLOCK);
 			c->aop_count = 0;
 			c->hop_count = 0;
 			c->sop_count = 0;
 			c->uop_count = 0;
 			c->vop_count = 0;
 			c->akicklist = NULL;
+			max_cs_id = c->id;
 			c->next = chans;
-			if (chans)
+			if (chans) {
 				chans->prev = c;
+			}
 			chans = c;
 		}
 	}
@@ -333,21 +328,9 @@ static void update_chan_ids(void) {
 static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 	char sql[4096];
 	char *sqlite_err = 0;
-	NickInfo *founder = findnick(c->founder->nick);
-	int successor;
-	if (c->successor) {
-		successor = findnick(c->successor->nick)->id;
-	} else {
-		successor = -1;
-	}
-	int botid;
-	if (c->bot) {
-		botid = findbot(c->bot)->id;
-	} else {
-		botid = -1;
-	}
-	sprintf(sql, cs_update_chan_query, c->name, c->pass, c->description,
-			c->time_reg, botid, founder->id, successor,
+
+	sprintf(sql, cs_update_chan_query, c->id, c->name, c->pass, c->description,
+			c->time_reg, c->bot_id, c->founder, c->successor,
 			c->mlock, c->topic, c->topic_user, c->topic_time, c->restricted,
 			c->keeptopic, c->autovop, c->memolevel, c->leaveops, c->opwatch,
 			c->url, c->topiclock);

@@ -129,11 +129,11 @@ struct _chaninfo {
 	char pass[PASSMAX];
 	char description[DESCMAX];
 	time_t time_reg;
-	char *bot;
-	NickInfo *founder;
+	int bot_id;
+	int founder;
 	char *mlock;
 	int restricted;
-	NickInfo *successor;
+	int successor;
 	char *topic;
 	char *topic_user;
 	time_t topic_time;

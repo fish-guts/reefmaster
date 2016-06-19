@@ -328,7 +328,7 @@ static void load_nicks(void) {
 	const char *tail;
 
 	if (sqlite3_open(DB, &db) == SQLITE_OK) {
-		int error = sqlite3_prepare_v2(db, "select * from nicks ORDER BY NICK.NICK_ID ASC", 1000, &stmt,
+		int error = sqlite3_prepare_v2(db, "select * from nicks ORDER BY NICKS.NICK_ID ASC", 1000, &stmt,
 				&tail);
 		if (error != SQLITE_OK) {
 			addlog(LOG_ERROR, LOG_ERR_SQLERROR, "in load_nicks()");
