@@ -121,18 +121,22 @@ void save_nickserv_db(void);
 #define AUTH_HOP	3
 #define AUTH_AOP	4
 #define AUTH_SOP	5
-#define AUTH_SUCC	6
-#define AUTH_FOUND	7
+#define AUTH_COP	6
+#define AUTH_QOP	7
+#define AUTH_SUCC	8
+#define AUTH_FOUND	9
 
 #define ACCESS_UOP		1
 #define ACCESS_VOP		2
 #define ACCESS_HOP		3
 #define ACCESS_AOP		4
 #define ACCESS_SOP		5
-#define ACCESS_SUC  	6
-#define ACCESS_FND		7
-#define ACCESS_FND_FULL	8
-#define ACCESS_SRA		9
+#define ACCESS_COP  	6
+#define ACCESS_QOP  	7
+#define ACCESS_SUC  	8
+#define ACCESS_FND		9
+#define ACCESS_FND_FULL	10
+#define ACCESS_SRA		11
 
 #define NOTIFY_ONLINE 2
 #define NOTIFY_OFFLINE 4

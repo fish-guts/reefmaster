@@ -199,7 +199,7 @@ void cs_set_founder(char *src, int ac, char **av) {
 		return;
 	}
 	NickInfo *n = findnick(nick);
-	c->founder = n;
+	c->founder = n->id;
 	notice(cs_name, src, CS_SET_FOUNDER_RPL_SUCCESS, nick, chan);
 	return;
 }

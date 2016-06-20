@@ -12,7 +12,6 @@
 static int db_add_akick(sqlite3 *db, ChanInfo *c, akick *a);
 static int db_add_op(sqlite3 *db,op *o);
 static void load_ops(void);
-static void update_chan_ids(void);
 static void load_akick(void);
 static void db_save_ops(void);
 static void db_save_chans(void);
@@ -231,33 +230,6 @@ static void db_save_akicks(void) {
 	return;
 }
 
-/****************************************************************************************/
-/**
- * find a Channel entry in the database using the specified nickname
- */
-static ChanInfo *find_chan_by_name(char *chan) {
-	sqlite3 *db;
-	sqlite3_stmt *stmt;
-	const char *tail;
-	ChanInfo *c = scalloc(sizeof(ChanInfo), 1);
-	if (sqlite3_open(DB, &db) == SQLITE_OK) {
-		char sql[256];
-		sprintf(sql, "SELECT CHAN_ID FROM CHANS WHERE CHANS.NAME='%s';", chan);
-		int error = sqlite3_prepare_v2(db, sql, 1000, &stmt, &tail);
-		if (error != SQLITE_OK) {
-			addlog(2, LOG_ERR_SQLERROR, "in find_chan_by_name()");
-			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-			return NULL;
-		}
-		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			c->id = sqlite3_column_int(stmt, 0);
-		}
-	}
-	sqlite3_close(db);
-	return c;
-
-}
-
 
 /****************************************************************************************/
 /**
@@ -306,19 +278,6 @@ void save_chanserv_db(void) {
 	db_save_auth();
 }
 
-
-/****************************************************************************************/
-/**
- * update the channel ids after saving
- */
-static void update_chan_ids(void) {
-	ChanInfo *c = chans;
-	while(c) {
-		int id = find_chan_by_name(c->name)->id;
-		c->id = id;
-		c = c->next;
-	}
-}
 
 /****************************************************************************************/
 /**

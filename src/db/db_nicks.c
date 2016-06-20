@@ -14,7 +14,6 @@ static int db_add_nick(sqlite3 *db, NickInfo *n);
 static int db_add_notify(sqlite3 *db, NickInfo *n, notify *no);
 static void db_save_access(void);
 static void load_notify(void);
-static void update_nick_ids(void);
 static void load_access(void);
 
 /****************************************************************************************/
@@ -211,54 +210,6 @@ void db_save_nicks(void) {
 
 /****************************************************************************************/
 /**
- * find a nickname in the database using the specified nickname
- */
-static NickInfo *find_nick_by_name(char *nick) {
-	sqlite3 *db;
-	sqlite3_stmt *stmt;
-	const char *tail;
-	NickInfo *n = scalloc(sizeof(NickInfo), 1);
-	if (sqlite3_open(DB, &db) == SQLITE_OK) {
-		char sql[256];
-		sprintf(sql, ns_load_nicks, nick);
-		int error = sqlite3_prepare_v2(db, sql, 1000, &stmt, &tail);
-		if (error != SQLITE_OK) {
-			addlog(LOG_ERROR, LOG_ERR_SQLERROR, "in find_nick_by_name()");
-			addlog(LOG_ERROR, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-			return NULL;
-		}
-		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			n->id = sqlite3_column_int(stmt, NICK_ID);
-			strscpy(n->nick, (char*) sqlite3_column_text(stmt, NICK_NICKNAME), NICKMAX);
-			strscpy(n->pass, (char*) sqlite3_column_text(stmt, NICK_PASSWORD), PASSMAX);
-			n->last_usermask = sstrdup((char*) sqlite3_column_text(stmt, NICK_MASK));
-			n->last_realname = sstrdup((char*) sqlite3_column_text(stmt, NICK_REALNAME));
-			n->last_seen = sqlite3_column_int(stmt, NICK_LAST_SEEN);
-			n->time_reg = sqlite3_column_int(stmt, NICK_REGISTERED);
-			n->hidemail = sqlite3_column_int(stmt, NICK_HIDEMAIL);
-			n->memomax = sqlite3_column_int(stmt, NICK_MEMOMAX);
-			n->url = sstrdup((char*) sqlite3_column_text(stmt, NICK_URL));
-			n->email = sstrdup((char*) sqlite3_column_text(stmt, NICK_EMAIL));
-			n->mforward = sqlite3_column_int(stmt, NICK_MFORWARD);
-			n->noop = sqlite3_column_int(stmt, NICK_NOOP);
-			n->nomemo = sqlite3_column_int(stmt, NICK_NOMEMO);
-			n->auth_chan = sqlite3_column_int(stmt, NICK_AUTH_CHAN);
-			n->auth_notify = sqlite3_column_int(stmt, NICK_AUTH_CHAN);
-			n->protect = sqlite3_column_int(stmt, NICK_PROTECT);
-			n->mlock = (char*) sqlite3_column_text(stmt, NICK_MLOCK);
-			n->mnotify = sqlite3_column_int(stmt, NICK_MNOTIFY);
-			n->notifylist = NULL;
-			n->accesslist = NULL;
-		}
-	}
-	sqlite3_close(db);
-	return n;
-}
-
-
-
-/****************************************************************************************/
-/**
  * load the access table into the memory
  */
 static void load_access(void) {
@@ -418,18 +369,7 @@ void save_nickserv_db(void) {
 	db_save_access();
 }
 
-/****************************************************************************************/
-/**
- * update the nickname ids after saving
- */
-static void update_nick_ids(void) {
-	NickInfo *n = nicklist;
-	while(n) {
-		int id = find_nick_by_name(n->nick)->id;
-		n->id = id;
-		n = n->next;
-	}
-}
+
 
 /****************************************************************************************/
 /**

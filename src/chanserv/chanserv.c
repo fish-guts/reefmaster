@@ -169,13 +169,13 @@ void cs_check_successor(char *nick) {
 			if(o->level==ACCESS_FND) {
 				if(c->successor) {
 					c->founder = c->successor;
-					c->successor = NULL;
+					c->successor = -1;
 				} else {
 					delete_chan(c);
 					mode(s_name, c->name, "-r", NULL);
 				}
 			} else if(o->level==ACCESS_SUC) {
-				c->successor = NULL;
+				c->successor = -1;
 			}
 		}
 		remove_from_list(o);
@@ -398,7 +398,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	strscpy(c->name, name, CHANMAX);
 	strscpy(c->pass, pass, PASSMAX);
 	strscpy(c->description, desc, DESCMAX);
-	c->founder = findnick(src);
+	c->founder = findnick(src)->id;
 	c->keeptopic = cs_keeptopic;
 	c->opwatch = cs_opwatch;
 	if(c->opwatch)
@@ -414,6 +414,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	c->mlock = sstrdup(cs_mlock);
 	c->next = chans;
 	c->time_reg = time(NULL);
+	c->id = max_cs_id++;
 	if (chans)
 		chans->prev = c;
 	chans = c;

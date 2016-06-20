@@ -315,6 +315,9 @@ static channel *new_channel(const char *chan) {
 			c->topic_user = sstrdup(c2->topic_user);
 			c->topic_time = c2->topic_time;
 		}
+		if(c2->bot_id > 0) {
+			add_bot_to_chan(find_bot_by_id(c2->bot_id)->name,c2->name);
+		}
 	}
 	return c;
 }

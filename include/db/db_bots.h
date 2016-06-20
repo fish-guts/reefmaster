@@ -17,10 +17,12 @@
 		");"
 
 const char *bs_update_bot_query = "INSERT INTO 'BOTS' ("
+		"BOT_ID,"
 		"NICKNAME,"
 		"PASSWORD,"
 		"USERNAME,"
 		"REALNAME) VALUES("
+		"'%i',"
 		"'%s',"
 		"'%s',"
 		"'%s',"

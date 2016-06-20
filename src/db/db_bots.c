@@ -8,8 +8,6 @@
 #include "main.h"
 #include "db/db_bots.h"
 
-static void update_bot_ids(void);
-
 /****************************************************************************************/
 /**
  * query for adding a bot
@@ -17,13 +15,12 @@ static void update_bot_ids(void);
 static int db_add_bot(sqlite3 *db,bot *b) {
 	char sql[2048];
 	char *sqlite_err = 0;
-	sprintf(sql, bs_update_bot_query, b->name, b->password, b->username,
-			b->realname);
+	sprintf(sql, bs_update_bot_query, b->id,b->name, b->password, b->username,b->realname);
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		return 0;
+		return SQL_ERROR;
 	}
-	return 1;
+	return SQL_OK;
 
 }
 
@@ -57,38 +54,6 @@ void db_save_bots(void) {
 	return;
 }
 
-/****************************************************************************************/
-/**
- * find a bot entry in the database using the specified nickname
- */
-static bot *find_bot_by_name(char *nick) {
-	sqlite3 *db;
-	sqlite3_stmt *stmt;
-	const char *tail;
-
-	bot *b = scalloc(sizeof(bot), 1);
-	if (sqlite3_open(DB, &db) == SQLITE_OK) {
-		char sql[256];
-		sprintf(sql, "SELECT * FROM BOTS WHERE BOTS.NICKNAME='%s';", nick);
-		int error = sqlite3_prepare_v2(db, sql, 1000, &stmt, &tail);
-		if (error != SQLITE_OK) {
-			addlog(2, LOG_ERR_SQLERROR, "in find_nick_by_name()");
-			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-			return NULL;
-		}
-		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			b->id = sqlite3_column_int(stmt, 0);
-			b->name = sstrdup((char*) sqlite3_column_text(stmt, 1));
-			b->password = sstrdup((char*) sqlite3_column_text(stmt, 2));
-			b->realname = sstrdup((char*) sqlite3_column_text(stmt, 3));
-			b->username = sstrdup((char*) sqlite3_column_text(stmt, 4));
-			b->chanlist = NULL;
-		}
-	}
-	sqlite3_close(db);
-	return b;
-
-}
 
 /****************************************************************************************/
 /**
@@ -124,18 +89,4 @@ void load_botserv(void) {
  */
 void save_botserv_db(void) {
 	db_save_bots();
-	update_bot_ids();
-}
-
-/****************************************************************************************/
-/**
- * update the bot ids after saving
- */
-static void update_bot_ids(void) {
-	bot *b = botlist;
-	while(b) {
-		int id = find_bot_by_name(b->name)->id;
-		b->id = id;
-		b = b->next;
-	}
 }
