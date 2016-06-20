@@ -1,6 +1,7 @@
 #ifndef DB_DATABASE_H_
 #define DB_DATABASE_H_
 
+#include "db/bot_mapping.h"
 #include "db/chan_mapping.h"
 #include "db/nick_mapping.h"
 #include "db/op_mapping.h"

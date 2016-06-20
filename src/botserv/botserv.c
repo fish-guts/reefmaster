@@ -104,6 +104,7 @@ static bs_cmd *find_bs(const char *name) {
 bot *register_bot(char *botname,char *password) {
 	bot *b;
 	b = scalloc(sizeof(bot)+1, 1);
+	b->id = max_bs_id++;
 	b->name = sstrdup(botname);
 	b->password = sstrdup(password);
 	b->realname = sstrdup(botname);

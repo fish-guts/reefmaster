@@ -301,7 +301,6 @@ static void load_akick(void) {
  */
 void save_chanserv_db(void) {
 	db_save_chans();
-	update_chan_ids();
 	db_save_akicks();
 	db_save_ops();
 	db_save_auth();

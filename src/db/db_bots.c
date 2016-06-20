@@ -99,22 +99,20 @@ void load_botserv(void) {
 	sqlite3_stmt *stmt;
 	const char *tail;
 	if (sqlite3_open(DB, &db) == SQLITE_OK) {
-		int error = sqlite3_prepare_v2(db, "SELECT * FROM BOTS", 1000, &stmt,
+		int error = sqlite3_prepare_v2(db, "SELECT * FROM BOTS ORDER BY BOTS.BOT_ID ASC", 1000, &stmt,
 				&tail);
 		if (error != SQLITE_OK) {
 			addlog(2, LOG_ERR_SQLERROR, "in load_botserv()");
 			addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
 		}
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
-			int id = sqlite3_column_int(stmt, 0);
-			char *name = sstrdup((const char*) sqlite3_column_text(stmt, 1));
-			char *password = sstrdup(
-					(const char*) sqlite3_column_text(stmt, 2));
-			char *username = sstrdup(
-					(const char*) sqlite3_column_text(stmt, 3));
-			char *realname = sstrdup(
-					(const char*) sqlite3_column_text(stmt, 4));
+			int id = sqlite3_column_int(stmt, BOT_ID);
+			char *name = sstrdup((const char*) sqlite3_column_text(stmt, BOT_NAME));
+			char *password = sstrdup((const char*) sqlite3_column_text(stmt, BOT_PASS));
+			char *username = sstrdup((const char*) sqlite3_column_text(stmt, BOT_USER));
+			char *realname = sstrdup((const char*) sqlite3_column_text(stmt, BOT_REALNAME));
 			load_bot(id, name, password, username, realname);
+			max_bs_id = id;
 		}
 	}
 	sqlite3_close(db);
