@@ -84,6 +84,8 @@ char *get_opacc(int level) {
 		"Hop",
 		"Aop",
 		"Sop",
+		"Cop",
+		"Qop",
 		"Successor",
 		"Founder",
 		"Services Administrator"
@@ -257,9 +259,9 @@ void cs_drop_nick(char *nick) {
 /**
  * check whether the nick is the founder of the specified channel
  */
-int cs_isfounder(char *nick, char *chan) {
+int cs_isfounder(int nick_id, char *chan) {
 	ChanInfo *c = findchan(chan);
-	if (stricmp(nick, c->founder->nick) == 0) {
+	if (nick_id == c->founder) {
 		return 1;
 	}
 	return 0;
@@ -313,13 +315,11 @@ int cs_isonakicklist(char *mask, char *chan) {
 /**
  * check whether the nick is the successor of the specified channel
  */
-int cs_issuccessor(char *nick, char *chan) {
+int cs_issuccessor(int nick_id, char *chan) {
 	ChanInfo *c = findchan(chan);
-	if(c->successor) {
-		if (c->successor->nick) {
-			if (stricmp(nick, c->successor->nick) == 0) {
-				return 1;
-			}
+	if(c->successor > 0) {
+		if(nick_id == c->successor) {
+			return 1;
 		}
 	}
 	return 0;

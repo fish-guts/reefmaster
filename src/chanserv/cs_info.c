@@ -86,10 +86,10 @@ void cs_info(char *src,int ac, char **av) {
 		strcat(options,topiclock);
 	}
 	notice(cs_name,src,CS_INFO_RPL_ENTRY1,c->name,c->description);
-	notice(cs_name,src,CS_INFO_RPL_ENTRY2,c->founder->nick);
+	notice(cs_name,src,CS_INFO_RPL_ENTRY2,find_nick_by_id(c->founder));
 
-	if((c->successor!=NULL) && (stricmp(c->successor->nick,"(null)")!=0)) {
-		notice(cs_name,src,CS_INFO_RPL_ENTRY3,c->successor->nick);
+	if(c->successor > 0) {
+		notice(cs_name,src,CS_INFO_RPL_ENTRY3,find_nick_by_id(c->successor));
 	}
 
 	if((c->topic!=NULL) && (stricmp(c->topic,"")!=0)) {

@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop", "Successor", "Founder" };
+static char *acclist[] = { NULL, "Uop", "Vop", "Hop", "Aop", "Sop", "Cop", "Qop", "Successor", "Founder" };
 static char *chan_access_level[] = {
 		"0", // Disabled
 		"1", // Uop
@@ -196,8 +196,8 @@ void cs_cop(char *src, int ac, char **av) {
 		return;
 	} else if (stricmp(av[2], "WIPE") == 0) {
 		if(ac<3) {
-			notice(cs_name,src,CS_XOP_RPL_USAGE,"COP <Channel> LIST");
-			notice(cs_name,src,CS_RPL_HLP,cs_name,"COP LIST");
+			notice(cs_name,src,CS_XOP_RPL_USAGE,"COP <Channel> WIPE");
+			notice(cs_name,src,CS_RPL_HLP,cs_name,"COP WIPE");
 			return;
 		}
 		chan = av[1];
@@ -530,10 +530,10 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 	if(existing_level==0) {
 		notice(cs_name,src,CS_XOP_ERR_ALREADYONLIST,nick,acclist[list],chan);
 		return;
-	} else if(cs_isfounder(nick,chan)) {
+	} else if(cs_isfounder(n->id,chan)) {
 		notice(cs_name,src,CS_XOP_ERR_FOUNDERCANNOTADD,nick,chan,acclist[list]);
 		return;
-	} else if(cs_issuccessor(nick,chan)) {
+	} else if(cs_issuccessor(n->id,chan)) {
 		notice(cs_name,src,CS_XOP_ERR_FOUNDERCANNOTADD,nick,chan,acclist[list]);
 		return;
 	} else if(existing_level>0) {

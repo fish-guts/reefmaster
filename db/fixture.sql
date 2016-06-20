@@ -154,51 +154,60 @@ INSERT INTO BOTS (NICKNAME,PASSWORD,USERNAME,REALNAME) VALUES ("Wulfbot","hoppus
 INSERT INTO BOTS (NICKNAME,PASSWORD,USERNAME,REALNAME) VALUES ("X","hoppus123","chanserv","Channel Bot");
 
 
-
 INSERT INTO NICKS VALUES(1, "Fish-Guts",	"hoppus123","fish-guts@reefmaster.ch",	"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(2,"FG",			"hoppus123","fish-guts@reefmaster.ch",	"FG",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(3,"Jamc",			"hoppus123","jamc@reefmaster.ch",	"Jamc",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(4,"ventura",		"hoppus123","ventura@reefmaster.ch",	"ventura",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(5,"CgIMaN",		"hoppus123","cgiman@reefmaster.ch",	"CgiMaN",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(6,"leota",			"hoppus123","leota@reefmaster.ch",	"leota",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(7,"Schwan",		"hoppus123","schwan@reefmaster.ch",	"schwan",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(8,"Delfin",		"hoppus123","delfin@reefmaster.ch",	"Delfin",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(9,"V",				"hoppus123","vi@reefmaster.ch",		"V",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(10,"pixel",		"hoppus123","pixel@reefmaster.ch",	"pixel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(11,"waterlily",	"hoppus123","waterlily@reefmaster.ch",	"waterlily",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(12,"dungeon_lady",	"hoppus123","dragonia@reefmaster.ch",	"dl",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(13,"Angel",		"hoppus123","angel@reefmaster.ch",	"Angel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(14,"FischerZH",	"hoppus123","fisher@reefmaster.ch",	"Kenny Fischer",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(15,"Gargo",		"hoppus123","gargo@reefmaster.ch",	"Gargo",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(16,"JiLe",			"hoppus123","juuls@reefmaster.ch",	"JuLchen",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(17,"Earthworm",	"hoppus123","ew@reefmaster.ch",		"Jonas",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(18,"Valentin",		"hoppus123","valentin@reefmaster.ch",	"Valentin",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(19,"Kane",			"hoppus123","dark_kane@reefmaster.ch",	"Kane",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(21,"lemon_w",		"hoppus123","limone@reefmaster.ch",	"lämän",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(22,"Audrey",		"hoppus123","audrey@reefmaster.ch",	"Audrey",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(23,"mk",			"hoppus123","mk@reefmaster.ch",		"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(24,"ake",			"hoppus123","ake@reefmaster.ch",	"ake",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(25,"Adler",		"hoppus123","adler@reefmaster.ch",	"Adler",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(26,"rockoli",		"hoppus123","rockoli@reefmaster.ch",	"rockoli",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(27,"Atlas",		"hoppus123","Atlas@reefmaster.ch",	"Atlas",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(28,"Carol",		"hoppus123","carol@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(29,"red-dog",		"hoppus123","red-dog@reefmaster.ch",	"fido-rosso",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(30,"moendli",		"hoppus123","moendli@reefmaster.ch",	"moendli",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(31,"opso",			"hoppus123","opso@reefmaster.ch",	"opso",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(32,"S",			"snox123",  "snox@reefmaster.ch",	"Snox",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(33,"Carol",		"hoppus123","bucky@reefmaster.ch",	"Carol",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(34,"Pazzolina",	"hoppus123","pazzolina@reefmaster.ch",	"Pazzolina",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(35,"liesel",		"hoppus123","liesel@reefmaster.ch",	"liesel",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(36,"Xenon",		"hoppus123","xenon@reefmaster.ch",	"Xenon",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(37,"Sting",		"hoppus123","Sting@reefmaster.ch",	"Sting",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(38,"SNoX",			"snox123",  "snox@reefmaster.ch",	"SnOX",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(39,"Topi",			"hoppus123","topi@reefmaster.ch",	"Topi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(40,"ChuckyB",		"hoppus123","chuckyb@reefmaster.ch",	"ChuckyB",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(41,"ErnIe",		"hoppus123","ernie@reefmaster.ch",	"Ernie",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(42,"ll4mat",		"hoppus123","ll4mat@reefmaster.ch",	"ll4mat",	1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(43,"SEV-Y",		"hoppus123","sevi@reefmaster.ch",	"Sevi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(44,"Indy",			"hoppus123","indy@reefmaster.ch",	"Indy",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-
+INSERT INTO NICKS VALUES(2,"FG",			"hoppus123","fish-guts@reefmaster.ch",	"FG",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(3,"SNoX",			"snox123",  "snox@reefmaster.ch",		"SnOX",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(4,"S",				"snox123",  "snox@reefmaster.ch",		"Snox",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(5,"}SpIoN{",		"snox123",  "snox@reefmaster.ch",		"Snox",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(6,"ventura",		"hoppus123","ventura@reefmaster.ch",	"ventura",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(7,"mk",			"hoppus123","mk@reefmaster.ch",			"Fish-Guts",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(8,"ll4mat",		"hoppus123","ll4mat@reefmaster.ch",		"ll4mat",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(9,"ake",			"hoppus123","ake@reefmaster.ch",		"ake",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(10,"Jamc",			"hoppus123","jamc@reefmaster.ch",		"Jamc",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(11,"CgIMaN",		"hoppus123","cgiman@reefmaster.ch",		"CgiMaN",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(12,"red-dog",		"hoppus123","red-dog@reefmaster.ch",	"fido-rosso",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(13,"V",			"hoppus123","vi@reefmaster.ch",			"V",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(14,"Delfin",		"hoppus123","delfin@reefmaster.ch",		"Delfin",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(15,"waterlily",	"hoppus123","waterlily@reefmaster.ch",	"waterlily",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(16,"YJ",			"hoppus123","bnfh@reefmaster.ch",		"BNFH",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(17,"neo",			"hoppus123","neo@reefmaster.ch",		"Neo",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(18,"leota",		"hoppus123","leota@reefmaster.ch",		"leota",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(19,"Schwan",		"hoppus123","schwan@reefmaster.ch",		"schwan",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(20,"pixel",		"hoppus123","pixel@reefmaster.ch",		"pixel",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(21,"Gargo",		"hoppus123","gargo@reefmaster.ch",		"Gargo",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(22,"dungeon_lady",	"hoppus123","dragonia@reefmaster.ch",	"dl",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(23,"Angel",		"hoppus123","angel@reefmaster.ch",		"Angel",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(24,"FischerZH",	"hoppus123","fisher@reefmaster.ch",		"Kenny Fischer",1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(25,"JiLe",			"hoppus123","juuls@reefmaster.ch",		"JuLchen",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(26,"Earthworm",	"hoppus123","ew@reefmaster.ch",			"Jonas",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(27,"Valentin",		"hoppus123","valentin@reefmaster.ch",	"Valentin",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(28,"Kane",			"hoppus123","dark_kane@reefmaster.ch",	"Kane",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(29,"lemon_w",		"hoppus123","limone@reefmaster.ch",		"lämän",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,0,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(30,"Audrey",		"hoppus123","audrey@reefmaster.ch",		"Audrey",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(31,"Adler",		"hoppus123","adler@reefmaster.ch",		"Adler",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(32,"rockoli",		"hoppus123","rockoli@reefmaster.ch",	"rockoli",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(33,"Atlas",		"hoppus123","Atlas@reefmaster.ch",		"Atlas",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(34,"Carol",		"hoppus123","carol@reefmaster.ch",		"Carol",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(35,"moendli",		"hoppus123","moendli@reefmaster.ch",	"moendli",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(36,"opso",			"hoppus123","opso@reefmaster.ch",		"opso",			1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(37,"Noise",		"hoppus123","bucky@reefmaster.ch",		"Noise",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(38,"Pazzolina",	"hoppus123","pazzolina@reefmaster.ch",	"Pazzolina",	1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(39,"liesel",		"hoppus123","liesel@reefmaster.ch",		"liesel",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(40,"Xenon",		"hoppus123","xenon@reefmaster.ch",		"Xenon",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(41,"Sting",		"hoppus123","Sting@reefmaster.ch",		"Sting",		1415474819,1415474819,1,10,"www.reefmaster.ch","fish-guts@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(42,"Topi",			"hoppus123","topi@reefmaster.ch",		"Topi",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(43,"ChuckyB",		"hoppus123","chuckyb@reefmaster.ch",	"ChuckyB",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(44,"ErnIe",		"hoppus123","ernie@reefmaster.ch",		"Ernie",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(45,"SEV-Y",		"hoppus123","sevi@reefmaster.ch",		"Sevi",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(46,"Indy",			"hoppus123","indy@reefmaster.ch",		"Indy",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(47,"Raverin17",	"hoppus123","silence@reefmaster.ch",	"silence",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(48,"Zitroenchen",	"hoppus123","zit@reefmaster.ch",		"zitro",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(49,"wulf",			"hoppus123","wulf@reefmaster.ch",		"wulf",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(50,"eS",			"hoppus123","es@reefmaster.ch",			"es",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(51,"Hologram",		"hoppus123","hg@reefmaster.ch",			"HG",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(52,"triplesensor",	"hoppus123","trip@reefmaster.ch",		"trip",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(53,"gIL",			"hoppus123","gil@reefmaster.ch",		"Gil",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(54,"Ah-lee-yah",	"hoppus123","liyah@reefmaster.ch",		"Liyah",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
 
 
 INSERT INTO CS_AKICK (CHAN,MASK,ADDED_BY,ADDED_BY_ACC,ADDED_ON,REASON) VALUES (1,"BluePanther!*@*.bluewin.ch","Fish-Guts",8,1415474819,"You are banned for misbehaving");
@@ -245,78 +254,89 @@ INSERT INTO CS_AKICK (CHAN,MASK,ADDED_BY,ADDED_BY_ACC,ADDED_ON,REASON) VALUES (1
 INSERT INTO CS_AKICK (CHAN,MASK,ADDED_BY,ADDED_BY_ACC,ADDED_ON,REASON) VALUES (11,"SilverBird!*@*.bluewin.ch","Fish-Guts",8,1415474819,"You are banned for misbehaving");
 
 
+INSERT INTO CHANS VALUES(1, "#ircops",			"hoppus123","The IRC Operator Channel",	1415474819,		1,1,2,		"ertn-k",	"IRCOps: soon a new bot",	"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(2, "#cservice",		"hoppus123","Operator Service",			1415474819,		1,1,3,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(3, "#schaffhausen",	"hoppus123","Schaffhausen",				1415474819,		1,1,3, 		"ertn-k",	"Hallo",					"ventura",		1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(4, "#zuerich",			"hoppus123","Operator Service",			1415474819,		1,1,3, 		"ertn-k",	"Hallo",					"ventura",		1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(5, "#linux",			"hoppus123","for Linux Fans",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"FG",			1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(6, "#counter-strike",	"hoppus123","CS",						1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"V",			1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(7, "#basel",			"hoppus123","Basel",					1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"mk",			1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(8, "#zug",				"hoppus123","Zug",						1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"mk",			1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(9, "#thurgau",			"hoppus123","Thurgau",					1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"FG",			1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(10,"#stgallen",		"hoppus123","St. Gallen",				1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"mk",			1415474819,0,1,0,4,1,1,"www.ircops.ch",4);
+INSERT INTO CHANS VALUES(11,"#aargau",			"hoppus123","Aargau",					1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
+INSERT INTO CHANS VALUES(12,"#flirt20plus",		"hoppus123","flirt 20 plus",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"FG",			1415474819,0,1,0,4,1,1,"www.ircops.ch",6);
+INSERT INTO CHANS VALUES(13,"#flirt30plus",		"hoppus123","flirt 30 plus",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"ventura",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(14,"#flirt40plus",		"hoppus123","flirt 40 plus",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"V",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(15,"#flirt50plus",		"hoppus123","flirt 50 plus",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"mk",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(16,"#flirt60plus",		"hoppus123","flirt 60 plus",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(17,"#quiz",			"hoppus123","Quiz Channel",				1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(18,"#reefmaster",		"hoppus123","Reefmaster Main Channel",	1415474819,		1,37,1,	"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(19,"#teentalk",		"hoppus123","Teentalk",					1415474819,		1,37,1,	"ertn-k",	"Hallo",					"CgIMaN",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(20,"#kidstalk",		"hoppus123","Kidstask",					1415474819,		1,37,1,	"ertn-k",	"Hallo",					"ventura",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(21,"#bern",			"hoppus123","Bern",						1415474819,		1,37,1,	"ertn-k",	"Hallo",					"V",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(22,"#wallis",			"hoppus123","Wallis",					1415474819,		1,37,1,	"ertn-k",	"Hallo",					"V",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(23,"#vaud",			"hoppus123","Vaud/Waadt",				1415474819,		1,37,1,	"ertn-k",	"Hallo",					"FG",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(24,"#glarus",			"hoppus123","Glarus",					1415474819,		1,37,1,	"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(25,"#schwyz",			"hoppus123","Schwyz",					1415474819,		1,37,1,	"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(26,"#graubuenden",		"hoppus123","Bündnerland",				1415474819,		1,37,1,	"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(27,"#ticino",			"hoppus123","Ticino",					1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);	
+INSERT INTO CHANS VALUES(28,"#menonly",			"hoppus123","Gay Channel",				1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(29,"#uri",				"hoppus123","Uri",						1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(30,"#nidwalden",		"hoppus123","Nidwalden",				1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(31,"#obwalden",		"hoppus123","Obwalden",					1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(32,"#luzern",			"hoppus123","Luzern",					1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(33,"#fribourg",		"hoppus123","Fribourg",					1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(34,"#genf",			"hoppus123","Genève",					1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(35,"#jura",			"hoppus123","Jura",						1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(36,"#solothurn",		"hoppus123","Solothurn",				1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(37,"#appenzell",		"hoppus123","Appenzell",				1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(38,"#neuchatel",		"hoppus123","Neuchatel",				1415474819,		1,3,1,	"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 
-
-INSERT INTO CHANS VALUES(1, "#ircops",		"hoppus123","The IRC Operator Channel",	1415474819,1,1,1,1,1,1,1,2, "ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(2, "#cservice",	"hoppus123","Operator Service",		1415474819,1,1,1,1,1,1,4,1, "ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(3, "#schaffhausen",	"hoppus123","Schaffhausen",		1415474819,1,1,1,1,1,1,2,3, "ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(4, "#zuerich",		"hoppus123","Operator Service",		1415474819,1,1,1,1,1,1,1,3, "ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(5, "#linux",		"hoppus123","for Linux Fans",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(6, "#counter-strike",	"hoppus123","CS",			1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(7, "#basel",		"hoppus123","Basel",			1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(8, "#zug",		"hoppus123","Zug",			1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(9, "#thurgau",		"hoppus123","Thurgau",			1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(10,"#stgallen",	"hoppus123","St. Gallen",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",4);
-INSERT INTO CHANS VALUES(11,"#aargau",		"hoppus123","Aargau",			1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
-INSERT INTO CHANS VALUES(12,"#flirt20plus",	"hoppus123","flirt 20 plus",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",6);
-INSERT INTO CHANS VALUES(13,"#flirt30plus",	"hoppus123","flirt 30 plus",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(14,"#flirt40plus",	"hoppus123","flirt 40 plus",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(15,"#flirt50plus",	"hoppus123","flirt 50 plus",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(16,"#flirt60plus",	"hoppus123","flirt 60 plus",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(17,"#quiz",		"hoppus123","Quiz Channel",		1415474819,1,1,1,1,1,1,1,-1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(18,"#reefmaster",	"hoppus123","Reefmaster Main Channel",	1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(19,"#teentalk",	"hoppus123","Teentalk",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(20,"#kidstalk",	"hoppus123","Kidstask",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(21,"#bern",		"hoppus123","Bern",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(22,"#wallis",		"hoppus123","Wallis",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(23,"#vaud",		"hoppus123","Vaud/Waadt",		1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(24,"#glarus",		"hoppus123","Glarus",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(25,"#schwyz",		"hoppus123","Schwyz",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(26,"#graubuenden",	"hoppus123","Bündnerland",		1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-INSERT INTO CHANS VALUES(27,"#ticino",		"hoppus123","Ticino",			1415474819,1,1,1,1,1,1,37,1,"ertn-k","Hallo","Fish-Guts",1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 
 -- Level 1 Uop 2 Vop 3 Hop 4 Aop 5 Sop 6 Cop 7 Qop 8 Successor 9 Founder
 -- Added additionally 10 Full Founder, 11 ServiceRootAdmin
 
+-- ircops are: jamc(10), cgiman(11), red-dog(12), V(13), delfin(14), waterlily(15), yj(16), neo(17) 
 
 -- #ircops
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (7,1,1,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (6,2,1,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,3,1,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,4,1,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,5,1,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,9,1,"ventura",4,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,11,1,"Jamc",5,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,12,1,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,8,1,"FG",7,1415474819);
+-- Founder / Successor
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (9,1,1,"Fish-Guts",11,1415474819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (8,2,1,"Fish-Guts",11,1415474819);
+
+-- Qop
+
+-- Cop
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (6,10,1,"Fish-Guts",11,1415174819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (6,11,1,"Fish-Guts",11,1415374819);
+
+-- Sop
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,12,1,"Fish-Guts",11,1415474819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,15,8,"FG",7,1415474819);
+
+-- Aop
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,13,1,"Fish-Guts",11,1415474819);
 INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,14,1,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,15,1,"Jamc",5,1415474819);
 INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,16,1,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,17,1,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (3,18,1,"Jamc",5,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (3,19,1,"CgIMaN",5,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (2,20,1,"waterlily",2,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (2,21,1,"FG",7,1415474819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,17,1,"FG",7,1415474819);
 
 -- #cservice
 
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (7,4,2,"ventura",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (6,1,2,"ventura",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,3,2,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,4,2,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,5,2,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,9,2,"ventura",4,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,11,2,"Jamc",5,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,12,2,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,8,2,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,14,2,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,27,2,"Jamc",5,1415474819);
+-- Cop
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (6,10,2,"Fish-Guts",11,1415174819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (6,11,2,"Fish-Guts",11,1415374819);
+
+-- Sop
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,12,2,"Fish-Guts",11,1415474819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (5,15,2,"Jamc",6,1415474819);
+
+-- Aop
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,13,2,"Fish-Guts",11,1415474819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,14,2,"waterlily",5,1415474819);
 INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,16,2,"FG",7,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,17,2,"Fish-Guts",9,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (3,18,2,"Jamc",5,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (3,15,2,"CgIMaN",5,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (2,24,2,"waterlily",2,1415474819);
-INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (2,25,2,"FG",7,1415474819);
+INSERT INTO OP_LIST (TYPE,NICK,CHAN,ADDED_BY,ADDED_BY_ACC,ADDED_ON) VALUES (4,17,2,"FG",7,1415474819);
+
+
 
 -- #schaffhausen
 
