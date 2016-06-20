@@ -35,6 +35,21 @@ static char *chan_access_level[] = {
 		"\2ServiceRootAdmin\2" // SRA
 };
 
+static char *opacc[] = {
+		"0", // Disabled
+		"Uop", // Uop
+		"Vop", // Vop
+		"Hop", // Hop
+		"Aop", // Aop
+		"Sop", // Sop
+		"Cop", // Cop
+		"Qop", // Qop
+		"Successor", // Successor
+		"Founder", // Founder identified for nick
+		"10", // Full founder (identified for chan)
+		"\2ServiceRootAdmin\2" // SRA
+};
+
 
 /********************************************************************/
 /**
@@ -73,12 +88,12 @@ void ns_listchans(char *src, int ac, char **av) {
 	while (o) {
 		if (n->id == o->nick->id) {
 			i++;
-			if (o->level > 5) {
-				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,i, chan_access_level[o->level],o->chan->name);
+			if (o->level > 7) {
+				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY2,i, opacc[o->level],o->chan->name);
 			} else {
 				strftime(str, 100, "%d/%m/%Y %T %Z", localtime(&o->addedon));
 				notice(ns_name, src, NS_RPL_LISTCHANS_ENTRY, i,
-						chan_access_level[o->level], o->chan->name, chan_access_level[o->addedbyacc],
+						opacc[o->level], o->chan->name, chan_access_level[o->addedbyacc],
 					o->addedby, str);
 			}
 		}
