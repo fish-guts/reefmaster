@@ -537,7 +537,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		notice(cs_name,src,CS_XOP_ERR_FOUNDERCANNOTADD,nick,chan,acclist[list]);
 		return;
 	} else if(existing_level>0) {
-		if((n->auth_chan) && (list>existing_level)) {
+		if((finduser(src)->oper < OPER_SERVICES_ADMIN) && (n->auth_chan) && (list>existing_level)) {
 			add_auth_entry(nick,chan,list,src,listacc);
 			return;
 		}
@@ -545,7 +545,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 		notice(cs_name,src,CS_XOP_RPL_MOVED,nick,acclist[existing_level], acclist[list],chan);
 		return;
 	} else {
-		if((n->auth_chan) && (list>existing_level)) {
+		if((finduser(src)->oper < OPER_SERVICES_ADMIN) && (n->auth_chan) && (list>existing_level)) {
 			add_auth_entry(nick,chan,list,src,listacc);
 			return;
 		}

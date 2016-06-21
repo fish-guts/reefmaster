@@ -141,6 +141,13 @@ void save_nickserv_db(void);
 #define NOTIFY_ONLINE 2
 #define NOTIFY_OFFLINE 4
 
+#define OPER_HELPOP 		1
+#define OPER_IRCOP 			2
+#define OPER_CO_ADMIN		3
+#define OPER_ADMIN 			4
+#define OPER_SERVICES_ADMIN 5
+#define OPER_NETADMIN		6
+
 
 /* database Files */
 

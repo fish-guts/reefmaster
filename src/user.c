@@ -145,17 +145,17 @@ void s_nick(const char *src, int ac, char **av)
 		 */
 		u->oper = 0;
 		if(strchr(av[7],'h'))
-			u->oper = 1;
+			u->oper = OPER_HELPOP;
 		if((strchr(av[7],'o')) || (strchr(av[7],'O')))
-			u->oper = 2;
+			u->oper = OPER_IRCOP;
 		if(strchr(av[7],'C'))
-			u->oper = 3;
+			u->oper = OPER_CO_ADMIN;
 		if(strchr(av[7],'A'))
-			u->oper = 4;
+			u->oper = OPER_ADMIN;
 		if(strchr(av[7],'a'))
-			u->oper = 5;
+			u->oper = OPER_SERVICES_ADMIN;
 		if(strchr(av[7],'N'))
-			u->oper = 6;
+			u->oper = OPER_NETADMIN;
 		if(u->oper>0)
 			announce_oper(av[0],u->oper);
 		u->pw_cnt = 0;
