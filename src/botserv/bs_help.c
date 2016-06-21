@@ -29,7 +29,7 @@ void bs_help(char *src, int ac, char **av) {
 	char help[64];
 
 	if(ac<2) {
-		sprintf(help,"%s/%s.help",NS_HELP_PATH,"botserv");
+		sprintf(help,"%s/%s.help",BS_HELP_PATH,"botserv");
 		help_message(ns_name,src,help);
 		return;
 	} else if(ac==2) {

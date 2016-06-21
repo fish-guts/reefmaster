@@ -44,6 +44,7 @@ static bs_cmd bs_cmds[] = {
 	{ "MSG", bs_msg },
 	{ "SET", bs_set },
 	{ "SETPASS", bs_setpass },
+	{ "NULL", NULL },
 };
 
 /********************************************************************/

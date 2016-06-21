@@ -1971,15 +1971,6 @@ int config_load(const char *file) {
 		/* section access */
 
 		bs_access_conf = cfg_getsec(botserv,"access");
-		bs_access_add = cfg_getint(bs_access_conf,"add");
-		bs_access_del = cfg_getint(bs_access_conf,"del");
-		bs_access_list = cfg_getint(bs_access_conf,"list");
-		bs_access_set = cfg_getint(bs_access_conf,"set");
-		bs_access_getpass = cfg_getint(bs_access_conf,"getpass");
-		bs_access_setpass = cfg_getint(bs_access_conf,"setpass");
-		bs_log_getpass = cfg_getint(bs_access_conf,"log_getpass");
-		bs_log_setpass = cfg_getint(bs_access_conf,"log_setpass");
-
 		/* end of section botserv */
 
 		/* section adminserv ************************************************************************************************/
