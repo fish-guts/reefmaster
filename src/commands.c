@@ -36,8 +36,9 @@ irc_cmd *find_cmd(const char *name)
     irc_cmd *cmd;
     for (cmd = irc_cmds; cmd->name; cmd++)
     {
-		if(stricmp(name,cmd->name)==0)
+		if(stricmp(name,cmd->name)==0) {
 	    	return cmd;
+		}
     }
     return NULL;
 }
@@ -59,7 +60,7 @@ irc_cmd irc_cmds[] = {
 	{ "SERVER",	  NULL 		},
 	{ "SMO",	  NULL 		},
 	{ "TOPIC",    c_topic 	},
-	{ NULL,	 	 NULL	    },
+	{ NULL,	 	 NULL	    }
 }; 
 
 /********************************************************************/
@@ -353,14 +354,16 @@ void c_topic(char *src, int ac, char **av)
 	}
 	channel *c = findchannel(av[0]);
 	char *oldtopic;
+	if(!c) {
+		return;
+	}
 	if(c->topic) {
 		oldtopic = c->topic;
 	} else {
-		oldtopic = NULL;
+		oldtopic = "";
 	}
 	c->topic = sstrdup(av[3]);
 	cs_check_topiclock(src,c,oldtopic);
-	free(oldtopic);
 }
 
 /********************************************************************/

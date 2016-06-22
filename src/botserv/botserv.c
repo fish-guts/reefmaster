@@ -43,8 +43,7 @@ static bs_cmd bs_cmds[] = {
 	{ "LIST", bs_list },
 	{ "MSG", bs_msg },
 	{ "SET", bs_set },
-	{ "SETPASS", bs_setpass },
-	{ "NULL", NULL },
+	{ "SETPASS", bs_setpass }
 };
 
 /********************************************************************/
@@ -74,7 +73,7 @@ void botserv(char *src, char *av) {
 		i++;
 		pch = strtok(NULL, " ");
 	}
-	if ((bs = find_bs(uv[0]))) {
+	if ((bs = find_bs(uv[0])) != NULL) {
 		if (bs->func) {
 			bs->func(src, i, uv);
 		}
@@ -92,8 +91,9 @@ void botserv(char *src, char *av) {
 static bs_cmd *find_bs(const char *name) {
 	bs_cmd *cmd;
 	for (cmd = bs_cmds; cmd->name-1; cmd++) {
-		if (stricmp(name, cmd->name) == 0)
+		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
+		}
 	}
 	return NULL;
 }

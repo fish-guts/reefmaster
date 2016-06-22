@@ -113,8 +113,9 @@ void process(void) {
 	} else {
 		*source = 0;
 	}
-	if (!*buf)
+	if (!*buf) {
 		return;
+	}
 	pch = strpbrk(buf, " ");
 	if (pch) {
 		*pch = 0;
@@ -124,7 +125,6 @@ void process(void) {
 	} else {
 		pch = buf + strlen(buf);
 	}
-
 	strscpy(cmd, buf, sizeof(cmd));
 	ac = tokenize(pch, &av);
 	if ((ic = find_cmd(cmd)) != NULL) {
