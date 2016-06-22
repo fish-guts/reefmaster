@@ -87,10 +87,6 @@ void cs_op(char *src, int ac, char **av) {
 		notice(cs_name,src,CS_ERR_NOTREG,chan);
 		return;
 	}
-	if(!isreg(nick)) {
-		notice(cs_name,src,NS_ERR_NOTREG,nick);
-		return;
-	}
 	u = finduser(src);
 	u1 = finduser(nick);
 	c = findchan(chan);
