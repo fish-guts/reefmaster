@@ -23,7 +23,7 @@
 
 volatile int sig_flag = 0;
 static timer *timeouts = NULL;
-int save_interval = 60;
+int save_interval = 1200;
 static int ifmatch(const char *pattern, const char *str, int mode);
 static void check_expiry(void);
 static void check_ns_expiry(void);

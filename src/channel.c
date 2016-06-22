@@ -96,12 +96,14 @@ void channel_add_ban(char *src,channel *c, char *mask) {
  * remove a channel from the channel list
  */
 void chan_delete(channel *c) {
-	if (c->prev)
+	if (c->prev) {
 		c->prev->next = c->next;
-	else
+	} else {
 		chanlist = c->next;
-	if (c->next)
+	}
+	if (c->next) {
 		c->next->prev = c->prev;
+	}
 	free(c);
 }
 
@@ -156,6 +158,7 @@ void check_status(channel *c, user *u) {
 				return;
 			}
 		}
+		printf("debug new 1\n");
 		akick *ak = cs_akick_match(u, cs);
 		if (ak) {
 			char *reason = (char*) malloc(sizeof(char*) * 256);
@@ -163,6 +166,7 @@ void check_status(channel *c, user *u) {
 			kick(cs_name, u->nick, cs->name, reason);
 			ban(cs_name, ak->mask, cs->name);
 		}
+		printf("debug new 3\n");
 	}
 }
 
@@ -196,30 +200,37 @@ void del_status(channel *c, user *u, int status) {
 void del_user(user *u, channel *c) {
 	chanuser *cu;
 	userchan *uc;
+
 	cu = c->users;
-	free(cu->u);
-	if (cu->prev)
+	if (cu->prev) {
 		cu->prev->next = cu->next;
-	else
+	} else {
 		c->users = cu->next;
-	if (cu->next)
+	}
+
+	if (cu->next) {
 		cu->next->prev = cu->prev;
+	}
 	free(cu);
 	c->ucnt--;
 
 	uc = u->chans;
-	if (uc->prev)
+	if (uc->prev) {
 		uc->prev->next = uc->next;
-	else
+
+	} else {
 		u->chans = uc->next;
-	if (uc->next)
+	}
+	if (uc->next) {
 		uc->next->prev = uc->prev;
+	}
 	free(uc);
 	u->chan_count--;
 
+	if(!c->users) {
+		chan_delete(c);
+	}
 
-	if(!c->users)
-	 chan_delete(c);
 }
 
 /********************************************************************/
@@ -228,8 +239,10 @@ void del_user(user *u, channel *c) {
  */
 channel *findchannel(const char *chan) {
 	channel *c = chanlist;
-	while (c && stricmp(c->name, chan) != 0)
+
+	while (c && stricmp(c->name, chan) != 0) {
 		c = c->next;
+	}
 	return c;
 }
 
@@ -279,8 +292,9 @@ int isop(channel *c, user *u) {
  */
 static channel *join_user_update(user *u, channel *c, char *name) {
 	/* If it's a new channel, we need to create it first. */
-	if (!c)
+	if (!c) {
 		c = new_channel(name);
+	}
 	chan_adduser(u, c);
 	return c;
 }
@@ -337,8 +351,9 @@ void s_join(char *src, int ac, char **av) {
 	t = av[0];
 	while (*(s = t)) {
 		t = s + strcspn(s, ",");
-		if (*t)
+		if (*t) {
 			*t++ = 0;
+		}
 		join_user_update(u, findchannel(s), s);
 		if(isregcs(s)) {
 			mode(cs_name,s,"+rtn",s);
@@ -352,6 +367,8 @@ void s_join(char *src, int ac, char **av) {
  * handle the Server's PART command
  */
 void s_part(char *src, int ac, char **av) {
-	del_user(finduser(src),findchannel(av[0]));
+	user *u = finduser(src);
+	del_user(u,findchannel(av[0]));
+
 }
 /* EOF */

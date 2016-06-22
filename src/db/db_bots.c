@@ -21,7 +21,6 @@ static int db_add_bot(sqlite3 *db,bot *b) {
 		return SQL_ERROR;
 	}
 	return SQL_OK;
-
 }
 
 /****************************************************************************************/

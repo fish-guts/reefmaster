@@ -15,7 +15,7 @@ FIXTURE_FILE = db/fixture.sql
 DATABASE = db/services.db
 
 # All Target
-   all: db.loadSchema services 
+   all: db.loadFixture services 
 
 # Tool invocations
 services: $(OBJS) 
