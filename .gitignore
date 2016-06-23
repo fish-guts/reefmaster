@@ -1,5 +1,6 @@
 obj/
 services
 .gitignore~
+db/services.db
 log/
 db/fixture.sql~
