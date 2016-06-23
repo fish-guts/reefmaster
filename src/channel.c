@@ -158,7 +158,6 @@ void check_status(channel *c, user *u) {
 				return;
 			}
 		}
-		printf("debug new 1\n");
 		akick *ak = cs_akick_match(u, cs);
 		if (ak) {
 			char *reason = (char*) malloc(sizeof(char*) * 256);
@@ -166,7 +165,6 @@ void check_status(channel *c, user *u) {
 			kick(cs_name, u->nick, cs->name, reason);
 			ban(cs_name, ak->mask, cs->name);
 		}
-		printf("debug new 3\n");
 	}
 }
 

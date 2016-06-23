@@ -43,7 +43,6 @@ void adminserv(char *src, char *av) {
 	char **uv = (char**) malloc(sizeof(char) * 1024);
 	char *pch = strtok(av, " ");
 	as_cmd *as;
-	user *u = finduser(src);
 	while (pch != NULL) {
 		uv[i] = sstrdup(pch);
 		i++;
@@ -53,18 +52,17 @@ void adminserv(char *src, char *av) {
 		if (as->func) {
 			as->func(src, i, uv);
 		}
-		if (strcmp(uv[0], "PING") != 0) {
-			addlog(1, LOG_DBG_NS, as_name, src, u->username, u->hostname, av);
-		}
+
 	} else {
-		addlog(2, LOG_DBG_NS_UNKNOWN, as_name, src, u->username, u->hostname,
-				av);
+		notice(as_name,src,NS_ERR_NOSUCHCMD, uv[0]);
+		notice(as_name,src,NS_RPL_HLP_MAIN,as_name);
+		return;
 	}
 }
 
 static as_cmd *find_as(const char *name) {
 	as_cmd *cmd;
-	for (cmd = as_cmds; cmd->name; cmd++) {
+	for (cmd = as_cmds; cmd->name-1; cmd++) {
 		if (stricmp(name, cmd->name) == 0) {
 			return cmd;
 		}

@@ -215,8 +215,10 @@ INSERT INTO NICKS VALUES(58,"McViperly",	"hoppus123","viper@reefmaster.ch",	"Vip
 INSERT INTO NICKS VALUES(59,"Ombra_m",		"hoppus123","gio@reefmaster.ch",	"Gio",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
 INSERT INTO NICKS VALUES(60,"Snowblind",	"hoppus123","dark-snow@reefmaster.ch",	"Snow",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
 INSERT INTO NICKS VALUES(61,"fallen-angel",	"hoppus123","fa@reefmaster.ch",		"Fallen",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(62,"Iron",			"hoppus123","iron@reefmaster.ch",	"iron",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
-INSERT INTO NICKS VALUES(63,"b33t4l-dro1d",	"hoppus123","bd@reefmaster.ch",		"b4ttel",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(62,"Iron",		"hoppus123","iron@reefmaster.ch",	"iron",			1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(63,"b4tt3l-droid",	"hoppus123","bd@reefmaster.ch",		"b4ttel",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(64,"clubi",		"hoppus123","bd@reefmaster.ch",		"clubi",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
+INSERT INTO NICKS VALUES(65,"the_least_w",	"hoppus123","least@reefmaster.ch",	"least",		1415474819,1415474819,1,10,"www.reefmaster.ch","snox@reefmaster.ch",-1,1,0,1,1,2,"ntr",0);
 
 
 INSERT INTO CS_AKICK (CHAN,MASK,ADDED_BY,ADDED_BY_ACC,ADDED_ON,REASON) VALUES (1,"BluePanther!*@*.bluewin.ch","Fish-Guts",8,1415474819,"You are banned for misbehaving");
@@ -279,7 +281,7 @@ INSERT INTO CHANS VALUES(13,"#glarus",			"hoppus123","Glarus",			1415474819,		1,
 INSERT INTO CHANS VALUES(14,"#schwyz",			"hoppus123","Schwyz",			1415474819,		1,37,1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 INSERT INTO CHANS VALUES(15,"#graubuenden",		"hoppus123","Bündnerland",		1415474819,		1,37,1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 INSERT INTO CHANS VALUES(16, "#ticino",			"hoppus123","Ticino",			1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);	
-INSERT INTO CHANS VALUES(17,"#uri",				"hoppus123","Uri",			1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(17,"#uri",			"hoppus123","Uri",			1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 INSERT INTO CHANS VALUES(18,"#obwalden",		"hoppus123","Obwalden",			1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 INSERT INTO CHANS VALUES(19,"#nidwalden",		"hoppus123","Nidwalden",		1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 INSERT INTO CHANS VALUES(20,"#genf",			"hoppus123","Genève",			1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
@@ -301,7 +303,9 @@ INSERT INTO CHANS VALUES(35,"#linux",			"hoppus123","for Linux Fans",		141547481
 INSERT INTO CHANS VALUES(36,"#quiz",			"hoppus123","Quiz Channel",		1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"Fish-Guts",	1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 INSERT INTO CHANS VALUES(37,"#counter-strike",		"hoppus123","CS",			1415474819,		1,1,-1,		"ertn-k",	"Hallo",					"V",			1415474819,0,1,0,4,1,1,"www.ircops.ch",3);
 INSERT INTO CHANS VALUES(38,"#menonly",			"hoppus123","Gay Channel",		1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Valentin",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
-
+INSERT INTO CHANS VALUES(39,"#punk",			"hoppus123","Punk Rock",		1415474819,		1,3,1,		"ertn-k",	"Hallo",					"ventura",		1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(40,"#rock",			"hoppus123","Rock",			1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Neo",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
+INSERT INTO CHANS VALUES(41,"#gabber",			"hoppus123","gabber-gandalf",		1415474819,		1,3,1,		"ertn-k",	"Hallo",					"Neo",			1415474819,0,1,0,4,1,1,"www.ircops.ch",5);
 
 -- Level 1 Uop 2 Vop 3 Hop 4 Aop 5 Sop 6 Cop 7 Qop 8 Successor 9 Founder
 -- Added additionally 10 Full Founder, 11 ServiceRootAdmin

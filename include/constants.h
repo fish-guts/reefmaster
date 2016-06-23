@@ -587,8 +587,9 @@
 #define CS_XOP_ERR_NOTONLIST		"\2%s\2 is not on the \2%s\2 list of \2%s\2"
 #define CS_XOP_ERR_USAGE			"Usage: \2%s\2 <Channel> [ADD|DEL|LIST|WIPE|ENABLE|DISABLE]"
 #define CS_XOP_ERR_LIMIT			"The Limit of \2%i\2 entries in the \2%s\2 list of \2%s\2 has already been reached."
-#define CS_XOP_RPL_USAGE			"Usage: \2%s\2 %s"
-#define CS_XOP_RPL_USAGE_CHAN		"Usage: \2%s\2 <#channel> <nick>"
+#define CS_XOP_RPL_USAGE_1			"Usage: \2%s\2 <#channel> \2%s\2 <nickname>"
+#define CS_XOP_RPL_USAGE_2			"Usage: \2%s\2 <#channel> \2%s\2"
+#define CS_XOP_RPL_USAGE_MAIN		"Usage: \2%s\2 <#channel> \2[ADD|DEL|LIST|WIPE]\2 <nickname>"
 #define CS_XOP_ERR_HIGHERACCESS		"Permission denied. You need \2%s\2 Access or higher."
 #define CS_XOP_ERR_HIGHERACCESS2	"Sorry, \2%s\2 does not have the required privileges."
 #define CS_XOP_RPL_REQUESTSENT1		"The nickname \2%s\2 has authorization for channel lists enabled."
@@ -596,6 +597,13 @@
 #define CS_XOP_RPL_REQUESTSENT3		"Once \2%s\2 approved your request, they will be added to the \2%s\2 list of \2%s\2."
 #define CS_XOP_RPL_REQUESTSENT4		"Once \2%s\2 approved your request, they will be set as the \2%s\2 of \2%s\2."
 #define CS_ERR_AOP_GENERALERROR		"Sorry, a general error has occured. Please try again later."
+#define OP_AOP						"Aop"
+#define OP_COP						"Cop"
+#define OP_HOP						"Hop"
+#define OP_QOP						"Qop"
+#define OP_SOP						"Sop"
+#define OP_UOP						"Uop"
+#define OP_VOP						"Vop"
 
 /* REGISTER
  ******************************************************************************************************************************************
@@ -611,7 +619,7 @@
 #define CS_REGISTER_RPL_SUCCESS1		"The channel \2%s\2 has been registered to you."
 #define CS_REGISTER_RPL_SUCCESS2		"The password is \2%s\2 - Remember it for further use."
 #define CS_REGISTER_RPL_SUCCESS3		"The mask \2%s\2 was automatically added to the channel access list."
-#define CS_REGISTER_RPL_USAGE			"Usage: \2REGISTER\2 <Password> <Channel Description>"
+#define CS_REGISTER_RPL_USAGE			"Usage: \2REGISTER\2 <# <Password> <Channel Description>"
 
 
 /* Botserv Messages

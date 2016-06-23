@@ -65,7 +65,6 @@ void ns_setpass(char *src, int ac, char **av) {
 	} else {
 		strscpy(n->pass, pass, PASSMAX);
 		notice(ns_name, src, NS_RPL_SPASS_SUCCESS, nick, pass);
-		notice(ns_name,src,NS_LOG_SETPASS_USED);
 		addlog(1,NS_LOG_SETPASS_USED,ns_name,src,nick);
 		globops(ns_name,NS_GLOBAL_SETPASS_USED,src,nick);
 		return;

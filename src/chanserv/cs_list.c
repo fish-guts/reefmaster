@@ -47,8 +47,7 @@ void cs_list(char *src,int ac,char **av) {
 	notice(cs_name,src,CS_LIST_RPL_BEGIN,pattern);
 	while (c) {
 		if(ifmatch_0(pattern,c->name)) {
-			count++;
-			notice(cs_name,src,CS_LIST_RPL_ENTRY,count,c->name,c->founder);
+			notice(cs_name,src,CS_LIST_RPL_ENTRY,++count,c->name,find_nick_by_id(c->founder)->nick);
 		}
 		c = c->next;
 	}
