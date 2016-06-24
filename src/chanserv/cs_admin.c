@@ -31,8 +31,8 @@ void cs_admin(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"ADMIN");
-		notice(cs_name,src,CS_RPL_HLP,"ADMIN");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"ADMIN");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "ADMIN");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -77,8 +77,8 @@ void cs_deadmin(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEADMIN");
-		notice(cs_name,src,CS_RPL_HLP,"DEADMIN");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"DEADMIN");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "DEADMIN");
 		return;
 	}
 	nick = sstrdup(av[2]);

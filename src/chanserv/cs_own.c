@@ -31,8 +31,8 @@ void cs_own(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"OWN");
-		notice(cs_name,src,CS_RPL_HLP,"OWN");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"OWN");
+		notice(cs_name,src,CS_RPL_HLP,cs_name,"OWN");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -63,7 +63,7 @@ void cs_own(char *src, int ac, char **av) {
 			return;
 		}
 	}
-	deadmin(cs_name,nick,chan);
+	do_owner(cs_name,nick,chan);
 	return;
 }
 
@@ -77,7 +77,7 @@ void cs_deown(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEOWN");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"DEOWN");
 		notice(cs_name,src,CS_RPL_HLP,"DEOWN");
 		return;
 	}
@@ -109,6 +109,6 @@ void cs_deown(char *src, int ac, char **av) {
 			return;
 		}
 	}
-	deadmin(cs_name,nick,chan);
+	deowner(cs_name,nick,chan);
 	return;
 }

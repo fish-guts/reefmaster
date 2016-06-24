@@ -31,8 +31,8 @@ void cs_dehalfop(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEHALFOP");
-		notice(cs_name,src,CS_RPL_HLP,"DEHALFOP");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"DEHALFOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "DEHALFOP");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -77,8 +77,8 @@ void cs_halfop(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"HALFOP");
-		notice(cs_name,src,CS_RPL_HLP,"HALFOP");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"HALFOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "HALFOP");
 		return;
 	}
 	nick = sstrdup(av[2]);

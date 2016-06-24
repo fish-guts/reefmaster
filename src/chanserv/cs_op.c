@@ -31,8 +31,8 @@ void cs_deop(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEOP");
-		notice(cs_name,src,CS_RPL_HLP,"DEOP");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"DEOP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "DEOP");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -77,8 +77,8 @@ void cs_op(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_OP_ERR_USAGE);
-		notice(cs_name,src,CS_RPL_HLP,"OP");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"OP");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "OP");
 		return;
 	}
 	nick = sstrdup(av[2]);

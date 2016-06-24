@@ -396,7 +396,8 @@
 #define CS_ERR_NEEDREG				"You need a registered nickname to register a channel."
 #define CS_ERR_NOSUCHCHANNEL		"No such channel: %s."
 #define CS_ERR_NOTREG				"The Channel \2%s\2 is not registered."
-#define CS_RPL_HLP					"For more help, type /msg %s \2HELP %s %s\2."
+#define CS_RPL_HLP					"For more help, type /msg %s \2HELP %s\2."
+
 /* ACC
  ******************************************************************************************************************************************
  */
@@ -414,11 +415,11 @@
  ******************************************************************************************************************************************
  */
 #define CS_AKICK_ERR_ALREADYONLIST	"The mask \2%s\2 already is on the \2Akick\2 list of \2%s\2"
-#define CS_AKICK_ERR_USAGE			"Usage: \2AKICK\2 [#channel] \2<add|del|list|wipe> [reason]\2"
+#define CS_AKICK_ERR_USAGE			"Usage: \2AKICK\2 <#channel> \2<add|del|list|wipe> [reason]\2"
 #define CS_AKICK_RPL_KICKREASON		"Your mask has been added to the AKICK list (%s)"
 #define CS_AKICK_ERR_ADD_NOSENSE	"The mask \2%s\2 doesn't make any sense."
-#define CS_AKICK_ERR_ADD_USAGE		"Usage: \2AKICK\2 [#channel] \2ADD [mask] [reason]\2"
-#define CS_AKICK_ERR_DEL_USAGE		"Usage: \2AKICK\2 [#channel] \2DEL [mask]\2"
+#define CS_AKICK_ERR_ADD_USAGE		"Usage: \2AKICK\2 <#channel> \2ADD [mask] [reason]\2"
+#define CS_AKICK_ERR_DEL_USAGE		"Usage: \2AKICK\2 <#channel> \2DEL [mask]\2"
 #define CS_AKICK_RPL_LIST			"\2%i\2 - \2%s\2 (Added by %s:%s on %s) (%s)"
 #define CS_AKICK_RPL_LIST2			"\2%i\2 - \2%s\2 (Added by %s:%s on %s)"
 
@@ -470,7 +471,7 @@
  */
 #define CS_IDENTIFY_RPL_ALREADYIDF	 "You have already identified for the channel \2%s\2"
 #define CS_IDENTIFY_RPL_PASSACCEPTED "Password accepted - You are now identified for channel \2%s\2"
-#define CS_IDENTIFY_ERR_USAGE		 "Usage: \2IDENTIFY\2 [#channel] \2[password]\2"
+#define CS_IDENTIFY_ERR_USAGE		 "Usage: \2IDENTIFY\2 <#channel> \2[password]\2"
 #define CS_IDENTIFY_ERR_WRONGPASS	 "Password incorrect for channel \2%s\2"
 
 /* LIST
@@ -485,20 +486,20 @@
 /* MDEOP
  ******************************************************************************************************************************************
  */
-#define CS_MDEOP_ERR_USAGE			"Usage: \2MDEOP\2 [#channel]"
+#define CS_MDEOP_ERR_USAGE			"Usage: \2MDEOP\2 <#channel>"
 
 
 /* MKICK
  ******************************************************************************************************************************************
  */
-#define CS_MKICK_ERR_USAGE			"Usage: \2MKICK\2 [#channel] \2[reason]\2"
+#define CS_MKICK_ERR_USAGE			"Usage: \2MKICK\2 <#channel> \2[reason]\2"
 #define CS_MKICK_RPL_NOUSERS		"There a no users on channel \2%s\2"
 #define CS_MKICK_RPL_USED_BY		"MKICK Command used by %s"
 
 /* OP
  ******************************************************************************************************************************************
  */
-#define CS_OP_ERR_USAGE				"Usage: \2OP\2 [#channel] \2[nickname]\2"
+#define CS_OP_ERR_USAGE				"Usage: \2%s\2 <#channel> <nickname>\2"
 
 /* REGISTER
  ******************************************************************************************************************************************
@@ -510,39 +511,39 @@
  */
 #define CS_SET_BOT_ERR_NOBOT		  "There is no bot on channel \2%s\2"
 #define CS_SET_BOT_ERR_NOSUCHBOT	  "The bot \2%s\2 was not found"
-#define CS_SET_BOT_ERR_USAGE 		  "Usage: \2SET\2 [#channel] \2BOT\2 <Botname>"
+#define CS_SET_BOT_ERR_USAGE 		  "Usage: \2SET\2 <#channel> \2BOT\2 <Botname>"
 #define CS_SET_BOT_RPL_ALREADY		  "Bot \2%s\2 already is on channel \2%s\2"
 #define CS_SET_BOT_RPL_BOTADDED		  "The bot \2%s\2 will now join channel \2%s\2"
 #define CS_SET_BOT_RPL_BOTREMOVED	  "Success - Bot removed from Channel \2%s\2"
 #define CS_SET_BOT_RPL_SUCCESS		  "Bot for \2%s\2 is now set to \2%s\2"
-#define CS_SET_ERR_USAGE			  "Usage: \2SET\2 [#channel] <command> <parameters>"
+#define CS_SET_ERR_USAGE			  "Usage: \2SET\2 <#channel> <command> <parameters>"
 #define CS_SET_FOUNDER_ERR_REG		  "Only a registiered Nickname can be founder of a channel"
-#define CS_SET_FOUNDER_ERR_USAGE      "Usage: \2SET\2 [#channel] \2FOUNDER\2 <Nickname>"
+#define CS_SET_FOUNDER_ERR_USAGE      "Usage: \2SET\2 <#channel> \2FOUNDER\2 <Nickname>"
 #define CS_SET_FOUNDER_RPL_SUCCESS	  "The founder of \2%s\2 was changed to \2%s\2"
-#define CS_SET_KEEPTOPIC_ERR_USAGE    "Usage: \2SET\2 [#channel] \2KEEPTOPIC\2 <on|off>"
+#define CS_SET_KEEPTOPIC_ERR_USAGE    "Usage: \2SET\2 <#channel> \2KEEPTOPIC\2 <on|off>"
 #define CS_SET_KEEPTOPIC_RPL_DISABLE  "Keeptopic for \2%s\2 is now disabled"
 #define CS_SET_KEEPTOPIC_RPL_ENABLE	  "Keeptopic for \2%s\2 is now enabled"
-#define CS_SET_LEAVEOPS_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2LEAVEOPS\2 <on|off>"
+#define CS_SET_LEAVEOPS_ERR_USAGE 	  "Usage: \2SET\2 <#channel> \2LEAVEOPS\2 <on|off>"
 #define CS_SET_LEAVEOPS_RPL_DISABLE	  "Leaveops for \2%s\2 is now disabled"
 #define CS_SET_LEAVEOPS_RPL_ENABLE	  "Leaveops for \2%s\2 is now enabled"
-#define CS_SET_MEMOLEVEL_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2MEMOLEVEL\2 [Level]"
+#define CS_SET_MEMOLEVEL_ERR_USAGE 	  "Usage: \2SET\2 <#channel> \2MEMOLEVEL\2 [Level]"
 #define CS_SET_MEMOLEVEL_RPL_SUCCESS  "Memolevel for \2%s\2 was changed to \2%s\2"
-#define CS_SET_MLOCK_ERR_USAGE 		  "Usage: \2SET\2 [#channel] \2MLOCK\2 <+|-> [Modes]"
+#define CS_SET_MLOCK_ERR_USAGE 		  "Usage: \2SET\2 <#channel> \2MLOCK\2 <+|-> [Modes]"
 #define CS_SET_MLOCK_RPL_SUCCESS 	  "Modelock for \2%s\2 has been changed to \2%s\2"
-#define CS_SET_OPWATCH_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2OPWATCH\2 <on|off>"
+#define CS_SET_OPWATCH_ERR_USAGE 	  "Usage: \2SET\2 <#channel> \2OPWATCH\2 <on|off>"
 #define CS_SET_OPWATCH_RPL_DISABLE	  "Opwatch for \2%s\2 is now disabled"
 #define CS_SET_OPWATCH_RPL_ENABLE	  "Opwatch for \2%s\2 is now enabled"
-#define CS_SET_PASSWORD_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2PASSWORD\2 [Password]"
+#define CS_SET_PASSWORD_ERR_USAGE 	  "Usage: \2SET\2 <#channel> \2PASSWORD\2 [Password]"
 #define CS_SET_PASSWORD_RPL_SUCCESS	  "The password of \2%s\2 was changed to \2%s\2"
 #define CS_SET_RESTRICTED_RPL_ENABLE  "Access to \2%s\2 is now restricted"
 #define CS_SET_RESTRICTED_RPL_DISABLE "Access to \2%s\2 is no longer restricted"
-#define CS_SET_RESTRICTED_ERR_USAGE   "Usage: \2SET\2 [#channel] \2RESTRICTED\2 <on|off>"
+#define CS_SET_RESTRICTED_ERR_USAGE   "Usage: \2SET\2 <#channel> \2RESTRICTED\2 <on|off>"
 #define CS_SET_SUCCESSOR_ERR_REG	  "Only a registiered Nickname can be successor of a channel"
-#define CS_SET_SUCCESSOR_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2FOUNDER\2 <Nickname>"
+#define CS_SET_SUCCESSOR_ERR_USAGE 	  "Usage: \2SET\2 <#channel> \2FOUNDER\2 <Nickname>"
 #define CS_SET_SUCCESSOR_RPL_SUCCESS  "The successor of \2%s\2 was changed to \2%s\2"
 #define CS_SET_TOPICLOCK_RPL_SUCCESS  "Topiclock for \2%s\2 is now set to \2%s\2"
 #define CS_SET_TOPICLOCK_RPL_DISABLE  "Topiclock for \2%s\2 is now disabled"
-#define CS_SET_TOPICLOCK_ERR_USAGE 	  "Usage: \2SET\2 [#channel] \2TOPICLOCK\2 [Level|Off]"
+#define CS_SET_TOPICLOCK_ERR_USAGE 	  "Usage: \2SET\2 <#channel> \2TOPICLOCK\2 [Level|Off]"
 
 /* SETPASS
  ******************************************************************************************************************************************

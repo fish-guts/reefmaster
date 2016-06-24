@@ -1,4 +1,5 @@
 /*
+
  * cs_voice.c
  *
  *      Copyright (c) 2014 Severin Mueller <severin.mueller@reefmaster.org>
@@ -31,8 +32,8 @@ void cs_devoice(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"DEVOICE");
-		notice(cs_name,src,CS_RPL_HLP,"DEVOICE");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"DEVOICE");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "DEVOICE");
 		return;
 	}
 	nick = sstrdup(av[2]);
@@ -77,8 +78,8 @@ void cs_voice(char *src, int ac, char **av) {
 	user *u,*u1;
 	ChanInfo *c;
 	if(ac<3) {
-		notice(cs_name,src,CS_XOP_RPL_USAGE_CHAN,"VOICE");
-		notice(cs_name,src,CS_RPL_HLP,"VOICE");
+		notice(cs_name,src,CS_OP_ERR_USAGE,"VOICE");
+		notice(cs_name,src,CS_RPL_HLP,cs_name, "VOICE");
 		return;
 	}
 	nick = sstrdup(av[2]);
