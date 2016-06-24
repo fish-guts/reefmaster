@@ -73,7 +73,6 @@ void ns_access_cmd(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_ERR_NOSUCHCMD, cmd);
 		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS", "WIPE");
 	}
-	free(nick);
 }
 /**
  * add an entry to the nickname's access list
@@ -213,7 +212,6 @@ void ns_access_list(char *src, char *nick) {
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 		return;
 	}
-
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
 		return;
@@ -227,24 +225,24 @@ void ns_access_list(char *src, char *nick) {
 		myacc *a = n->accesslist;
 
 		if(!a) {
-			if (stricmp(src, nick) != 0)
+			if (stricmp(src, nick) != 0) {
 				notice(ns_name, src, NS_ACCESS_RPL_NOENTRIES2, nick);
-			else
+			} else {
 				notice(ns_name, src, NS_ACCESS_RPL_NOENTRIES);
+			}
 			return;
 		} else {
 			notice(ns_name, src, NS_ACCESS_RPL_LIST, nick);
 			int i = 0;
-			while (a) {
-				i++;
-				notice(ns_name, src, NS_ACCESS_RPL_LISTENTRIES, i,a->mask);
+			while (a != NULL) {
+				notice(ns_name, src, NS_ACCESS_RPL_LISTENTRIES, ++i,a->mask);
 				a = a->next;
 			}
-			if (i == 2)
+			if (i == 2) {
 				notice(ns_name, src, NS_ACCESS_RPL_LISTFOUND1, i);
-			else
+			} else {
 				notice(ns_name, src, NS_ACCESS_RPL_LISTFOUND2, i);
-			return;
+			}
 		}
 	}
 }
