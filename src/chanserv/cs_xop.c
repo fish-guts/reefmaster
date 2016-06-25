@@ -421,6 +421,7 @@ void cs_xop_add(char *src, char *chan, int list, char *nick) {
 	}
 	if(!isreg(nick)) {
 		notice(cs_name,src,NS_ERR_NOTREG,nick);
+		return;
 	}
 	ChanInfo *c = findchan(chan);
 	if ((listacc = cs_xop_get_level(finduser(src),c)) < alist[list]) {
@@ -472,6 +473,7 @@ void cs_xop_del(char *src, char *chan, int list, char *nick) {
 
 	if(!isreg(nick)) {
 		notice(cs_name,src,NS_ERR_NOTREG,nick);
+		return;
 	}
 
 	user *u = finduser(src);
