@@ -295,9 +295,9 @@ static int db_add_chan(sqlite3 *db, ChanInfo *c) {
 
 	if ((sqlite3_exec(db, sql, 0, 0, &sqlite_err)) != SQLITE_OK) {
 		addlog(2, LOG_ERR_SQLERROR, sqlite3_errmsg(db));
-		return 0;
+		return SQL_ERROR;
 	}
-	return 1;
+	return SQL_OK;
 }
 
 /****************************************************************************************/
