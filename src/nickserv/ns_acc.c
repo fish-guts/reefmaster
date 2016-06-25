@@ -29,7 +29,7 @@
 void ns_acc(char *src, int ac, char **av) {
 	if (ac < 2) {
 		notice(ns_name, src, NS_ACC_USAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"ACC");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"ACC");
 		return;
 	}
 	user *u = finduser(av[1]);
