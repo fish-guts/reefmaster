@@ -39,7 +39,7 @@ void ns_getpass(char *src, int ac, char **av) {
 	}
 	if (ac <= 1) {
 		notice(ns_name, src, NS_GETPASS_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"GETPASS");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"GETPASS");
 		return;
 	}
 	if (!isreg(av[1])) {

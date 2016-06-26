@@ -35,7 +35,7 @@ void ns_identify(char *src, int ac, char **av) {
 		return;
 	if (ac <= 1) {
 		notice(ns_name, src, NS_IDENTIFY_RPL_USAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"IDENTIFY");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"IDENTIFY");
 		return;
 	}
 	if (ac == 2) {

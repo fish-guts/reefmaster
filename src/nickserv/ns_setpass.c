@@ -55,7 +55,7 @@ void ns_setpass(char *src, int ac, char **av) {
 	/* the new password should be at least 5 characters long */
 	if (strlen(pass) < 5) {
 		notice(ns_name, src, NS_REGISTER_ERR_PASSTOOSHORT);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SETPASS");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"SETPASS");
 		return;
 	}
 	/* the password must not be the same as the nickname */

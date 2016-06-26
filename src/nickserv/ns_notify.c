@@ -93,7 +93,7 @@ notify *find_notify(char *src, char *dest) {
 void ns_notify(char *src, int ac, char **av) {
 	if(ac<2) {
 		notice(ns_name,src,NS_NOTIFY_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"NOTIFY");
 		return;
 	}
 	if (stricmp(av[1], "ADD") == 0) {
@@ -106,7 +106,7 @@ void ns_notify(char *src, int ac, char **av) {
 		ns_notify_wipe(src,ac,av);
 	} else {
 		notice(ns_name, src, NS_ERR_NOSUCHCMD, av[1]);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"NOTIFY");
 		return;
 	}
 	return;
@@ -119,12 +119,12 @@ void ns_notify_add(char *src,int ac,char **av) {
 	if (!isreg(src)) {
 		notice(ns_name, src, NS_ERR_NOTREG, src);
 		notice(ns_name, src, NS_NOTIFY_ERR_MUSTBEREG);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY ADD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY",  "ADD");
 		return;
 	}
 	if (stricmp(src, av[2]) == 0) {
 		notice(ns_name, src, NS_NOTIFY_ERR_SAMEASSRC);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY ADD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY", "ADD");
 		return;
 	} else {
 		char *nick = sstrdup(av[2]);
@@ -171,13 +171,13 @@ void ns_notify_add(char *src,int ac,char **av) {
 void ns_notify_del(char *src,int ac, char **av) {
 	if (ac < 3) {
 		notice(ns_name, src, NS_NOTIFY_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY DEL");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY", "DEL");
 		return;
 	}
 	if ((src) < 0) {
 		notice(ns_name, src, NS_ERR_NOTREG, src);
 		notice(ns_name, src, NS_NOTIFY_ERR_MUSTBEREG);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY DEL");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY", "DEL");
 		return;
 	} else {
 		user *u = finduser(src);
@@ -191,7 +191,7 @@ void ns_notify_del(char *src,int ac, char **av) {
 		if (!isreg(nick)) {
 			notice(ns_name, src, NS_ERR_NOTREG, nick);
 			notice(ns_name, src, NS_NOTIFY_ERR_MUSTBEREG2);
-			notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY DEL");
+			notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY", "DEL");
 			return;
 		}
 		notify *no = find_notify(src,nick);
@@ -224,7 +224,7 @@ void ns_notify_list(char *src,int ac,char **av) {
 		nick = src;
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY LIST");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY", "LIST");
 		return;
 	}
 	NickInfo *n;
@@ -264,7 +264,7 @@ void ns_notify_wipe(char *src,int ac,char **av) {
 		nick = src;
 	if (!isreg(nick)) {
 		notice(ns_name, src, NS_ERR_NOTREG, nick);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY LIST");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"NOTIFY", "LIST");
 		return;
 	}
 	NickInfo *n;

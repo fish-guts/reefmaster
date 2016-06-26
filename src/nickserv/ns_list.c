@@ -38,7 +38,7 @@ void ns_list(char *src,int ac,char **av) {
 	}
 	if(ac<2) {
 		notice(ns_name,src,NS_ERR_LIST_USAGE);
-		notice(ns_name,src,NS_RPL_HLP,"LIST");
+		notice(ns_name,src,NS_RPL_HLP_SHORT,"LIST");
 		return;
 	}
 	pattern = sstrdup(av[1]);

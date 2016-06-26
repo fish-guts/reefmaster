@@ -74,7 +74,7 @@ void ns_auth(char *src, int ac, char **av) {
 	char *cmd = av[1];
 	if (ac < 2) {
 		notice(ns_name, src, NS_AUTH_ERR_USAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"AUTH");
 		return;
 	}
 	if (stricmp(cmd, "ACCEPT") == 0) {
@@ -102,7 +102,7 @@ void ns_auth_accept(char *src, int ac, char **av) {
 	if (ac < 3) {
 		static char *xop[] = { "", UOP_STR, VOP_STR, HOP_STR, AOP_STR, SOP_STR };
 		notice(ns_name, src, NS_AUTH_ERR_ACCEPTUSAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH ACCEPT");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH" "ACCEPT");
 		notice(as_name,src,xop[4]);
 		return;
 	}
@@ -151,7 +151,7 @@ void ns_auth_decline(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac < 3) {
 		notice(ns_name, src, NS_AUTH_ERR_DECLINEUSAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH DECLINE");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH", "DECLINE");
 		return;
 	}
 	/* if the nickname is not registered */
@@ -245,7 +245,7 @@ void ns_auth_read(char *src, int ac, char **av) {
 	 */
 	if (ac < 3) {
 		notice(ns_name, src, NS_AUTH_ERR_READUSAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH READ");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH" "READ");
 		return;
 	}
 	NickInfo *n = findnick(src);
@@ -265,7 +265,7 @@ void ns_auth_read(char *src, int ac, char **av) {
 	if (!isnum(av[2])) {
 		notice(ns_name, src, NS_AUTH_ERR_ISNONUM);
 		notice(ns_name, src, NS_AUTH_ERR_READUSAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH READ");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"AUTH" "READ");
 		return;
 	}
 	/* if the value if greater than the number of actual requests, trigger an error */

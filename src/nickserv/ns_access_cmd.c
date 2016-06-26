@@ -86,12 +86,12 @@ void ns_access_add(char *src, char *nick, char *mask) {
 	}
 	if (!strchr(mask, '@')) {
 		notice(ns_name, src, NS_ACCESS_ERR_MASKFORMAT);
-		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS ADD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS", "ADD");
 		return;
 	}
 	if ((strcmp(mask, "*@*.*") == 0 || strcmp(mask, "*@*") == 0)) {
 		notice(ns_name, src, NS_ACCESS_ERR_MASKFORMAT2, mask);
-		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS ADD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS", "ADD");
 		return;
 	} else {
 		if (!isreg(nick)) {

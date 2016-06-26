@@ -31,7 +31,7 @@ void ns_drop(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac < 2) {
 		notice(ns_name, src, NS_DROP_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP,ns_name,"DROP");
+		notice(ns_name, src, NS_RPL_HLP_SHORT,ns_name,"DROP");
 		return;
 	}
 	char *nick = av[1];

@@ -93,7 +93,7 @@ void ns_register(char *src, int ac, char **av) {
 	/* the password shouldn't be the same as the nickname */
 	if (stricmp(pass, dest) == 0) {
 		notice(ns_name, src, NS_REGISTER_ERR_PASSSAMEASNICK);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"REGISTER");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name,"REGISTER");
 		free(dest);
 		return;
 	} else {

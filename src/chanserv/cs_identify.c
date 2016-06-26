@@ -29,7 +29,7 @@
 void cs_identify(char *src,int ac,char **av) {
 	if(ac<3) {
 		notice(cs_name,src,CS_IDENTIFY_ERR_USAGE);
-		notice(cs_name,src,NS_RPL_HLP,cs_name,"HELP IDENTIFY");
+		notice(cs_name,src,NS_RPL_HLP_SHORT,cs_name,"HELP IDENTIFY");
 		return;
 	}
 	char *chan = sstrdup(av[1]);

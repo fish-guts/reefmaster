@@ -83,7 +83,7 @@ void ns_set_authorize(char *src, int ac, char **av) {
 	}
 	if (ac <= 3) {
 		notice(ns_name, src, NS_SET_AUTH_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET AUTHORIZE");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "AUTHORIZE");
 		return;
 	}
 	NickInfo *n = findnick(src);
@@ -144,7 +144,7 @@ void ns_set_email(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_EMAIL_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET EMAIL");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "EMAIL");
 		return;
 	}
 	if (!strchr(av[2], '@')) {
@@ -167,7 +167,7 @@ void ns_set_hideemail(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_HIDEEMAIL_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET HIDEEMAIL");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "HIDEEMAIL");
 		return;
 	}
 	if (hasaccess(u, src) < 0) {
@@ -186,7 +186,7 @@ void ns_set_hideemail(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(ns_name, src, NS_SET_HIDEEMAIL_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET HIDEEMAIL");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "HIDEEMAIL");
 		return;
 	}
 	return;
@@ -205,7 +205,7 @@ void ns_set_mforward(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_MFORWARD_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MFORWARD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "MFORWARD");
 		return;
 	}
 	if (hasaccess(u, src) < 0) {
@@ -256,7 +256,7 @@ void ns_set_mlock(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_MLOCK_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MLOCK");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "MLOCK");
 		return;
 	}
 	NickInfo *n = findnick(src);
@@ -277,7 +277,7 @@ void ns_set_mnotify(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_MNOTIFY_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MNOTIFY");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "MNOTIFY");
 		return;
 	}
 	if (hasaccess(u, src) < 0) {
@@ -296,7 +296,7 @@ void ns_set_mnotify(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(ns_name, src, NS_SET_MNOTIFY_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET MNOTIFY");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "MNOTIFY");
 		return;
 	}
 }
@@ -349,7 +349,7 @@ void ns_set_noop(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_NOOP_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET NOOP");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "NOOP");
 		return;
 	}
 	if (hasaccess(u, src) < 0) {
@@ -376,7 +376,7 @@ void ns_set_noop(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(ns_name, src, NS_SET_NOOP_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET NOOP");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "NOOP");
 		return;
 	}
 	return;
@@ -390,7 +390,7 @@ void ns_set_password(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_PASS_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET PASSWORD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "PASSWORD");
 		return;
 	}
 	char *pass = sstrdup(av[2]);
@@ -425,7 +425,7 @@ void ns_set_protect(char *src, int ac, char **av) {
 	user *u = finduser(src);
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_PROTECT_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET PROTECT");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "PROTECT");
 		return;
 	}
 	if (!isreg(src)) {
@@ -464,7 +464,7 @@ void ns_set_protect(char *src, int ac, char **av) {
 		return;
 	} else {
 		notice(ns_name, src, NS_SET_PROTECT_ERR_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET PROTECT");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "PROTECT");
 		return;
 	}
 	return;
@@ -487,7 +487,7 @@ void ns_set_url(char *src, int ac, char **av) {
 	}
 	if (ac <= 2) {
 		notice(ns_name, src, NS_SET_URL_RPL_USAGE);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET URL");
+		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "URL");
 		return;
 	}
 	if (!strchr(av[2], '@')) {
