@@ -292,15 +292,7 @@ extern int ns_connect(int sock) {
 	return rc;
 
 }
-/********************************************************************/
-/**
- * checks whether the mask of a user matches an entry in the nickname's
- * access list.
- */
-int ns_checkmask(char *src, char *mask) {
 
-	return -1;
-}
 /********************************************************************/
 /**
  * check whether the joining user u is in a registered nickname's

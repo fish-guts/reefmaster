@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-static myacc *find_mask(NickInfo *n,char *mask);
+static myacc *find_mask(NickInfo *n, char *mask);
 
 /**
  * ns_access Handle the Nickserv ACCESS Command
@@ -32,13 +32,13 @@ static myacc *find_mask(NickInfo *n,char *mask);
  * WIPE - Delete all access entries of a nickname
  */
 void ns_access_cmd(char *src, int ac, char **av) {
-	char *cmd = av[1];
-	char *mask = av[2];
 	if (ac < 2) {
 		notice(ns_name, src, NS_ACC_USAGE, ns_name);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"ACCESS");
+		notice(ns_name, src, NS_RPL_HLP_SHORT, ns_name, "ACCESS");
 		return;
 	}
+	char *cmd = av[1];
+	char *mask = av[2];
 	char *nick = (char*) malloc(sizeof(char) * 128);
 	if (stricmp(cmd, "ADD") == 0) {
 		if (ac >= 4) {
@@ -47,8 +47,7 @@ void ns_access_cmd(char *src, int ac, char **av) {
 			nick = src;
 		}
 		ns_access_add(src, nick, mask);
-	}
-	else if (stricmp(cmd, "DEL") == 0) {
+	} else if (stricmp(cmd, "DEL") == 0) {
 		if (ac >= 4) {
 			nick = av[3];
 		} else {
@@ -87,12 +86,12 @@ void ns_access_add(char *src, char *nick, char *mask) {
 	}
 	if (!strchr(mask, '@')) {
 		notice(ns_name, src, NS_ACCESS_ERR_MASKFORMAT);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"ACCESS ADD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS ADD");
 		return;
 	}
 	if ((strcmp(mask, "*@*.*") == 0 || strcmp(mask, "*@*") == 0)) {
 		notice(ns_name, src, NS_ACCESS_ERR_MASKFORMAT2, mask);
-		notice(ns_name, src, NS_RPL_HLP, ns_name,"ACCESS ADD");
+		notice(ns_name, src, NS_RPL_HLP, ns_name, "ACCESS ADD");
 		return;
 	} else {
 		if (!isreg(nick)) {
@@ -104,7 +103,7 @@ void ns_access_add(char *src, char *nick, char *mask) {
 				notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 				return;
 			}
-			if (ns_checkmask(nick, mask) >= 0) {
+			if (find_mask(n, mask) >= 0) {
 				if (stricmp(src, nick) != 0)
 					notice(ns_name, src, NS_ACCESS_ERR_MASKEXISTS2, mask, nick);
 				else
@@ -112,7 +111,7 @@ void ns_access_add(char *src, char *nick, char *mask) {
 				return;
 			}
 
-			ns_access_add_mask(n,mask);
+			ns_access_add_mask(n, mask);
 
 			if (stricmp(src, nick) != 0) {
 				notice(ns_name, src, NS_ACCESS_RPL_ADDSUCCESS2, mask, nick);
@@ -157,45 +156,46 @@ void ns_access_del(char *src, char *nick, char *mask) {
 		notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 		return;
 	}
-	if (ns_checkmask(nick, mask) < 0) {
+	myacc *a = find_mask(n, mask);
+	if (a == NULL) {
 		if (stricmp(src, nick) != 0) {
 			notice(ns_name, src, NS_ACCESS_ERR_MASKNOTFOUND2, mask, nick);
 		} else {
 			notice(ns_name, src, NS_ACCESS_ERR_MASKNOTFOUND, mask);
 		}
 		return;
-	} else {
-		myacc *a = find_mask(n,mask);
-	    free(a->mask);
-	    if (a->prev) {
-			a->prev->next = a->next;
-	    } else {
-			n->accesslist = a->next;
-	    }
-
-		if (a->next) {
-			a->next->prev = a->prev;
-		}
-
-		free(a);
-		if (stricmp(src, nick) != 0) {
-			notice(ns_name, src, NS_ACCESS_RPL_DELSUCCESS2, mask, nick);
-		} else {
-			notice(ns_name, src, NS_ACCESS_RPL_DELSUCCESS, mask);
-		}
-		return;
 	}
+
+	if (a->prev) {
+		a->prev->next = a->next;
+	} else {
+		n->accesslist = a->next;
+	}
+
+	if (a->next) {
+		a->next->prev = a->prev;
+	}
+
+	free(a);
+	if (stricmp(src, nick) != 0) {
+		notice(ns_name, src, NS_ACCESS_RPL_DELSUCCESS2, mask, nick);
+	} else {
+		notice(ns_name, src, NS_ACCESS_RPL_DELSUCCESS, mask);
+	}
+	return;
 }
 /********************************************************************/
 /**
  * find an existing access mask in a nickname
  */
-static myacc *find_mask(NickInfo *n,char *mask) {
-	myacc *a;
-	for (a = n->accesslist; a->mask-1; a++) {
+static myacc *find_mask(NickInfo *n, char *mask) {
+	myacc *a = n->accesslist;
+	while(a != NULL) {
+		printf("current mask %s\n",a->mask);
 		if (stricmp(mask, a->mask) == 0) {
 			return a;
 		}
+		a = a->next;
 	}
 	return NULL;
 }
@@ -224,7 +224,7 @@ void ns_access_list(char *src, char *nick) {
 		}
 		myacc *a = n->accesslist;
 
-		if(!a) {
+		if (!a) {
 			if (stricmp(src, nick) != 0) {
 				notice(ns_name, src, NS_ACCESS_RPL_NOENTRIES2, nick);
 			} else {
@@ -235,7 +235,7 @@ void ns_access_list(char *src, char *nick) {
 			notice(ns_name, src, NS_ACCESS_RPL_LIST, nick);
 			int i = 0;
 			while (a != NULL) {
-				notice(ns_name, src, NS_ACCESS_RPL_LISTENTRIES, ++i,a->mask);
+				notice(ns_name, src, NS_ACCESS_RPL_LISTENTRIES, ++i, a->mask);
 				a = a->next;
 			}
 			if (i == 2) {

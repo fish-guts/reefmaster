@@ -50,7 +50,6 @@ NickInfo *findnick(const char *nick);
 NickInfo *find_nick_by_id(int id);
 int isidentified(user *u,char *nick);
 void nickserv(char *src,char *av);
-int ns_checkmask(char *src,char *mask);
 void ns_checknotify(user *u, int mode);
 extern int ns_connect(int sock);
 int ns_checkpass(char *src,char *pass);
