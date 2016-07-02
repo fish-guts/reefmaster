@@ -735,6 +735,7 @@
  */
 
 #define OS_RPL_HELP					"For more help type /msg %s HELP \2%s\2"
+#define OS_RPL_ISNOWBOT				"\2%s\2 is now a Services Agent\2"
 #define OS_RPL_ISNOWHELPOP			"\2%s\2 is now a Help Operator\2"
 #define OS_RPL_ISNOWIRCOP			"\2%s\2 is now an \2IRC Operator\2"
 #define OS_RPL_ISNOWCOADMIN			"\2%s\2 is now a \2Co Administrator\2"
@@ -794,6 +795,12 @@
  */
 #define OS_GLOBAL_ERR_USAGE			"Usage: \2GLOBAL\2 <Message>"
 #define OS_GLOBAL_RPL_SENT			"Success - Message sent to opers"
+
+/* HELP
+ ******************************************************************************************************************************************
+ */
+
+#define OS_HELP_PATH				 	"docs/help/en/operserv"
 
 
 

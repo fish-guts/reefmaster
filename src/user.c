@@ -146,6 +146,8 @@ void s_nick(const char *src, int ac, char **av)
 		u->oper = 0;
 		if(strchr(av[7],'h'))
 			u->oper = OPER_HELPOP;
+		if(strchr(av[7],'B'))
+				u->oper = OPER_BOT;
 		if((strchr(av[7],'o')) || (strchr(av[7],'O')))
 			u->oper = OPER_IRCOP;
 		if(strchr(av[7],'C'))

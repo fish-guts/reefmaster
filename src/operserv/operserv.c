@@ -31,7 +31,8 @@ static char *aoper[] = {
 	OS_RPL_ISNOWCOADMIN,
 	OS_RPL_ISNOWADMIN,
 	OS_RPL_ISNOWSA,
-	OS_RPL_ISNOWNETADMIN
+	OS_RPL_ISNOWNETADMIN,
+	OS_RPL_ISNOWBOT
 };
 
 static os_cmd os_cmds[] = {
@@ -64,7 +65,7 @@ void announce_oper(char *oper,int lvl) {
  */
 static os_cmd *find_os(const char *name) {
 	os_cmd *cmd;
-	for (cmd = os_cmds; cmd->name; cmd++) {
+	for (cmd = os_cmds; cmd->name-1; cmd++) {
 		if (stricmp(name, cmd->name) == 0)
 			return cmd;
 	}
@@ -102,6 +103,8 @@ void operserv(char *src, char *av) {
 		if (os->func)
 			os->func(src, i, uv);
 	} else {
+		notice(os_name,src,NS_ERR_NOSUCHCMD,uv[0]);
+		notice(os_name,src,NS_RPL_HLP_MAIN,os_name);
 		addlog(2, LOG_DBG_NS_UNKNOWN, ns_name, src, u->username, u->hostname,av);
 	}
 }

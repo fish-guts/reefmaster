@@ -542,6 +542,8 @@ NickInfo *register_nick(const char *src, const char *password,char *email) {
 	if (!src) {
 		src = "";
 	}
+	n->id = ++max_ns_id;
+	notice(os_name,src,"New nick id: %i\n",n->id);
 	strscpy(n->nick, src, NICKMAX);
 	strscpy(n->pass, password, PASSMAX);
 	n->email = sstrdup(email);

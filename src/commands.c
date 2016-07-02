@@ -208,7 +208,7 @@ void c_mode(char *src, int ac, char **av) {
 				u->oper = 3;
 			if(strchr(av[1],'A'))
 				u->oper = 4;
-			if(strchr(av[1],'a'))
+			if((strchr(av[1],'a')) || (strchr(av[1],'B')))
 				u->oper = 5;
 			if(strchr(av[1],'N'))
 				u->oper = 6;

@@ -46,6 +46,12 @@
 int mainsock;
 char inick[64];
 time_t last_check;
+/* current max ids' */
+
+int max_ns_id;
+int max_cs_id;
+int max_bs_id;
+int max_os_id;
 
 /* Function prototypes */
 
@@ -141,6 +147,7 @@ void save_nickserv_db(void);
 #define NOTIFY_ONLINE 2
 #define NOTIFY_OFFLINE 4
 
+#define OPER_BOT 			7
 #define OPER_HELPOP 		1
 #define OPER_IRCOP 			2
 #define OPER_CO_ADMIN		3
@@ -149,18 +156,11 @@ void save_nickserv_db(void);
 #define OPER_NETADMIN		6
 
 
+
 /* database Files */
 
 #define CONFIG_FILE 	"services.conf"
 #define DB				"db/services.db"
-
-/* current max ids' */
-
-int max_ns_id;
-int max_cs_id;
-int max_bs_id;
-int max_os_id;
-
 
 /* service status flags */
 

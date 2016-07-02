@@ -103,7 +103,7 @@ void ns_access_add(char *src, char *nick, char *mask) {
 				notice(ns_name, src, NS_RPL_NEEDIDENTIFY, nick);
 				return;
 			}
-			if (find_mask(n, mask) >= 0) {
+			if (find_mask(n, mask) != NULL) {
 				if (stricmp(src, nick) != 0)
 					notice(ns_name, src, NS_ACCESS_ERR_MASKEXISTS2, mask, nick);
 				else
@@ -191,7 +191,6 @@ void ns_access_del(char *src, char *nick, char *mask) {
 static myacc *find_mask(NickInfo *n, char *mask) {
 	myacc *a = n->accesslist;
 	while(a != NULL) {
-		printf("current mask %s\n",a->mask);
 		if (stricmp(mask, a->mask) == 0) {
 			return a;
 		}

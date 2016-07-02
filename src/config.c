@@ -1864,8 +1864,6 @@ int config_load(const char *file) {
 		ns_default = cfg_getsec(nickserv, "default");
 		ns_mlock = cfg_getstr(ns_default, "mlock");
 
-		printf("ns_expiry: %ld\n",cfg_getint(ns_general, "expiry"));
-
 		/* end of section nickserv */
 		/* section chanserv ***********************************************************************************************/
 		cfg_t *chanserv;

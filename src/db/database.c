@@ -26,6 +26,12 @@
  * load the module tables
  */
 void load_database(void) {
+
+	max_ns_id = 0;
+	max_cs_id = 0;
+	max_bs_id = 0;
+	max_os_id = 0;
+
 	addlog(1, LOG_DBG_ENTRY, "load_database");
 	if (bs_enabled) {
 		load_botserv();
@@ -39,6 +45,7 @@ void load_database(void) {
 	if (os_enabled) {
 		load_opers();
 	}
+	printf("max nickserv id: %i\n",max_ns_id);
 	addlog(1, LOG_DBG_EXIT, "load_database");
 }
 

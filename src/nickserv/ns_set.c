@@ -490,10 +490,6 @@ void ns_set_url(char *src, int ac, char **av) {
 		notice(ns_name, src, NS_RPL_HLP, ns_name,"SET", "URL");
 		return;
 	}
-	if (!strchr(av[2], '@')) {
-		notice(ns_name, src, NS_REGISTER_ERR_INVALDEMAIL);
-		return;
-	}
 	NickInfo *n = findnick(src);
 	n->url = sstrdup(av[2]);
 	notice(ns_name, src, NS_SET_URL_RPL_SUCCESS, av[2]);

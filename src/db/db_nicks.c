@@ -309,12 +309,13 @@ static void load_nicks(void) {
 			n->notifylist = NULL;
 			n->accesslist = NULL;
 			n->next = nicklist;
+			max_ns_id = n->id;
 			if (nicklist) {
 				nicklist->prev = n;
 			}
 			nicklist = n;
-			max_ns_id = n->id;
-		}
+
+		} /* while */
 	}
 	sqlite3_close(db);
 }
