@@ -199,6 +199,17 @@ void cs_set_founder(char *src, int ac, char **av) {
 		return;
 	}
 	NickInfo *n = findnick(nick);
+	if(c->founder == n->id) {
+		notice(cs_name,src,CS_SET_SUCCESSOR_ERR_ALREADY2,n->nick,c->name);
+		notice(cs_name, src, CS_RPL_HLP, cs_name, "SET SUCCESSOR");
+		return;
+	} else if(c->successor == n->id) {
+		c->successor = -1;
+		c->founder = n->id;
+		notice(cs_name,src,CS_SET_FOUNDER_RPL_SUCCESSOR,n->nick,c->name);
+		notice(cs_name, src, CS_SET_FOUNDER_RPL_SUCCESS, nick, chan);
+		return;
+	}
 	c->founder = n->id;
 	notice(cs_name, src, CS_SET_FOUNDER_RPL_SUCCESS, nick, chan);
 	return;
@@ -613,7 +624,19 @@ void cs_set_successor(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_SET_SUCCESSOR_ERR_REG);
 		return;
 	}
+
 	NickInfo *n = findnick(nick);
+	if(c->successor == n->id) {
+		notice(cs_name,src,CS_SET_SUCCESSOR_ERR_ALREADY,n->nick,c->name);
+		notice(cs_name, src, CS_RPL_HLP, cs_name, "SET SUCCESSOR");
+		return;
+	} else if(c->founder == n->id) {
+		notice(cs_name,src,CS_SET_SUCCESSOR_ERR_ALREADY2,n->nick,c->name);
+		notice(cs_name, src, CS_RPL_HLP, cs_name, "SET SUCCESSOR");
+		return;
+	}
+
+
 	c->successor = n->id;
 	notice(cs_name, src, CS_SET_SUCCESSOR_RPL_SUCCESS, c->name, n->nick);
 	add_to_list(n->nick, c->name, ACCESS_SUC, src, cs_xop_get_level(u, c));

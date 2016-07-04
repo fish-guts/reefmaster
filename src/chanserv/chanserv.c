@@ -271,10 +271,10 @@ int cs_isfounder(int nick_id, char *chan) {
  * check wether the nick machtes an entry in the specified access list
  */
 int cs_isonlist(char *nick, char *chan, int list, int move) {
-	op *o = global_op_list;
 	if (global_op_list == NULL) {
 		return 0;
 	}
+	op *o = global_op_list;
 	while (o) {
 		if (stricmp(chan, o->chan->name) == 0) {
 			if (stricmp(nick, o->nick->nick) == 0) {
