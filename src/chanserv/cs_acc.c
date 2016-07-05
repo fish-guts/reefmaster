@@ -46,29 +46,29 @@ void cs_acc(char *src, int ac, char **av) {
 	int level = cs_xop_get_level(u, c);
 	char *why = cs_get_why(u, c);
 	switch (level) {
-	case 0:
-		notice(cs_name, src, CS_ACC_RPL_NOACCESS, u->nick, c->name);
-		return;
-	case 11:
-		notice(cs_name, src, CS_ACC_RPL_IRCOP, u->nick, get_oline(u->oper),	c->name);
-		return;
-	case 10:
-		notice(cs_name,src,CS_ACC_RPL_IDENTIFIED,u->nick,chan);
-		return;
-	case 9:
-		notice(cs_name, src, CS_ACC_RPL_SUCCFND, u->nick, why, "Founder",c->name);
-		return;
-	case 8:
-		notice(cs_name, src, CS_ACC_RPL_SUCCFND, u->nick, why, "Successor",c->name);
-		return;
-	case 7:
-	case 6:
-	case 5:
-	case 4:
-	case 3:
-	case 2:
-	case 1:
-		notice(cs_name, src, CS_ACC_RPL_XOP, u->nick, why, get_opacc(level),c->name);
-		return;
+		case 0:
+			notice(cs_name, src, CS_ACC_RPL_NOACCESS, u->nick, c->name);
+			return;
+		case 11:
+			notice(cs_name, src, CS_ACC_RPL_IRCOP, u->nick, get_oline(u->oper),	c->name);
+			return;
+		case 10:
+			notice(cs_name,src,CS_ACC_RPL_IDENTIFIED,u->nick,chan);
+			return;
+		case 9:
+			notice(cs_name, src, CS_ACC_RPL_SUCCFND, u->nick, why, "Founder",c->name);
+			return;
+		case 8:
+			notice(cs_name, src, CS_ACC_RPL_SUCCFND, u->nick, why, "Successor",c->name);
+			return;
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+			notice(cs_name, src, CS_ACC_RPL_XOP, u->nick, why, get_opacc(level),c->name);
+			return;
 	}
 }

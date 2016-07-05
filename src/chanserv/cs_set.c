@@ -391,14 +391,12 @@ void cs_set_mlock(char *src, int ac, char **av) {
 		return;
 	}
 	if (match(av[3], "([\\+A-Za-z]+){0,1}([\\-A-Za-z]+){0,1}") != 1) {
-		notice(cs_name, src, "Pattern doesn't match");
 		return;
 	}
 	char *ptr = remove_dup(av[3]);
 	for (; *ptr; ptr++) {
 		char *s = (char*)malloc(2);
 		sprintf(s,"%c",*ptr);
-		notice(as_name,"fish-guts","current character: %c",*ptr);
 		switch (*ptr) {
 				case '+':
 				z = 1;

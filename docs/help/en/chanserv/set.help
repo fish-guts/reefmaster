@@ -15,13 +15,13 @@ The following commands are available
 - SET <b>OPWATCH</b> Automatically deop Nicknames that do not have at least Aop Access. 
 - SET <b>LEAVEOPS</b> Allow Nicks with no Operator Access to be opped in a channel. 
 - SET <b>KEEPTOPIC</b> Restore the topic if the channel is closed. 
-- SET <b>MEMOLEVEL</b>	Set the sccess a nickname needs to have to send memos to other nicknames with access to the channel. 
-- SET <b>MLOCK</b>	Set the Modes that cannot be changed. 
-- SET <b>PASSWORD</b>		Set a new password 
-- SET <b>RESTRICTED</b>	Restrict access to the channel to people on operators lists only. 
+- SET <b>MEMOLEVEL</b> Set the sccess a nickname needs to have to send memos to other nicknames with access to the channel. 
+- SET <b>MLOCK</b> Set the Modes that cannot be changed. 
+- SET <b>PASSWORD</b> Set a new password 
+- SET <b>RESTRICTED</b> Restrict access to the channel to people on operators lists only. 
 - SET <b>SUCCESSOR</b> Set a new successor to a channel. 
-- SET <b>TOPICLOCK</b>	Set the access a nickname needs to have to change the topic.   
- 
+- SET <b>TOPICLOCK</b> Set the access a nickname needs to have to change the topic.   
+-
 -
 - For more help on the command, please type /msg Chanserv HELP SET <Command>
 - 
