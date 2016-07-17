@@ -60,6 +60,7 @@ irc_cmd irc_cmds[] = {
 	{ "SERVER",	  NULL 		},
 	{ "SMO",	  NULL 		},
 	{ "TOPIC",    c_topic 	},
+	{ "UID",      c_uid 	},
 	{ NULL,	 	 NULL	    }
 }; 
 
@@ -365,6 +366,16 @@ void c_topic(char *src, int ac, char **av)
 	c->topic = sstrdup(av[3]);
 	cs_check_topiclock(src,c,oldtopic);
 }
+
+/********************************************************************/
+/**
+ * handle the server's UID message
+ */
+void c_uid(char *src, int ac, char **av)
+{
+	printf("UID COMMAND: %s\n",av[0]);
+}
+
 
 /********************************************************************/
 /**

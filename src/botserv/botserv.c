@@ -143,7 +143,7 @@ void load_bot(int id,char *botname, char *password, char *username, char *realna
 void connect_bot(char *botname) {
 	bot *b = findbot(botname);
 	char *nick = (char*)malloc(sizeof(char)*1024);
-	sprintf(nick,"& %s 1 0 %s %s %s 0 +qdB * :%s\r\n",b->name,b->username,s_name,s_name,b->realname);
+	sprintf(nick,"UID %s 1 0 %s %s %s 0 +qdB * :%s\r\n",b->name,b->username,s_name,s_name,b->realname);
 	send(mainsock,nick,(int)strlen(nick),0);
 }
 

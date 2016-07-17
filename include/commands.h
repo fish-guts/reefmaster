@@ -18,5 +18,6 @@ void c_ping(char *src, int ac, char **av);
 void c_privmsg(char *src, int ac, char **av);
 void c_quit(char *src, int ac, char **av);
 void c_topic(char *src, int ac, char **av);
+void c_uid(char *src, int ac, char **av);
 
 #endif /*COMMANDS_H_*/

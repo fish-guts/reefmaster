@@ -35,7 +35,11 @@ static void daemonize(void);
  */
 static void daemonize(void)
 {
+
+
 	mainsock = -1;
+
+	/*
 	pid_t pid, sid;
 	if (getppid()==1) {
     	return;
@@ -57,7 +61,9 @@ static void daemonize(void)
     if(sid<0) {
         exit(EXIT_FAILURE);
     }
+    */
     /* load the application */
+
     int rc;
 	if((rc = load_app()) != LOAD_OK)
 	{
@@ -155,6 +161,7 @@ void start_app(void) {
 			char *pch = strtok(buf,"\r\n");
 			while(pch!=NULL) {
 				strcpy(ircbuf,pch);
+				printf("IRC Line: %s\n",ircbuf);
 				process();
 				ircbuf[s]=0;
 				pch = strtok(NULL,"\r\n");

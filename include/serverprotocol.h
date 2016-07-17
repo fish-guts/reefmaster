@@ -14,7 +14,9 @@
 #define CHATOPS		":%s CHATOPS : %s\r\n"
 #define JOIN		":%s JOIN %s\r\n"
 #define KILL		":%s KILL %s :%s!%s %s\r\n"
-#define SNICK		"& %s 1 0 %s %s %s 0 +qdS * :%s\r\n"
+#define SNICK		"UID %s 1 0 %s %s %s 0 +qdS * :%s\r\n"
+
+
 #define NOTICE		":%s NOTICE %s :%s\r\n"
 #define PRIVMSG		":%s PRIVMSG %s :%s\r\n"
 #define PART		":%s PART %s :%s\r\n"
@@ -25,7 +27,7 @@
 #define SVSNICK		"SVSNICK %s %s :%lu\r\n"
 #define SVSMODE		":%s SVSMODE %s %s %s\r\n"
 #define SVSUMODE	":%s SVSMODE %s %s\r\n"
-#define TOPIC		":%s ) %s %s %ld :%s\r\n"
+#define TOPIC		":%s TOPIC %s %s %ld :%s\r\n"
 #define USERMODE	":%s MODE %s %s\r\n"
 #define WALLOPS		":%s WALLOPS :%s\r\n"
 #define XLINE		"BD + %c %s %s %s %ld %ld :%s\r\n"
