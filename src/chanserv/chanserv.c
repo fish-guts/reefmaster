@@ -414,7 +414,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	c->mlock = sstrdup(cs_mlock);
 	c->next = chans;
 	c->time_reg = time(NULL);
-	c->id = max_cs_id++;
+	c->id = ++max_cs_id;
 	if (chans)
 		chans->prev = c;
 	chans = c;
