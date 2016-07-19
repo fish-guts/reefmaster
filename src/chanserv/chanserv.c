@@ -142,7 +142,7 @@ void chanserv(char *src, char *av) {
 int cs_check_opwatch(char *chan,user *u) {
 	if(!isregcs(chan)) {
 		return 0;
-	} else if(u->oper) {
+	} else if((u->oper) || (u->is_bot)) {
 		return 0;
 	} else {
 		ChanInfo *c = findchan(chan);

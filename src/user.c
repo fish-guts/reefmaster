@@ -133,6 +133,7 @@ void s_nick(const char *src, int ac, char **av)
 		u->server = sstrdup(av[5]);
 		u->realname = sstrdup(av[9]);
 		u->nick_count = 0;
+		u->is_bot = 0;
 		/* set the user's oper flag, if any. Read from usermodes.
 		 *
 		 * h = help Operator
@@ -146,20 +147,27 @@ void s_nick(const char *src, int ac, char **av)
 		u->oper = 0;
 		if(strchr(av[7],'h'))
 			u->oper = OPER_HELPOP;
-		if(strchr(av[7],'B'))
-				u->oper = OPER_BOT;
-		if((strchr(av[7],'o')) || (strchr(av[7],'O')))
+		if(strchr(av[7],'B')) {
+				u->is_bot = 1;
+		}
+		if((strchr(av[7],'o')) || (strchr(av[7],'O'))) {
 			u->oper = OPER_IRCOP;
-		if(strchr(av[7],'C'))
+		}
+		if(strchr(av[7],'C')) {
 			u->oper = OPER_CO_ADMIN;
-		if(strchr(av[7],'A'))
+		}
+		if(strchr(av[7],'A')) {
 			u->oper = OPER_ADMIN;
-		if(strchr(av[7],'a'))
+		}
+		if(strchr(av[7],'a')) {
 			u->oper = OPER_SERVICES_ADMIN;
-		if(strchr(av[7],'N'))
+		}
+		if(strchr(av[7],'N')) {
 			u->oper = OPER_NETADMIN;
-		if(u->oper>0)
+		}
+		if(u->oper>0) {
 			announce_oper(av[0],u->oper);
+		}
 		u->pw_cnt = 0;
 		operuser *o = findoper(av[0]);
 		if(o) {
