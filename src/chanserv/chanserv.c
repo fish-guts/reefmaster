@@ -142,7 +142,7 @@ void chanserv(char *src, char *av) {
 int cs_check_opwatch(char *chan,user *u) {
 	if(!isregcs(chan)) {
 		return 0;
-	} else if(u->oper) {
+	} else if((u->oper) || (u->is_bot == 1)) {
 		return 0;
 	} else {
 		ChanInfo *c = findchan(chan);
@@ -414,7 +414,7 @@ ChanInfo *register_chan(const char *src, char *name, char *pass, char *desc) {
 	c->mlock = sstrdup(cs_mlock);
 	c->next = chans;
 	c->time_reg = time(NULL);
-	c->id = max_cs_id++;
+	c->id = ++max_cs_id;
 	if (chans)
 		chans->prev = c;
 	chans = c;

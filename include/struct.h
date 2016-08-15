@@ -268,6 +268,7 @@ struct _user
     int flood_level2;
     int nick_count;
     int chan_count;
+    int is_bot;
     usernick *usernicks;
     struct cschans {
     	struct cschans *next, *prev;

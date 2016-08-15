@@ -355,6 +355,9 @@ void s_join(char *src, int ac, char **av) {
 		join_user_update(u, findchannel(s), s);
 		if(isregcs(s)) {
 			mode(cs_name,s,"+rtn",s);
+			if(u->is_bot) {
+				do_op(cs_name,u->nick,s);
+			}
 		}
 		check_status(findchannel(s),u);
 	}

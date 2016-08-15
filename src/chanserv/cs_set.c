@@ -107,25 +107,22 @@ void cs_set_bot(char *src, int ac, char **av) {
 		notice(cs_name, src, CS_SET_BOT_ERR_NOSUCHBOT, botname);
 		return;
 	}
-	if (stricmp(find_bot_by_id(c->bot_id)->name, botname) == 0) {
+
+	if ((c->bot_id > 0) && (stricmp(find_bot_by_id(c->bot_id)->name, botname) == 0)) {
 		notice(cs_name, src, CS_SET_BOT_RPL_ALREADY, botname, chan);
 		return;
 	} else if ((chanbot) && (stricmp(chanbot->name, botname) != 0)) {
-
 		remove_bot_from_chan(chanbot->name, c->name);
 		do_part(chanbot->name, c->name, BS_PART_RPL_MSG);
 		del_bot(c->name);
-
 		add_bot_to_chan(b->name, c->name);
 		c->bot_id = b->id;
 
 		notice(cs_name, src, CS_SET_BOT_RPL_BOTADDED, b->name, c->name);
 		return;
 	} else {
-
 		add_bot_to_chan(b->name, c->name);
 		c->bot_id = b->id;
-
 		notice(cs_name, src, CS_SET_BOT_RPL_BOTADDED, b->name, c->name);
 		return;
 	}
