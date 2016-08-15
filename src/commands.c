@@ -198,6 +198,9 @@ void c_mode(char *src, int ac, char **av) {
 			x = 0;
 		if(x)
 		{	
+			if(strchr(av[1],'B')) {
+				u->is_bot = 1;
+			}
 			if(strchr(av[1],'S'))
 				u->service = 1;
 			if(strchr(av[1],'h'))
@@ -399,7 +402,7 @@ static void handle_chan_mode_o(char *chan,char *nick,int z)
 	user *u = finduser(nick);
 	channel *c = findchannel(chan);
 	if(z) {
-		if(cs_check_opwatch(c->name,u)) {
+		if(cs_check_opwatch(c->name,u) > 0) {
 			deop(cs_name,u->nick,c->name);
 			return;
 		}
